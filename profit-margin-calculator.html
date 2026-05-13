@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Profit Margin Calculator | SakConvert</title>
+  <meta name="description" content="Use the SakConvert profit margin calculator to calculate profit, margin percentage, markup, cost, and selling price." />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">SakConvert</a>
+
+      <nav class="nav">
+        <a href="index.html#tools">Tools</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#coming-soon">Coming Soon</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-hero">
+      <div class="container">
+        <p class="eyebrow">Business calculator</p>
+        <h1>Profit Margin Calculator</h1>
+        <p class="tool-intro">
+          Calculate your profit, profit margin, markup, total cost, and selling price quickly.
+        </p>
+      </div>
+    </section>
+
+    <section class="calculator-section">
+      <div class="container calculator-layout">
+        <div class="calculator-card">
+          <h2>Calculate profit margin</h2>
+
+          <div class="form-group">
+            <label for="costPrice">Cost price</label>
+            <input type="number" id="costPrice" placeholder="Example: 50" min="0" step="0.01" />
+          </div>
+
+          <div class="form-group">
+            <label for="sellingPrice">Selling price</label>
+            <input type="number" id="sellingPrice" placeholder="Example: 80" min="0" step="0.01" />
+          </div>
+
+          <button class="calculate-btn" onclick="calculateProfitMargin()">Calculate</button>
+
+          <div class="results-box" id="resultsBox">
+            <p>Enter your cost price and selling price to see your results.</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h2>Formula</h2>
+          <p>
+            Profit margin shows what percentage of your selling price is profit.
+          </p>
+
+          <div class="formula-box">
+            Profit Margin = (Profit ÷ Selling Price) × 100
+          </div>
+
+          <p>
+            Profit is calculated by subtracting your cost price from your selling price.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container content-narrow">
+        <h2>What is profit margin?</h2>
+        <p>
+          Profit margin is the percentage of revenue left after subtracting costs. It helps businesses understand how much money they actually keep from each sale.
+        </p>
+
+        <h2>Example calculation</h2>
+        <p>
+          If a product costs £50 and sells for £80, the profit is £30. The profit margin is 37.5%, because £30 is 37.5% of the £80 selling price.
+        </p>
+
+        <h2>Profit margin vs markup</h2>
+        <p>
+          Profit margin is based on the selling price. Markup is based on the cost price. This means margin and markup are related, but they are not the same thing.
+        </p>
+
+        <h2>Frequently asked questions</h2>
+
+        <h3>What is a good profit margin?</h3>
+        <p>
+          A good profit margin depends on the industry. Some businesses operate on low margins with high volume, while others use higher margins with fewer sales.
+        </p>
+
+        <h3>Can profit margin be negative?</h3>
+        <p>
+          Yes. If your cost price is higher than your selling price, your profit margin will be negative because you are selling at a loss.
+        </p>
+
+        <h3>Why is profit margin important?</h3>
+        <p>
+          Profit margin helps you price products, compare performance, and understand whether your business is generating enough profit from sales.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 SakConvert. All rights reserved.</p>
+      <a href="index.html">Back to home</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
