@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ROI Calculator | SakConvert</title>
+  <meta name="description" content="Use the SakConvert ROI calculator to calculate return on investment, profit, total return, and ROI percentage." />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">SakConvert</a>
+
+      <nav class="nav">
+        <a href="index.html#tools">Tools</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#coming-soon">Coming Soon</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-hero">
+      <div class="container">
+        <p class="eyebrow">Business calculator</p>
+        <h1>ROI Calculator</h1>
+        <p class="tool-intro">
+          Calculate return on investment, net profit, and ROI percentage for campaigns, projects, products, or business decisions.
+        </p>
+      </div>
+    </section>
+
+    <section class="calculator-section">
+      <div class="container calculator-layout">
+        <div class="calculator-card">
+          <h2>Calculate ROI</h2>
+
+          <div class="form-group">
+            <label for="investmentCost">Investment cost</label>
+            <input type="number" id="investmentCost" placeholder="Example: 1000" min="0" step="0.01" />
+          </div>
+
+          <div class="form-group">
+            <label for="investmentReturn">Total return</label>
+            <input type="number" id="investmentReturn" placeholder="Example: 1500" min="0" step="0.01" />
+          </div>
+
+          <button class="calculate-btn" onclick="calculateROI()">Calculate</button>
+
+          <div class="results-box" id="roiResultsBox">
+            <p>Enter your investment cost and total return to see your ROI.</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h2>Formula</h2>
+          <p>
+            ROI shows how much return you made compared with the original amount invested.
+          </p>
+
+          <div class="formula-box">
+            ROI = (Net Profit ÷ Investment Cost) × 100
+          </div>
+
+          <p>
+            Net profit is calculated by subtracting the investment cost from the total return.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container content-narrow">
+        <h2>What is ROI?</h2>
+        <p>
+          ROI stands for return on investment. It helps measure whether an investment, campaign, product, or business decision made a profit compared with its cost.
+        </p>
+
+        <h2>Example calculation</h2>
+        <p>
+          If you spend £1,000 and receive £1,500 back, your net profit is £500. Your ROI is 50%, because £500 is half of the original £1,000 investment.
+        </p>
+
+        <h2>Why ROI matters</h2>
+        <p>
+          ROI is useful because it gives you a simple percentage for comparing different business opportunities. A higher ROI usually means a more efficient return, but risk and time should also be considered.
+        </p>
+
+        <h2>Frequently asked questions</h2>
+
+        <h3>What is a good ROI?</h3>
+        <p>
+          A good ROI depends on the industry, risk level, and time period. A small low-risk return may be good in one situation, while a high-risk project may need a much higher ROI to be worthwhile.
+        </p>
+
+        <h3>Can ROI be negative?</h3>
+        <p>
+          Yes. ROI is negative when the total return is lower than the original investment cost.
+        </p>
+
+        <h3>Is ROI the same as profit?</h3>
+        <p>
+          No. Profit is the amount of money made. ROI expresses that profit as a percentage of the original investment.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 SakConvert. All rights reserved.</p>
+      <a href="index.html">Back to home</a>
+    </div>
+  </footer>
+
+  <script src="script.js?v=3"></script>
+</body>
+</html>
