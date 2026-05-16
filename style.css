@@ -446,3 +446,7 @@ a {
 .form-group select:focus {
   border-color: #2563eb;
 }
+
+.related-tools {
+  padding: 80px 0;
+}
