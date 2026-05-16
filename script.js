@@ -237,3 +237,74 @@ function calculateROI() {
     </div>
   `;
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const vatBtn = document.getElementById("vatBtn");
+
+  if (vatBtn) {
+    vatBtn.addEventListener("click", calculateVAT);
+  }
+});
+
+function calculateVAT() {
+  const amountInput = document.getElementById("vatAmount");
+  const rateInput = document.getElementById("vatRate");
+  const modeInput = document.getElementById("vatMode");
+  const resultsBox = document.getElementById("vatResultsBox");
+
+  if (!amountInput || !rateInput || !modeInput || !resultsBox) return;
+
+  const amount = parseFloat(amountInput.value);
+  const rate = parseFloat(rateInput.value);
+  const mode = modeInput.value;
+
+  if (isNaN(amount) || isNaN(rate)) {
+    resultsBox.innerHTML = "<p>Please enter both an amount and VAT rate.</p>";
+    return;
+  }
+
+  if (amount < 0 || rate < 0) {
+    resultsBox.innerHTML = "<p>Amount and VAT rate must not be negative.</p>";
+    return;
+  }
+
+  const rateDecimal = rate / 100;
+
+  let netAmount;
+  let vatAmount;
+  let grossAmount;
+
+  if (mode === "add") {
+    netAmount = amount;
+    vatAmount = amount * rateDecimal;
+    grossAmount = amount + vatAmount;
+  } else {
+    grossAmount = amount;
+    netAmount = amount / (1 + rateDecimal);
+    vatAmount = grossAmount - netAmount;
+  }
+
+  resultsBox.innerHTML = `
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Net amount</span>
+        <strong>${formatCurrency(netAmount)}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>VAT amount</span>
+        <strong>${formatCurrency(vatAmount)}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>Gross amount</span>
+        <strong>${formatCurrency(grossAmount)}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>VAT rate</span>
+        <strong>${rate.toFixed(2)}%</strong>
+      </div>
+    </div>
+  `;
+}

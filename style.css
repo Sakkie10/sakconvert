@@ -432,3 +432,17 @@ a {
     padding: 24px;
   }
 }
+
+.form-group select {
+  width: 100%;
+  padding: 15px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 14px;
+  font-size: 1rem;
+  outline: none;
+  background: #ffffff;
+}
+
+.form-group select:focus {
+  border-color: #2563eb;
+}
