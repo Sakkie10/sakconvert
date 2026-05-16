@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Percentage Calculator | SakConvert</title>
+  <meta name="description" content="Use the SakConvert percentage calculator to calculate percentages, percentage increase, percentage decrease, and percentage difference." />
+
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../style.css?v=6" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../../index.html" class="logo">SakConvert</a>
+
+      <nav class="nav">
+        <a href="../../index.html#tools">Tools</a>
+        <a href="../../index.html#about">About</a>
+        <a href="../../index.html#coming-soon">Coming Soon</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-hero">
+      <div class="container">
+        <p class="eyebrow">General calculator</p>
+        <h1>Percentage Calculator</h1>
+        <p class="tool-intro">
+          Calculate percentages, percentage increase, percentage decrease, and percentage difference quickly.
+        </p>
+      </div>
+    </section>
+
+    <section class="calculator-section">
+      <div class="container calculator-layout">
+        <div class="calculator-card">
+          <h2>Calculate percentages</h2>
+
+          <div class="form-group">
+            <label for="percentageMode">Calculation type</label>
+            <select id="percentageMode">
+              <option value="percentOf">What is X% of Y?</option>
+              <option value="percentChange">Percentage increase/decrease</option>
+              <option value="percentDifference">Percentage difference between two numbers</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="percentageValue">Percentage / first value</label>
+            <input type="number" id="percentageValue" placeholder="Example: 20" step="0.01" />
+          </div>
+
+          <div class="form-group">
+            <label for="percentageBase">Base / second value</label>
+            <input type="number" id="percentageBase" placeholder="Example: 500" step="0.01" />
+          </div>
+
+          <button class="calculate-btn" id="percentageBtn" type="button">Calculate</button>
+
+          <div class="results-box" id="percentageResultsBox">
+            <p>Choose a calculation type and enter your values to see the result.</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h2>Formula</h2>
+          <p>
+            For a basic percentage calculation, multiply the base number by the percentage as a decimal.
+          </p>
+
+          <div class="formula-box">
+            Result = Base Number × (Percentage ÷ 100)
+          </div>
+
+          <p>
+            Percentage change compares an old value with a new value to show how much it increased or decreased.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container content-narrow">
+        <h2>What is a percentage?</h2>
+        <p>
+          A percentage is a number expressed as part of 100. Percentages are used to compare values, calculate discounts, measure growth, and understand changes over time.
+        </p>
+
+        <h2>How to calculate a percentage of a number</h2>
+        <p>
+          To calculate a percentage of a number, divide the percentage by 100 and multiply it by the base number. For example, 20% of 500 is 100.
+        </p>
+
+        <h2>How to calculate percentage change</h2>
+        <p>
+          Percentage change shows how much a value has increased or decreased compared with its original value.
+        </p>
+
+        <h2>Frequently asked questions</h2>
+
+        <h3>What is 20% of 500?</h3>
+        <p>
+          20% of 500 is 100. This is calculated by multiplying 500 by 0.20.
+        </p>
+
+        <h3>What does percentage increase mean?</h3>
+        <p>
+          Percentage increase means how much a number has grown compared with its original value.
+        </p>
+
+        <h3>What does percentage decrease mean?</h3>
+        <p>
+          Percentage decrease means how much a number has fallen compared with its original value.
+        </p>
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <div class="container">
+        <h2>Related calculators</h2>
+
+        <div class="tool-grid">
+          <a href="../profit-margin-calculator/" class="tool-card">
+            <h3>Profit Margin Calculator</h3>
+            <p>Calculate margin, profit, and markup.</p>
+          </a>
+
+          <a href="../roi-calculator/" class="tool-card">
+            <h3>ROI Calculator</h3>
+            <p>Calculate return on investment percentages.</p>
+          </a>
+
+          <a href="../vat-calculator/" class="tool-card">
+            <h3>VAT Calculator</h3>
+            <p>Add or remove VAT from prices instantly.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 SakConvert. All rights reserved.</p>
+      <a href="../../index.html">Back to home</a>
+    </div>
+  </footer>
+
+  <script src="../../script.js?v=6"></script>
+</body>
+</html>

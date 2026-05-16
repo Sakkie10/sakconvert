@@ -308,3 +308,93 @@ function calculateVAT() {
     </div>
   `;
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const percentageBtn = document.getElementById("percentageBtn");
+
+  if (percentageBtn) {
+    percentageBtn.addEventListener("click", calculatePercentage);
+  }
+});
+
+function calculatePercentage() {
+  const modeInput = document.getElementById("percentageMode");
+  const valueInput = document.getElementById("percentageValue");
+  const baseInput = document.getElementById("percentageBase");
+  const resultsBox = document.getElementById("percentageResultsBox");
+
+  if (!modeInput || !valueInput || !baseInput || !resultsBox) return;
+
+  const mode = modeInput.value;
+  const firstValue = parseFloat(valueInput.value);
+  const secondValue = parseFloat(baseInput.value);
+
+  if (isNaN(firstValue) || isNaN(secondValue)) {
+    resultsBox.innerHTML = "<p>Please enter both values.</p>";
+    return;
+  }
+
+  let resultTitle = "";
+  let resultValue = "";
+  let explanation = "";
+
+  if (mode === "percentOf") {
+    const result = secondValue * (firstValue / 100);
+
+    resultTitle = "Result";
+    resultValue = result.toFixed(2);
+    explanation = `${firstValue}% of ${secondValue} is ${result.toFixed(2)}.`;
+  }
+
+  if (mode === "percentChange") {
+    if (firstValue === 0) {
+      resultsBox.innerHTML = "<p>The original value must not be zero.</p>";
+      return;
+    }
+
+    const change = secondValue - firstValue;
+    const percentChange = (change / firstValue) * 100;
+    const direction = percentChange >= 0 ? "increase" : "decrease";
+
+    resultTitle = "Percentage change";
+    resultValue = `${percentChange.toFixed(2)}%`;
+    explanation = `The value changed from ${firstValue} to ${secondValue}, which is a ${Math.abs(percentChange).toFixed(2)}% ${direction}.`;
+  }
+
+  if (mode === "percentDifference") {
+    const average = (Math.abs(firstValue) + Math.abs(secondValue)) / 2;
+
+    if (average === 0) {
+      resultsBox.innerHTML = "<p>Percentage difference cannot be calculated when both values are zero.</p>";
+      return;
+    }
+
+    const difference = Math.abs(firstValue - secondValue);
+    const percentDifference = (difference / average) * 100;
+
+    resultTitle = "Percentage difference";
+    resultValue = `${percentDifference.toFixed(2)}%`;
+    explanation = `The percentage difference between ${firstValue} and ${secondValue} is ${percentDifference.toFixed(2)}%.`;
+  }
+
+  resultsBox.innerHTML = `
+    <div class="result-grid">
+      <div class="result-item">
+        <span>${resultTitle}</span>
+        <strong>${resultValue}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>First value</span>
+        <strong>${firstValue.toFixed(2)}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>Second value</span>
+        <strong>${secondValue.toFixed(2)}</strong>
+      </div>
+    </div>
+
+    <p style="margin-top: 14px;">${explanation}</p>
+  `;
+}
