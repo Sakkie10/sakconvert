@@ -3,37 +3,65 @@
 
   <url>
     <loc>https://sakconvert.com/</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>1.00</priority>
   </url>
 
   <url>
-    <loc>https://sakconvert.com/profit-margin-calculator.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <loc>https://sakconvert.com/calculators/profit-margin-calculator/</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.90</priority>
   </url>
 
   <url>
-    <loc>https://sakconvert.com/roi-calculator.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <loc>https://sakconvert.com/calculators/roi-calculator/</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.90</priority>
   </url>
 
   <url>
-    <loc>https://sakconvert.com/vat-calculator.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <loc>https://sakconvert.com/calculators/vat-calculator/</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.90</priority>
   </url>
 
-<url>
-  <loc>https://sakconvert.com/calculators/percentage-calculator/</loc>
-  <lastmod>2026-05-16</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.9</priority>
-</url>
+  <url>
+    <loc>https://sakconvert.com/calculators/percentage-calculator/</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://sakconvert.com/calculators/boxing-calorie-calculator/</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://sakconvert.com/calculators/one-rep-max-calculator/</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://sakconvert.com/calculators/tdee-calculator/</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://sakconvert.com/calculators/golf-distance-calculator/</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
 
 </urlset>

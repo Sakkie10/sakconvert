@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>TDEE Calculator | SakConvert</title>
+
+  <meta name="description"
+    content="Calculate your Total Daily Energy Expenditure (TDEE) and estimate how many calories you burn per day based on your body and activity level." />
+
+  <link rel="stylesheet" href="../../style.css?v=11" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+</head>
+
+<body data-calculator="tdee">
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../../index.html" class="logo">SakConvert</a>
+
+    <nav class="nav">
+      <a href="../../index.html#tools">Tools</a>
+      <a href="../../index.html#fitness">Fitness</a>
+      <a href="../../index.html#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="breadcrumb">
+    <div class="container">
+      <a href="../../index.html">Home</a> → <span>TDEE Calculator</span>
+    </div>
+  </section>
+
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Fitness calculator</p>
+
+      <h1>TDEE Calculator</h1>
+
+      <p class="hero-text">
+        Estimate how many calories your body burns daily based on age, weight, height, gender, and activity level.
+      </p>
+    </div>
+  </section>
+
+  <section class="calculator-section">
+    <div class="container calculator-layout">
+
+      <div class="calculator-card">
+
+        <h2>Calculate TDEE</h2>
+
+        <div class="form-group">
+          <label for="tdeeAge">Age</label>
+          <input type="number" id="tdeeAge" placeholder="e.g. 30" min="1" step="1" />
+        </div>
+
+        <div class="form-group">
+          <label for="tdeeWeight">Weight (kg)</label>
+          <input type="number" id="tdeeWeight" placeholder="e.g. 80" min="1" step="0.1" />
+        </div>
+
+        <div class="form-group">
+          <label for="tdeeHeight">Height (cm)</label>
+          <input type="number" id="tdeeHeight" placeholder="e.g. 180" min="1" step="0.1" />
+        </div>
+
+        <div class="form-group">
+          <label for="tdeeGender">Gender</label>
+          <select id="tdeeGender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="tdeeActivity">Activity level</label>
+          <select id="tdeeActivity">
+            <option value="1.2">Sedentary</option>
+            <option value="1.375">Lightly active</option>
+            <option value="1.55">Moderately active</option>
+            <option value="1.725">Very active</option>
+            <option value="1.9">Extremely active</option>
+          </select>
+        </div>
+
+        <button class="calculate-btn" id="calculateTDEE" type="button">
+          Calculate TDEE
+        </button>
+
+        <div class="results-box" id="tdeeResultsBox">
+          <p>Enter your details to estimate daily calorie expenditure.</p>
+        </div>
+
+      </div>
+
+      <div class="info-card">
+
+        <h2>Formula</h2>
+
+        <div class="formula-box">
+          TDEE = BMR × Activity Multiplier
+        </div>
+
+        <p>
+          This calculator uses the Mifflin-St Jeor equation to estimate basal metabolic rate (BMR), then adjusts for activity level.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container content-narrow">
+
+      <h2>What is TDEE?</h2>
+
+      <p>
+        Total Daily Energy Expenditure (TDEE) represents the total number of calories your body burns in a full day, including movement, exercise, and normal bodily functions.
+      </p>
+
+      <h3>Why TDEE matters</h3>
+
+      <p>
+        Understanding your TDEE helps guide fat loss, maintenance, or muscle gain goals by estimating calorie needs more accurately.
+      </p>
+
+      <h3>Training insight</h3>
+
+      <p>
+        Most people underestimate how important consistency is. Quietly, long-term calorie balance matters more than short bursts of extreme dieting.
+      </p>
+
+      <p>
+        You may also find our
+        <a href="../one-rep-max-calculator/">1RM Calculator</a>
+        or
+        <a href="../boxing-calorie-calculator/">Boxing Calorie Calculator</a>
+        useful.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="container content-narrow">
+
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What is the difference between BMR and TDEE?</h3>
+      <p>
+        BMR is the calories your body burns at rest. TDEE includes daily movement and exercise.
+      </p>
+
+      <h3>Is this TDEE calculator accurate?</h3>
+      <p>
+        It provides a strong estimate using established formulas, though real calorie needs vary slightly between individuals.
+      </p>
+
+      <h3>Should I eat exactly at my TDEE?</h3>
+      <p>
+        TDEE is a starting point. Most people adjust calories gradually depending on results and goals.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="email-section">
+    <div class="container content-narrow">
+
+      <h2>Get more fitness calculators</h2>
+
+      <input type="email" placeholder="Enter your email" />
+
+      <button>Subscribe</button>
+
+    </div>
+  </section>
+
+  <section class="related-tools">
+    <div class="container">
+
+      <h2>Related calculators</h2>
+
+      <div class="tool-grid">
+
+        <a href="../one-rep-max-calculator/" class="tool-card">
+          <h3>1RM Calculator</h3>
+          <p>Estimate your one-rep max for strength training.</p>
+        </a>
+
+        <a href="../boxing-calorie-calculator/" class="tool-card">
+          <h3>Boxing Calorie Calculator</h3>
+          <p>Estimate calories burned during boxing sessions.</p>
+        </a>
+
+        <a href="../golf-distance-calculator/" class="tool-card">
+          <h3>Golf Distance Calculator</h3>
+          <p>Estimate golf shot distance from swing speed.</p>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© 2026 SakConvert. All rights reserved.</p>
+    <a href="../../index.html">Back to home</a>
+  </div>
+</footer>
+
+<script src="../../script.js?v=11"></script>
+
+</body>
+</html>

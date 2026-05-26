@@ -1,400 +1,347 @@
-console.log("SakConvert script loaded.");
+// ===============================
+// SakConvert Engine v2
+// ===============================
 
-document.addEventListener("DOMContentLoaded", function () {
-  const profitMarginBtn = document.getElementById("profitMarginBtn");
-  const roiBtn = document.getElementById("roiBtn");
+console.log("SakConvert Engine v2 loaded");
 
-  if (profitMarginBtn) {
-    profitMarginBtn.addEventListener("click", calculateProfitMargin);
-  }
-
-  if (roiBtn) {
-    roiBtn.addEventListener("click", calculateROI);
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  const page = document.body.dataset.calculator;
+  if (!page) return;
+  initCalculator(page);
 });
+
+// ===============================
+// CORE ENGINE
+// ===============================
+
+function initCalculator(type) {
+  switch (type) {
+    case "profit-margin":
+      bindCalculator("calculateProfitMargin", calculateProfitMargin);
+      break;
+
+    case "roi":
+      bindCalculator("calculateROI", calculateROI);
+      break;
+
+    case "vat":
+      bindCalculator("vatBtn", calculateVAT);
+      break;
+
+    case "percentage":
+      bindCalculator("calculatePercentage", calculatePercentage);
+      break;
+
+    case "boxing-calories":
+      bindCalculator("boxingBtn", calculateBoxingCalories);
+      break;
+
+    case "golf-distance":
+      bindCalculator("golfDistanceBtn", calculateGolfDistance);
+      break;
+
+    case "one-rep-max":
+      bindCalculator("oneRMBtn", calculateOneRM);
+      break;
+
+    case "tdee":
+      bindCalculator("calculateTDEE", calculateTDEE);
+      break;
+  }
+}
+
+function bindCalculator(buttonId, handler) {
+  const btn = document.getElementById(buttonId);
+  if (!btn) return;
+
+  btn.addEventListener("click", handler);
+
+  const inputs = document.querySelectorAll("input, select");
+  inputs.forEach(input => {
+    input.addEventListener("input", handler);
+  });
+}
+
+// ===============================
+// UTILITIES
+// ===============================
 
 function formatCurrency(value) {
   return `£${value.toFixed(2)}`;
 }
 
-function calculateProfitMargin() {
-  const costInput = document.getElementById("costPrice");
-  const sellingInput = document.getElementById("sellingPrice");
-  const resultsBox = document.getElementById("resultsBox");
-
-  if (!costInput || !sellingInput || !resultsBox) return;
-
-  const costPrice = parseFloat(costInput.value);
-  const sellingPrice = parseFloat(sellingInput.value);
-
-  if (isNaN(costPrice) || isNaN(sellingPrice)) {
-    resultsBox.innerHTML = "<p>Please enter both cost price and selling price.</p>";
-    return;
-  }
-
-  if (sellingPrice === 0) {
-    resultsBox.innerHTML = "<p>Selling price must be greater than zero.</p>";
-    return;
-  }
-
-  const profit = sellingPrice - costPrice;
-  const profitMargin = (profit / sellingPrice) * 100;
-  const markup = costPrice === 0 ? 0 : (profit / costPrice) * 100;
-
-  resultsBox.innerHTML = `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>Profit</span>
-        <strong>${formatCurrency(profit)}</strong>
-      </div>
-
-      <div class="result-item">
-        <span>Profit margin</span>
-        <strong>${profitMargin.toFixed(2)}%</strong>
-      </div>
-
-      <div class="result-item">
-        <span>Markup</span>
-        <strong>${markup.toFixed(2)}%</strong>
-      </div>
-
-      <div class="result-item">
-        <span>Cost price</span>
-        <strong>${formatCurrency(costPrice)}</strong>
-      </div>
-
-      <div class="result-item">
-        <span>Selling price</span>
-        <strong>${formatCurrency(sellingPrice)}</strong>
-      </div>
-    </div>
-  `;
+function formatPercent(value) {
+  return `${value.toFixed(2)}%`;
 }
 
-function calculateROI() {
-  const costInput = document.getElementById("investmentCost");
-  const returnInput = document.getElementById("investmentReturn");
-  const resultsBox = document.getElementById("roiResultsBox");
-
-  if (!costInput || !returnInput || !resultsBox) return;
-
-  const investmentCost = parseFloat(costInput.value);
-  const investmentReturn = parseFloat(returnInput.value);
-
-  if (isNaN(investmentCost) || isNaN(investmentReturn)) {
-    resultsBox.innerHTML = "<p>Please enter both investment cost and total return.</p>";
-    return;
-  }
-
-  if (investmentCost === 0) {
-    resultsBox.innerHTML = "<p>Investment cost must be greater than zero.</p>";
-    return;
-  }
-
-  const netProfit = investmentReturn - investmentCost;
-  const roi = (netProfit / investmentCost) * 100;
-
-  resultsBox.innerHTML = `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>Net profit</span>
-        <strong>${formatCurrency(netProfit)}</strong>
-      </div>
-
-      <div class="result-item">
-        <span>ROI</span>
-        <strong>${roi.toFixed(2)}%</strong>
-      </div>
-
-      <div class="result-item">
-        <span>Investment cost</span>
-        <strong>${formatCurrency(investmentCost)}</strong>
-      </div>
-
-      <div class="result-item">
-        <span>Total return</span>
-        <strong>${formatCurrency(investmentReturn)}</strong>
-      </div>
-    </div>
-  `;
-}console.log("SakConvert script loaded.");
-
-document.addEventListener("DOMContentLoaded", function () {
-  const profitMarginBtn = document.getElementById("profitMarginBtn");
-  const roiBtn = document.getElementById("roiBtn");
-
-  if (profitMarginBtn) {
-    profitMarginBtn.addEventListener("click", calculateProfitMargin);
-  }
-
-  if (roiBtn) {
-    roiBtn.addEventListener("click", calculateROI);
-  }
-});
-
-function formatCurrency(value) {
-  return `£${value.toFixed(2)}`;
+function showError(box, message) {
+  if (!box) return;
+  box.innerHTML = `<p class="error">${message}</p>`;
 }
+
+function renderResult(box, html) {
+  if (!box) return;
+  box.innerHTML = html;
+}
+
+// ===============================
+// PROFIT MARGIN
+// ===============================
 
 function calculateProfitMargin() {
-  const costInput = document.getElementById("costPrice");
-  const sellingInput = document.getElementById("sellingPrice");
-  const resultsBox = document.getElementById("resultsBox");
+  const cost = parseFloat(document.getElementById("costPrice").value);
+  const sell = parseFloat(document.getElementById("sellingPrice").value);
+  const box = document.getElementById("resultsBox");
 
-  if (!costInput || !sellingInput || !resultsBox) return;
-
-  const costPrice = parseFloat(costInput.value);
-  const sellingPrice = parseFloat(sellingInput.value);
-
-  if (isNaN(costPrice) || isNaN(sellingPrice)) {
-    resultsBox.innerHTML = "<p>Please enter both cost price and selling price.</p>";
-    return;
+  if (isNaN(cost) || isNaN(sell)) {
+    return showError(box, "Enter cost and selling price.");
   }
 
-  if (sellingPrice === 0) {
-    resultsBox.innerHTML = "<p>Selling price must be greater than zero.</p>";
-    return;
+  if (sell === 0) {
+    return showError(box, "Selling price must be greater than zero.");
   }
 
-  const profit = sellingPrice - costPrice;
-  const profitMargin = (profit / sellingPrice) * 100;
-  const markup = costPrice === 0 ? 0 : (profit / costPrice) * 100;
+  const profit = sell - cost;
+  const margin = (profit / sell) * 100;
+  const markup = cost === 0 ? 0 : (profit / cost) * 100;
 
-  resultsBox.innerHTML = `
+  renderResult(box, `
     <div class="result-grid">
-      <div class="result-item">
-        <span>Profit</span>
-        <strong>${formatCurrency(profit)}</strong>
-      </div>
-
-      <div class="result-item">
-        <span>Profit margin</span>
-        <strong>${profitMargin.toFixed(2)}%</strong>
-      </div>
-
-      <div class="result-item">
-        <span>Markup</span>
-        <strong>${markup.toFixed(2)}%</strong>
-      </div>
-
-      <div class="result-item">
-        <span>Cost price</span>
-        <strong>${formatCurrency(costPrice)}</strong>
-      </div>
-
-      <div class="result-item">
-        <span>Selling price</span>
-        <strong>${formatCurrency(sellingPrice)}</strong>
-      </div>
+      <div class="result-item"><span>Profit</span><strong>${formatCurrency(profit)}</strong></div>
+      <div class="result-item"><span>Margin</span><strong>${formatPercent(margin)}</strong></div>
+      <div class="result-item"><span>Markup</span><strong>${formatPercent(markup)}</strong></div>
     </div>
-  `;
+  `);
 }
+
+// ===============================
+// ROI
+// ===============================
 
 function calculateROI() {
-  const costInput = document.getElementById("investmentCost");
-  const returnInput = document.getElementById("investmentReturn");
-  const resultsBox = document.getElementById("roiResultsBox");
+  const cost = parseFloat(document.getElementById("investmentCost").value);
+  const ret = parseFloat(document.getElementById("investmentReturn").value);
+  const box = document.getElementById("roiResultsBox");
 
-  if (!costInput || !returnInput || !resultsBox) return;
-
-  const investmentCost = parseFloat(costInput.value);
-  const investmentReturn = parseFloat(returnInput.value);
-
-  if (isNaN(investmentCost) || isNaN(investmentReturn)) {
-    resultsBox.innerHTML = "<p>Please enter both investment cost and total return.</p>";
-    return;
+  if (isNaN(cost) || isNaN(ret)) {
+    return showError(box, "Enter both values.");
   }
 
-  if (investmentCost === 0) {
-    resultsBox.innerHTML = "<p>Investment cost must be greater than zero.</p>";
-    return;
+  if (cost === 0) {
+    return showError(box, "Cost must be greater than zero.");
   }
 
-  const netProfit = investmentReturn - investmentCost;
-  const roi = (netProfit / investmentCost) * 100;
+  const profit = ret - cost;
+  const roi = (profit / cost) * 100;
 
-  resultsBox.innerHTML = `
+  renderResult(box, `
     <div class="result-grid">
-      <div class="result-item">
-        <span>Net profit</span>
-        <strong>${formatCurrency(netProfit)}</strong>
-      </div>
-
-      <div class="result-item">
-        <span>ROI</span>
-        <strong>${roi.toFixed(2)}%</strong>
-      </div>
-
-      <div class="result-item">
-        <span>Investment cost</span>
-        <strong>${formatCurrency(investmentCost)}</strong>
-      </div>
-
-      <div class="result-item">
-        <span>Total return</span>
-        <strong>${formatCurrency(investmentReturn)}</strong>
-      </div>
+      <div class="result-item"><span>Net Profit</span><strong>${formatCurrency(profit)}</strong></div>
+      <div class="result-item"><span>ROI</span><strong>${formatPercent(roi)}</strong></div>
     </div>
-  `;
+  `);
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const vatBtn = document.getElementById("vatBtn");
-
-  if (vatBtn) {
-    vatBtn.addEventListener("click", calculateVAT);
-  }
-});
+// ===============================
+// VAT
+// ===============================
 
 function calculateVAT() {
-  const amountInput = document.getElementById("vatAmount");
-  const rateInput = document.getElementById("vatRate");
-  const modeInput = document.getElementById("vatMode");
-  const resultsBox = document.getElementById("vatResultsBox");
-
-  if (!amountInput || !rateInput || !modeInput || !resultsBox) return;
-
-  const amount = parseFloat(amountInput.value);
-  const rate = parseFloat(rateInput.value);
-  const mode = modeInput.value;
+  const amount = parseFloat(document.getElementById("vatAmount").value);
+  const rate = parseFloat(document.getElementById("vatRate").value);
+  const mode = document.getElementById("vatMode").value;
+  const box = document.getElementById("vatResultsBox");
 
   if (isNaN(amount) || isNaN(rate)) {
-    resultsBox.innerHTML = "<p>Please enter both an amount and VAT rate.</p>";
-    return;
+    return showError(box, "Enter amount and VAT rate.");
   }
 
-  if (amount < 0 || rate < 0) {
-    resultsBox.innerHTML = "<p>Amount and VAT rate must not be negative.</p>";
-    return;
-  }
-
-  const rateDecimal = rate / 100;
-
-  let netAmount;
-  let vatAmount;
-  let grossAmount;
+  const r = rate / 100;
+  let net, vat, gross;
 
   if (mode === "add") {
-    netAmount = amount;
-    vatAmount = amount * rateDecimal;
-    grossAmount = amount + vatAmount;
+    net = amount;
+    vat = amount * r;
+    gross = amount + vat;
   } else {
-    grossAmount = amount;
-    netAmount = amount / (1 + rateDecimal);
-    vatAmount = grossAmount - netAmount;
+    gross = amount;
+    net = amount / (1 + r);
+    vat = gross - net;
   }
 
-  resultsBox.innerHTML = `
+  renderResult(box, `
     <div class="result-grid">
-      <div class="result-item">
-        <span>Net amount</span>
-        <strong>${formatCurrency(netAmount)}</strong>
-      </div>
-
-      <div class="result-item">
-        <span>VAT amount</span>
-        <strong>${formatCurrency(vatAmount)}</strong>
-      </div>
-
-      <div class="result-item">
-        <span>Gross amount</span>
-        <strong>${formatCurrency(grossAmount)}</strong>
-      </div>
-
-      <div class="result-item">
-        <span>VAT rate</span>
-        <strong>${rate.toFixed(2)}%</strong>
-      </div>
+      <div class="result-item"><span>Net</span><strong>${formatCurrency(net)}</strong></div>
+      <div class="result-item"><span>VAT</span><strong>${formatCurrency(vat)}</strong></div>
+      <div class="result-item"><span>Gross</span><strong>${formatCurrency(gross)}</strong></div>
     </div>
-  `;
+  `);
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const percentageBtn = document.getElementById("percentageBtn");
-
-  if (percentageBtn) {
-    percentageBtn.addEventListener("click", calculatePercentage);
-  }
-});
+// ===============================
+// PERCENTAGE
+// ===============================
 
 function calculatePercentage() {
-  const modeInput = document.getElementById("percentageMode");
-  const valueInput = document.getElementById("percentageValue");
-  const baseInput = document.getElementById("percentageBase");
-  const resultsBox = document.getElementById("percentageResultsBox");
+  const mode = document.getElementById("percentageMode").value;
+  const v1 = parseFloat(document.getElementById("percentageValue").value);
+  const v2 = parseFloat(document.getElementById("percentageBase").value);
+  const box = document.getElementById("percentageResultsBox");
 
-  if (!modeInput || !valueInput || !baseInput || !resultsBox) return;
-
-  const mode = modeInput.value;
-  const firstValue = parseFloat(valueInput.value);
-  const secondValue = parseFloat(baseInput.value);
-
-  if (isNaN(firstValue) || isNaN(secondValue)) {
-    resultsBox.innerHTML = "<p>Please enter both values.</p>";
-    return;
+  if (isNaN(v1) || isNaN(v2)) {
+    return showError(box, "Enter both values.");
   }
 
-  let resultTitle = "";
-  let resultValue = "";
+  let result = "";
   let explanation = "";
 
   if (mode === "percentOf") {
-    const result = secondValue * (firstValue / 100);
-
-    resultTitle = "Result";
-    resultValue = result.toFixed(2);
-    explanation = `${firstValue}% of ${secondValue} is ${result.toFixed(2)}.`;
+    const r = v2 * (v1 / 100);
+    result = r.toFixed(2);
+    explanation = `${v1}% of ${v2} = ${r.toFixed(2)}`;
   }
 
   if (mode === "percentChange") {
-    if (firstValue === 0) {
-      resultsBox.innerHTML = "<p>The original value must not be zero.</p>";
-      return;
-    }
-
-    const change = secondValue - firstValue;
-    const percentChange = (change / firstValue) * 100;
-    const direction = percentChange >= 0 ? "increase" : "decrease";
-
-    resultTitle = "Percentage change";
-    resultValue = `${percentChange.toFixed(2)}%`;
-    explanation = `The value changed from ${firstValue} to ${secondValue}, which is a ${Math.abs(percentChange).toFixed(2)}% ${direction}.`;
+    if (v1 === 0) return showError(box, "Original cannot be zero.");
+    const change = ((v2 - v1) / v1) * 100;
+    result = formatPercent(change);
+    explanation = `Change from ${v1} to ${v2}`;
   }
 
   if (mode === "percentDifference") {
-    const average = (Math.abs(firstValue) + Math.abs(secondValue)) / 2;
-
-    if (average === 0) {
-      resultsBox.innerHTML = "<p>Percentage difference cannot be calculated when both values are zero.</p>";
-      return;
-    }
-
-    const difference = Math.abs(firstValue - secondValue);
-    const percentDifference = (difference / average) * 100;
-
-    resultTitle = "Percentage difference";
-    resultValue = `${percentDifference.toFixed(2)}%`;
-    explanation = `The percentage difference between ${firstValue} and ${secondValue} is ${percentDifference.toFixed(2)}%.`;
+    const avg = (Math.abs(v1) + Math.abs(v2)) / 2;
+    if (avg === 0) return showError(box, "Invalid values.");
+    const diff = (Math.abs(v1 - v2) / avg) * 100;
+    result = formatPercent(diff);
+    explanation = `Difference between ${v1} and ${v2}`;
   }
 
-  resultsBox.innerHTML = `
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item"><span>Result</span><strong>${result}</strong></div>
+    </div>
+    <p class="result-note">${explanation}</p>
+  `);
+}
+
+// ===============================
+// BOXING CALORIES
+// ===============================
+
+function calculateBoxingCalories() {
+  const weight = parseFloat(document.getElementById("weight").value);
+  const duration = parseFloat(document.getElementById("duration").value);
+  const met = parseFloat(document.getElementById("intensity").value);
+  const box = document.getElementById("boxingResultsBox");
+
+  if (isNaN(weight) || isNaN(duration)) {
+    return showError(box, "Enter weight and duration.");
+  }
+
+  const calories = (met * weight * 3.5 / 200) * duration;
+
+  renderResult(box, `
     <div class="result-grid">
       <div class="result-item">
-        <span>${resultTitle}</span>
-        <strong>${resultValue}</strong>
-      </div>
-
-      <div class="result-item">
-        <span>First value</span>
-        <strong>${firstValue.toFixed(2)}</strong>
-      </div>
-
-      <div class="result-item">
-        <span>Second value</span>
-        <strong>${secondValue.toFixed(2)}</strong>
+        <span>Calories Burned</span>
+        <strong>${Math.round(calories)} kcal</strong>
       </div>
     </div>
+  `);
+}
 
-    <p style="margin-top: 14px;">${explanation}</p>
-  `;
+// ===============================
+// GOLF DISTANCE
+// ===============================
+
+function calculateGolfDistance() {
+  const speed = parseFloat(document.getElementById("golfSpeed").value);
+  const club = document.getElementById("golfClub").value;
+  const box = document.getElementById("golfDistanceResultsBox");
+
+  if (isNaN(speed)) {
+    return showError(box, "Enter your swing speed.");
+  }
+
+  let factor;
+
+  if (club === "driver") factor = 2.3;
+  else if (club === "iron") factor = 1.6;
+  else factor = 1.2;
+
+  const distance = speed * factor;
+
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Estimated Distance</span>
+        <strong>${Math.round(distance)} yards</strong>
+      </div>
+    </div>
+  `);
+}
+
+// ===============================
+// ONE REP MAX
+// ===============================
+
+function calculateOneRM() {
+  const weight = parseFloat(document.getElementById("oneRMWeight").value);
+  const reps = parseFloat(document.getElementById("oneRMReps").value);
+  const box = document.getElementById("oneRMResultsBox");
+
+  if (isNaN(weight) || isNaN(reps)) {
+    return showError(box, "Enter weight and reps.");
+  }
+
+  if (reps <= 0) {
+    return showError(box, "Reps must be greater than zero.");
+  }
+
+  const oneRM = weight * (1 + reps / 30);
+
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Estimated 1RM</span>
+        <strong>${oneRM.toFixed(1)} kg</strong>
+      </div>
+    </div>
+  `);
+}
+
+// ===============================
+// TDEE
+// ===============================
+
+function calculateTDEE() {
+  const age = parseFloat(document.getElementById("tdeeAge").value);
+  const weight = parseFloat(document.getElementById("tdeeWeight").value);
+  const height = parseFloat(document.getElementById("tdeeHeight").value);
+  const gender = document.getElementById("tdeeGender").value;
+  const activity = parseFloat(document.getElementById("tdeeActivity").value);
+  const box = document.getElementById("tdeeResultsBox");
+
+  if (isNaN(age) || isNaN(weight) || isNaN(height)) {
+    return showError(box, "Please enter all values.");
+  }
+
+  let bmr;
+
+  if (gender === "male") {
+    bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+  } else {
+    bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+  }
+
+  const tdee = bmr * activity;
+
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Estimated TDEE</span>
+        <strong>${Math.round(tdee)} kcal/day</strong>
+      </div>
+    </div>
+  `);
 }

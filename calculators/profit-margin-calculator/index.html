@@ -7,149 +7,171 @@
 
   <title>Profit Margin Calculator | SakConvert</title>
   <meta name="description"
-    content="Use the SakConvert profit margin calculator to calculate profit, margin percentage, markup, cost, and selling price." />
+    content="Calculate profit, profit margin, and markup instantly with SakConvert’s simple profit margin calculator." />
 
-  <link rel="stylesheet" href="../../style.css?v=9" />
+  <link rel="stylesheet" href="../../style.css?v=11" />
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
 </head>
 
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="../../index.html" class="logo">SakConvert</a>
+<body data-calculator="profit-margin">
 
-      <nav class="nav">
-        <a href="../../index.html#tools">Tools</a>
-        <a href="../../index.html#about">About</a>
-        <a href="../../index.html#coming-soon">Coming Soon</a>
-      </nav>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../../index.html" class="logo">SakConvert</a>
+
+    <nav class="nav">
+      <a href="../../index.html#tools">Tools</a>
+      <a href="../../index.html#fitness">Fitness</a>
+      <a href="../../index.html#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="breadcrumb">
+    <div class="container">
+      <a href="../../index.html">Home</a> → <span>Profit Margin Calculator</span>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="tool-hero">
-      <div class="container">
-        <p class="eyebrow">Business calculator</p>
-        <h1>Profit Margin Calculator</h1>
-        <p class="tool-intro">
-          Calculate your profit, profit margin, markup, total cost, and selling price quickly.
-        </p>
-      </div>
-    </section>
-
-    <section class="calculator-section">
-      <div class="container calculator-layout">
-        <div class="calculator-card">
-          <h2>Calculate profit margin</h2>
-
-          <div class="form-group">
-            <label for="costPrice">Cost price</label>
-            <input type="number" id="costPrice" placeholder="Example: 50" min="0" step="0.01" />
-          </div>
-
-          <div class="form-group">
-            <label for="sellingPrice">Selling price</label>
-            <input type="number" id="sellingPrice" placeholder="Example: 80" min="0" step="0.01" />
-          </div>
-
-          <button class="calculate-btn" onclick="calculateProfitMargin()">Calculate</button>
-
-          <div class="results-box" id="resultsBox">
-            <p>Enter your cost price and selling price to see your results.</p>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <h2>Formula</h2>
-          <p>
-            Profit margin shows what percentage of your selling price is profit.
-          </p>
-
-          <div class="formula-box">
-            Profit Margin = (Profit ÷ Selling Price) × 100
-          </div>
-
-          <p>
-            Profit is calculated by subtracting your cost price from your selling price.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="content-section">
-      <div class="container content-narrow">
-        <h2>What is profit margin?</h2>
-        <p>
-          Profit margin is the percentage of revenue left after subtracting costs. It helps businesses understand how
-          much money they actually keep from each sale.
-        </p>
-
-        <h2>Example calculation</h2>
-        <p>
-          If a product costs £50 and sells for £80, the profit is £30. The profit margin is 37.5%, because £30 is 37.5%
-          of the £80 selling price.
-        </p>
-
-        <h2>Profit margin vs markup</h2>
-        <p>
-          Profit margin is based on the selling price. Markup is based on the cost price. This means margin and markup
-          are related, but they are not the same thing.
-        </p>
-
-        <h2>Frequently asked questions</h2>
-
-        <h3>What is a good profit margin?</h3>
-        <p>
-          A good profit margin depends on the industry. Some businesses operate on low margins with high volume, while
-          others use higher margins with fewer sales.
-        </p>
-
-        <h3>Can profit margin be negative?</h3>
-        <p>
-          Yes. If your cost price is higher than your selling price, your profit margin will be negative because you are
-          selling at a loss.
-        </p>
-
-        <h3>Why is profit margin important?</h3>
-        <p>
-          Profit margin helps you price products, compare performance, and understand whether your business is
-          generating enough profit from sales.
-        </p>
-      </div>
-    </section>
-
-    <section class="related-tools">
-      <div class="container">
-        <h2>Related calculators</h2>
-
-        <div class="tool-grid">
-          <a href="profit-margin-calculator.html" class="tool-card">
-            <h3>Profit Margin Calculator</h3>
-            <p>Calculate margin, profit, and markup.</p>
-          </a>
-
-          <a href="roi-calculator.html" class="tool-card">
-            <h3>ROI Calculator</h3>
-            <p>Calculate return on investment percentages.</p>
-          </a>
-
-          <a href="vat-calculator.html" class="tool-card">
-            <h3>VAT Calculator</h3>
-            <p>Add or remove VAT from prices instantly.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© 2026 SakConvert. All rights reserved.</p>
-      <a href="../../index.html">Back to home</a>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Business calculator</p>
+      <h1>Profit Margin Calculator</h1>
+      <p class="hero-text">
+        Quickly calculate profit, margin percentage, and markup to make better pricing and business decisions.
+      </p>
     </div>
-  </footer>
+  </section>
 
-  <script src="../../script.js?v=9"></script>
+  <section class="calculator-section">
+    <div class="container calculator-layout">
+
+      <div class="calculator-card">
+        <h2>Calculate Profit Margin</h2>
+
+        <div class="form-group">
+          <label for="costPrice">Cost price</label>
+          <input type="number" id="costPrice" placeholder="e.g. 50" min="0" step="0.01" />
+        </div>
+
+        <div class="form-group">
+          <label for="sellingPrice">Selling price</label>
+          <input type="number" id="sellingPrice" placeholder="e.g. 80" min="0" step="0.01" />
+        </div>
+
+        <button class="calculate-btn" id="calculateProfitMargin" type="button">Calculate</button>
+
+        <div class="results-box" id="resultsBox">
+          <p>Enter cost and selling price to calculate profit and margin.</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h2>Formula</h2>
+        <p>Profit margin shows the percentage of revenue that is profit.</p>
+
+        <div class="formula-box">
+          Profit Margin = (Profit ÷ Selling Price) × 100
+        </div>
+
+        <p>Profit = Selling Price − Cost Price</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container content-narrow">
+
+      <h2>Understanding Profit Margin</h2>
+      <p>
+        Profit margin is one of the most important metrics in business. It tells you how much of each sale you actually keep after covering costs.
+      </p>
+
+      <h3>Why profit margin matters</h3>
+      <ul>
+        <li>Helps you price products correctly</li>
+        <li>Shows business efficiency</li>
+        <li>Highlights profitability issues early</li>
+        <li>Allows comparison across products or services</li>
+      </ul>
+
+      <h3>Margin vs Markup</h3>
+      <p>
+        Profit margin is based on selling price, while markup is based on cost. This means a 50% markup does not equal a 50% margin.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container content-narrow">
+
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What is a good profit margin?</h3>
+      <p>
+        It depends on the industry. Retail businesses often operate on lower margins, while services and digital products can achieve higher margins.
+      </p>
+
+      <h3>Can profit margin be negative?</h3>
+      <p>
+        Yes. If your costs exceed your selling price, you are making a loss.
+      </p>
+
+      <h3>Why is profit margin important?</h3>
+      <p>
+        It helps you understand whether your business is sustainable and profitable over time.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="email-section">
+    <div class="container content-narrow">
+      <h2>Get more business calculators</h2>
+      <input type="email" placeholder="Enter your email" />
+      <button>Subscribe</button>
+    </div>
+  </section>
+
+  <section class="related-tools">
+    <div class="container">
+      <h2>Related calculators</h2>
+
+      <div class="tool-grid">
+
+        <a href="../percentage-calculator/" class="tool-card">
+          <h3>Percentage Calculator</h3>
+          <p>Calculate percentages and changes.</p>
+        </a>
+
+        <a href="../roi-calculator/" class="tool-card">
+          <h3>ROI Calculator</h3>
+          <p>Measure return on investment.</p>
+        </a>
+
+        <a href="../vat-calculator/" class="tool-card">
+          <h3>VAT Calculator</h3>
+          <p>Add or remove VAT instantly.</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© 2026 SakConvert. All rights reserved.</p>
+    <a href="../../index.html">Back to home</a>
+  </div>
+</footer>
+
+<script src="../../script.js?v=11"></script>
+
 </body>
-
 </html>

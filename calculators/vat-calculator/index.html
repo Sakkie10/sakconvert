@@ -7,158 +7,182 @@
 
   <title>VAT Calculator | SakConvert</title>
   <meta name="description"
-    content="Use the SakConvert VAT calculator to add VAT, remove VAT, and calculate VAT amounts quickly for invoices, quotes, and pricing." />
+    content="Add VAT, remove VAT, and calculate VAT amounts instantly with SakConvert’s simple VAT calculator." />
 
-  <link rel="stylesheet" href="../../style.css?v=9" />
+  <link rel="stylesheet" href="../../style.css?v=11" />
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
 </head>
 
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="../../index.html" class="logo">SakConvert</a>
+<body data-calculator="vat">
 
-      <nav class="nav">
-        <a href="../../index.html#tools">Tools</a>
-        <a href="../../index.html#about">About</a>
-        <a href="../../index.html#coming-soon">Coming Soon</a>
-      </nav>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../../index.html" class="logo">SakConvert</a>
+
+    <nav class="nav">
+      <a href="../../index.html#tools">Tools</a>
+      <a href="../../index.html#fitness">Fitness</a>
+      <a href="../../index.html#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="breadcrumb">
+    <div class="container">
+      <a href="../../index.html">Home</a> → <span>VAT Calculator</span>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="tool-hero">
-      <div class="container">
-        <p class="eyebrow">Business calculator</p>
-        <h1>VAT Calculator</h1>
-        <p class="tool-intro">
-          Add or remove VAT from a price and calculate the VAT amount instantly.
-        </p>
-      </div>
-    </section>
-
-    <section class="calculator-section">
-      <div class="container calculator-layout">
-        <div class="calculator-card">
-          <h2>Calculate VAT</h2>
-
-          <div class="form-group">
-            <label for="vatAmount">Amount</label>
-            <input type="number" id="vatAmount" placeholder="Example: 100" min="0" step="0.01" />
-          </div>
-
-          <div class="form-group">
-            <label for="vatRate">VAT rate (%)</label>
-            <input type="number" id="vatRate" value="20" min="0" step="0.01" />
-          </div>
-
-          <div class="form-group">
-            <label for="vatMode">Calculation type</label>
-            <select id="vatMode">
-              <option value="add">Add VAT to amount</option>
-              <option value="remove">Remove VAT from amount</option>
-            </select>
-          </div>
-
-          <button class="calculate-btn" id="vatBtn" type="button">Calculate</button>
-
-          <div class="results-box" id="vatResultsBox">
-            <p>Enter an amount and VAT rate to see your VAT calculation.</p>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <h2>Formula</h2>
-          <p>
-            To add VAT, multiply the net amount by the VAT rate, then add it to the original amount.
-          </p>
-
-          <div class="formula-box">
-            VAT Amount = Net Amount × VAT Rate
-          </div>
-
-          <p>
-            To remove VAT, divide the gross amount by 1 plus the VAT rate.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="content-section">
-      <div class="container content-narrow">
-        <h2>What is VAT?</h2>
-        <p>
-          VAT stands for value added tax. It is a tax added to many goods and services. Businesses often need to
-          calculate VAT when preparing prices, quotes, invoices, and receipts.
-        </p>
-
-        <h2>How to add VAT</h2>
-        <p>
-          To add VAT, multiply the original amount by the VAT rate, then add the VAT amount to the original price.
-        </p>
-
-        <h2>How to remove VAT</h2>
-        <p>
-          To remove VAT from a VAT-inclusive price, divide the total price by 1 plus the VAT rate. This gives the price
-          before VAT.
-        </p>
-
-        <h2>Example calculation</h2>
-        <p>
-          If the amount is £100 and the VAT rate is 20%, the VAT amount is £20. The total price including VAT is £120.
-        </p>
-
-        <h2>Frequently asked questions</h2>
-
-        <h3>What is the standard VAT rate in the UK?</h3>
-        <p>
-          The standard UK VAT rate is commonly 20%, although some goods and services may use reduced or zero rates.
-        </p>
-
-        <h3>Can I use this calculator to remove VAT?</h3>
-        <p>
-          Yes. Select “Remove VAT from amount” to work backwards from a VAT-inclusive price.
-        </p>
-
-        <h3>Is VAT calculated on the net or gross amount?</h3>
-        <p>
-          VAT is usually calculated on the net amount. The gross amount is the final total after VAT has been added.
-        </p>
-      </div>
-    </section>
-
-    <section class="related-tools">
-      <div class="container">
-        <h2>Related calculators</h2>
-
-        <div class="tool-grid">
-          <a href="profit-margin-calculator.html" class="tool-card">
-            <h3>Profit Margin Calculator</h3>
-            <p>Calculate margin, profit, and markup.</p>
-          </a>
-
-          <a href="roi-calculator.html" class="tool-card">
-            <h3>ROI Calculator</h3>
-            <p>Calculate return on investment percentages.</p>
-          </a>
-
-          <a href="vat-calculator.html" class="tool-card">
-            <h3>VAT Calculator</h3>
-            <p>Add or remove VAT from prices instantly.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© 2026 SakConvert. All rights reserved.</p>
-      <a href="../../index.html">Back to home</a>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Business calculator</p>
+      <h1>VAT Calculator</h1>
+      <p class="hero-text">
+        Add VAT, remove VAT, and calculate net, VAT, and gross amounts instantly.
+      </p>
     </div>
-  </footer>
+  </section>
 
-  <script src="../../script.js?v=9"></script>
+  <section class="calculator-section">
+    <div class="container calculator-layout">
+
+      <div class="calculator-card">
+        <h2>Calculate VAT</h2>
+
+        <div class="form-group">
+          <label for="vatAmount">Amount</label>
+          <input type="number" id="vatAmount" placeholder="e.g. 100" min="0" step="0.01" />
+        </div>
+
+        <div class="form-group">
+          <label for="vatRate">VAT rate (%)</label>
+          <input type="number" id="vatRate" value="20" min="0" step="0.01" />
+        </div>
+
+        <div class="form-group">
+          <label for="vatMode">Calculation type</label>
+          <select id="vatMode">
+            <option value="add">Add VAT</option>
+            <option value="remove">Remove VAT</option>
+          </select>
+        </div>
+
+        <button class="calculate-btn" id="vatBtn" type="button">Calculate VAT</button>
+
+        <div class="results-box" id="vatResultsBox">
+          <p>Enter an amount and VAT rate to calculate VAT.</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h2>Formula</h2>
+
+        <div class="formula-box">
+          VAT = Amount × Rate ÷ 100
+        </div>
+
+        <p>
+          Adding VAT increases a net price. Removing VAT extracts the net price from a VAT-inclusive total.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container content-narrow">
+
+      <h2>What is VAT?</h2>
+      <p>
+        VAT, or Value Added Tax, is a tax added to many goods and services. Businesses often calculate VAT when preparing prices, invoices, receipts, and quotes.
+      </p>
+
+      <h3>How to add VAT</h3>
+      <p>
+        To add VAT, multiply the net amount by the VAT rate, then add the VAT amount to the original price.
+      </p>
+
+      <h3>How to remove VAT</h3>
+      <p>
+        To remove VAT from a VAT-inclusive price, divide the gross amount by 1 plus the VAT rate.
+      </p>
+
+      <h3>VAT insight</h3>
+      <p>
+        Many pricing mistakes happen because people mix up net and gross amounts. Always know whether your starting figure includes VAT or excludes it.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container content-narrow">
+
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What is the standard UK VAT rate?</h3>
+      <p>
+        The standard UK VAT rate is commonly 20%, although some goods and services may use reduced or zero rates.
+      </p>
+
+      <h3>Can I use this calculator to remove VAT?</h3>
+      <p>
+        Yes. Select “Remove VAT” to work backwards from a VAT-inclusive price.
+      </p>
+
+      <h3>Is VAT calculated on the net or gross amount?</h3>
+      <p>
+        VAT is normally calculated on the net amount. Gross amount means the final total after VAT has been added.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="email-section">
+    <div class="container content-narrow">
+      <h2>Get more business calculators</h2>
+      <input type="email" placeholder="Enter your email" />
+      <button>Subscribe</button>
+    </div>
+  </section>
+
+  <section class="related-tools">
+    <div class="container">
+      <h2>Related calculators</h2>
+
+      <div class="tool-grid">
+
+        <a href="../profit-margin-calculator/" class="tool-card">
+          <h3>Profit Margin Calculator</h3>
+          <p>Calculate margin, markup, and profit.</p>
+        </a>
+
+        <a href="../roi-calculator/" class="tool-card">
+          <h3>ROI Calculator</h3>
+          <p>Measure return on investment.</p>
+        </a>
+
+        <a href="../percentage-calculator/" class="tool-card">
+          <h3>Percentage Calculator</h3>
+          <p>Calculate percentages and changes.</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© 2026 SakConvert. All rights reserved.</p>
+    <a href="../../index.html">Back to home</a>
+  </div>
+</footer>
+
+<script src="../../script.js?v=11"></script>
+
 </body>
-
 </html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>1RM Calculator (One Rep Max) | SakConvert</title>
+
+  <meta name="description"
+    content="Calculate your estimated one-rep max (1RM) instantly using weight and reps. Ideal for strength training and gym progression." />
+
+  <link rel="stylesheet" href="../../style.css?v=11" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+</head>
+
+<body data-calculator="one-rep-max">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../../index.html" class="logo">SakConvert</a>
+
+      <nav class="nav">
+        <a href="../../index.html#tools">Tools</a>
+        <a href="../../index.html#fitness">Fitness</a>
+        <a href="../../index.html#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb">
+      <div class="container">
+        <a href="../../index.html">Home</a> → <span>1RM Calculator</span>
+      </div>
+    </section>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Strength calculator</p>
+
+        <h1>1RM Calculator</h1>
+
+        <p class="hero-text">
+          Estimate your one-rep max using the weight lifted and number of repetitions completed.
+        </p>
+      </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section class="calculator-section">
+      <div class="container calculator-layout">
+
+        <!-- LEFT -->
+        <div class="calculator-card">
+
+          <h2>Calculate One-Rep Max</h2>
+
+          <div class="form-group">
+            <label for="oneRMWeight">Weight lifted (kg)</label>
+            <input type="number" id="oneRMWeight" placeholder="e.g. 100" min="0" step="0.1" />
+          </div>
+
+          <div class="form-group">
+            <label for="oneRMReps">Repetitions completed</label>
+            <input type="number" id="oneRMReps" placeholder="e.g. 5" min="1" step="1" />
+          </div>
+
+          <button class="calculate-btn" id="oneRMBtn" type="button">
+            Calculate 1RM
+          </button>
+
+          <div class="results-box" id="oneRMResultsBox">
+            <p>Enter weight and reps to estimate your one-rep max.</p>
+          </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="info-card">
+
+          <h2>Formula</h2>
+
+          <div class="formula-box">
+            1RM = Weight × (1 + Reps ÷ 30)
+          </div>
+
+          <p>
+            This calculator uses the Epley formula, commonly used in strength training and powerlifting.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="content-section">
+      <div class="container content-narrow">
+
+        <h2>What is One-Rep Max?</h2>
+
+        <p>
+          Your one-rep max (1RM) is the maximum amount of weight you can lift for a single repetition of an exercise.
+        </p>
+
+        <h3>Why athletes use 1RM</h3>
+
+        <p>
+          Strength athletes and coaches use 1RM estimates to measure progress, structure training blocks, and determine percentages for workouts.
+        </p>
+
+        <h3>Training insight</h3>
+
+        <p>
+          Most people test strength too often. Quietly, consistent submaximal training usually builds strength faster over time.
+        </p>
+
+        <!-- INTERNAL LINKS -->
+        <p>
+          You may also find our
+          <a href="../tdee-calculator/">TDEE Calculator</a>
+          or
+          <a href="../boxing-calorie-calculator/">Boxing Calorie Calculator</a>
+          useful.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container content-narrow">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>How accurate is a 1RM calculator?</h3>
+
+        <p>
+          It provides a good estimate, especially for lower rep ranges. Actual strength varies between individuals.
+        </p>
+
+        <h3>What rep range works best?</h3>
+
+        <p>
+          Most formulas are more accurate between 1–10 repetitions.
+        </p>
+
+        <h3>Should beginners test true maxes?</h3>
+
+        <p>
+          Most beginners benefit more from estimated maxes than attempting dangerous true one-rep lifts.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- EMAIL -->
+    <section class="email-section">
+      <div class="container content-narrow">
+
+        <h2>Get more fitness calculators</h2>
+
+        <input type="email" placeholder="Enter your email" />
+
+        <button>Subscribe</button>
+
+      </div>
+    </section>
+
+    <!-- RELATED -->
+    <section class="related-tools">
+      <div class="container">
+
+        <h2>Related calculators</h2>
+
+        <div class="tool-grid">
+
+          <a href="../tdee-calculator/" class="tool-card">
+            <h3>TDEE Calculator</h3>
+            <p>Estimate your daily calorie needs.</p>
+          </a>
+
+          <a href="../golf-distance-calculator/" class="tool-card">
+            <h3>Golf Distance Calculator</h3>
+            <p>Estimate golf shot distance based on swing speed.</p>
+          </a>
+
+          <a href="../boxing-calorie-calculator/" class="tool-card">
+            <h3>Boxing Calorie Calculator</h3>
+            <p>Estimate calories burned during boxing training.</p>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 SakConvert. All rights reserved.</p>
+      <a href="../../index.html">Back to home</a>
+    </div>
+  </footer>
+
+  <script src="../../script.js?v=11"></script>
+
+</body>
+</html>
