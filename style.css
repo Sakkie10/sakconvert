@@ -521,6 +521,32 @@ a {
   margin-top: 0;
 }
 
+/* Related Tools */
+
+.related-tools {
+  padding: 80px 0;
+}
+
+/* GOLF DISTANCE PAGE FIXES */
+
+body[data-calculator="golf-distance"] .hero {
+  padding: 72px 0 50px;
+}
+
+body[data-calculator="golf-distance"] .calculator-section {
+  padding-top: 20px;
+}
+
+body[data-calculator="golf-distance"] .related-tools .tool-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  body[data-calculator="golf-distance"] .related-tools .tool-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* FOOTER */
 
 .site-footer {
