@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sakconvert-worker",
+  "main": "src/index.js",
+  "compatibility_date": "2026-05-27",
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "sakconvert_subscribers",
+      "database_id": "ce71fc80-5c8b-47fd-bf70-9a28e652061a"
+    }
+  ]
+}
