@@ -6,8 +6,12 @@ console.log("SakConvert Engine v2 loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
   const page = document.body.dataset.calculator;
-  if (!page) return;
-  initCalculator(page);
+
+  if (page) {
+    initCalculator(page);
+  }
+
+  initSubscribeForms();
 });
 
 // ===============================
@@ -344,4 +348,58 @@ function calculateTDEE() {
       </div>
     </div>
   `);
+}
+
+// ===============================
+// EMAIL SUBSCRIBE FORM
+// ===============================
+
+function initSubscribeForms() {
+  const forms = document.querySelectorAll(".subscribe-form");
+
+  forms.forEach((form) => {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const input = form.querySelector('input[name="email"]');
+      const message = form.querySelector(".form-message");
+
+      if (!input || !message) return;
+
+      const email = input.value.trim();
+
+      if (!email) {
+        message.textContent = "Please enter your email.";
+        return;
+      }
+
+      message.textContent = "Subscribing...";
+
+      try {
+        const response = await fetch("https://sakconvert-worker.sakconvert.workers.dev", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            email,
+            source: "email-form",
+            page: window.location.pathname
+          })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          message.textContent = "Thanks — you’re subscribed.";
+          input.value = "";
+        } else {
+          message.textContent = data.error || "Something went wrong.";
+        }
+
+      } catch (error) {
+        message.textContent = "Something went wrong. Please try again.";
+      }
+    });
+  });
 }
