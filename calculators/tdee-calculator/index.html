@@ -10,7 +10,7 @@
   <meta name="description"
     content="Calculate your Total Daily Energy Expenditure (TDEE) and estimate how many calories you burn per day based on your body and activity level." />
 
-  <link rel="stylesheet" href="../../style.css?v=19" />
+  <link rel="stylesheet" href="../../style.css?v=20" />
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
 </head>
 
@@ -178,12 +178,17 @@
       </div>
     </section>
 
+    <!-- EMAIL -->
     <section class="email-section" id="subscribe">
       <div class="container content-narrow">
         <h2>Get more fitness tools</h2>
 
         <form class="email-form subscribe-form">
           <input type="email" name="email" placeholder="Enter your email" required />
+
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADdtPpfHbGvZF2qB">
+          </div>
+
           <button type="submit">Subscribe</button>
           <p class="form-message"></p>
         </form>
@@ -226,7 +231,8 @@
     </div>
   </footer>
 
-  <script src="../../script.js?v=19"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script src="../../script.js?v=20"></script>
 
 </body>
 

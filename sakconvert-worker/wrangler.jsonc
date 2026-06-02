@@ -5,6 +5,17 @@
   "compatibility_date": "2026-05-27",
   "account_id": "bfbc2cde2b8157e942b9b77c69dc4ac9",
 
+  "routes": [
+    {
+      "pattern": "www.sakconvert.com/api/subscribe*",
+      "zone_name": "sakconvert.com"
+    },
+    {
+      "pattern": "sakconvert.com/api/subscribe*",
+      "zone_name": "sakconvert.com"
+    }
+  ],
+
   "d1_databases": [
     {
       "binding": "DB",

@@ -22,6 +22,26 @@ export default {
     try {
       const body = await request.json();
       const email = body.email?.trim().toLowerCase();
+      const turnstileToken = body.turnstileToken;
+
+      if (!turnstileToken) {
+        return Response.json(
+          { success: false, error: "Verification failed. Please try again." },
+          { status: 400, headers: corsHeaders }
+        );
+      }
+
+      const turnstileResult = await verifyTurnstile(
+        turnstileToken,
+        env.TURNSTILE_SECRET_KEY
+      );
+
+      if (!turnstileResult.success) {
+        return Response.json(
+          { success: false, error: "Verification failed. Please try again." },
+          { status: 400, headers: corsHeaders }
+        );
+      }
 
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -99,3 +119,20 @@ export default {
     }
   }
 };
+
+async function verifyTurnstile(token, secretKey) {
+  const formData = new FormData();
+
+  formData.append("secret", secretKey);
+  formData.append("response", token);
+
+  const response = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      body: formData
+    }
+  );
+
+  return response.json();
+}

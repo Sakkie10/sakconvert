@@ -375,7 +375,19 @@ function initSubscribeForms() {
       const email = input.value.trim();
 
       if (!email) {
-        message.textContent = "Please enter your email.";
+        setFormMessage(message, "Please enter your email.", "error");
+        return;
+      }
+
+      const turnstileToken =
+        form.querySelector('[name="cf-turnstile-response"]')?.value;
+
+      if (!turnstileToken) {
+        setFormMessage(
+          message,
+          "Please complete the verification.",
+          "error"
+        );
         return;
       }
 
@@ -390,7 +402,8 @@ function initSubscribeForms() {
           body: JSON.stringify({
             email,
             source: "email-form",
-            page: window.location.pathname
+            page: window.location.pathname,
+            turnstileToken
           })
         });
 
