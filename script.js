@@ -397,8 +397,11 @@ function initSubscribeForms() {
         const data = await response.json();
 
         if (data.success) {
-          message.textContent = "Thanks — you’re subscribed.";
-          input.value = "";
+          message.textContent = data.message || "Thanks — you’re subscribed.";
+
+          if (data.status === "new") {
+            input.value = "";
+          }
         } else {
           message.textContent = data.error || "Something went wrong.";
         }
