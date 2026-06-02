@@ -1,6 +1,5 @@
 export default {
   async fetch(request, env) {
-
     const corsHeaders = {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -29,6 +28,21 @@ export default {
       if (!email || !emailPattern.test(email)) {
         return Response.json(
           { success: false, error: "Please enter a valid email address." },
+          { status: 400, headers: corsHeaders }
+        );
+      }
+
+      const blockedDomains = [
+        "mailinator.com",
+        "guerrillamail.com",
+        "10minutemail.com"
+      ];
+
+      const domain = email.split("@")[1];
+
+      if (blockedDomains.includes(domain)) {
+        return Response.json(
+          { success: false, error: "Please use a real email address." },
           { status: 400, headers: corsHeaders }
         );
       }

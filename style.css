@@ -636,3 +636,55 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
     gap: 2px;
   }
 }
+
+.form-message {
+  margin-top: 14px;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.form-message.success {
+  color: #15803d;
+}
+
+.form-message.duplicate {
+  color: #2563eb;
+}
+
+.form-message.error {
+  color: #b91c1c;
+}
+
+.form-message.loading {
+  color: #4b5563;
+}
+
+.form-message.success::before {
+  content: "✓ ";
+}
+
+.form-message.duplicate::before {
+  content: "ℹ ";
+}
+
+.form-message.error::before {
+  content: "⚠ ";
+}
+
+.form-message.success,
+.form-message.duplicate,
+.form-message.error {
+  animation: messagePop 0.25s ease;
+}
+
+@keyframes messagePop {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
