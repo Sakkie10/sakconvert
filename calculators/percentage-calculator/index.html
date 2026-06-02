@@ -9,181 +9,189 @@
   <meta name="description"
     content="Calculate percentages, percentage increase, decrease, and differences instantly with SakConvert’s simple percentage calculator." />
 
-  <link rel="stylesheet" href="../../style.css?v=15" />
+  <link rel="stylesheet" href="../../style.css?v=16" />
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
 </head>
 
 <body data-calculator="percentage">
 
-<header class="site-header">
-  <div class="container header-inner">
-    <a href="../../index.html" class="logo">SakConvert</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo">SakConvert</a>
 
-    <nav class="nav">
-      <a href="../../index.html#tools">Tools</a>
-      <a href="../../index.html#fitness">Fitness</a>
-      <a href="../../index.html#about">About</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-
-  <section class="breadcrumb">
-    <div class="container">
-      <a href="../../index.html">Home</a> → <span>Percentage Calculator</span>
+      <nav class="nav">
+        <a href="/#tools">Tools</a>
+        <a href="/#fitness">Fitness</a>
+        <a href="/#about">About</a>
+        <a href="/#subscribe">Subscribe</a>
+        <a href="/#coming-soon">Coming Soon</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <section class="hero">
-    <div class="container">
-      <p class="eyebrow">General calculator</p>
-      <h1>Percentage Calculator</h1>
-      <p class="hero-text">
-        Quickly calculate percentages, increases, decreases, and differences for business, finance, and everyday use.
-      </p>
-    </div>
-  </section>
+  <main>
 
-  <section class="calculator-section">
-    <div class="container calculator-layout">
-
-      <div class="calculator-card">
-        <h2>Calculate Percentage</h2>
-
-        <div class="form-group">
-          <label for="percentageMode">Calculation type</label>
-          <select id="percentageMode">
-            <option value="percentOf">What is X% of Y?</option>
-            <option value="percentChange">Percentage increase or decrease</option>
-            <option value="percentDifference">Difference between two values</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="percentageValue">Value 1</label>
-          <input type="number" id="percentageValue" placeholder="e.g. 20 or starting value" step="0.01" />
-        </div>
-
-        <div class="form-group">
-          <label for="percentageBase">Value 2</label>
-          <input type="number" id="percentageBase" placeholder="e.g. 500 or final value" step="0.01" />
-        </div>
-
-        <button class="calculate-btn" id="calculatePercentage" type="button">Calculate</button>
-
-        <div class="results-box" id="percentageResultsBox">
-          <p>Enter values and select a calculation type to see results.</p>
-        </div>
+    <section class="breadcrumb">
+      <div class="container">
+        <a href="/">Home</a> → <span>Percentage Calculator</span>
       </div>
+    </section>
 
-      <div class="info-card">
-        <h2>Formula</h2>
-        <p>Basic percentage calculation:</p>
-
-        <div class="formula-box">
-          Result = Base × (Percentage ÷ 100)
-        </div>
-
-        <p>
-          Percentage change compares an original value to a new value to measure increase or decrease.
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">General calculator</p>
+        <h1>Percentage Calculator</h1>
+        <p class="hero-text">
+          Quickly calculate percentages, increases, decreases, and differences for business, finance, and everyday use.
         </p>
       </div>
+    </section>
 
-    </div>
-  </section>
+    <section class="calculator-section">
+      <div class="container calculator-layout">
 
-  <section class="content-section">
-    <div class="container content-narrow">
+        <div class="calculator-card">
+          <h2>Calculate Percentage</h2>
 
-      <h2>Understanding Percentages</h2>
-      <p>
-        Percentages are used across business, finance, and everyday decisions to compare values and measure change.
-        Whether you're calculating discounts, profit margins, or growth rates, percentages provide a simple way to interpret data.
-      </p>
+          <div class="form-group">
+            <label for="percentageMode">Calculation type</label>
+            <select id="percentageMode">
+              <option value="percentOf">What is X% of Y?</option>
+              <option value="percentChange">Percentage increase or decrease</option>
+              <option value="percentDifference">Difference between two values</option>
+            </select>
+          </div>
 
-      <h3>Common use cases</h3>
-      <ul>
-        <li>Calculating discounts and sale prices</li>
-        <li>Measuring business growth</li>
-        <li>Understanding profit margins</li>
-        <li>Tracking performance changes</li>
-      </ul>
+          <div class="form-group">
+            <label for="percentageValue">Value 1</label>
+            <input type="number" id="percentageValue" placeholder="e.g. 20 or starting value" step="0.01" />
+          </div>
 
-      <h3>How to calculate a percentage</h3>
-      <p>
-        Divide the percentage value by 100 and multiply it by the base number. For example, 20% of 500 equals 100.
-      </p>
+          <div class="form-group">
+            <label for="percentageBase">Value 2</label>
+            <input type="number" id="percentageBase" placeholder="e.g. 500 or final value" step="0.01" />
+          </div>
 
-    </div>
-  </section>
+          <button class="calculate-btn" id="calculatePercentage" type="button">Calculate</button>
 
-  <section class="content-section">
-    <div class="container content-narrow">
+          <div class="results-box" id="percentageResultsBox">
+            <p>Enter values and select a calculation type to see results.</p>
+          </div>
+        </div>
 
-      <h2>Frequently Asked Questions</h2>
+        <div class="info-card">
+          <h2>Formula</h2>
+          <p>Basic percentage calculation:</p>
 
-      <h3>What is 20% of 500?</h3>
-      <p>20% of 500 is 100.</p>
+          <div class="formula-box">
+            Result = Base × (Percentage ÷ 100)
+          </div>
 
-      <h3>How do I calculate percentage increase?</h3>
-      <p>
-        Subtract the original value from the new value, divide by the original value, then multiply by 100.
-      </p>
-
-      <h3>What is percentage difference?</h3>
-      <p>
-        Percentage difference measures how different two values are relative to their average.
-      </p>
-
-    </div>
-  </section>
-
-  <section class="email-section">
-    <div class="container content-narrow">
-      <h2>Get more useful calculators</h2>
-      <input type="email" placeholder="Enter your email" />
-      <button>Subscribe</button>
-    </div>
-  </section>
-
-  <section class="related-tools">
-    <div class="container">
-
-      <h2>Related calculators</h2>
-
-      <div class="tool-grid">
-
-        <a href="../profit-margin-calculator/" class="tool-card">
-          <h3>Profit Margin Calculator</h3>
-          <p>Calculate margin, markup, and profit.</p>
-        </a>
-
-        <a href="../roi-calculator/" class="tool-card">
-          <h3>ROI Calculator</h3>
-          <p>Measure return on investment.</p>
-        </a>
-
-        <a href="../vat-calculator/" class="tool-card">
-          <h3>VAT Calculator</h3>
-          <p>Add or remove VAT instantly.</p>
-        </a>
+          <p>
+            Percentage change compares an original value to a new value to measure increase or decrease.
+          </p>
+        </div>
 
       </div>
+    </section>
 
+    <section class="content-section">
+      <div class="container content-narrow">
+
+        <h2>Understanding Percentages</h2>
+        <p>
+          Percentages are used across business, finance, and everyday decisions to compare values and measure change.
+          Whether you're calculating discounts, profit margins, or growth rates, percentages provide a simple way to
+          interpret data.
+        </p>
+
+        <h3>Common use cases</h3>
+        <ul>
+          <li>Calculating discounts and sale prices</li>
+          <li>Measuring business growth</li>
+          <li>Understanding profit margins</li>
+          <li>Tracking performance changes</li>
+        </ul>
+
+        <h3>How to calculate a percentage</h3>
+        <p>
+          Divide the percentage value by 100 and multiply it by the base number. For example, 20% of 500 equals 100.
+        </p>
+
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container content-narrow">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>What is 20% of 500?</h3>
+        <p>20% of 500 is 100.</p>
+
+        <h3>How do I calculate percentage increase?</h3>
+        <p>
+          Subtract the original value from the new value, divide by the original value, then multiply by 100.
+        </p>
+
+        <h3>What is percentage difference?</h3>
+        <p>
+          Percentage difference measures how different two values are relative to their average.
+        </p>
+
+      </div>
+    </section>
+
+    <section class="email-section" id="subscribe">
+      <div class="container content-narrow">
+        <h2>Get more useful calculators</h2>
+
+        <form class="email-form subscribe-form">
+          <input type="email" name="email" placeholder="Enter your email" required />
+          <button type="submit">Subscribe</button>
+          <p class="form-message"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <div class="container">
+
+        <h2>Related calculators</h2>
+
+        <div class="tool-grid">
+
+          <a href="/calculators/profit-margin-calculator/" class="tool-card">
+            <h3>Profit Margin Calculator</h3>
+            <p>Calculate margin, markup, and profit.</p>
+          </a>
+
+          <a href="/calculators/roi-calculator/" class="tool-card">
+            <h3>ROI Calculator</h3>
+            <p>Measure return on investment.</p>
+          </a>
+
+          <a href="/calculators/vat-calculator/" class="tool-card">
+            <h3>VAT Calculator</h3>
+            <p>Add or remove VAT instantly.</p>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 SakConvert. All rights reserved.</p>
+      <a href="../../index.html">Back to home</a>
     </div>
-  </section>
+  </footer>
 
-</main>
-
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <p>© 2026 SakConvert. All rights reserved.</p>
-    <a href="../../index.html">Back to home</a>
-  </div>
-</footer>
-
-<script src="../../script.js?v=15"></script>
+  <script src="../../script.js?v=16"></script>
 
 </body>
+
 </html>

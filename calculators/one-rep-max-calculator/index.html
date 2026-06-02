@@ -10,7 +10,7 @@
   <meta name="description"
     content="Calculate your estimated one-rep max (1RM) instantly using weight and reps. Ideal for strength training and gym progression." />
 
-  <link rel="stylesheet" href="../../style.css?v=15" />
+  <link rel="stylesheet" href="../../style.css?v=16" />
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
 </head>
 
@@ -19,12 +19,14 @@
   <!-- HEADER -->
   <header class="site-header">
     <div class="container header-inner">
-      <a href="../../index.html" class="logo">SakConvert</a>
+      <a href="/" class="logo">SakConvert</a>
 
       <nav class="nav">
-        <a href="../../index.html#tools">Tools</a>
-        <a href="../../index.html#fitness">Fitness</a>
-        <a href="../../index.html#about">About</a>
+        <a href="/#tools">Tools</a>
+        <a href="/#fitness">Fitness</a>
+        <a href="/#about">About</a>
+        <a href="/#subscribe">Subscribe</a>
+        <a href="/#coming-soon">Coming Soon</a>
       </nav>
     </div>
   </header>
@@ -34,7 +36,7 @@
     <!-- BREADCRUMB -->
     <section class="breadcrumb">
       <div class="container">
-        <a href="../../index.html">Home</a> → <span>1RM Calculator</span>
+        <a href="/">Home</a> → <span>1RM Calculator</span>
       </div>
     </section>
 
@@ -111,21 +113,23 @@
         <h3>Why athletes use 1RM</h3>
 
         <p>
-          Strength athletes and coaches use 1RM estimates to measure progress, structure training blocks, and determine percentages for workouts.
+          Strength athletes and coaches use 1RM estimates to measure progress, structure training blocks, and determine
+          percentages for workouts.
         </p>
 
         <h3>Training insight</h3>
 
         <p>
-          Most people test strength too often. Quietly, consistent submaximal training usually builds strength faster over time.
+          Most people test strength too often. Quietly, consistent submaximal training usually builds strength faster
+          over time.
         </p>
 
         <!-- INTERNAL LINKS -->
         <p>
           You may also find our
-          <a href="../tdee-calculator/">TDEE Calculator</a>
+          <a href="/calculators/tdee-calculator/">TDEE Calculator</a>
           or
-          <a href="../boxing-calorie-calculator/">Boxing Calorie Calculator</a>
+          <a href="/calculators/boxing-calorie-calculator/">Boxing Calorie Calculator</a>
           useful.
         </p>
 
@@ -160,15 +164,15 @@
     </section>
 
     <!-- EMAIL -->
-    <section class="email-section">
+    <section class="email-section" id="subscribe">
       <div class="container content-narrow">
+        <h2>Get more fitness tools</h2>
 
-        <h2>Get more fitness calculators</h2>
-
-        <input type="email" placeholder="Enter your email" />
-
-        <button>Subscribe</button>
-
+        <form class="email-form subscribe-form">
+          <input type="email" name="email" placeholder="Enter your email" required />
+          <button type="submit">Subscribe</button>
+          <p class="form-message"></p>
+        </form>
       </div>
     </section>
 
@@ -180,17 +184,17 @@
 
         <div class="tool-grid">
 
-          <a href="../tdee-calculator/" class="tool-card">
+          <a href="/calculators/tdee-calculator/" class="tool-card">
             <h3>TDEE Calculator</h3>
             <p>Estimate your daily calorie needs.</p>
           </a>
 
-          <a href="../golf-distance-calculator/" class="tool-card">
+          <a href="/calculators/golf-distance-calculator/" class="tool-card">
             <h3>Golf Distance Calculator</h3>
             <p>Estimate golf shot distance based on swing speed.</p>
           </a>
 
-          <a href="../boxing-calorie-calculator/" class="tool-card">
+          <a href="/calculators/boxing-calorie-calculator/" class="tool-card">
             <h3>Boxing Calorie Calculator</h3>
             <p>Estimate calories burned during boxing training.</p>
           </a>
@@ -210,7 +214,8 @@
     </div>
   </footer>
 
-  <script src="../../script.js?v=15"></script>
+  <script src="../../script.js?v=16"></script>
 
 </body>
+
 </html>

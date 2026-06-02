@@ -9,7 +9,7 @@
   <meta name="description"
     content="Calculate calories burned during boxing based on weight, time, and intensity using accurate MET formulas." />
 
-  <link rel="stylesheet" href="../../style.css?v=15" />
+  <link rel="stylesheet" href="../../style.css?v=16" />
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
 </head>
 
@@ -18,12 +18,14 @@
   <!-- HEADER -->
   <header class="site-header">
     <div class="container header-inner">
-      <a href="../../index.html" class="logo">SakConvert</a>
+      <a href="/" class="logo">SakConvert</a>
 
       <nav class="nav">
-        <a href="../../index.html#tools">Tools</a>
-        <a href="../../index.html#about">About</a>
-        <a href="../../index.html#coming-soon">Coming Soon</a>
+        <a href="/#tools">Tools</a>
+        <a href="/#fitness">Fitness</a>
+        <a href="/#about">About</a>
+        <a href="/#subscribe">Subscribe</a>
+        <a href="/#coming-soon">Coming Soon</a>
       </nav>
     </div>
   </header>
@@ -33,7 +35,7 @@
     <!-- BREADCRUMB -->
     <section class="breadcrumb">
       <div class="container">
-        <a href="../../index.html">Home</a> → <span>Boxing Calorie Calculator</span>
+        <a href="/">Home</a> → <span>Boxing Calorie Calculator</span>
       </div>
     </section>
 
@@ -112,9 +114,9 @@
 
         <!-- INTERNAL LINKS -->
         <p>
-          You may also find our 
-          <a href="tdee-calculator.html">TDEE calculator</a> or 
-          <a href="one-rep-max-calculator.html">1RM calculator</a> useful.
+          You may also find our
+          <a href="/calculators/tdee-calculator/">TDEE calculator</a> or
+          <a href="/calculators/one-rep-max-calculator/">1RM calculator</a> useful.
         </p>
 
       </div>
@@ -152,11 +154,15 @@
     </section>
 
     <!-- EMAIL -->
-    <section class="email-section">
+    <section class="email-section" id="subscribe">
       <div class="container content-narrow">
         <h2>Get more fitness tools</h2>
-        <input type="email" placeholder="Enter your email" />
-        <button>Subscribe</button>
+
+        <form class="email-form subscribe-form">
+          <input type="email" name="email" placeholder="Enter your email" required />
+          <button type="submit">Subscribe</button>
+          <p class="form-message"></p>
+        </form>
       </div>
     </section>
 
@@ -166,11 +172,11 @@
         <h2>Related calculators</h2>
 
         <div class="tool-grid">
-          <a href="tdee-calculator.html" class="tool-card">
+          <a href="/calculators/tdee-calculator/" class="tool-card">
             <h3>TDEE Calculator</h3>
           </a>
 
-          <a href="one-rep-max-calculator.html" class="tool-card">
+          <a href="/calculators/one-rep-max-calculator/" class="tool-card">
             <h3>1RM Calculator</h3>
           </a>
         </div>
@@ -187,7 +193,8 @@
     </div>
   </footer>
 
-  <script src="../../script.js?v=15"></script>
+  <script src="../../script.js?v=16"></script>
 
 </body>
+
 </html>
