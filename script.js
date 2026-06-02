@@ -382,7 +382,7 @@ function initSubscribeForms() {
       message.textContent = "Subscribing...";
 
       try {
-        const response = await fetch("https://sakconvert-worker.sakconvert.workers.dev", {
+        const response = await fetch("/api/subscribe", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
