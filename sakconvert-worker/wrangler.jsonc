@@ -3,6 +3,7 @@
   "name": "sakconvert-worker",
   "main": "src/index.js",
   "compatibility_date": "2026-05-27",
+  "account_id": "bfbc2cde2b8157e942b9b77c69dc4ac9",
 
   "d1_databases": [
     {
