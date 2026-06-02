@@ -58,11 +58,17 @@ function bindCalculator(buttonId, handler) {
   const btn = document.getElementById(buttonId);
   if (!btn) return;
 
+  const calculatorCard = btn.closest(".calculator-card");
+
   btn.addEventListener("click", handler);
 
-  const inputs = document.querySelectorAll("input, select");
-  inputs.forEach(input => {
+  if (!calculatorCard) return;
+
+  const inputs = calculatorCard.querySelectorAll("input, select");
+
+  inputs.forEach((input) => {
     input.addEventListener("input", handler);
+    input.addEventListener("change", handler);
   });
 }
 
