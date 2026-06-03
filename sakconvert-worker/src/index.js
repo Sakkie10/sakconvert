@@ -242,12 +242,56 @@ and practical utilities as they are added.
 
 We're just getting started.
 
-— The SakConvert Team`
+— The SakConvert Team`,
+      html: `
+        <div style="margin:0;padding:0;background:#f6f7fb;font-family:Arial,Helvetica,sans-serif;color:#111827;">
+          <div style="max-width:620px;margin:0 auto;padding:32px 18px;">
+            <div style="background:#ffffff;border-radius:18px;padding:34px 30px;border:1px solid #e5e7eb;">
+              <p style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#2563eb;">
+                SakConvert
+              </p>
+
+              <h1 style="margin:0 0 18px;font-size:28px;line-height:1.2;color:#111827;">
+                Welcome to SakConvert.
+              </h1>
+
+              <p style="margin:0 0 18px;font-size:16px;line-height:1.65;color:#374151;">
+                Thanks for subscribing. You'll be the first to hear about new calculators, converters, business tools, fitness tools, and practical utilities as they are added.
+              </p>
+
+              <p style="margin:0 0 24px;font-size:16px;line-height:1.65;color:#374151;">
+                We're just getting started.
+              </p>
+
+              <a href="https://www.sakconvert.com"
+                 style="display:inline-block;background:#111827;color:#ffffff;text-decoration:none;font-size:15px;font-weight:700;padding:13px 18px;border-radius:10px;">
+                Explore SakConvert
+              </a>
+
+              <div style="height:1px;background:#e5e7eb;margin:30px 0 18px;"></div>
+
+              <p style="margin:0;font-size:13px;line-height:1.6;color:#6b7280;">
+                You received this email because you subscribed to updates from SakConvert.
+              </p>
+
+              <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#6b7280;">
+                — The SakConvert Team
+              </p>
+            </div>
+          </div>
+        </div>
+      `
     })
   });
 }
 
 async function sendAdminNotification(email, env) {
+  const countResult = await env.DB.prepare(
+    "SELECT COUNT(*) AS total FROM subscribers"
+  ).first();
+
+  const totalSubscribers = countResult?.total ?? "Unknown";
+
   await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -261,6 +305,8 @@ async function sendAdminNotification(email, env) {
       text: `New subscriber:
 
 ${email}
+
+Total subscribers: ${totalSubscribers}
 
 A new user has subscribed to SakConvert.`
     })
