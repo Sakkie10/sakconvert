@@ -511,10 +511,30 @@ a {
 }
 
 .email-form {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 12px;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+}
+
+.email-form input {
+  width: 100%;
+  margin-top: 0;
+}
+
+.email-form .cf-turnstile {
+  align-self: center;
+  margin: 4px 0;
+}
+
+.email-form button {
+  width: 100%;
+  margin-top: 0;
+}
+
+.email-form .form-message {
+  margin-top: 0;
+  text-align: center;
 }
 
 .email-form input {
