@@ -688,3 +688,9 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
     transform: translateY(0);
   }
 }
+
+.cf-turnstile {
+  margin: 16px auto;
+  display: flex;
+  justify-content: center;
+}
