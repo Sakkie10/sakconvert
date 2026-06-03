@@ -661,6 +661,7 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   margin-top: 14px;
   font-weight: 800;
   font-size: 0.95rem;
+  text-align: center;
 }
 
 .form-message.success {
