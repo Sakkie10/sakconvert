@@ -688,3 +688,10 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
     transform: translateY(0);
   }
 }
+
+.turnstile-note {
+  margin-top: 10px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #15803d;
+}
