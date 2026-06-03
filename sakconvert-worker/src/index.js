@@ -6,6 +6,26 @@ export default {
       "Access-Control-Allow-Headers": "Content-Type"
     };
 
+    const ip =
+      request.headers.get("CF-Connecting-IP") ||
+      request.headers.get("x-forwarded-for") ||
+      "unknown";
+
+    const rateLimit = await env.RATE_LIMITER.limit({ key: ip });
+
+    if (!rateLimit.success) {
+      return Response.json(
+        {
+          success: false,
+          error: "Too many requests. Please try again in a minute."
+        },
+        {
+          status: 429,
+          headers: corsHeaders
+        }
+      );
+    }
+
     if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: corsHeaders
