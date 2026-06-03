@@ -117,6 +117,12 @@ async function handleSubscribe(request, env, corsHeaders) {
       console.log("Welcome email failed:", emailError);
     }
 
+    try {
+      await sendAdminNotification(email, env);
+    } catch (adminEmailError) {
+      console.log("Admin notification failed:", adminEmailError);
+    }
+
     return Response.json(
       {
         success: true,
@@ -237,6 +243,26 @@ and practical utilities as they are added.
 We're just getting started.
 
 — The SakConvert Team`
+    })
+  });
+}
+
+async function sendAdminNotification(email, env) {
+  await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${env.RESEND_API_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from: "SakConvert <hello@sakconvert.com>",
+      to: "hello@sakconvert.com",
+      subject: "New SakConvert subscriber",
+      text: `New subscriber:
+
+${email}
+
+A new user has subscribed to SakConvert.`
     })
   });
 }
