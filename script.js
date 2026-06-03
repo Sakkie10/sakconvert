@@ -391,7 +391,7 @@ function initSubscribeForms() {
         return;
       }
 
-      message.textContent = "Subscribing...";
+      setFormMessage(message, "Subscribing...", "loading");
 
       try {
         const response = await fetch("/api/subscribe", {
@@ -410,18 +410,46 @@ function initSubscribeForms() {
         const data = await response.json();
 
         if (data.success) {
-          message.textContent = data.message || "Thanks — you’re subscribed.";
+          const type = data.status === "duplicate" ? "duplicate" : "success";
+
+          setFormMessage(
+            message,
+            data.message || "Thanks — you’re subscribed.",
+            type
+          );
 
           if (data.status === "new") {
             input.value = "";
           }
         } else {
-          message.textContent = data.error || "Something went wrong.";
+          setFormMessage(
+            message,
+            data.error || "Something went wrong.",
+            "error"
+          );
         }
 
+        resetTurnstile(form);
+
       } catch (error) {
-        message.textContent = "Something went wrong. Please try again.";
+        setFormMessage(
+          message,
+          "Something went wrong. Please try again.",
+          "error"
+        );
+
+        resetTurnstile(form);
       }
     });
   });
+}
+
+function resetTurnstile(form) {
+  if (!window.turnstile) return;
+
+  const widget = form.querySelector(".cf-turnstile");
+
+  if (widget) {
+    window.turnstile.reset(widget);
+  }
 }
