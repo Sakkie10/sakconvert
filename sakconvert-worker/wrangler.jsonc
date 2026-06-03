@@ -8,11 +8,11 @@
   "preview_urls": false,
   "routes": [
     {
-      "pattern": "www.sakconvert.com/api/subscribe*",
+      "pattern": "www.sakconvert.com/api/*",
       "zone_name": "sakconvert.com"
     },
     {
-      "pattern": "sakconvert.com/api/subscribe*",
+      "pattern": "sakconvert.com/api/*",
       "zone_name": "sakconvert.com"
     }
   ],
