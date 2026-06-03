@@ -356,6 +356,11 @@ function calculateTDEE() {
   `);
 }
 
+function setFormMessage(messageElement, text, type) {
+  messageElement.textContent = text;
+  messageElement.className = `form-message ${type}`;
+}
+
 // ===============================
 // EMAIL SUBSCRIBE FORM
 // ===============================
