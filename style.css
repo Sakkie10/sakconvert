@@ -715,3 +715,15 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   display: flex;
   justify-content: center;
 }
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo img {
+  height: 42px;
+  width: auto;
+  display: block;
+}
