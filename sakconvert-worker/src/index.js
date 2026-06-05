@@ -18,6 +18,10 @@ export default {
       return handleAdminExport(request, env, corsHeaders);
     }
 
+    if (url.pathname === "/api/unsubscribe") {
+      return handleUnsubscribe(request, env, corsHeaders);
+    }
+
     if (url.pathname === "/api/subscribe") {
       return handleSubscribe(request, env, corsHeaders);
     }
@@ -224,6 +228,9 @@ function escapeCsv(value) {
 }
 
 async function sendWelcomeEmail(email, env) {
+
+  const unsubscribeUrl = `https://sakconvert.com/api/unsubscribe?email=${encodeURIComponent(email)}`;
+  
   await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -242,17 +249,26 @@ and practical utilities as they are added.
 
 We're just getting started.
 
+Unsubscribe:
+${unsubscribeUrl}
+
 — The SakConvert Team`,
       html: `
         <div style="margin:0;padding:0;background:#f6f7fb;font-family:Arial,Helvetica,sans-serif;color:#111827;">
           <div style="max-width:620px;margin:0 auto;padding:32px 18px;">
             <div style="background:#ffffff;border-radius:18px;padding:34px 30px;border:1px solid #e5e7eb;">
-              <p style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#2563eb;">
-                SakConvert
-              </p>
+
+              <div style="text-align:center;margin-bottom:24px;">
+                <img
+                  src="https://sakconvert.com/images/logo.svg"
+                  alt="SakConvert"
+                  width="220"
+                  style="max-width:220px;height:auto;"
+                >
+              </div>
 
               <h1 style="margin:0 0 18px;font-size:28px;line-height:1.2;color:#111827;">
-                Welcome to SakConvert.
+                Welcome aboard,
               </h1>
 
               <p style="margin:0 0 18px;font-size:16px;line-height:1.65;color:#374151;">
@@ -275,8 +291,16 @@ We're just getting started.
               </p>
 
               <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#6b7280;">
+               <a href="${unsubscribeUrl}"
+                  style="color:#6b7280;text-decoration:underline;">
+                  Unsubscribe
+                </a>
+              </p>
+
+              <p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#6b7280;">
                 — The SakConvert Team
               </p>
+
             </div>
           </div>
         </div>
@@ -328,4 +352,48 @@ async function verifyTurnstile(token, secretKey) {
   );
 
   return response.json();
+}
+
+async function handleUnsubscribe(request, env, corsHeaders) {
+  const url = new URL(request.url);
+  const email = url.searchParams.get("email");
+
+  if (!email) {
+    return new Response(
+      "<h1>Invalid unsubscribe request</h1>",
+      {
+        headers: {
+          "Content-Type": "text/html"
+        }
+      }
+    );
+  }
+
+  await env.DB.prepare(
+    "UPDATE subscribers SET unsubscribed = 1 WHERE email = ?"
+  )
+    .bind(email.toLowerCase())
+    .run();
+
+  return new Response(
+    `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Unsubscribed | SakConvert</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+      </head>
+      <body style="font-family:Arial,sans-serif;text-align:center;padding:60px;">
+        <h1>You've been unsubscribed</h1>
+        <p>You will no longer receive emails from SakConvert.</p>
+        <p><a href="https://sakconvert.com">Return to SakConvert</a></p>
+      </body>
+    </html>
+    `,
+    {
+      headers: {
+        "Content-Type": "text/html"
+      }
+    }
+  );
 }
