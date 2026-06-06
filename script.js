@@ -458,3 +458,56 @@ function resetTurnstile(form) {
     window.turnstile.reset(widget);
   }
 }
+
+function calculateCompoundInterest() {
+  const principal = parseFloat(document.getElementById("compoundPrincipal")?.value);
+  const rate = parseFloat(document.getElementById("compoundRate")?.value);
+  const years = parseFloat(document.getElementById("compoundYears")?.value);
+  const frequency = parseFloat(document.getElementById("compoundFrequency")?.value);
+  const resultsBox = document.getElementById("compoundInterestResultsBox");
+
+  if (!resultsBox) return;
+
+  if (
+    isNaN(principal) ||
+    isNaN(rate) ||
+    isNaN(years) ||
+    isNaN(frequency) ||
+    principal < 0 ||
+    rate < 0 ||
+    years < 0 ||
+    frequency <= 0
+  ) {
+    resultsBox.innerHTML = "<p>Please enter valid positive numbers.</p>";
+    return;
+  }
+
+  const decimalRate = rate / 100;
+  const futureValue = principal * Math.pow(1 + decimalRate / frequency, frequency * years);
+  const interestEarned = futureValue - principal;
+
+  resultsBox.innerHTML = `
+    <div class="result-item">
+      <span>Future value</span>
+      <strong>${formatCurrency(futureValue)}</strong>
+    </div>
+
+    <div class="result-item">
+      <span>Initial amount</span>
+      <strong>${formatCurrency(principal)}</strong>
+    </div>
+
+    <div class="result-item">
+      <span>Interest earned</span>
+      <strong>${formatCurrency(interestEarned)}</strong>
+    </div>
+  `;
+}
+
+if (document.body.dataset.calculator === "compound-interest") {
+  document.getElementById("compoundInterestBtn")?.addEventListener("click", calculateCompoundInterest);
+
+  document.querySelectorAll(".calculator-card input, .calculator-card select").forEach((input) => {
+    input.addEventListener("input", calculateCompoundInterest);
+  });
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Compound Interest Calculator | Future Value & Interest | SakConvert</title>
+
+    <meta name="description"
+        content="Calculate compound interest, future value, total contributions and interest earned with this free compound interest calculator." />
+
+    <link rel="canonical" href="https://sakconvert.com/calculators/compound-interest-calculator/" />
+
+    <link rel="stylesheet" href="../../style.css?v=51" />
+
+    <link rel="icon" href="/favicon_light.svg?v=8">
+    <link rel="icon" href="/favicon_dark.svg?v=8" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="/favicon_light.svg?v=8" media="(prefers-color-scheme: dark)">
+</head>
+
+<body data-calculator="compound-interest">
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <img src="/images/logo.svg" alt="SakConvert">
+            </a>
+
+            <nav class="nav">
+                <a href="/#tools">Tools</a>
+                <a href="/#converters">Converters</a>
+                <a href="/#seo">SEO</a>
+                <a href="/#about">About</a>
+                <a href="/#subscribe">Subscribe</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="breadcrumb">
+            <div class="container">
+                <a href="/">Home</a> → <span>Compound Interest Calculator</span>
+            </div>
+        </section>
+
+        <section class="hero">
+            <div class="container">
+                <p class="eyebrow">Business & finance calculator</p>
+                <h1>Compound Interest Calculator</h1>
+                <p class="hero-text">
+                    Estimate future value, total contributions, and interest earned from compound growth.
+                </p>
+            </div>
+        </section>
+
+        <section class="calculator-section">
+            <div class="container calculator-layout">
+
+                <div class="calculator-card">
+                    <h2>Calculate Compound Interest</h2>
+
+                    <div class="form-group">
+                        <label for="compoundPrincipal">Initial amount</label>
+                        <input type="number" id="compoundPrincipal" placeholder="e.g. 1000" min="0" step="0.01" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="compoundRate">Annual interest rate (%)</label>
+                        <input type="number" id="compoundRate" placeholder="e.g. 5" min="0" step="0.01" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="compoundYears">Time period (years)</label>
+                        <input type="number" id="compoundYears" placeholder="e.g. 10" min="0" step="0.1" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="compoundFrequency">Compounding frequency</label>
+                        <select id="compoundFrequency">
+                            <option value="1">Annually</option>
+                            <option value="2">Semi-annually</option>
+                            <option value="4">Quarterly</option>
+                            <option value="12" selected>Monthly</option>
+                            <option value="365">Daily</option>
+                        </select>
+                    </div>
+
+                    <button class="calculate-btn" id="compoundInterestBtn" type="button">Calculate</button>
+
+                    <div class="results-box" id="compoundInterestResultsBox">
+                        <p>Enter your investment details to estimate compound interest.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h2>Formula</h2>
+                    <div class="formula-box">
+                        A = P × (1 + r ÷ n)<sup>nt</sup>
+                    </div>
+                    <p>
+                        Compound interest means interest is earned on both the original amount and previous interest.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container content-narrow">
+
+                <h2>How compound interest works</h2>
+                <p>
+                    Compound interest is the process of earning interest on both your original amount and the interest
+                    that has
+                    already been added. Over time, this can create powerful growth.
+                </p>
+
+                <h3>Why compounding frequency matters</h3>
+                <p>
+                    The more often interest is compounded, the more frequently interest is added to the balance. Monthly
+                    or daily
+                    compounding can produce slightly higher results than annual compounding.
+                </p>
+
+                <h3>Planning insight</h3>
+                <p>
+                    Small changes in time, interest rate, and starting amount can have a large effect over long periods.
+                    Quietly,
+                    time is often the most powerful part of compound growth.
+                </p>
+
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container content-narrow">
+
+                <h2>Frequently Asked Questions</h2>
+
+                <h3>What is compound interest?</h3>
+                <p>
+                    Compound interest is interest earned on both the original amount and any interest already
+                    accumulated.
+                </p>
+
+                <h3>Is compound interest better than simple interest?</h3>
+                <p>
+                    Compound interest usually grows faster than simple interest because previous interest is added back
+                    into the
+                    balance.
+                </p>
+
+                <h3>What does compounding frequency mean?</h3>
+                <p>
+                    Compounding frequency describes how often interest is added to the balance, such as annually,
+                    monthly, or daily.
+                </p>
+
+            </div>
+        </section>
+
+        <section class="related-tools">
+            <div class="container">
+                <h2>Related calculators</h2>
+
+                <div class="tool-grid">
+                    <a href="/calculators/roi-calculator/" class="tool-card">
+                        <h3>ROI Calculator</h3>
+                        <p>Work out return on investment for projects and campaigns.</p>
+                    </a>
+
+                    <a href="/calculators/profit-margin-calculator/" class="tool-card">
+                        <h3>Profit Margin Calculator</h3>
+                        <p>Calculate margin, profit, cost, and selling price.</p>
+                    </a>
+
+                    <a href="/calculators/percentage-calculator/" class="tool-card">
+                        <h3>Percentage Calculator</h3>
+                        <p>Calculate percentage increases, decreases, and differences.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+
+            <p>© 2026 SakConvert. All rights reserved.</p>
+
+            <div class="footer-links">
+                <a href="/#about">About</a>
+                <a href="/contact/">Contact</a>
+                <a href="/privacy-policy/">Privacy Policy</a>
+                <a href="/terms-and-conditions/">Terms & Conditions</a>
+                <a href="/cookie-policy/">Cookie Policy</a>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="../../script.js?v=51"></script>
+
+</body>
+
+</html>
