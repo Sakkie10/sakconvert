@@ -84,6 +84,15 @@ a {
   margin-bottom: 14px;
 }
 
+.eyebrow-link {
+  display: inline-block;
+}
+
+.eyebrow-link:hover {
+  color: var(--dark);
+  text-decoration: underline;
+}
+
 .hero {
   padding: 96px 0 70px;
 }
