@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Discount Calculator – Calculate Sale Price, Savings & Percentage Off | SakConvert</title>
+  <meta name="description"
+    content="Calculate sale prices, discount amounts, savings, and percentage-off deals instantly with SakConvert's free Discount Calculator.">
+
+  <link rel="canonical" href="https://sakconvert.com/calculators/discount-calculator/" />
+
+  <link rel="stylesheet" href="../../style.css?v=61" />
+
+  <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+</head>
+
+<body data-calculator="discount">
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <img src="/images/logo.svg" alt="SakConvert">
+      </a>
+
+      <nav class="nav">
+        <a href="/#tools">Tools</a>
+        <a href="/#converters">Converters</a>
+        <a href="/#seo">SEO</a>
+        <a href="/#about">About</a>
+        <a href="/#subscribe">Subscribe</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="breadcrumb">
+      <div class="container">
+        <a href="/">Home</a> → <span>Discount Calculator</span>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="container">
+        <a href="/#business-finance" class="eyebrow eyebrow-link">Business & Finance</a>
+        <h1>Discount Calculator</h1>
+        <p class="hero-text">
+          Calculate sale prices, discount amounts, and savings instantly for shopping, retail, ecommerce, and business
+          use.
+        </p>
+      </div>
+    </section>
+
+    <section class="calculator-section">
+      <div class="container calculator-layout">
+
+        <div class="calculator-card">
+          <h2>Calculate Discount</h2>
+
+          <div class="form-group">
+            <label for="originalPrice">Original price</label>
+            <input type="number" id="originalPrice" placeholder="e.g. 100" step="0.01" />
+          </div>
+
+          <div class="form-group">
+            <label for="discountPercent">Discount percentage</label>
+            <input type="number" id="discountPercent" placeholder="e.g. 20" step="0.01" />
+          </div>
+
+          <button class="calculate-btn" id="calculateDiscount" type="button">Calculate</button>
+
+          <div class="results-box" id="discountResultsBox">
+            <p>Enter an original price and discount percentage to see the final sale price.</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h2>Formula</h2>
+          <p>Discount amount:</p>
+
+          <div class="formula-box">
+            Discount Amount = Original Price × (Discount ÷ 100)
+          </div>
+
+          <p>Final sale price:</p>
+
+          <div class="formula-box">
+            Final Price = Original Price − Discount Amount
+          </div>
+
+          <p>
+            This shows how much money is taken off the original price and what you pay after the discount.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container content-narrow">
+
+        <h2>Understanding Discounts</h2>
+        <p>
+          Discounts are used to reduce the original price of a product or service by a set percentage.
+          This is common in retail sales, online shopping, promotions, clearance offers, and business pricing.
+        </p>
+
+        <h3>Common use cases</h3>
+        <ul>
+          <li>Calculating sale prices</li>
+          <li>Checking percentage-off offers</li>
+          <li>Comparing discounts while shopping</li>
+          <li>Working out retail markdowns</li>
+          <li>Planning ecommerce promotions</li>
+        </ul>
+
+        <h3>How to calculate a discount</h3>
+        <p>
+          Multiply the original price by the discount percentage divided by 100.
+          Then subtract the discount amount from the original price to get the final sale price.
+        </p>
+
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container content-narrow">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>What is 20% off £100?</h3>
+        <p>20% off £100 is £20 off, leaving a final price of £80.</p>
+
+        <h3>How do I calculate a discount?</h3>
+        <p>
+          Multiply the original price by the discount percentage, then subtract that amount from the original price.
+        </p>
+
+        <h3>What is a sale price?</h3>
+        <p>
+          A sale price is the final price after a discount has been deducted from the original price.
+        </p>
+
+        <h3>Can I use this calculator for VAT?</h3>
+        <p>
+          No. This calculator works out percentage discounts only. Use the VAT Calculator to add or remove VAT.
+        </p>
+
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <div class="container">
+
+        <h2>Related Business & Finance Calculators</h2>
+
+        <div class="tool-grid">
+
+          <a href="/calculators/profit-margin-calculator/" class="tool-card">
+            <h3>Profit Margin Calculator</h3>
+            <p>Calculate margin, markup, and profit.</p>
+          </a>
+
+          <a href="/calculators/roi-calculator/" class="tool-card">
+            <h3>ROI Calculator</h3>
+            <p>Measure return on investment.</p>
+          </a>
+
+          <a href="/calculators/vat-calculator/" class="tool-card">
+            <h3>VAT Calculator</h3>
+            <p>Add or remove VAT instantly.</p>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+
+      <p>
+        © 2026 <a href="/">SakConvert</a>. All rights reserved.
+      </p>
+
+      <div class="footer-links">
+        <a href="/#about">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms-and-conditions/">Terms & Conditions</a>
+        <a href="/cookie-policy/">Cookie Policy</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="../../script.js?v=61"></script>
+
+</body>
+
+</html>

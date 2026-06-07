@@ -36,6 +36,14 @@ function initCalculator(type) {
       bindCalculator("calculatePercentage", calculatePercentage);
       break;
 
+    case "compound-interest":
+      bindCalculator("compoundInterestBtn", calculateCompoundInterest);
+      break;
+
+    case "discount":
+      bindCalculator("calculateDiscount", calculateDiscount);
+      break;
+
     case "boxing-calories":
       bindCalculator("boxingBtn", calculateBoxingCalories);
       break;
@@ -235,6 +243,115 @@ function calculatePercentage() {
 }
 
 // ===============================
+// COMPOUND INTEREST
+// ===============================
+
+function calculateCompoundInterest() {
+  const principal = parseFloat(document.getElementById("compoundPrincipal")?.value);
+  const rate = parseFloat(document.getElementById("compoundRate")?.value);
+  const years = parseFloat(document.getElementById("compoundYears")?.value);
+  const frequency = parseFloat(document.getElementById("compoundFrequency")?.value);
+  const resultsBox = document.getElementById("compoundInterestResultsBox");
+
+  if (!resultsBox) return;
+
+  if (
+    isNaN(principal) ||
+    isNaN(rate) ||
+    isNaN(years) ||
+    isNaN(frequency) ||
+    principal < 0 ||
+    rate < 0 ||
+    years < 0 ||
+    frequency <= 0
+  ) {
+    return renderResult(
+      resultsBox,
+      "<p>Please enter valid positive numbers.</p>"
+    );
+  }
+
+  const decimalRate = rate / 100;
+
+  const futureValue = principal * Math.pow(
+    1 + decimalRate / frequency,
+    frequency * years
+  );
+
+  const interestEarned = futureValue - principal;
+
+  renderResult(resultsBox, `
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Future value</span>
+        <strong>${formatCurrency(futureValue)}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>Initial amount</span>
+        <strong>${formatCurrency(principal)}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>Interest earned</span>
+        <strong>${formatCurrency(interestEarned)}</strong>
+      </div>
+    </div>
+  `);
+}
+
+// ===============================
+// DISCOUNT
+// ===============================
+
+function calculateDiscount() {
+  const originalPrice = parseFloat(
+    document.getElementById("originalPrice").value
+  );
+
+  const discountPercent = parseFloat(
+    document.getElementById("discountPercent").value
+  );
+
+  const box = document.getElementById("discountResultsBox");
+
+  if (isNaN(originalPrice) || isNaN(discountPercent)) {
+    return showError(box, "Enter a price and discount percentage.");
+  }
+
+  if (originalPrice < 0 || discountPercent < 0) {
+    return showError(box, "Values must be positive.");
+  }
+
+  const discountAmount = originalPrice * (discountPercent / 100);
+  const finalPrice = originalPrice - discountAmount;
+
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Original Price</span>
+        <strong>${formatCurrency(originalPrice)}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>Discount Amount</span>
+        <strong>${formatCurrency(discountAmount)}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>Final Sale Price</span>
+        <strong>${formatCurrency(finalPrice)}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>You Save</span>
+        <strong>${formatCurrency(discountAmount)}</strong>
+      </div>
+    </div>
+  `);
+}
+
+// ===============================
 // BOXING CALORIES
 // ===============================
 
@@ -356,14 +473,14 @@ function calculateTDEE() {
   `);
 }
 
+// ===============================
+// EMAIL SUBSCRIBE FORM
+// ===============================
+
 function setFormMessage(messageElement, text, type) {
   messageElement.textContent = text;
   messageElement.className = `form-message ${type}`;
 }
-
-// ===============================
-// EMAIL SUBSCRIBE FORM
-// ===============================
 
 function initSubscribeForms() {
   const forms = document.querySelectorAll(".subscribe-form");
@@ -435,7 +552,6 @@ function initSubscribeForms() {
         }
 
         resetTurnstile(form);
-
       } catch (error) {
         setFormMessage(
           message,
@@ -457,57 +573,4 @@ function resetTurnstile(form) {
   if (widget) {
     window.turnstile.reset(widget);
   }
-}
-
-function calculateCompoundInterest() {
-  const principal = parseFloat(document.getElementById("compoundPrincipal")?.value);
-  const rate = parseFloat(document.getElementById("compoundRate")?.value);
-  const years = parseFloat(document.getElementById("compoundYears")?.value);
-  const frequency = parseFloat(document.getElementById("compoundFrequency")?.value);
-  const resultsBox = document.getElementById("compoundInterestResultsBox");
-
-  if (!resultsBox) return;
-
-  if (
-    isNaN(principal) ||
-    isNaN(rate) ||
-    isNaN(years) ||
-    isNaN(frequency) ||
-    principal < 0 ||
-    rate < 0 ||
-    years < 0 ||
-    frequency <= 0
-  ) {
-    resultsBox.innerHTML = "<p>Please enter valid positive numbers.</p>";
-    return;
-  }
-
-  const decimalRate = rate / 100;
-  const futureValue = principal * Math.pow(1 + decimalRate / frequency, frequency * years);
-  const interestEarned = futureValue - principal;
-
-  resultsBox.innerHTML = `
-    <div class="result-item">
-      <span>Future value</span>
-      <strong>${formatCurrency(futureValue)}</strong>
-    </div>
-
-    <div class="result-item">
-      <span>Initial amount</span>
-      <strong>${formatCurrency(principal)}</strong>
-    </div>
-
-    <div class="result-item">
-      <span>Interest earned</span>
-      <strong>${formatCurrency(interestEarned)}</strong>
-    </div>
-  `;
-}
-
-if (document.body.dataset.calculator === "compound-interest") {
-  document.getElementById("compoundInterestBtn")?.addEventListener("click", calculateCompoundInterest);
-
-  document.querySelectorAll(".calculator-card input, .calculator-card select").forEach((input) => {
-    input.addEventListener("input", calculateCompoundInterest);
-  });
 }
