@@ -747,3 +747,7 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   width: auto;
   display: block;
 }
+
+.section-anchor {
+  scroll-margin-top: 90px;
+}
