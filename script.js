@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initCalculator(type) {
   switch (type) {
+
+    // BUSINESS & FINANCE
     case "profit-margin":
       bindCalculator("calculateProfitMargin", calculateProfitMargin);
       break;
@@ -36,20 +38,22 @@ function initCalculator(type) {
       bindCalculator("calculatePercentage", calculatePercentage);
       break;
 
-    case "compound-interest":
-      bindCalculator("compoundInterestBtn", calculateCompoundInterest);
-      break;
-
     case "discount":
       bindCalculator("calculateDiscount", calculateDiscount);
       break;
 
-    case "boxing-calories":
-      bindCalculator("boxingBtn", calculateBoxingCalories);
+    case "markup":
+      bindCalculator("calculateMarkup", calculateMarkup);
       break;
 
-    case "golf-distance":
-      bindCalculator("golfDistanceBtn", calculateGolfDistance);
+    case "compound-interest":
+      bindCalculator("compoundInterestBtn", calculateCompoundInterest);
+      break;
+
+
+    // HEALTH & FITNESS
+    case "boxing-calories":
+      bindCalculator("boxingBtn", calculateBoxingCalories);
       break;
 
     case "one-rep-max":
@@ -59,6 +63,14 @@ function initCalculator(type) {
     case "tdee":
       bindCalculator("calculateTDEE", calculateTDEE);
       break;
+
+
+    // SPECIALIST
+    case "golf-distance":
+      bindCalculator("golfDistanceBtn", calculateGolfDistance);
+      break;
+
+
   }
 }
 
@@ -352,6 +364,56 @@ function calculateDiscount() {
 }
 
 // ===============================
+// MARKUP
+// ===============================
+
+function calculateMarkup() {
+  const costPrice = parseFloat(
+    document.getElementById("markupCostPrice").value
+  );
+
+  const sellingPrice = parseFloat(
+    document.getElementById("markupSellingPrice").value
+  );
+
+  const box = document.getElementById("markupResultsBox");
+
+  if (isNaN(costPrice) || isNaN(sellingPrice)) {
+    return showError(box, "Enter cost price and selling price.");
+  }
+
+  if (costPrice <= 0) {
+    return showError(box, "Cost price must be greater than zero.");
+  }
+
+  const markupAmount = sellingPrice - costPrice;
+  const markupPercent = (markupAmount / costPrice) * 100;
+  const marginPercent = (markupAmount / sellingPrice) * 100;
+
+  renderResult(box, `
+    <div class="result-grid">
+
+      <div class="result-item">
+        <span>Markup Amount</span>
+        <strong>${formatCurrency(markupAmount)}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>Markup Percentage</span>
+        <strong>${formatPercent(markupPercent)}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>Profit Margin</span>
+        <strong>${formatPercent(marginPercent)}</strong>
+      </div>
+
+    </div>
+  `);
+}
+
+
+// ===============================
 // BOXING CALORIES
 // ===============================
 
@@ -377,36 +439,6 @@ function calculateBoxingCalories() {
   `);
 }
 
-// ===============================
-// GOLF DISTANCE
-// ===============================
-
-function calculateGolfDistance() {
-  const speed = parseFloat(document.getElementById("golfSpeed").value);
-  const club = document.getElementById("golfClub").value;
-  const box = document.getElementById("golfDistanceResultsBox");
-
-  if (isNaN(speed)) {
-    return showError(box, "Enter your swing speed.");
-  }
-
-  let factor;
-
-  if (club === "driver") factor = 2.3;
-  else if (club === "iron") factor = 1.6;
-  else factor = 1.2;
-
-  const distance = speed * factor;
-
-  renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>Estimated Distance</span>
-        <strong>${Math.round(distance)} yards</strong>
-      </div>
-    </div>
-  `);
-}
 
 // ===============================
 // ONE REP MAX
@@ -472,6 +504,39 @@ function calculateTDEE() {
     </div>
   `);
 }
+
+// ===============================
+// GOLF DISTANCE
+// ===============================
+
+function calculateGolfDistance() {
+  const speed = parseFloat(document.getElementById("golfSpeed").value);
+  const club = document.getElementById("golfClub").value;
+  const box = document.getElementById("golfDistanceResultsBox");
+
+  if (isNaN(speed)) {
+    return showError(box, "Enter your swing speed.");
+  }
+
+  let factor;
+
+  if (club === "driver") factor = 2.3;
+  else if (club === "iron") factor = 1.6;
+  else factor = 1.2;
+
+  const distance = speed * factor;
+
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Estimated Distance</span>
+        <strong>${Math.round(distance)} yards</strong>
+      </div>
+    </div>
+  `);
+}
+
+
 
 // ===============================
 // EMAIL SUBSCRIBE FORM
