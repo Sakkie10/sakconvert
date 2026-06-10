@@ -516,14 +516,8 @@ function calculateTDEE() {
 // ===============================
 
 function calculateBMI() {
-  const height = parseFloat(
-    document.getElementById("bmiHeight").value
-  );
-
-  const weight = parseFloat(
-    document.getElementById("bmiWeight").value
-  );
-
+  const height = parseFloat(document.getElementById("bmiHeight").value);
+  const weight = parseFloat(document.getElementById("bmiWeight").value);
   const box = document.getElementById("bmiResultsBox");
 
   if (isNaN(height) || isNaN(weight)) {
@@ -534,7 +528,8 @@ function calculateBMI() {
     return showError(box, "Values must be greater than zero.");
   }
 
-  const bmi = weight / Math.pow(height / 100, 2);
+  const heightM = height / 100;
+  const bmi = weight / Math.pow(heightM, 2);
 
   let category = "";
 
@@ -548,6 +543,21 @@ function calculateBMI() {
     category = "Obese";
   }
 
+  const minHealthyWeight = 18.5 * Math.pow(heightM, 2);
+  const maxHealthyWeight = 24.9 * Math.pow(heightM, 2);
+
+  let weightMessage = "You are within the healthy weight range.";
+
+  if (weight < minHealthyWeight) {
+    const gainNeeded = minHealthyWeight - weight;
+    weightMessage = `Gain approx. ${gainNeeded.toFixed(1)} kg`;
+  }
+
+  if (weight > maxHealthyWeight) {
+    const lossNeeded = weight - maxHealthyWeight;
+    weightMessage = `Lose approx. ${lossNeeded.toFixed(1)} kg`;
+  }
+
   renderResult(box, `
     <div class="result-grid">
 
@@ -557,16 +567,23 @@ function calculateBMI() {
       </div>
 
       <div class="result-item">
-        <span>Category</span>
+        <span>BMI Category</span>
         <strong>${category}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>Healthy Weight Range</span>
+        <strong>${minHealthyWeight.toFixed(1)} kg - ${maxHealthyWeight.toFixed(1)} kg</strong>
+      </div>
+
+      <div class="result-item">
+        <span>Weight To Reach Healthy Range</span>
+        <strong>${weightMessage}</strong>
       </div>
 
     </div>
   `);
 }
-
-
-
 
 // ===============================
 // GOLF DISTANCE
