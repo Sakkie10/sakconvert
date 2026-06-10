@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initCalculator(type) {
   switch (type) {
-
     // BUSINESS & FINANCE
     case "profit-margin":
       bindCalculator("calculateProfitMargin", calculateProfitMargin);
@@ -50,8 +49,6 @@ function initCalculator(type) {
       bindCalculator("compoundInterestBtn", calculateCompoundInterest);
       break;
 
-
-
     // HEALTH & FITNESS
     case "boxing-calories":
       bindCalculator("boxingBtn", calculateBoxingCalories);
@@ -69,14 +66,10 @@ function initCalculator(type) {
       bindCalculator("calculateBMI", calculateBMI);
       break;
 
-
-
     // SPECIALIST
     case "golf-distance":
       bindCalculator("golfDistanceBtn", calculateGolfDistance);
       break;
-
-
   }
 }
 
@@ -102,8 +95,23 @@ function bindCalculator(buttonId, handler) {
 // UTILITIES
 // ===============================
 
-function formatCurrency(value) {
-  return `£${value.toFixed(2)}`;
+function getCurrencySymbol(currency) {
+  switch (currency) {
+    case "USD":
+      return "$";
+    case "EUR":
+      return "€";
+    default:
+      return "£";
+  }
+}
+
+function getSelectedCurrency() {
+  return document.getElementById("currency")?.value || "GBP";
+}
+
+function formatCurrency(value, currency = "GBP") {
+  return `${getCurrencySymbol(currency)}${value.toFixed(2)}`;
 }
 
 function formatPercent(value) {
@@ -128,6 +136,7 @@ function calculateProfitMargin() {
   const cost = parseFloat(document.getElementById("costPrice").value);
   const sell = parseFloat(document.getElementById("sellingPrice").value);
   const box = document.getElementById("resultsBox");
+  const currency = getSelectedCurrency();
 
   if (isNaN(cost) || isNaN(sell)) {
     return showError(box, "Enter cost and selling price.");
@@ -143,7 +152,7 @@ function calculateProfitMargin() {
 
   renderResult(box, `
     <div class="result-grid">
-      <div class="result-item"><span>Profit</span><strong>${formatCurrency(profit)}</strong></div>
+      <div class="result-item"><span>Profit</span><strong>${formatCurrency(profit, currency)}</strong></div>
       <div class="result-item"><span>Margin</span><strong>${formatPercent(margin)}</strong></div>
       <div class="result-item"><span>Markup</span><strong>${formatPercent(markup)}</strong></div>
     </div>
@@ -158,6 +167,7 @@ function calculateROI() {
   const cost = parseFloat(document.getElementById("investmentCost").value);
   const ret = parseFloat(document.getElementById("investmentReturn").value);
   const box = document.getElementById("roiResultsBox");
+  const currency = getSelectedCurrency();
 
   if (isNaN(cost) || isNaN(ret)) {
     return showError(box, "Enter both values.");
@@ -172,7 +182,7 @@ function calculateROI() {
 
   renderResult(box, `
     <div class="result-grid">
-      <div class="result-item"><span>Net Profit</span><strong>${formatCurrency(profit)}</strong></div>
+      <div class="result-item"><span>Net Profit</span><strong>${formatCurrency(profit, currency)}</strong></div>
       <div class="result-item"><span>ROI</span><strong>${formatPercent(roi)}</strong></div>
     </div>
   `);
@@ -187,6 +197,7 @@ function calculateVAT() {
   const rate = parseFloat(document.getElementById("vatRate").value);
   const mode = document.getElementById("vatMode").value;
   const box = document.getElementById("vatResultsBox");
+  const currency = getSelectedCurrency();
 
   if (isNaN(amount) || isNaN(rate)) {
     return showError(box, "Enter amount and VAT rate.");
@@ -207,9 +218,9 @@ function calculateVAT() {
 
   renderResult(box, `
     <div class="result-grid">
-      <div class="result-item"><span>Net</span><strong>${formatCurrency(net)}</strong></div>
-      <div class="result-item"><span>VAT</span><strong>${formatCurrency(vat)}</strong></div>
-      <div class="result-item"><span>Gross</span><strong>${formatCurrency(gross)}</strong></div>
+      <div class="result-item"><span>Net</span><strong>${formatCurrency(net, currency)}</strong></div>
+      <div class="result-item"><span>VAT</span><strong>${formatCurrency(vat, currency)}</strong></div>
+      <div class="result-item"><span>Gross</span><strong>${formatCurrency(gross, currency)}</strong></div>
     </div>
   `);
 }
@@ -270,6 +281,7 @@ function calculateCompoundInterest() {
   const years = parseFloat(document.getElementById("compoundYears")?.value);
   const frequency = parseFloat(document.getElementById("compoundFrequency")?.value);
   const resultsBox = document.getElementById("compoundInterestResultsBox");
+  const currency = getSelectedCurrency();
 
   if (!resultsBox) return;
 
@@ -302,17 +314,17 @@ function calculateCompoundInterest() {
     <div class="result-grid">
       <div class="result-item">
         <span>Future value</span>
-        <strong>${formatCurrency(futureValue)}</strong>
+        <strong>${formatCurrency(futureValue, currency)}</strong>
       </div>
 
       <div class="result-item">
         <span>Initial amount</span>
-        <strong>${formatCurrency(principal)}</strong>
+        <strong>${formatCurrency(principal, currency)}</strong>
       </div>
 
       <div class="result-item">
         <span>Interest earned</span>
-        <strong>${formatCurrency(interestEarned)}</strong>
+        <strong>${formatCurrency(interestEarned, currency)}</strong>
       </div>
     </div>
   `);
@@ -332,6 +344,7 @@ function calculateDiscount() {
   );
 
   const box = document.getElementById("discountResultsBox");
+  const currency = getSelectedCurrency();
 
   if (isNaN(originalPrice) || isNaN(discountPercent)) {
     return showError(box, "Enter a price and discount percentage.");
@@ -348,22 +361,22 @@ function calculateDiscount() {
     <div class="result-grid">
       <div class="result-item">
         <span>Original Price</span>
-        <strong>${formatCurrency(originalPrice)}</strong>
+        <strong>${formatCurrency(originalPrice, currency)}</strong>
       </div>
 
       <div class="result-item">
         <span>Discount Amount</span>
-        <strong>${formatCurrency(discountAmount)}</strong>
+        <strong>${formatCurrency(discountAmount, currency)}</strong>
       </div>
 
       <div class="result-item">
         <span>Final Sale Price</span>
-        <strong>${formatCurrency(finalPrice)}</strong>
+        <strong>${formatCurrency(finalPrice, currency)}</strong>
       </div>
 
       <div class="result-item">
         <span>You Save</span>
-        <strong>${formatCurrency(discountAmount)}</strong>
+        <strong>${formatCurrency(discountAmount, currency)}</strong>
       </div>
     </div>
   `);
@@ -383,6 +396,7 @@ function calculateMarkup() {
   );
 
   const box = document.getElementById("markupResultsBox");
+  const currency = getSelectedCurrency();
 
   if (isNaN(costPrice) || isNaN(sellingPrice)) {
     return showError(box, "Enter cost price and selling price.");
@@ -401,7 +415,7 @@ function calculateMarkup() {
 
       <div class="result-item">
         <span>Markup Amount</span>
-        <strong>${formatCurrency(markupAmount)}</strong>
+        <strong>${formatCurrency(markupAmount, currency)}</strong>
       </div>
 
       <div class="result-item">
@@ -417,7 +431,6 @@ function calculateMarkup() {
     </div>
   `);
 }
-
 
 // ===============================
 // BOXING CALORIES
@@ -444,7 +457,6 @@ function calculateBoxingCalories() {
     </div>
   `);
 }
-
 
 // ===============================
 // ONE REP MAX
@@ -615,8 +627,6 @@ function calculateGolfDistance() {
     </div>
   `);
 }
-
-
 
 // ===============================
 // EMAIL SUBSCRIBE FORM
