@@ -51,6 +51,7 @@ function initCalculator(type) {
       break;
 
 
+
     // HEALTH & FITNESS
     case "boxing-calories":
       bindCalculator("boxingBtn", calculateBoxingCalories);
@@ -63,6 +64,11 @@ function initCalculator(type) {
     case "tdee":
       bindCalculator("calculateTDEE", calculateTDEE);
       break;
+
+    case "bmi":
+      bindCalculator("calculateBMI", calculateBMI);
+      break;
+
 
 
     // SPECIALIST
@@ -504,6 +510,63 @@ function calculateTDEE() {
     </div>
   `);
 }
+
+// ===============================
+// BMI
+// ===============================
+
+function calculateBMI() {
+  const height = parseFloat(
+    document.getElementById("bmiHeight").value
+  );
+
+  const weight = parseFloat(
+    document.getElementById("bmiWeight").value
+  );
+
+  const box = document.getElementById("bmiResultsBox");
+
+  if (isNaN(height) || isNaN(weight)) {
+    return showError(box, "Enter height and weight.");
+  }
+
+  if (height <= 0 || weight <= 0) {
+    return showError(box, "Values must be greater than zero.");
+  }
+
+  const bmi = weight / Math.pow(height / 100, 2);
+
+  let category = "";
+
+  if (bmi < 18.5) {
+    category = "Underweight";
+  } else if (bmi < 25) {
+    category = "Healthy Weight";
+  } else if (bmi < 30) {
+    category = "Overweight";
+  } else {
+    category = "Obese";
+  }
+
+  renderResult(box, `
+    <div class="result-grid">
+
+      <div class="result-item">
+        <span>BMI Score</span>
+        <strong>${bmi.toFixed(1)}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>Category</span>
+        <strong>${category}</strong>
+      </div>
+
+    </div>
+  `);
+}
+
+
+
 
 // ===============================
 // GOLF DISTANCE
