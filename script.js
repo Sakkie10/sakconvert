@@ -30,7 +30,7 @@ function initCalculator(type) {
       break;
 
     case "vat":
-      bindCalculator("vatBtn", calculateVAT);
+      initVatCalculator();
       break;
 
     case "percentage":
@@ -111,16 +111,16 @@ function getSelectedCurrency() {
 }
 
 function formatCurrency(value, currency = "GBP") {
-  return `${getCurrencySymbol(currency)}${value.toFixed(2)}`;
+  return `${ getCurrencySymbol(currency) }${ value.toFixed(2) } `;
 }
 
 function formatPercent(value) {
-  return `${value.toFixed(2)}%`;
+  return `${ value.toFixed(2) }% `;
 }
 
 function showError(box, message) {
   if (!box) return;
-  box.innerHTML = `<p class="error">${message}</p>`;
+  box.innerHTML = `< p class="error" > ${ message }</p > `;
 }
 
 function renderResult(box, html) {
@@ -151,11 +151,11 @@ function calculateProfitMargin() {
   const markup = cost === 0 ? 0 : (profit / cost) * 100;
 
   renderResult(box, `
-    <div class="result-grid">
+  < div class="result-grid" >
       <div class="result-item"><span>Profit</span><strong>${formatCurrency(profit, currency)}</strong></div>
       <div class="result-item"><span>Margin</span><strong>${formatPercent(margin)}</strong></div>
       <div class="result-item"><span>Markup</span><strong>${formatPercent(markup)}</strong></div>
-    </div>
+    </div >
   `);
 }
 
@@ -181,10 +181,10 @@ function calculateROI() {
   const roi = (profit / cost) * 100;
 
   renderResult(box, `
-    <div class="result-grid">
+  < div class="result-grid" >
       <div class="result-item"><span>Net Profit</span><strong>${formatCurrency(profit, currency)}</strong></div>
       <div class="result-item"><span>ROI</span><strong>${formatPercent(roi)}</strong></div>
-    </div>
+    </div >
   `);
 }
 
@@ -195,7 +195,8 @@ function calculateROI() {
 function calculateVAT() {
   const amount = parseFloat(document.getElementById("vatAmount").value);
   const rate = parseFloat(document.getElementById("vatRate").value);
-  const mode = document.getElementById("vatMode").value;
+  const activeMode = document.querySelector(".mode-btn.active");
+  const mode = activeMode ? activeMode.dataset.vatMode : "add";
   const box = document.getElementById("vatResultsBox");
   const currency = getSelectedCurrency();
 
@@ -203,8 +204,15 @@ function calculateVAT() {
     return showError(box, "Enter amount and VAT rate.");
   }
 
+  if (amount < 0 || rate < 0) {
+    return showError(box, "Values must be positive.");
+  }
+
   const r = rate / 100;
-  let net, vat, gross;
+
+  let net;
+  let vat;
+  let gross;
 
   if (mode === "add") {
     net = amount;
@@ -217,12 +225,41 @@ function calculateVAT() {
   }
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item"><span>Net</span><strong>${formatCurrency(net, currency)}</strong></div>
-      <div class="result-item"><span>VAT</span><strong>${formatCurrency(vat, currency)}</strong></div>
-      <div class="result-item"><span>Gross</span><strong>${formatCurrency(gross, currency)}</strong></div>
-    </div>
+  < div class="result-grid" >
+      <div class="result-item"><span>Net Amount</span><strong>${formatCurrency(net, currency)}</strong></div>
+      <div class="result-item"><span>VAT Amount</span><strong>${formatCurrency(vat, currency)}</strong></div>
+      <div class="result-item"><span>Gross Amount</span><strong>${formatCurrency(gross, currency)}</strong></div>
+    </div >
   `);
+}
+
+function initVatCalculator() {
+  const vatBtn = document.getElementById("vatBtn");
+  const amountInput = document.getElementById("vatAmount");
+  const rateInput = document.getElementById("vatRate");
+  const modeButtons = document.querySelectorAll(".mode-btn");
+  const quickRateButtons = document.querySelectorAll("[data-vat-rate]");
+
+  if (!vatBtn || !amountInput || !rateInput) return;
+
+  vatBtn.addEventListener("click", calculateVAT);
+  amountInput.addEventListener("input", calculateVAT);
+  rateInput.addEventListener("input", calculateVAT);
+
+  modeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      modeButtons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+      calculateVAT();
+    });
+  });
+
+  quickRateButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      rateInput.value = button.dataset.vatRate;
+      calculateVAT();
+    });
+  });
 }
 
 // ===============================
@@ -245,14 +282,14 @@ function calculatePercentage() {
   if (mode === "percentOf") {
     const r = v2 * (v1 / 100);
     result = r.toFixed(2);
-    explanation = `${v1}% of ${v2} = ${r.toFixed(2)}`;
+    explanation = `${ v1 }% of ${ v2 } = ${ r.toFixed(2) } `;
   }
 
   if (mode === "percentChange") {
     if (v1 === 0) return showError(box, "Original cannot be zero.");
     const change = ((v2 - v1) / v1) * 100;
     result = formatPercent(change);
-    explanation = `Change from ${v1} to ${v2}`;
+    explanation = `Change from ${ v1 } to ${ v2 } `;
   }
 
   if (mode === "percentDifference") {
@@ -260,15 +297,15 @@ function calculatePercentage() {
     if (avg === 0) return showError(box, "Invalid values.");
     const diff = (Math.abs(v1 - v2) / avg) * 100;
     result = formatPercent(diff);
-    explanation = `Difference between ${v1} and ${v2}`;
+    explanation = `Difference between ${ v1 } and ${ v2 } `;
   }
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item"><span>Result</span><strong>${result}</strong></div>
-    </div>
-    <p class="result-note">${explanation}</p>
-  `);
+  < div class="result-grid" >
+    <div class="result-item"><span>Result</span><strong>${result}</strong></div>
+    </div >
+  <p class="result-note">${explanation}</p>
+`);
 }
 
 // ===============================
@@ -311,7 +348,7 @@ function calculateCompoundInterest() {
   const interestEarned = futureValue - principal;
 
   renderResult(resultsBox, `
-    <div class="result-grid">
+  < div class="result-grid" >
       <div class="result-item">
         <span>Future value</span>
         <strong>${formatCurrency(futureValue, currency)}</strong>
@@ -326,7 +363,7 @@ function calculateCompoundInterest() {
         <span>Interest earned</span>
         <strong>${formatCurrency(interestEarned, currency)}</strong>
       </div>
-    </div>
+    </div >
   `);
 }
 
@@ -358,7 +395,7 @@ function calculateDiscount() {
   const finalPrice = originalPrice - discountAmount;
 
   renderResult(box, `
-    <div class="result-grid">
+  < div class="result-grid" >
       <div class="result-item">
         <span>Original Price</span>
         <strong>${formatCurrency(originalPrice, currency)}</strong>
@@ -378,7 +415,7 @@ function calculateDiscount() {
         <span>You Save</span>
         <strong>${formatCurrency(discountAmount, currency)}</strong>
       </div>
-    </div>
+    </div >
   `);
 }
 
@@ -406,12 +443,16 @@ function calculateMarkup() {
     return showError(box, "Cost price must be greater than zero.");
   }
 
+  if (sellingPrice <= 0) {
+    return showError(box, "Selling price must be greater than zero.");
+  }
+
   const markupAmount = sellingPrice - costPrice;
   const markupPercent = (markupAmount / costPrice) * 100;
   const marginPercent = (markupAmount / sellingPrice) * 100;
 
   renderResult(box, `
-    <div class="result-grid">
+  < div class="result-grid" >
 
       <div class="result-item">
         <span>Markup Amount</span>
@@ -428,7 +469,7 @@ function calculateMarkup() {
         <strong>${formatPercent(marginPercent)}</strong>
       </div>
 
-    </div>
+    </div >
   `);
 }
 
@@ -446,15 +487,19 @@ function calculateBoxingCalories() {
     return showError(box, "Enter weight and duration.");
   }
 
+  if (weight <= 0 || duration <= 0) {
+    return showError(box, "Values must be greater than zero.");
+  }
+
   const calories = (met * weight * 3.5 / 200) * duration;
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>Calories Burned</span>
-        <strong>${Math.round(calories)} kcal</strong>
-      </div>
+  < div class="result-grid" >
+    <div class="result-item">
+      <span>Calories Burned</span>
+      <strong>${Math.round(calories)} kcal</strong>
     </div>
+    </div >
   `);
 }
 
@@ -471,19 +516,19 @@ function calculateOneRM() {
     return showError(box, "Enter weight and reps.");
   }
 
-  if (reps <= 0) {
-    return showError(box, "Reps must be greater than zero.");
+  if (weight <= 0 || reps <= 0) {
+    return showError(box, "Values must be greater than zero.");
   }
 
   const oneRM = weight * (1 + reps / 30);
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>Estimated 1RM</span>
-        <strong>${oneRM.toFixed(1)} kg</strong>
-      </div>
+  < div class="result-grid" >
+    <div class="result-item">
+      <span>Estimated 1RM</span>
+      <strong>${oneRM.toFixed(1)} kg</strong>
     </div>
+    </div >
   `);
 }
 
@@ -503,6 +548,10 @@ function calculateTDEE() {
     return showError(box, "Please enter all values.");
   }
 
+  if (age <= 0 || weight <= 0 || height <= 0) {
+    return showError(box, "Values must be greater than zero.");
+  }
+
   let bmr;
 
   if (gender === "male") {
@@ -514,12 +563,12 @@ function calculateTDEE() {
   const tdee = bmr * activity;
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>Estimated TDEE</span>
-        <strong>${Math.round(tdee)} kcal/day</strong>
-      </div>
+  < div class="result-grid" >
+    <div class="result-item">
+      <span>Estimated TDEE</span>
+      <strong>${Math.round(tdee)} kcal/day</strong>
     </div>
+    </div >
   `);
 }
 
@@ -562,16 +611,16 @@ function calculateBMI() {
 
   if (weight < minHealthyWeight) {
     const gainNeeded = minHealthyWeight - weight;
-    weightMessage = `Gain approx. ${gainNeeded.toFixed(1)} kg`;
+    weightMessage = `Gain approx.${ gainNeeded.toFixed(1) } kg`;
   }
 
   if (weight > maxHealthyWeight) {
     const lossNeeded = weight - maxHealthyWeight;
-    weightMessage = `Lose approx. ${lossNeeded.toFixed(1)} kg`;
+    weightMessage = `Lose approx.${ lossNeeded.toFixed(1) } kg`;
   }
 
   renderResult(box, `
-    <div class="result-grid">
+  < div class="result-grid" >
 
       <div class="result-item">
         <span>BMI Score</span>
@@ -593,7 +642,7 @@ function calculateBMI() {
         <strong>${weightMessage}</strong>
       </div>
 
-    </div>
+    </div >
   `);
 }
 
@@ -610,21 +659,29 @@ function calculateGolfDistance() {
     return showError(box, "Enter your swing speed.");
   }
 
+  if (speed <= 0) {
+    return showError(box, "Swing speed must be greater than zero.");
+  }
+
   let factor;
 
-  if (club === "driver") factor = 2.3;
-  else if (club === "iron") factor = 1.6;
-  else factor = 1.2;
+  if (club === "driver") {
+    factor = 2.3;
+  } else if (club === "iron") {
+    factor = 1.6;
+  } else {
+    factor = 1.2;
+  }
 
   const distance = speed * factor;
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>Estimated Distance</span>
-        <strong>${Math.round(distance)} yards</strong>
-      </div>
+  < div class="result-grid" >
+    <div class="result-item">
+      <span>Estimated Distance</span>
+      <strong>${Math.round(distance)} yards</strong>
     </div>
+    </div >
   `);
 }
 
@@ -634,7 +691,7 @@ function calculateGolfDistance() {
 
 function setFormMessage(messageElement, text, type) {
   messageElement.textContent = text;
-  messageElement.className = `form-message ${type}`;
+  messageElement.className = `form - message ${ type } `;
 }
 
 function initSubscribeForms() {

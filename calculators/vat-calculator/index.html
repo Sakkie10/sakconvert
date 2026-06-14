@@ -8,14 +8,11 @@
   <title>VAT Calculator | Add or Remove VAT Instantly | SakConvert</title>
 
   <meta name="description"
-    content="Add VAT, remove VAT and calculate VAT amounts instantly. Free VAT Calculator for VAT-inclusive and VAT-exclusive prices." />
+    content="Add VAT, remove VAT and calculate net, VAT and gross amounts instantly. Free VAT Calculator for UK VAT, VAT-inclusive and VAT-exclusive prices." />
 
   <link rel="canonical" href="https://sakconvert.com/calculators/vat-calculator/" />
-
-  <link rel="stylesheet" href="../../style.css?v=67" />
-
+  <link rel="stylesheet" href="../../style.css?v=68" />
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
-
 </head>
 
 <body data-calculator="vat">
@@ -49,7 +46,7 @@
         <a href="/#business-finance" class="eyebrow eyebrow-link">Business & Finance</a>
         <h1>VAT Calculator</h1>
         <p class="hero-text">
-          Add VAT, remove VAT, and calculate net, VAT, and gross amounts instantly.
+          Add VAT, remove VAT, and calculate net price, VAT amount, and gross total instantly.
         </p>
       </div>
     </section>
@@ -62,20 +59,27 @@
 
           <div class="form-group">
             <label for="vatAmount">Amount</label>
-            <input type="number" id="vatAmount" placeholder="e.g. 100" min="0" step="0.01" />
+            <input type="number" id="vatAmount" placeholder="Amount in £ (e.g. 100)" min="0" step="0.01" />
           </div>
 
           <div class="form-group">
             <label for="vatRate">VAT rate (%)</label>
-            <input type="number" id="vatRate" value="20" min="0" step="0.01" />
+            <input type="number" id="vatRate" value="20" placeholder="VAT rate % (e.g. 20)" min="0" step="0.01" />
           </div>
 
           <div class="form-group">
-            <label for="vatMode">Calculation type</label>
-            <select id="vatMode">
-              <option value="add">Add VAT</option>
-              <option value="remove">Remove VAT</option>
-            </select>
+            <label>Calculation type</label>
+            <div class="vat-mode-toggle" role="group" aria-label="VAT calculation type">
+              <button class="mode-btn active" id="vatAddBtn" type="button" data-vat-mode="add">Add VAT</button>
+              <button class="mode-btn" id="vatRemoveBtn" type="button" data-vat-mode="remove">Remove VAT</button>
+            </div>
+          </div>
+
+          <div class="quick-rate-buttons" aria-label="Common VAT rates">
+            <button type="button" data-vat-rate="20">20% UK</button>
+            <button type="button" data-vat-rate="5">5% UK</button>
+            <button type="button" data-vat-rate="0">0%</button>
+            <button type="button" data-vat-rate="8">8% Sales Tax</button>
           </div>
 
           <button class="calculate-btn" id="vatBtn" type="button">Calculate VAT</button>
@@ -86,14 +90,15 @@
         </div>
 
         <div class="info-card">
-          <h2>Formula</h2>
+          <h2>VAT Formula</h2>
 
           <div class="formula-box">
-            VAT = Amount × Rate ÷ 100
+            VAT = Net Amount × VAT Rate ÷ 100
           </div>
 
           <p>
-            Adding VAT increases a net price. Removing VAT extracts the net price from a VAT-inclusive total.
+            When adding VAT, the starting amount is treated as the net price. When removing VAT, the starting amount is
+            treated as the VAT-inclusive gross price.
           </p>
         </div>
 
@@ -105,24 +110,24 @@
 
         <h2>What is VAT?</h2>
         <p>
-          VAT, or Value Added Tax, is a tax added to many goods and services. Businesses often calculate VAT when
-          preparing prices, invoices, receipts, and quotes.
+          VAT, or Value Added Tax, is a tax added to many goods and services. Businesses use VAT when preparing prices,
+          quotes, invoices, receipts, and financial records.
         </p>
 
         <h3>How to add VAT</h3>
         <p>
-          To add VAT, multiply the net amount by the VAT rate, then add the VAT amount to the original price.
+          To add VAT, multiply the net amount by the VAT rate, then add the VAT amount to the original net price.
         </p>
 
         <h3>How to remove VAT</h3>
         <p>
-          To remove VAT from a VAT-inclusive price, divide the gross amount by 1 plus the VAT rate.
+          To remove VAT from a VAT-inclusive price, divide the gross amount by 1 plus the VAT rate as a decimal.
         </p>
 
-        <h3>VAT insight</h3>
+        <h3>Net vs gross price</h3>
         <p>
-          Many pricing mistakes happen because people mix up net and gross amounts. Always know whether your starting
-          figure includes VAT or excludes it.
+          The net price is the amount before VAT. The gross price is the final amount after VAT has been added. Many VAT
+          mistakes happen because people mix up net and gross figures.
         </p>
 
       </div>
@@ -135,36 +140,32 @@
 
         <h3>What is the standard UK VAT rate?</h3>
         <p>
-          The standard UK VAT rate is commonly 20%, although some goods and services may use reduced or zero rates.
+          The standard UK VAT rate is 20%. Some goods and services may use reduced, zero, or exempt VAT treatment.
+        </p>
+
+        <h3>Does the USA use VAT?</h3>
+        <p>
+          The United States does not use VAT in the same way as the UK. Instead, many US states use sales tax, which is
+          usually added at the point of sale.
+        </p>
+
+        <h3>What is the difference between VAT and sales tax?</h3>
+        <p>
+          VAT is usually applied throughout the supply chain, while sales tax is commonly charged to the final customer
+          at checkout.
         </p>
 
         <h3>Can I use this calculator to remove VAT?</h3>
         <p>
-          Yes. Select “Remove VAT” to work backwards from a VAT-inclusive price.
+          Yes. Choose “Remove VAT” to work backwards from a VAT-inclusive price and calculate the net amount and VAT
+          portion.
         </p>
 
         <h3>Is VAT calculated on the net or gross amount?</h3>
         <p>
-          VAT is normally calculated on the net amount. Gross amount means the final total after VAT has been added.
+          VAT is normally calculated on the net amount. The gross amount is the final total after VAT has been added.
         </p>
 
-      </div>
-    </section>
-
-    <!-- EMAIL -->
-    <section class="email-section" id="subscribe">
-      <div class="container content-narrow">
-        <h2>Get more business calculators</h2>
-
-        <form class="email-form subscribe-form">
-          <input type="email" name="email" placeholder="Enter your email" required />
-
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADdtPpfHbGvZF2qB" data-size="compact">
-          </div>
-
-          <button type="submit">Subscribe</button>
-          <p class="form-message"></p>
-        </form>
       </div>
     </section>
 
@@ -179,14 +180,14 @@
             <p>Calculate margin, markup, and profit.</p>
           </a>
 
-          <a href="/calculators/roi-calculator/" class="tool-card">
-            <h3>ROI Calculator</h3>
-            <p>Measure return on investment.</p>
-          </a>
-
           <a href="/calculators/percentage-calculator/" class="tool-card">
             <h3>Percentage Calculator</h3>
-            <p>Calculate percentages and changes.</p>
+            <p>Calculate percentages and percentage changes.</p>
+          </a>
+
+          <a href="/calculators/discount-calculator/" class="tool-card">
+            <h3>Discount Calculator</h3>
+            <p>Calculate sale price, savings, and percentage off.</p>
           </a>
 
         </div>
@@ -213,8 +214,7 @@
     </div>
   </footer>
 
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <script src="../../script.js?v=67"></script>
+  <script src="../../script.js?v=68"></script>
 
 </body>
 

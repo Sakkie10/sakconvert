@@ -751,3 +751,58 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 .section-anchor {
   scroll-margin-top: 90px;
 }
+
+.vat-mode-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.mode-btn,
+.quick-rate-buttons button {
+  border: 1px solid rgba(10, 80, 254, 0.25);
+  background: #ffffff;
+  color: #050608;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mode-btn.active {
+  background: #0A50FE;
+  color: #ffffff;
+}
+
+.quick-rate-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.quick-rate-buttons button {
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+.result-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(5, 6, 8, 0.08);
+  padding-bottom: 0.6rem;
+}
+
+.result-row:last-child {
+  border-bottom: 0;
+}
+
+.result-row strong {
+  color: #050608;
+}
