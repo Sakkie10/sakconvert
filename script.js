@@ -95,8 +95,11 @@ function bindCalculator(buttonId, handler) {
 // UTILITIES
 // ===============================
 
-function formatCurrency(value) {
-  return `£${value.toFixed(2)}`;
+function formatMoney(value) {
+  return value.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
 }
 
 function formatPercent(value) {
@@ -136,7 +139,7 @@ function calculateProfitMargin() {
 
   renderResult(box, `
     <div class="result-grid">
-      <div class="result-item"><span>Profit</span><strong>${formatCurrency(profit)}</strong></div>
+      <div class="result-item"><span>Profit</span><strong>${formatMoney(profit)}</strong></div>
       <div class="result-item"><span>Margin</span><strong>${formatPercent(margin)}</strong></div>
       <div class="result-item"><span>Markup</span><strong>${formatPercent(markup)}</strong></div>
     </div>
@@ -165,7 +168,7 @@ function calculateROI() {
 
   renderResult(box, `
     <div class="result-grid">
-      <div class="result-item"><span>Net Profit</span><strong>${formatCurrency(profit)}</strong></div>
+      <div class="result-item"><span>Net Profit</span><strong>${formatMoney(profit)}</strong></div>
       <div class="result-item"><span>ROI</span><strong>${formatPercent(roi)}</strong></div>
     </div>
   `);
@@ -208,9 +211,9 @@ function calculateVAT() {
 
   renderResult(box, `
     <div class="result-grid">
-      <div class="result-item"><span>Net Amount</span><strong>${formatCurrency(net)}</strong></div>
-      <div class="result-item"><span>VAT Amount</span><strong>${formatCurrency(vat)}</strong></div>
-      <div class="result-item"><span>Gross Amount</span><strong>${formatCurrency(gross)}</strong></div>
+      <div class="result-item"><span>Net Amount</span><strong>${formatMoney(net)}</strong></div>
+      <div class="result-item"><span>VAT Amount</span><strong>${formatMoney(vat)}</strong></div>
+      <div class="result-item"><span>Gross Amount</span><strong>${formatMoney(gross)}</strong></div>
     </div>
   `);
 }
@@ -324,17 +327,17 @@ function calculateCompoundInterest() {
     <div class="result-grid">
       <div class="result-item">
         <span>Future value</span>
-        <strong>${formatCurrency(futureValue)}</strong>
+        <strong>${formatMoney(futureValue)}</strong>
       </div>
 
       <div class="result-item">
         <span>Initial amount</span>
-        <strong>${formatCurrency(principal)}</strong>
+        <strong>${formatMoney(principal)}</strong>
       </div>
 
       <div class="result-item">
         <span>Interest earned</span>
-        <strong>${formatCurrency(interestEarned)}</strong>
+        <strong>${formatMoney(interestEarned)}</strong>
       </div>
     </div>
   `);
@@ -370,22 +373,22 @@ function calculateDiscount() {
     <div class="result-grid">
       <div class="result-item">
         <span>Original Price</span>
-        <strong>${formatCurrency(originalPrice)}</strong>
+        <strong>${formatMoney(originalPrice)}</strong>
       </div>
 
       <div class="result-item">
         <span>Discount Amount</span>
-        <strong>${formatCurrency(discountAmount)}</strong>
+        <strong>${formatMoney(discountAmount)}</strong>
       </div>
 
       <div class="result-item">
         <span>Final Sale Price</span>
-        <strong>${formatCurrency(finalPrice)}</strong>
+        <strong>${formatMoney(finalPrice)}</strong>
       </div>
 
       <div class="result-item">
         <span>You Save</span>
-        <strong>${formatCurrency(discountAmount)}</strong>
+        <strong>${formatMoney(discountAmount)}</strong>
       </div>
     </div>
   `);
@@ -426,7 +429,7 @@ function calculateMarkup() {
     <div class="result-grid">
       <div class="result-item">
         <span>Markup Amount</span>
-        <strong>${formatCurrency(markupAmount)}</strong>
+        <strong>${formatMoney(markupAmount)}</strong>
       </div>
 
       <div class="result-item">
