@@ -95,32 +95,17 @@ function bindCalculator(buttonId, handler) {
 // UTILITIES
 // ===============================
 
-function getCurrencySymbol(currency) {
-  switch (currency) {
-    case "USD":
-      return "$";
-    case "EUR":
-      return "€";
-    default:
-      return "£";
-  }
-}
-
-function getSelectedCurrency() {
-  return document.getElementById("currency")?.value || "GBP";
-}
-
-function formatCurrency(value, currency = "GBP") {
-  return `${ getCurrencySymbol(currency) }${ value.toFixed(2) } `;
+function formatCurrency(value) {
+  return `£${value.toFixed(2)}`;
 }
 
 function formatPercent(value) {
-  return `${ value.toFixed(2) }% `;
+  return `${value.toFixed(2)}%`;
 }
 
 function showError(box, message) {
   if (!box) return;
-  box.innerHTML = `< p class="error" > ${ message }</p > `;
+  box.innerHTML = `<p class="error">${message}</p>`;
 }
 
 function renderResult(box, html) {
@@ -136,7 +121,6 @@ function calculateProfitMargin() {
   const cost = parseFloat(document.getElementById("costPrice").value);
   const sell = parseFloat(document.getElementById("sellingPrice").value);
   const box = document.getElementById("resultsBox");
-  const currency = getSelectedCurrency();
 
   if (isNaN(cost) || isNaN(sell)) {
     return showError(box, "Enter cost and selling price.");
@@ -151,11 +135,11 @@ function calculateProfitMargin() {
   const markup = cost === 0 ? 0 : (profit / cost) * 100;
 
   renderResult(box, `
-  < div class="result-grid" >
-      <div class="result-item"><span>Profit</span><strong>${formatCurrency(profit, currency)}</strong></div>
+    <div class="result-grid">
+      <div class="result-item"><span>Profit</span><strong>${formatCurrency(profit)}</strong></div>
       <div class="result-item"><span>Margin</span><strong>${formatPercent(margin)}</strong></div>
       <div class="result-item"><span>Markup</span><strong>${formatPercent(markup)}</strong></div>
-    </div >
+    </div>
   `);
 }
 
@@ -167,7 +151,6 @@ function calculateROI() {
   const cost = parseFloat(document.getElementById("investmentCost").value);
   const ret = parseFloat(document.getElementById("investmentReturn").value);
   const box = document.getElementById("roiResultsBox");
-  const currency = getSelectedCurrency();
 
   if (isNaN(cost) || isNaN(ret)) {
     return showError(box, "Enter both values.");
@@ -181,10 +164,10 @@ function calculateROI() {
   const roi = (profit / cost) * 100;
 
   renderResult(box, `
-  < div class="result-grid" >
-      <div class="result-item"><span>Net Profit</span><strong>${formatCurrency(profit, currency)}</strong></div>
+    <div class="result-grid">
+      <div class="result-item"><span>Net Profit</span><strong>${formatCurrency(profit)}</strong></div>
       <div class="result-item"><span>ROI</span><strong>${formatPercent(roi)}</strong></div>
-    </div >
+    </div>
   `);
 }
 
@@ -198,7 +181,6 @@ function calculateVAT() {
   const activeMode = document.querySelector(".mode-btn.active");
   const mode = activeMode ? activeMode.dataset.vatMode : "add";
   const box = document.getElementById("vatResultsBox");
-  const currency = getSelectedCurrency();
 
   if (isNaN(amount) || isNaN(rate)) {
     return showError(box, "Enter amount and VAT rate.");
@@ -225,11 +207,11 @@ function calculateVAT() {
   }
 
   renderResult(box, `
-  < div class="result-grid" >
-      <div class="result-item"><span>Net Amount</span><strong>${formatCurrency(net, currency)}</strong></div>
-      <div class="result-item"><span>VAT Amount</span><strong>${formatCurrency(vat, currency)}</strong></div>
-      <div class="result-item"><span>Gross Amount</span><strong>${formatCurrency(gross, currency)}</strong></div>
-    </div >
+    <div class="result-grid">
+      <div class="result-item"><span>Net Amount</span><strong>${formatCurrency(net)}</strong></div>
+      <div class="result-item"><span>VAT Amount</span><strong>${formatCurrency(vat)}</strong></div>
+      <div class="result-item"><span>Gross Amount</span><strong>${formatCurrency(gross)}</strong></div>
+    </div>
   `);
 }
 
@@ -238,7 +220,6 @@ function initVatCalculator() {
   const amountInput = document.getElementById("vatAmount");
   const rateInput = document.getElementById("vatRate");
   const modeButtons = document.querySelectorAll(".mode-btn");
-  const quickRateButtons = document.querySelectorAll("[data-vat-rate]");
 
   if (!vatBtn || !amountInput || !rateInput) return;
 
@@ -250,13 +231,6 @@ function initVatCalculator() {
     button.addEventListener("click", () => {
       modeButtons.forEach((btn) => btn.classList.remove("active"));
       button.classList.add("active");
-      calculateVAT();
-    });
-  });
-
-  quickRateButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      rateInput.value = button.dataset.vatRate;
       calculateVAT();
     });
   });
@@ -282,14 +256,14 @@ function calculatePercentage() {
   if (mode === "percentOf") {
     const r = v2 * (v1 / 100);
     result = r.toFixed(2);
-    explanation = `${ v1 }% of ${ v2 } = ${ r.toFixed(2) } `;
+    explanation = `${v1}% of ${v2} = ${r.toFixed(2)}`;
   }
 
   if (mode === "percentChange") {
     if (v1 === 0) return showError(box, "Original cannot be zero.");
     const change = ((v2 - v1) / v1) * 100;
     result = formatPercent(change);
-    explanation = `Change from ${ v1 } to ${ v2 } `;
+    explanation = `Change from ${v1} to ${v2}`;
   }
 
   if (mode === "percentDifference") {
@@ -297,15 +271,15 @@ function calculatePercentage() {
     if (avg === 0) return showError(box, "Invalid values.");
     const diff = (Math.abs(v1 - v2) / avg) * 100;
     result = formatPercent(diff);
-    explanation = `Difference between ${ v1 } and ${ v2 } `;
+    explanation = `Difference between ${v1} and ${v2}`;
   }
 
   renderResult(box, `
-  < div class="result-grid" >
-    <div class="result-item"><span>Result</span><strong>${result}</strong></div>
-    </div >
-  <p class="result-note">${explanation}</p>
-`);
+    <div class="result-grid">
+      <div class="result-item"><span>Result</span><strong>${result}</strong></div>
+    </div>
+    <p class="result-note">${explanation}</p>
+  `);
 }
 
 // ===============================
@@ -318,7 +292,6 @@ function calculateCompoundInterest() {
   const years = parseFloat(document.getElementById("compoundYears")?.value);
   const frequency = parseFloat(document.getElementById("compoundFrequency")?.value);
   const resultsBox = document.getElementById("compoundInterestResultsBox");
-  const currency = getSelectedCurrency();
 
   if (!resultsBox) return;
 
@@ -348,22 +321,22 @@ function calculateCompoundInterest() {
   const interestEarned = futureValue - principal;
 
   renderResult(resultsBox, `
-  < div class="result-grid" >
+    <div class="result-grid">
       <div class="result-item">
         <span>Future value</span>
-        <strong>${formatCurrency(futureValue, currency)}</strong>
+        <strong>${formatCurrency(futureValue)}</strong>
       </div>
 
       <div class="result-item">
         <span>Initial amount</span>
-        <strong>${formatCurrency(principal, currency)}</strong>
+        <strong>${formatCurrency(principal)}</strong>
       </div>
 
       <div class="result-item">
         <span>Interest earned</span>
-        <strong>${formatCurrency(interestEarned, currency)}</strong>
+        <strong>${formatCurrency(interestEarned)}</strong>
       </div>
-    </div >
+    </div>
   `);
 }
 
@@ -381,7 +354,6 @@ function calculateDiscount() {
   );
 
   const box = document.getElementById("discountResultsBox");
-  const currency = getSelectedCurrency();
 
   if (isNaN(originalPrice) || isNaN(discountPercent)) {
     return showError(box, "Enter a price and discount percentage.");
@@ -395,27 +367,27 @@ function calculateDiscount() {
   const finalPrice = originalPrice - discountAmount;
 
   renderResult(box, `
-  < div class="result-grid" >
+    <div class="result-grid">
       <div class="result-item">
         <span>Original Price</span>
-        <strong>${formatCurrency(originalPrice, currency)}</strong>
+        <strong>${formatCurrency(originalPrice)}</strong>
       </div>
 
       <div class="result-item">
         <span>Discount Amount</span>
-        <strong>${formatCurrency(discountAmount, currency)}</strong>
+        <strong>${formatCurrency(discountAmount)}</strong>
       </div>
 
       <div class="result-item">
         <span>Final Sale Price</span>
-        <strong>${formatCurrency(finalPrice, currency)}</strong>
+        <strong>${formatCurrency(finalPrice)}</strong>
       </div>
 
       <div class="result-item">
         <span>You Save</span>
-        <strong>${formatCurrency(discountAmount, currency)}</strong>
+        <strong>${formatCurrency(discountAmount)}</strong>
       </div>
-    </div >
+    </div>
   `);
 }
 
@@ -433,7 +405,6 @@ function calculateMarkup() {
   );
 
   const box = document.getElementById("markupResultsBox");
-  const currency = getSelectedCurrency();
 
   if (isNaN(costPrice) || isNaN(sellingPrice)) {
     return showError(box, "Enter cost price and selling price.");
@@ -452,11 +423,10 @@ function calculateMarkup() {
   const marginPercent = (markupAmount / sellingPrice) * 100;
 
   renderResult(box, `
-  < div class="result-grid" >
-
+    <div class="result-grid">
       <div class="result-item">
         <span>Markup Amount</span>
-        <strong>${formatCurrency(markupAmount, currency)}</strong>
+        <strong>${formatCurrency(markupAmount)}</strong>
       </div>
 
       <div class="result-item">
@@ -468,8 +438,7 @@ function calculateMarkup() {
         <span>Profit Margin</span>
         <strong>${formatPercent(marginPercent)}</strong>
       </div>
-
-    </div >
+    </div>
   `);
 }
 
@@ -494,12 +463,12 @@ function calculateBoxingCalories() {
   const calories = (met * weight * 3.5 / 200) * duration;
 
   renderResult(box, `
-  < div class="result-grid" >
-    <div class="result-item">
-      <span>Calories Burned</span>
-      <strong>${Math.round(calories)} kcal</strong>
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Calories Burned</span>
+        <strong>${Math.round(calories)} kcal</strong>
+      </div>
     </div>
-    </div >
   `);
 }
 
@@ -523,12 +492,12 @@ function calculateOneRM() {
   const oneRM = weight * (1 + reps / 30);
 
   renderResult(box, `
-  < div class="result-grid" >
-    <div class="result-item">
-      <span>Estimated 1RM</span>
-      <strong>${oneRM.toFixed(1)} kg</strong>
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Estimated 1RM</span>
+        <strong>${oneRM.toFixed(1)} kg</strong>
+      </div>
     </div>
-    </div >
   `);
 }
 
@@ -563,12 +532,12 @@ function calculateTDEE() {
   const tdee = bmr * activity;
 
   renderResult(box, `
-  < div class="result-grid" >
-    <div class="result-item">
-      <span>Estimated TDEE</span>
-      <strong>${Math.round(tdee)} kcal/day</strong>
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Estimated TDEE</span>
+        <strong>${Math.round(tdee)} kcal/day</strong>
+      </div>
     </div>
-    </div >
   `);
 }
 
@@ -611,17 +580,16 @@ function calculateBMI() {
 
   if (weight < minHealthyWeight) {
     const gainNeeded = minHealthyWeight - weight;
-    weightMessage = `Gain approx.${ gainNeeded.toFixed(1) } kg`;
+    weightMessage = `Gain approx. ${gainNeeded.toFixed(1)} kg`;
   }
 
   if (weight > maxHealthyWeight) {
     const lossNeeded = weight - maxHealthyWeight;
-    weightMessage = `Lose approx.${ lossNeeded.toFixed(1) } kg`;
+    weightMessage = `Lose approx. ${lossNeeded.toFixed(1)} kg`;
   }
 
   renderResult(box, `
-  < div class="result-grid" >
-
+    <div class="result-grid">
       <div class="result-item">
         <span>BMI Score</span>
         <strong>${bmi.toFixed(1)}</strong>
@@ -641,8 +609,7 @@ function calculateBMI() {
         <span>Weight To Reach Healthy Range</span>
         <strong>${weightMessage}</strong>
       </div>
-
-    </div >
+    </div>
   `);
 }
 
@@ -676,12 +643,12 @@ function calculateGolfDistance() {
   const distance = speed * factor;
 
   renderResult(box, `
-  < div class="result-grid" >
-    <div class="result-item">
-      <span>Estimated Distance</span>
-      <strong>${Math.round(distance)} yards</strong>
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Estimated Distance</span>
+        <strong>${Math.round(distance)} yards</strong>
+      </div>
     </div>
-    </div >
   `);
 }
 
@@ -691,7 +658,7 @@ function calculateGolfDistance() {
 
 function setFormMessage(messageElement, text, type) {
   messageElement.textContent = text;
-  messageElement.className = `form - message ${ type } `;
+  messageElement.className = `form-message ${type}`;
 }
 
 function initSubscribeForms() {
