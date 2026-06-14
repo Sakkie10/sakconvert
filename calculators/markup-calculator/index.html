@@ -7,11 +7,11 @@
 
   <title>Markup Calculator – Calculate Markup Percentage, Profit & Margin | SakConvert</title>
   <meta name="description"
-    content="Calculate markup percentage, markup amount, profit margin, and selling price instantly with SakConvert's free Markup Calculator.">
+    content="Calculate markup percentage, markup amount, profit margin, profit, and selling price instantly using cost price, selling price, or desired markup percentage.">
 
   <link rel="canonical" href="https://sakconvert.com/calculators/markup-calculator/" />
 
-  <link rel="stylesheet" href="../../style.css?v=70" />
+  <link rel="stylesheet" href="../../style.css?v=71" />
 
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 </head>
@@ -47,7 +47,8 @@
         <a href="/#business-finance" class="eyebrow eyebrow-link">Business & Finance</a>
         <h1>Markup Calculator</h1>
         <p class="hero-text">
-          Calculate markup amount, markup percentage, profit, and margin from cost price and selling price.
+          Calculate markup amount, markup percentage, selling price, profit, and margin using cost price, selling price,
+          or a desired markup percentage.
         </p>
       </div>
     </section>
@@ -59,19 +60,27 @@
           <h2>Calculate Markup</h2>
 
           <div class="form-group">
-            <label for="markupCostPrice">Cost price</label>
-            <input type="number" id="markupCostPrice" placeholder="e.g. 50" step="0.01" />
+            <label for="markupMode">Calculation type</label>
+            <select id="markupMode">
+              <option value="selling-price">Cost price + selling price</option>
+              <option value="markup-percent">Cost price + desired markup %</option>
+            </select>
           </div>
 
           <div class="form-group">
-            <label for="markupSellingPrice">Selling price</label>
-            <input type="number" id="markupSellingPrice" placeholder="e.g. 80" step="0.01" />
+            <label for="markupCostPrice">Cost price</label>
+            <input type="number" id="markupCostPrice" placeholder="Cost price (e.g. 50)" step="0.01" />
+          </div>
+
+          <div class="form-group">
+            <label for="markupSellingPrice" id="markupSecondLabel">Selling price</label>
+            <input type="number" id="markupSellingPrice" placeholder="Selling price (e.g. 80)" step="0.01" />
           </div>
 
           <button class="calculate-btn" id="calculateMarkup" type="button">Calculate</button>
 
           <div class="results-box" id="markupResultsBox">
-            <p>Enter your cost price and selling price to calculate markup.</p>
+            <p>Enter your values to calculate markup, margin, profit, and selling price.</p>
           </div>
         </div>
 
@@ -128,6 +137,12 @@
           Then divide the markup by the cost price and multiply by 100 to get the markup percentage.
         </p>
 
+        <h3>Business insight</h3>
+        <p>
+          Many businesses focus on markup when setting prices, but customers never see your markup. Quietly, profit
+          margin is often the more important number because it shows how much of each sale you actually keep.
+        </p>
+
       </div>
     </section>
 
@@ -138,23 +153,44 @@
 
         <h3>What is markup?</h3>
         <p>
-          Markup is the amount added to the cost price of a product or service to create the selling price.
+          Markup is the amount added to the cost price of a product or service to determine the selling price.
+          Businesses use markup to cover expenses and generate profit.
         </p>
 
         <h3>How do I calculate markup percentage?</h3>
         <p>
-          Subtract the cost price from the selling price, divide the result by the cost price, then multiply by 100.
+          To calculate markup percentage, subtract the cost price from the selling price, divide the result by the cost
+          price, and multiply by 100. This shows how much the selling price exceeds the original cost.
         </p>
 
         <h3>What is the difference between markup and margin?</h3>
         <p>
-          Markup is based on cost price, while margin is based on selling price. They are related, but they are not the
-          same percentage.
+          Markup is calculated using the cost price as the starting point, while profit margin is calculated using the
+          selling price. Although the two measurements are related, they will usually produce different percentages.
         </p>
 
-        <h3>What is the markup on a product that costs £50 and sells for £80?</h3>
+        <h3>Why is markup important?</h3>
         <p>
-          The markup amount is £30. The markup percentage is 60%, and the profit margin is 37.5%.
+          Markup helps businesses set prices that cover costs and generate profit. Understanding markup can improve
+          pricing decisions, profitability, and long-term business performance.
+        </p>
+
+        <h3>Can markup be negative?</h3>
+        <p>
+          Yes. A negative markup occurs when a product or service is sold below its cost price, resulting in a loss.
+          Businesses may occasionally do this during promotions, stock clearances, or competitive pricing campaigns.
+        </p>
+
+        <h3>What is the markup on a product that costs 50 and sells for 80?</h3>
+        <p>
+          The markup amount is 30. The markup percentage is 60%, while the profit margin is 37.5%. This example
+          highlights why markup and margin are different measurements even when they use the same prices.
+        </p>
+
+        <h3>Can I calculate a selling price from a desired markup percentage?</h3>
+        <p>
+          Yes. Select "Cost price + desired markup %" and enter your cost price and target markup percentage. The
+          calculator will estimate the selling price needed to achieve that markup.
         </p>
 
       </div>
@@ -207,7 +243,7 @@
     </div>
   </footer>
 
-  <script src="../../script.js?v=70"></script>
+  <script src="../../script.js?v=71"></script>
 
 </body>
 

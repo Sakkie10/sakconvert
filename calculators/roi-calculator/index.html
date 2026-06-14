@@ -12,7 +12,7 @@
 
   <link rel="canonical" href="https://sakconvert.com/calculators/roi-calculator/" />
 
-  <link rel="stylesheet" href="../../style.css?v=70" />
+  <link rel="stylesheet" href="../../style.css?v=71" />
 
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 
@@ -61,13 +61,13 @@
           <h2>Calculate ROI</h2>
 
           <div class="form-group">
-            <label for="investmentCost">Investment cost (£)</label>
-            <input type="number" id="investmentCost" placeholder="e.g. 1000" min="0" step="0.01" />
+            <label for="investmentCost">Investment cost</label>
+            <input type="number" id="investmentCost" placeholder="Investment cost (e.g. 1000)" min="0" step="0.01" />
           </div>
 
           <div class="form-group">
-            <label for="investmentReturn">Total return (£)</label>
-            <input type="number" id="investmentReturn" placeholder="e.g. 1500" min="0" step="0.01" />
+            <label for="investmentReturn">Total return</label>
+            <input type="number" id="investmentReturn" placeholder="Total return (e.g. 1500)" min="0" step="0.01" />
           </div>
 
           <button class="calculate-btn" id="calculateROI" type="button">Calculate ROI</button>
@@ -103,7 +103,7 @@
 
         <h3>Example ROI calculation</h3>
         <p>
-          If you invest £1,000 and receive £1,500 back, your profit is £500. Your ROI is 50%.
+          If you invest 1,000 and receive 1,500 back, your profit is 500. Your ROI is 50%.
         </p>
 
         <h3>Why ROI matters</h3>
@@ -116,6 +116,13 @@
           Most people focus on revenue. Smart operators focus on ROI, because efficiency often beats volume over time.
         </p>
 
+        <h3>ROI insight</h3>
+
+        <p>
+          A higher ROI is generally better, but it should never be considered in isolation. Time, risk, cash flow, and
+          alternative opportunities can all affect whether an investment is truly worthwhile.
+        </p>
+
       </div>
     </section>
 
@@ -126,36 +133,42 @@
 
         <h3>What is a good ROI?</h3>
         <p>
-          A good ROI depends on the industry, risk level, and timeframe.
+          A good ROI depends on the industry, investment type, risk level, and timeframe. In general, a higher ROI
+          indicates a more profitable investment, but results should always be considered alongside risk and opportunity
+          cost.
         </p>
 
         <h3>Can ROI be negative?</h3>
         <p>
-          Yes. ROI is negative when your return is lower than your original investment cost.
+          Yes. ROI is negative when the return generated is lower than the original investment cost. A negative ROI
+          indicates a loss rather than a profit.
         </p>
 
         <h3>Is ROI the same as profit?</h3>
         <p>
-          No. Profit is the amount made. ROI expresses that profit as a percentage of the original investment.
+          No. Profit is the amount of money gained after costs have been deducted, while ROI expresses that profit as a
+          percentage of the original investment. ROI makes it easier to compare investments of different sizes.
         </p>
 
-      </div>
-    </section>
+        <h3>Why is ROI important?</h3>
+        <p>
+          ROI helps businesses and investors evaluate the effectiveness of spending decisions. It is commonly used to
+          assess marketing campaigns, equipment purchases, property investments, business projects, and financial
+          investments.
+        </p>
 
-    <!-- EMAIL -->
-    <section class="email-section" id="subscribe">
-      <div class="container content-narrow">
-        <h2>Get more business calculators</h2>
+        <h3>What is the difference between ROI and profit margin?</h3>
+        <p>
+          ROI measures the return generated relative to the original investment, while profit margin measures how much
+          profit is retained from revenue. Both are useful metrics, but they evaluate different aspects of performance.
+        </p>
 
-        <form class="email-form subscribe-form">
-          <input type="email" name="email" placeholder="Enter your email" required />
+        <h3>Can I use this calculator for business and personal investments?</h3>
+        <p>
+          Yes. ROI can be used for business projects, advertising campaigns, stocks, property investments, side
+          businesses, education costs, and many other situations where you want to measure the return on money spent.
+        </p>
 
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADdtPpfHbGvZF2qB" data-size="compact">
-          </div>
-
-          <button type="submit">Subscribe</button>
-          <p class="form-message"></p>
-        </form>
       </div>
     </section>
 
@@ -204,8 +217,7 @@
     </div>
   </footer>
 
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <script src="../../script.js?v=70"></script>
+  <script src="../../script.js?v=71"></script>
 
 </body>
 

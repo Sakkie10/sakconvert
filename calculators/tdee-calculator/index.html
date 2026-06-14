@@ -12,7 +12,7 @@
 
   <link rel="canonical" href="https://sakconvert.com/calculators/tdee-calculator/" />
 
-  <link rel="stylesheet" href="../../style.css?v=70" />
+  <link rel="stylesheet" href="../../style.css?v=71" />
 
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 
@@ -63,17 +63,17 @@
 
           <div class="form-group">
             <label for="tdeeAge">Age</label>
-            <input type="number" id="tdeeAge" placeholder="e.g. 30" min="1" step="1" />
+            <input type="number" id="tdeeAge" placeholder="Age in years (e.g. 30)" min="1" step="1" />
           </div>
 
           <div class="form-group">
             <label for="tdeeWeight">Weight (kg)</label>
-            <input type="number" id="tdeeWeight" placeholder="e.g. 80" min="1" step="0.1" />
+            <input type="number" id="tdeeWeight" placeholder="Weight in kg (e.g. 80)" min="1" step="0.1" />
           </div>
 
           <div class="form-group">
             <label for="tdeeHeight">Height (cm)</label>
-            <input type="number" id="tdeeHeight" placeholder="e.g. 180" min="1" step="0.1" />
+            <input type="number" id="tdeeHeight" placeholder="Height in cm (e.g. 180)" min="1" step="0.1" />
           </div>
 
           <div class="form-group">
@@ -165,37 +165,40 @@
 
         <h3>What is the difference between BMR and TDEE?</h3>
         <p>
-          BMR is the calories your body burns at rest. TDEE includes daily movement and exercise.
+          BMR is the number of calories your body burns at rest, while TDEE includes daily movement, exercise, and
+          activity. TDEE gives a fuller estimate of your daily calorie needs.
         </p>
 
         <h3>Is this TDEE calculator accurate?</h3>
         <p>
-          It provides a strong estimate using established formulas, though real calorie needs vary slightly between
-          individuals.
+          This calculator provides a useful estimate using the Mifflin-St Jeor equation and an activity multiplier.
+          Actual calorie needs can vary based on metabolism, muscle mass, training volume, and lifestyle.
         </p>
 
         <h3>Should I eat exactly at my TDEE?</h3>
         <p>
-          TDEE is a starting point. Most people adjust calories gradually depending on results and goals.
+          TDEE is best used as a starting point. If your weight changes faster or slower than expected, adjust your
+          calorie intake gradually based on real-world progress.
         </p>
 
-      </div>
-    </section>
+        <h3>How do I use TDEE for fat loss?</h3>
+        <p>
+          To lose fat, most people eat slightly below their estimated TDEE. A moderate calorie deficit is usually easier
+          to sustain than an extreme diet.
+        </p>
 
-    <!-- EMAIL -->
-    <section class="email-section" id="subscribe">
-      <div class="container content-narrow">
-        <h2>Get more fitness tools</h2>
+        <h3>How do I use TDEE for muscle gain?</h3>
+        <p>
+          To gain muscle, many people eat slightly above their estimated TDEE while following a consistent strength
+          training plan.
+        </p>
 
-        <form class="email-form subscribe-form">
-          <input type="email" name="email" placeholder="Enter your email" required />
+        <h3>Does activity level affect TDEE?</h3>
+        <p>
+          Yes. Activity level has a major effect on TDEE because movement and exercise increase the number of calories
+          your body burns each day.
+        </p>
 
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADdtPpfHbGvZF2qB" data-size="compact">
-          </div>
-
-          <button type="submit">Subscribe</button>
-          <p class="form-message"></p>
-        </form>
       </div>
     </section>
 
@@ -215,7 +218,6 @@
             <h3>Boxing Calorie Calculator</h3>
             <p>Estimate calories burned during boxing training.</p>
           </a>
-
 
         </div>
 
@@ -242,8 +244,7 @@
     </div>
   </footer>
 
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <script src="../../script.js?v=70"></script>
+  <script src="../../script.js?v=71"></script>
 
 </body>
 

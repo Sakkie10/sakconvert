@@ -12,7 +12,7 @@
 
   <link rel="canonical" href="https://sakconvert.com/calculators/boxing-calorie-calculator/" />
 
-  <link rel="stylesheet" href="../../style.css?v=70" />
+  <link rel="stylesheet" href="../../style.css?v=71" />
 
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 
@@ -47,11 +47,11 @@
     </section>
 
     <!-- HERO -->
-    <section class="tool-hero">
+    <section class="hero">
       <div class="container">
         <a href="/#health-fitness" class="eyebrow eyebrow-link">Health & Fitness</a>
         <h1>Boxing Calorie Calculator</h1>
-        <p class="tool-intro">
+        <p class="hero-text">
           Estimate calories burned during boxing using weight, duration, and intensity.
         </p>
       </div>
@@ -67,12 +67,12 @@
 
           <div class="form-group">
             <label for="weight">Weight</label>
-            <input type="number" id="weight" placeholder="Weight in kg (e.g. 75)" />
+            <input type="number" id="weight" placeholder="Weight in kg (e.g. 75)" min="1" step="0.1" />
           </div>
 
           <div class="form-group">
             <label for="duration">Duration</label>
-            <input type="number" id="duration" placeholder="Duration in minutes (e.g. 45)" />
+            <input type="number" id="duration" placeholder="Duration in minutes (e.g. 45)" min="1" step="1" />
           </div>
 
           <div class="form-group">
@@ -109,7 +109,7 @@
     <section class="content-section">
       <div class="container content-narrow">
 
-        <h2>How many calories does boxing burn?</h2>
+        <h2>How many calories does boxing burn per hour?</h2>
         <p>
           A 70kg person burns approximately 400–800 calories per hour depending on intensity.
         </p>
@@ -135,7 +135,7 @@
         <h2>Training Insight</h2>
 
         <ul>
-          <li>Intensity matters more than duration for calorie spikes</li>
+          <li>Higher intensity generally increases calorie burn more than simply extending workout duration</li>
           <li>Boxing engages full-body muscle groups</li>
           <li>Intervals increase total burn over steady pacing</li>
         </ul>
@@ -146,34 +146,53 @@
     <section class="faq-section">
       <div class="container content-narrow">
 
-        <h2>FAQs</h2>
+        <h2>Frequently Asked Questions</h2>
 
-        <h3>How many calories does boxing burn?</h3>
-        <p>Between 400–800 per hour depending on intensity.</p>
+        <h3>How many calories does boxing burn per hour?</h3>
+        <p>
+          Boxing can burn anywhere from 400 to 800 calories per hour depending on body weight, workout intensity,
+          fitness level, and the type of training being performed. High-intensity boxing sessions generally burn more
+          calories than light technical training.
+        </p>
 
         <h3>Is boxing good for fat loss?</h3>
-        <p>Yes, it combines cardio and resistance training.</p>
+        <p>
+          Yes. Boxing combines cardiovascular exercise, muscular endurance, and high-energy movements, making it an
+          effective activity for increasing calorie expenditure and supporting fat loss when combined with a balanced
+          diet.
+        </p>
 
         <h3>Is this calculator accurate?</h3>
-        <p>It provides an estimate using standard MET values.</p>
+        <p>
+          This calculator provides an estimate using established MET (Metabolic Equivalent of Task) values. Actual
+          calorie burn may vary depending on fitness level, effort, age, body composition, and training intensity.
+        </p>
 
-      </div>
-    </section>
+        <h3>What are MET values?</h3>
+        <p>
+          MET stands for Metabolic Equivalent of Task. It is a measurement used to estimate how much energy an activity
+          requires compared to resting. Higher-intensity boxing activities have higher MET values and therefore burn
+          more calories.
+        </p>
 
-    <!-- EMAIL -->
-    <section class="email-section" id="subscribe">
-      <div class="container content-narrow">
-        <h2>Get more fitness tools</h2>
+        <h3>Does heavier body weight burn more calories?</h3>
+        <p>
+          Generally, yes. People with a higher body weight tend to burn more calories performing the same activity
+          because their bodies require more energy to move and maintain effort.
+        </p>
 
-        <form class="email-form subscribe-form">
-          <input type="email" name="email" placeholder="Enter your email" required />
+        <h3>Can I use this calculator for boxing fitness classes?</h3>
+        <p>
+          Yes. The calculator can be used as a guide for boxing workouts, BoxFit-style classes, heavy bag sessions,
+          sparring, cardio boxing, and general boxing fitness training.
+        </p>
 
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADdtPpfHbGvZF2qB" data-size="compact">
-          </div>
+        <h3>Does boxing build muscle as well as burn calories?</h3>
+        <p>
+          Boxing primarily develops cardiovascular fitness, muscular endurance, coordination, and power. While it can
+          help build some muscle, dedicated resistance training is usually more effective for maximizing muscle growth.
+        </p>
 
-          <button type="submit">Subscribe</button>
-          <p class="form-message"></p>
-        </form>
       </div>
     </section>
 
@@ -219,8 +238,7 @@
     </div>
   </footer>
 
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <script src="../../script.js?v=70"></script>
+  <script src="../../script.js?v=71"></script>
 
 </body>
 

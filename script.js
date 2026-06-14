@@ -42,7 +42,7 @@ function initCalculator(type) {
       break;
 
     case "markup":
-      bindCalculator("calculateMarkup", calculateMarkup);
+      initMarkupCalculator();
       break;
 
     case "compound-interest":
@@ -399,34 +399,57 @@ function calculateDiscount() {
 // ===============================
 
 function calculateMarkup() {
-  const costPrice = parseFloat(
-    document.getElementById("markupCostPrice").value
-  );
-
-  const sellingPrice = parseFloat(
-    document.getElementById("markupSellingPrice").value
-  );
-
+  const mode = document.getElementById("markupMode")?.value || "selling-price";
+  const costPrice = parseFloat(document.getElementById("markupCostPrice").value);
+  const secondValue = parseFloat(document.getElementById("markupSellingPrice").value);
   const box = document.getElementById("markupResultsBox");
 
-  if (isNaN(costPrice) || isNaN(sellingPrice)) {
-    return showError(box, "Enter cost price and selling price.");
+  if (isNaN(costPrice) || isNaN(secondValue)) {
+    return showError(box, "Enter both values.");
   }
 
   if (costPrice <= 0) {
     return showError(box, "Cost price must be greater than zero.");
   }
 
-  if (sellingPrice <= 0) {
-    return showError(box, "Selling price must be greater than zero.");
+  if (secondValue < 0) {
+    return showError(box, "Values must be positive.");
   }
 
-  const markupAmount = sellingPrice - costPrice;
-  const markupPercent = (markupAmount / costPrice) * 100;
-  const marginPercent = (markupAmount / sellingPrice) * 100;
+  let sellingPrice;
+  let markupAmount;
+  let markupPercent;
+  let marginPercent;
+
+  if (mode === "markup-percent") {
+    markupPercent = secondValue;
+    markupAmount = costPrice * (markupPercent / 100);
+    sellingPrice = costPrice + markupAmount;
+    marginPercent = (markupAmount / sellingPrice) * 100;
+  } else {
+    sellingPrice = secondValue;
+
+    if (sellingPrice <= 0) {
+      return showError(box, "Selling price must be greater than zero.");
+    }
+
+    markupAmount = sellingPrice - costPrice;
+    markupPercent = (markupAmount / costPrice) * 100;
+    marginPercent = (markupAmount / sellingPrice) * 100;
+  }
 
   renderResult(box, `
     <div class="result-grid">
+      <div class="result-item">
+        <span>Selling Price</span>
+        <strong>${formatMoney(sellingPrice)}</strong>
+      </div>
+
+      <div class="result-item">
+        <span>Profit</span>
+        <strong>${formatMoney(markupAmount)}</strong>
+      </div>
+
       <div class="result-item">
         <span>Markup Amount</span>
         <strong>${formatMoney(markupAmount)}</strong>
@@ -440,9 +463,35 @@ function calculateMarkup() {
       <div class="result-item">
         <span>Profit Margin</span>
         <strong>${formatPercent(marginPercent)}</strong>
-      </div>
-    </div>
+      </div>     
+      
+    </div> 
   `);
+}
+
+function initMarkupCalculator() {
+  const markupBtn = document.getElementById("calculateMarkup");
+  const markupMode = document.getElementById("markupMode");
+  const secondLabel = document.getElementById("markupSecondLabel");
+  const secondInput = document.getElementById("markupSellingPrice");
+
+  if (!markupBtn) return;
+
+  bindCalculator("calculateMarkup", calculateMarkup);
+
+  if (!markupMode || !secondLabel || !secondInput) return;
+
+  markupMode.addEventListener("change", () => {
+    if (markupMode.value === "markup-percent") {
+      secondLabel.textContent = "Desired markup (%)";
+      secondInput.placeholder = "Desired markup % (e.g. 60)";
+    } else {
+      secondLabel.textContent = "Selling price";
+      secondInput.placeholder = "Selling price (e.g. 80)";
+    }
+
+    calculateMarkup();
+  });
 }
 
 // ===============================
