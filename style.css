@@ -225,7 +225,7 @@ a {
 .tool-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 32px;
 }
 
 .tool-card {
@@ -250,7 +250,8 @@ a {
 }
 
 .tool-card h3 {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
+  font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.04em;
   margin-bottom: 0;
@@ -258,19 +259,20 @@ a {
 
 .tool-card p {
   color: var(--soft);
-  font-size: 0.96rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
   margin-top: auto;
 }
 
 .tool-icon {
-  width: 46px;
-  height: 46px;
+  width: 54px;
+  height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(10, 80, 254, 0.08);
   border-radius: 14px;
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   margin-bottom: 2px;
 }
 
