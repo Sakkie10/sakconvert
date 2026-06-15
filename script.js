@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initCalculator(page);
   }
 
+  initMobileMenu();
   initSubscribeForms();
 });
 
@@ -88,6 +89,28 @@ function bindCalculator(buttonId, handler) {
   inputs.forEach((input) => {
     input.addEventListener("input", handler);
     input.addEventListener("change", handler);
+  });
+}
+
+function initMobileMenu() {
+  const toggle = document.querySelector(".menu-toggle");
+  const nav = document.getElementById("siteNav");
+
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("open");
+
+    toggle.classList.toggle("active", isOpen);
+    toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      toggle.classList.remove("active");
+      toggle.setAttribute("aria-expanded", "false");
+    });
   });
 }
 

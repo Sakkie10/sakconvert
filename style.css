@@ -45,7 +45,7 @@ a {
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 1000;
   backdrop-filter: blur(14px);
 }
 
@@ -54,12 +54,8 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
 
-.logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+  position: relative;
 }
 
 .nav {
@@ -607,12 +603,6 @@ a {
   margin-top: 0;
 }
 
-/* Related Tools */
-
-.related-tools {
-  padding: 80px 0;
-}
-
 /* GOLF DISTANCE PAGE FIXES */
 
 body[data-calculator="golf-distance"] .hero {
@@ -670,9 +660,6 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 /* RESPONSIVE */
 
 @media (max-width: 900px) {
-  .nav {
-    display: none;
-  }
 
   .hero {
     padding: 72px 0 52px;
@@ -800,7 +787,7 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 }
 
 .logo img {
-  height: 42px;
+  height: 36px;
   width: auto;
   display: block;
 }
@@ -873,13 +860,7 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   height: 2px;
   background: #050608;
   border-radius: 999px;
-}
-
-.menu-toggle span {
-  width: 24px;
-  height: 2px;
-  background: #050608;
-  border-radius: 999px;
+  transition: all 0.25s ease;
 }
 
 @media (max-width: 768px) {
@@ -894,6 +875,42 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 
   .nav {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 16px;
+    right: 16px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 18px;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
   }
 
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text);
+    padding: 8px 0;
+    transition: color 0.2s ease;
+  }
+
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
