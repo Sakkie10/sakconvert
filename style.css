@@ -319,14 +319,6 @@ a {
   font-size: 0.9rem;
 }
 
-
-
-
-
-
-
-
-
 /* ABOUT / COMING */
 
 .about-section {
@@ -860,4 +852,48 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 
 .mode-btn.active:hover {
   background: #0847e5;
+}
+
+.menu-toggle {
+  display: none;
+  width: 52px;
+  height: 52px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.menu-toggle span {
+  width: 24px;
+  height: 2px;
+  background: #050608;
+  border-radius: 999px;
+}
+
+.menu-toggle span {
+  width: 24px;
+  height: 2px;
+  background: #050608;
+  border-radius: 999px;
+}
+
+@media (max-width: 768px) {
+
+  .header-inner {
+    justify-content: space-between;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav {
+    display: none;
+  }
+
 }
