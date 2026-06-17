@@ -914,3 +914,29 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 .menu-toggle.active span:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
+
+.article-image {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  margin: 2rem auto;
+  border-radius: 12px;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 1rem;
+  text-align: left;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.comparison-table th {
+  background: rgba(10, 80, 254, 0.12);
+}

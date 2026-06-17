@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Profit Margin vs Markup</title>
+  <desc id="desc">A SakConvert visual comparing profit margin and markup using cost, selling price, and profit.</desc>
+
+  <rect width="1200" height="630" fill="#050608"/>
+
+  <circle cx="1030" cy="90" r="160" fill="#0A50FE" opacity="0.14"/>
+  <circle cx="170" cy="560" r="190" fill="#0A50FE" opacity="0.10"/>
+
+  <text x="70" y="78" fill="#7EA2FF" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="3">
+    SAKCONVERT GUIDE
+  </text>
+
+  <text x="70" y="138" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="800">
+    Profit Margin vs Markup
+  </text>
+
+  <text x="70" y="178" fill="#A7B0C0" font-family="Arial, Helvetica, sans-serif" font-size="24">
+    Same profit. Different base number.
+  </text>
+
+  <rect x="70" y="230" width="500" height="270" rx="26" fill="#0B1220" stroke="#1E2A44" stroke-width="2"/>
+  <rect x="95" y="255" width="62" height="62" rx="18" fill="#0A50FE"/>
+  <text x="114" y="297" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800">%</text>
+
+  <text x="180" y="282" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">
+    Profit Margin
+  </text>
+  <text x="180" y="322" fill="#A7B0C0" font-family="Arial, Helvetica, sans-serif" font-size="21">
+    Profit as a percentage of selling price
+  </text>
+
+  <rect x="95" y="360" width="420" height="86" rx="18" fill="#09111F"/>
+  <text x="123" y="413" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">
+    Margin = 40%
+  </text>
+
+  <rect x="630" y="230" width="500" height="270" rx="26" fill="#0B1220" stroke="#1E2A44" stroke-width="2"/>
+  <rect x="655" y="255" width="62" height="62" rx="18" fill="#0A50FE"/>
+  <text x="674" y="297" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800">+</text>
+
+  <text x="740" y="282" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">
+    Markup
+  </text>
+  <text x="740" y="322" fill="#A7B0C0" font-family="Arial, Helvetica, sans-serif" font-size="21">
+    Profit as a percentage of cost price
+  </text>
+
+  <rect x="655" y="360" width="420" height="86" rx="18" fill="#09111F"/>
+  <text x="683" y="413" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">
+    Markup = 66.67%
+  </text>
+
+  <rect x="70" y="535" width="1060" height="54" rx="18" fill="#0A50FE"/>
+  <text x="105" y="570" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700">
+    Example: Cost 60  •  Selling price 100  •  Profit 40
+  </text>
+</svg>
