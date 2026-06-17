@@ -942,19 +942,17 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 }
 
 .article-card {
-  display: block;
   max-width: 100%;
+  min-height: 320px;
   padding: 2rem;
   border-radius: 24px;
-  background: #ffffff;
-  border: 1px solid rgba(5, 6, 8, 0.08);
-  border-top: 4px solid #0A50FE;
-  color: #050608;
+  background: rgba(5, 6, 8, 0.92);
+  border: 1px solid rgba(5, 6, 8, 0.16);
+  color: #ffffff;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   position: relative;
   overflow: hidden;
-  min-height: 320px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -962,7 +960,8 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 
 .article-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 18px 40px rgba(5, 6, 8, 0.12);
+  background: #050608;
+  box-shadow: 0 18px 40px rgba(5, 6, 8, 0.16);
 }
 
 .article-card-top {
@@ -972,7 +971,6 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   margin-bottom: 1.25rem;
 }
 
-.article-type,
 .article-date {
   display: inline-flex;
   align-items: center;
@@ -980,17 +978,9 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   padding: 0.45rem 0.8rem;
   font-size: 0.85rem;
   font-weight: 700;
-}
-
-.article-type {
-  background: #0A50FE;
+  background: rgba(10, 80, 254, 0.18);
   color: #ffffff;
-}
-
-.article-date {
-  background: rgba(10, 80, 254, 0.08);
-  color: #0A50FE;
-  border: 1px solid rgba(10, 80, 254, 0.18);
+  border: 1px solid rgba(10, 80, 254, 0.35);
 }
 
 .article-card h3 {
@@ -998,29 +988,22 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   font-size: clamp(1.8rem, 3vw, 2.4rem);
   line-height: 1.05;
   letter-spacing: -0.04em;
-  color: #050608;
+  color: #ffffff;
 }
 
 .article-card p {
   margin: 0 0 1.4rem;
-  color: #334155;
+  color: #d1d5db;
   line-height: 1.6;
 }
 
 .article-link {
   font-weight: 800;
-  color: #0A50FE;
+  color: #ffffff;
 }
 
-@media (max-width: 768px) {
-  .article-card {
-    padding: 1.5rem;
-    border-radius: 20px;
-  }
-
-  .article-card h3 {
-    font-size: 1.3rem;
-  }
+.article-link:hover {
+  color: #7EA2FF;
 }
 
 .article-grid {
@@ -1029,13 +1012,25 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   gap: 32px;
 }
 
+.blog-actions {
+  margin-top: 2rem;
+  text-align: center;
+}
+
 @media (max-width: 900px) {
   .article-grid {
     grid-template-columns: 1fr;
   }
 }
 
-.blog-actions {
-  margin-top: 2rem;
-  text-align: center;
+@media (max-width: 768px) {
+  .article-card {
+    padding: 1.5rem;
+    border-radius: 20px;
+    min-height: 280px;
+  }
+
+  .article-card h3 {
+    font-size: 1.45rem;
+  }
 }
