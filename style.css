@@ -185,9 +185,12 @@ a {
 
 /* HOMEPAGE SECTIONS */
 
-.tools-section,
-.related-tools {
+.tools-section {
   padding: 80px 0;
+}
+
+.related-tools {
+  padding: 56px 0 80px;
 }
 
 .tools-section.alt {
@@ -488,7 +491,7 @@ a {
 .content-section,
 .faq-section,
 .insights-section {
-  padding: 96px 0;
+  padding: 64px 0 96px;
   background: var(--surface);
   border-top: 1px solid var(--border);
 }
