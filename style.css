@@ -272,6 +272,18 @@ a {
   margin-bottom: 2px;
 }
 
+.business-finance .tool-icon {
+  background: rgba(10, 80, 254, 0.08);
+}
+
+.health-fitness .tool-icon {
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.specialist .tool-icon {
+  background: rgba(245, 158, 11, 0.08);
+}
+
 .tool-features {
   display: flex;
   flex-wrap: wrap;
