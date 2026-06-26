@@ -1167,6 +1167,10 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   margin: 2.5rem 0 1rem;
 }
 
+.article-container h2:first-child {
+  margin-top: 0;
+}
+
 .article-container h3 {
   font-size: 1.3rem;
   line-height: 1.2;
