@@ -491,7 +491,7 @@ a {
 .content-section,
 .faq-section,
 .insights-section {
-  padding: 64px 0 96px;
+  padding: 48px 0 96px;
   background: var(--surface);
   border-top: 1px solid var(--border);
 }
@@ -1092,7 +1092,7 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 }
 
 .article-hero {
-  padding: 64px 0 72px;
+  padding: 48px 0 72px;
   background: rgba(10, 80, 254, 0.05);
   border-bottom: 1px solid var(--border);
 }
