@@ -29,12 +29,16 @@ section {
   padding: 4rem 0;
 }
 
-.hero, .legal-hero, .article-hero {
+.hero,
+.legal-hero,
+.article-hero {
   padding: 5.5rem 0 3rem;
 }
 
 /* Improve typography consistency */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   line-height: 1.05;
   letter-spacing: -0.04em;
 }
@@ -219,7 +223,12 @@ a {
 }
 
 .related-tools {
-  padding: 56px 0 80px;
+  padding: 80px 0;
+  /* Updated */
+}
+
+.related-tools .tool-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .tools-section.alt {
