@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initMobileMenu();
   initSubscribeForms();
+  setActiveNav();
+  initDarkModeToggle();
+  initScrollReveal();
 });
 
 // ===============================
@@ -827,4 +830,120 @@ function resetTurnstile(form) {
   if (widget) {
     window.turnstile.reset(widget);
   }
+}
+
+// ==================== ACTIVE NAV STATE ====================
+function setActiveNav() {
+  const currentPath = window.location.pathname;
+  const navLinks = document.querySelectorAll('.nav a');
+
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    
+    if (href === currentPath || 
+        (currentPath.includes('/articles/') && href.includes('/articles/')) ||
+        (currentPath.includes('/blog/') && href.includes('/blog/'))) {
+      link.setAttribute('aria-current', 'page');
+      link.classList.add('active');
+    } else {
+      link.removeAttribute('aria-current');
+      link.classList.remove('active');
+    }
+  });
+}
+
+// Call it when page loads
+document.addEventListener("DOMContentLoaded", () => {
+  // ... your existing code ...
+
+  setActiveNav();
+});
+
+// ===============================
+// DARK MODE TOGGLE
+// ===============================
+
+function initDarkModeToggle() {
+  const themeToggle = document.getElementById('themeToggle');
+  if (!themeToggle) return;
+
+  function setTheme(isDark) {
+    if (isDark) {
+      document.body.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }
+
+  // Load saved preference
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark' || 
+      (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.body.classList.add('dark');
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const isDark = document.body.classList.contains('dark');
+    setTheme(!isDark);
+  });
+}
+
+// ===============================
+// SCROLL REVEAL
+// ===============================
+
+function initScrollReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+
+  function checkVisibility() {
+    reveals.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.85) {
+        el.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', checkVisibility);
+  window.addEventListener('load', checkVisibility);
+}
+
+// ===============================
+// CORE ENGINE (your existing code continues below)
+// ===============================
+
+function initCalculator(type) {
+  // ... your existing calculator code ...
+}
+
+function bindCalculator(buttonId, handler) {
+  // ... your existing code ...
+}
+
+function initMobileMenu() {
+  // ... your existing code ...
+}
+
+// ===============================
+// UTILITIES & CALCULATORS (keep all your existing functions)
+// ===============================
+
+// ... paste all your existing functions here (calculateProfitMargin, etc.) ...
+
+// ===============================
+// EMAIL SUBSCRIBE FORM (keep your existing code)
+// ===============================
+
+function setFormMessage(messageElement, text, type) {
+  // ... your existing code ...
+}
+
+function initSubscribeForms() {
+  // ... your existing code ...
+}
+
+function resetTurnstile(form) {
+  // ... your existing code ...
 }
