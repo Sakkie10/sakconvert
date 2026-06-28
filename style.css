@@ -624,29 +624,6 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
-
-  .menu-toggle {
-    display: flex;
-  }
-
-  .nav {
-    display: none;
-    ...
-  }
-
-  .nav.open {
-    display: flex;
-  }
-
-  .nav a {
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--text);
-    padding: 8px 0;
-  }
-
-}
 
 .hero {
   padding: 72px 0 52px;
@@ -1175,6 +1152,31 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 
 .article-card:hover {
   transform: translateY(-4px);
+}
+
+/* mobile */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav {
+    display: none;
+    ...
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text);
+    padding: 8px 0;
+  }
+
 }
 
 /* Force left alignment on hero text */
