@@ -161,12 +161,12 @@ function calculateProfitMargin() {
   const markup = cost === 0 ? 0 : (profit / cost) * 100;
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item"><span>Profit</span><strong>${formatMoney(profit)}</strong></div>
-      <div class="result-item"><span>Margin</span><strong>${formatPercent(margin)}</strong></div>
-      <div class="result-item"><span>Markup</span><strong>${formatPercent(markup)}</strong></div>
-    </div>
-  `);
+    <div class="result-grid">
+      <div class="result-item"><span>Profit</span><strong>${formatMoney(profit)}</strong></div>
+      <div class="result-item"><span>Margin</span><strong>${formatPercent(margin)}</strong></div>
+      <div class="result-item"><span>Markup</span><strong>${formatPercent(markup)}</strong></div>
+    </div>
+  `);
 }
 
 // ===============================
@@ -190,11 +190,11 @@ function calculateROI() {
   const roi = (profit / cost) * 100;
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item"><span>Net Profit</span><strong>${formatMoney(profit)}</strong></div>
-      <div class="result-item"><span>ROI</span><strong>${formatPercent(roi)}</strong></div>
-    </div>
-  `);
+    <div class="result-grid">
+      <div class="result-item"><span>Net Profit</span><strong>${formatMoney(profit)}</strong></div>
+      <div class="result-item"><span>ROI</span><strong>${formatPercent(roi)}</strong></div>
+    </div>
+  `);
 }
 
 // ===============================
@@ -233,12 +233,12 @@ function calculateVAT() {
   }
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item"><span>Net Amount</span><strong>${formatMoney(net)}</strong></div>
-      <div class="result-item"><span>VAT Amount</span><strong>${formatMoney(vat)}</strong></div>
-      <div class="result-item"><span>Gross Amount</span><strong>${formatMoney(gross)}</strong></div>
-    </div>
-  `);
+    <div class="result-grid">
+      <div class="result-item"><span>Net Amount</span><strong>${formatMoney(net)}</strong></div>
+      <div class="result-item"><span>VAT Amount</span><strong>${formatMoney(vat)}</strong></div>
+      <div class="result-item"><span>Gross Amount</span><strong>${formatMoney(gross)}</strong></div>
+    </div>
+  `);
 }
 
 function initVatCalculator() {
@@ -301,11 +301,11 @@ function calculatePercentage() {
   }
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item"><span>Result</span><strong>${result}</strong></div>
-    </div>
-    <p class="result-note">${explanation}</p>
-  `);
+    <div class="result-grid">
+      <div class="result-item"><span>Result</span><strong>${result}</strong></div>
+    </div>
+    <p class="result-note">${explanation}</p>
+  `);
 }
 
 // ===============================
@@ -347,23 +347,23 @@ function calculateCompoundInterest() {
   const interestEarned = futureValue - principal;
 
   renderResult(resultsBox, `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>Future value</span>
-        <strong>${formatMoney(futureValue)}</strong>
-      </div>
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Future value</span>
+        <strong>${formatMoney(futureValue)}</strong>
+      </div>
 
-      <div class="result-item">
-        <span>Initial amount</span>
-        <strong>${formatMoney(principal)}</strong>
-      </div>
+      <div class="result-item">
+        <span>Initial amount</span>
+        <strong>${formatMoney(principal)}</strong>
+      </div>
 
-      <div class="result-item">
-        <span>Interest earned</span>
-        <strong>${formatMoney(interestEarned)}</strong>
-      </div>
-    </div>
-  `);
+      <div class="result-item">
+        <span>Interest earned</span>
+        <strong>${formatMoney(interestEarned)}</strong>
+      </div>
+    </div>
+  `);
 }
 
 // ===============================
@@ -393,28 +393,28 @@ function calculateDiscount() {
   const finalPrice = originalPrice - discountAmount;
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>Original Price</span>
-        <strong>${formatMoney(originalPrice)}</strong>
-      </div>
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Original Price</span>
+        <strong>${formatMoney(originalPrice)}</strong>
+      </div>
 
-      <div class="result-item">
-        <span>Discount Amount</span>
-        <strong>${formatMoney(discountAmount)}</strong>
-      </div>
+      <div class="result-item">
+        <span>Discount Amount</span>
+        <strong>${formatMoney(discountAmount)}</strong>
+      </div>
 
-      <div class="result-item">
-        <span>Final Sale Price</span>
-        <strong>${formatMoney(finalPrice)}</strong>
-      </div>
+      <div class="result-item">
+        <span>Final Sale Price</span>
+        <strong>${formatMoney(finalPrice)}</strong>
+      </div>
 
-      <div class="result-item">
-        <span>You Save</span>
-        <strong>${formatMoney(discountAmount)}</strong>
-      </div>
-    </div>
-  `);
+      <div class="result-item">
+        <span>You Save</span>
+        <strong>${formatMoney(discountAmount)}</strong>
+      </div>
+    </div>
+  `);
 }
 
 // ===============================
@@ -462,34 +462,34 @@ function calculateMarkup() {
   }
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>Selling Price</span>
-        <strong>${formatMoney(sellingPrice)}</strong>
-      </div>
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Selling Price</span>
+        <strong>${formatMoney(sellingPrice)}</strong>
+      </div>
 
-      <div class="result-item">
-        <span>Profit</span>
-        <strong>${formatMoney(markupAmount)}</strong>
-      </div>
+      <div class="result-item">
+        <span>Profit</span>
+        <strong>${formatMoney(markupAmount)}</strong>
+      </div>
 
-      <div class="result-item">
-        <span>Markup Amount</span>
-        <strong>${formatMoney(markupAmount)}</strong>
-      </div>
+      <div class="result-item">
+        <span>Markup Amount</span>
+        <strong>${formatMoney(markupAmount)}</strong>
+      </div>
 
-      <div class="result-item">
-        <span>Markup Percentage</span>
-        <strong>${formatPercent(markupPercent)}</strong>
-      </div>
+      <div class="result-item">
+        <span>Markup Percentage</span>
+        <strong>${formatPercent(markupPercent)}</strong>
+      </div>
 
-      <div class="result-item">
-        <span>Profit Margin</span>
-        <strong>${formatPercent(marginPercent)}</strong>
-      </div>     
-      
-    </div> 
-  `);
+      <div class="result-item">
+        <span>Profit Margin</span>
+        <strong>${formatPercent(marginPercent)}</strong>
+      </div>     
+      
+    </div> 
+  `);
 }
 
 function initMarkupCalculator() {
@@ -538,13 +538,13 @@ function calculateBoxingCalories() {
   const calories = (met * weight * 3.5 / 200) * duration;
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>Calories Burned</span>
-        <strong>${Math.round(calories)} kcal</strong>
-      </div>
-    </div>
-  `);
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Calories Burned</span>
+        <strong>${Math.round(calories)} kcal</strong>
+      </div>
+    </div>
+  `);
 }
 
 // ===============================
@@ -567,13 +567,13 @@ function calculateOneRM() {
   const oneRM = weight * (1 + reps / 30);
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>Estimated 1RM</span>
-        <strong>${oneRM.toFixed(1)} kg</strong>
-      </div>
-    </div>
-  `);
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Estimated 1RM</span>
+        <strong>${oneRM.toFixed(1)} kg</strong>
+      </div>
+    </div>
+  `);
 }
 
 // ===============================
@@ -607,13 +607,13 @@ function calculateTDEE() {
   const tdee = bmr * activity;
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>Estimated TDEE</span>
-        <strong>${Math.round(tdee)} kcal/day</strong>
-      </div>
-    </div>
-  `);
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Estimated TDEE</span>
+        <strong>${Math.round(tdee)} kcal/day</strong>
+      </div>
+    </div>
+  `);
 }
 
 // ===============================
@@ -664,28 +664,28 @@ function calculateBMI() {
   }
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>BMI Score</span>
-        <strong>${bmi.toFixed(1)}</strong>
-      </div>
+    <div class="result-grid">
+      <div class="result-item">
+        <span>BMI Score</span>
+        <strong>${bmi.toFixed(1)}</strong>
+      </div>
 
-      <div class="result-item">
-        <span>BMI Category</span>
-        <strong>${category}</strong>
-      </div>
+      <div class="result-item">
+        <span>BMI Category</span>
+        <strong>${category}</strong>
+      </div>
 
-      <div class="result-item">
-        <span>Healthy Weight Range</span>
-        <strong>${minHealthyWeight.toFixed(1)} kg - ${maxHealthyWeight.toFixed(1)} kg</strong>
-      </div>
+      <div class="result-item">
+        <span>Healthy Weight Range</span>
+        <strong>${minHealthyWeight.toFixed(1)} kg - ${maxHealthyWeight.toFixed(1)} kg</strong>
+      </div>
 
-      <div class="result-item">
-        <span>Weight To Reach Healthy Range</span>
-        <strong>${weightMessage}</strong>
-      </div>
-    </div>
-  `);
+      <div class="result-item">
+        <span>Weight To Reach Healthy Range</span>
+        <strong>${weightMessage}</strong>
+      </div>
+    </div>
+  `);
 }
 
 // ===============================
@@ -718,13 +718,13 @@ function calculateGolfDistance() {
   const distance = speed * factor;
 
   renderResult(box, `
-    <div class="result-grid">
-      <div class="result-item">
-        <span>Estimated Distance</span>
-        <strong>${Math.round(distance)} yards</strong>
-      </div>
-    </div>
-  `);
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Estimated Distance</span>
+        <strong>${Math.round(distance)} yards</strong>
+      </div>
+    </div>
+  `);
 }
 
 // ===============================
@@ -828,30 +828,3 @@ function resetTurnstile(form) {
     window.turnstile.reset(widget);
   }
 }
-
-// ==================== ACTIVE NAV STATE ====================
-function setActiveNav() {
-  const currentPath = window.location.pathname;
-  const navLinks = document.querySelectorAll('.nav a');
-
-  navLinks.forEach(link => {
-    const href = link.getAttribute('href');
-
-    if (href === currentPath ||
-      (currentPath.includes('/articles/') && href.includes('/articles/')) ||
-      (currentPath.includes('/blog/') && href.includes('/blog/'))) {
-      link.setAttribute('aria-current', 'page');
-      link.classList.add('active');
-    } else {
-      link.removeAttribute('aria-current');
-      link.classList.remove('active');
-    }
-  });
-}
-
-// Call it when page loads
-document.addEventListener("DOMContentLoaded", () => {
-  // ... your existing code ...
-
-  setActiveNav();
-});
