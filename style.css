@@ -589,30 +589,6 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   grid-template-columns: repeat(3, 1fr);
 }
 
-@media (max-width: 768px) {
-
-  .menu-toggle {
-    display: flex;
-  }
-
-  .nav {
-    display: none;
-    ...
-  }
-
-  .nav.open {
-    display: flex;
-  }
-
-  .nav a {
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--text);
-    padding: 8px 0;
-  }
-
-}
-
 /* FOOTER */
 
 .site-footer {
@@ -648,6 +624,29 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 }
 
 /* RESPONSIVE */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav {
+    display: none;
+    ...
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text);
+    padding: 8px 0;
+  }
+
+}
 
 .hero {
   padding: 72px 0 52px;
