@@ -1350,3 +1350,28 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 .hero:not(.legal-hero) .container {
   text-align: left;
 }
+
+/* Mobile Calculator Fixes */
+@media (max-width: 900px) {
+  .calculator-layout {
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+  }
+
+  .calculator-card,
+  .info-card {
+    padding: 28px 24px;   /* balanced padding on mobile */
+  }
+
+  .calculator-section .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .calculator-card,
+  .info-card {
+    padding: 24px 20px;
+  }
+}
