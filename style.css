@@ -1309,3 +1309,12 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 .article-card:hover {
   transform: translateY(-4px);
 }
+
+/* TEMP DEBUG - REMOVE LATER */
+.hero.legal-hero .container,
+.content-section .container {
+  background: rgba(255, 0, 0, 0.15) !important;
+  border: 3px solid red !important;
+  padding-left: 40px !important;   /* temporary bigger padding */
+  padding-right: 40px !important;
+}
