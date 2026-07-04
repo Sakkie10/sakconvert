@@ -70,7 +70,9 @@ section {
 }
 
 /* Improve typography consistency */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   line-height: 1.05;
   letter-spacing: -0.04em;
 }
@@ -1315,6 +1317,26 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 .content-section .container {
   background: rgba(255, 0, 0, 0.15) !important;
   border: 3px solid red !important;
-  padding-left: 40px !important;   /* temporary bigger padding */
+  padding-left: 40px !important;
+  /* temporary bigger padding */
   padding-right: 40px !important;
+}
+
+/* Legal & Static Page Alignment Fixes */
+.legal-hero .hero-text,
+.legal-hero-text {
+  max-width: 680px;
+  margin: 0 0 0 0;
+  /* reset any auto margin */
+  text-align: left;
+}
+
+.hero.legal-hero .container {
+  text-align: left;
+}
+
+/* Remove double container effect */
+.content-section>.container>.container {
+  padding-left: 0;
+  padding-right: 0;
 }
