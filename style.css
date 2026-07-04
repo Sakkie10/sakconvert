@@ -1338,3 +1338,15 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   padding-left: 0;
   padding-right: 0;
 }
+
+/* Calculator Hero Text Alignment */
+.hero-text-calculator {
+  max-width: 680px;
+  margin: 0;
+  text-align: left;
+}
+
+/* Make calculator heroes behave like legal ones */
+.hero:not(.legal-hero) .container {
+  text-align: left;
+}

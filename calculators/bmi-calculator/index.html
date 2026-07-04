@@ -15,7 +15,7 @@
 
   <link rel="canonical" href="https://sakconvert.com/calculators/bmi-calculator/" />
 
-  <link rel="stylesheet" href="/style.css?v=123">
+  <link rel="stylesheet" href="/style.css?v=124">
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 
 </head>
@@ -55,7 +55,7 @@
       <div class="container">
         <a href="/#health-fitness" class="eyebrow eyebrow-link">Health & Fitness</a>
         <h1>BMI Calculator</h1>
-        <p class="hero-text">
+        <p class="hero-text hero-text-calculator">
           Calculate your Body Mass Index using height and weight, then check
           your BMI category and healthy weight range.
         </p>
@@ -66,43 +66,40 @@
     <section class="calculator-section">
       <div class="container"> <!-- added this here NOW -->
         <div class="container calculator-layout">
+
+          <!-- LEFT: Calculator Form -->
           <div class="calculator-card">
             <h2>Calculate BMI</h2>
-
             <div class="form-group">
               <label for="bmiHeight">Height</label>
               <input type="number" id="bmiHeight" placeholder="Height in cm (e.g. 180)" min="1" step="0.1" />
             </div>
-
             <div class="form-group">
               <label for="bmiWeight">Weight</label>
               <input type="number" id="bmiWeight" placeholder="Weight in kg (e.g. 75)" min="1" step="0.1" />
             </div>
-
-            <button class="calculate-btn" id="calculateBMI" type="button">
-              Calculate
-            </button>
+            <button class="calculate-btn" id="calculateBMI" type="button">Calculate</button>
 
             <div class="results-box" id="bmiResultsBox">
               <p>
                 Enter your height in centimetres and weight in kilograms to
-                calculate your BMI.
-              </p>
+                calculate your BMI.</p>
             </div>
           </div>
-        </div>
 
-        <div class="info-card">
-          <h2>Formula</h2>
-          <p>Body Mass Index is calculated using weight and height:</p>
+          <!-- RIGHT: Info / Formula -->
+          <div class="info-card">
+            <h2>Formula</h2>
+            <p>Body Mass Index is calculated using weight and height:</p>
 
-          <div class="formula-box">BMI = Weight (kg) ÷ Height² (m)</div>
+            <div class="formula-box">BMI = Weight (kg) ÷ Height² (m)</div>
 
-          <p>
-            BMI is a simple screening measure that compares body weight to
-            height. It can help estimate whether a person is underweight,
-            within a healthy weight range, overweight, or obese.
-          </p>
+            <p>
+              BMI is a simple screening measure that compares body weight to
+              height. It can help estimate whether a person is underweight,
+              within a healthy weight range, overweight, or obese.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -244,7 +241,7 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=123"></script>
+  <script src="/script.js?v=124"></script>
 
 </body>
 
