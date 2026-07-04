@@ -15,7 +15,7 @@
 
   <link rel="canonical" href="https://sakconvert.com/calculators/bmi-calculator/" />
 
-  <link rel="stylesheet" href="/style.css?v=122">
+  <link rel="stylesheet" href="/style.css?v=123">
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 
 </head>
@@ -62,30 +62,33 @@
       </div>
     </section>
 
+    <!-- CALCULATOR TOOL -->
     <section class="calculator-section">
-      <div class="container calculator-layout">
-        <div class="calculator-card">
-          <h2>Calculate BMI</h2>
+      <div class="container"> <!-- added this here NOW -->
+        <div class="container calculator-layout">
+          <div class="calculator-card">
+            <h2>Calculate BMI</h2>
 
-          <div class="form-group">
-            <label for="bmiHeight">Height</label>
-            <input type="number" id="bmiHeight" placeholder="Height in cm (e.g. 180)" min="1" step="0.1" />
-          </div>
+            <div class="form-group">
+              <label for="bmiHeight">Height</label>
+              <input type="number" id="bmiHeight" placeholder="Height in cm (e.g. 180)" min="1" step="0.1" />
+            </div>
 
-          <div class="form-group">
-            <label for="bmiWeight">Weight</label>
-            <input type="number" id="bmiWeight" placeholder="Weight in kg (e.g. 75)" min="1" step="0.1" />
-          </div>
+            <div class="form-group">
+              <label for="bmiWeight">Weight</label>
+              <input type="number" id="bmiWeight" placeholder="Weight in kg (e.g. 75)" min="1" step="0.1" />
+            </div>
 
-          <button class="calculate-btn" id="calculateBMI" type="button">
-            Calculate
-          </button>
+            <button class="calculate-btn" id="calculateBMI" type="button">
+              Calculate
+            </button>
 
-          <div class="results-box" id="bmiResultsBox">
-            <p>
-              Enter your height in centimetres and weight in kilograms to
-              calculate your BMI.
-            </p>
+            <div class="results-box" id="bmiResultsBox">
+              <p>
+                Enter your height in centimetres and weight in kilograms to
+                calculate your BMI.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -104,75 +107,82 @@
       </div>
     </section>
 
+    <!-- Content Sections -->
     <section class="content-section">
-      <div class="container content-narrow">
-        <h2>Understanding BMI</h2>
-        <p>
-          Body Mass Index, commonly known as BMI, is a widely used measure
-          that compares your weight to your height. It is often used as a
-          quick guide to understand whether your body weight is within a
-          general healthy range.
-        </p>
+      <div class="container"> <!-- added this here NOW -->
+        <div class="content-narrow">
+          <h2>Understanding BMI</h2>
+          <p>
+            Body Mass Index, commonly known as BMI, is a widely used measure
+            that compares your weight to your height. It is often used as a
+            quick guide to understand whether your body weight is within a
+            general healthy range.
+          </p>
 
-        <h3>BMI categories</h3>
-        <ul>
-          <li>Below 18.5: Underweight</li>
-          <li>18.5 to 24.9: Healthy weight</li>
-          <li>25.0 to 29.9: Overweight</li>
-          <li>30.0 and above: Obese</li>
-        </ul>
+          <h3>BMI categories</h3>
+          <ul>
+            <li>Below 18.5: Underweight</li>
+            <li>18.5 to 24.9: Healthy weight</li>
+            <li>25.0 to 29.9: Overweight</li>
+            <li>30.0 and above: Obese</li>
+          </ul>
 
-        <h3>How to calculate BMI</h3>
-        <p>
-          Convert your height from centimetres into metres, square that
-          number, then divide your weight in kilograms by the squared height
-          value. For example, someone who is 180cm tall and weighs 75kg has a
-          BMI of around 23.1.
-        </p>
+          <h3>How to calculate BMI</h3>
+          <p>
+            Convert your height from centimetres into metres, square that
+            number, then divide your weight in kilograms by the squared height
+            value. For example, someone who is 180cm tall and weighs 75kg has a
+            BMI of around 23.1.
+          </p>
+        </div>
       </div>
     </section>
 
     <section class="content-section">
-      <div class="container content-narrow">
-        <h2>Frequently Asked Questions</h2>
+      <div class="container"> <!-- added this here NOW -->
+        <div class="content-narrow">
+          <h2>Frequently Asked Questions</h2>
 
-        <h3>What is BMI?</h3>
-        <p>
-          BMI, or Body Mass Index, is a measurement that compares your weight to your height. It is commonly used to
-          estimate whether a person falls within an underweight, healthy weight, overweight, or obese category.
-        </p>
+          <h3>What is BMI?</h3>
+          <p>
+            BMI, or Body Mass Index, is a measurement that compares your weight to your height. It is commonly used to
+            estimate whether a person falls within an underweight, healthy weight, overweight, or obese category.
+          </p>
 
-        <h3>What is a healthy BMI?</h3>
-        <p>
-          A BMI between 18.5 and 24.9 is generally considered to be within the healthy weight range for most adults.
-          Values below this range may indicate underweight, while higher values may indicate overweight or obesity.
-        </p>
+          <h3>What is a healthy BMI?</h3>
+          <p>
+            A BMI between 18.5 and 24.9 is generally considered to be within the healthy weight range for most adults.
+            Values below this range may indicate underweight, while higher values may indicate overweight or obesity.
+          </p>
 
-        <h3>Is BMI always accurate?</h3>
-        <p>
-          No. BMI is a useful screening tool, but it does not directly measure body fat, muscle mass, bone density, or
-          overall fitness. It should be used alongside other health indicators rather than as a complete assessment of
-          health.
-        </p>
+          <h3>Is BMI always accurate?</h3>
+          <p>
+            No. BMI is a useful screening tool, but it does not directly measure body fat, muscle mass, bone density, or
+            overall fitness. It should be used alongside other health indicators rather than as a complete assessment of
+            health.
+          </p>
 
-        <h3>Can athletes have a high BMI?</h3>
-        <p>
-          Yes. Athletes and people with higher levels of muscle mass may have a higher BMI despite having a healthy body
-          composition. Muscle weighs more than fat, which can affect BMI results.
-        </p>
+          <h3>Can athletes have a high BMI?</h3>
+          <p>
+            Yes. Athletes and people with higher levels of muscle mass may have a higher BMI despite having a healthy
+            body
+            composition. Muscle weighs more than fat, which can affect BMI results.
+          </p>
 
-        <h3>What is the difference between BMI and body fat percentage?</h3>
-        <p>
-          BMI estimates weight status based on height and weight, while body fat percentage measures the proportion of
-          your body that is made up of fat. Body fat percentage can provide a more detailed picture of body composition.
-        </p>
+          <h3>What is the difference between BMI and body fat percentage?</h3>
+          <p>
+            BMI estimates weight status based on height and weight, while body fat percentage measures the proportion of
+            your body that is made up of fat. Body fat percentage can provide a more detailed picture of body
+            composition.
+          </p>
 
-        <h3>Can I use BMI to track weight loss progress?</h3>
-        <p>
-          BMI can help track long-term changes in weight status, but it should not be the only measurement used. Waist
-          measurements, body fat percentage, fitness improvements, and overall health markers can provide additional
-          insight.
-        </p>
+          <h3>Can I use BMI to track weight loss progress?</h3>
+          <p>
+            BMI can help track long-term changes in weight status, but it should not be the only measurement used. Waist
+            measurements, body fat percentage, fitness improvements, and overall health markers can provide additional
+            insight.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -234,7 +244,7 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=122"></script>
+  <script src="/script.js?v=123"></script>
 
 </body>
 
