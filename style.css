@@ -1316,8 +1316,7 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 .legal-hero .hero-text,
 .legal-hero-text {
   max-width: 680px;
-  margin: 0 0 0 0;
-  /* reset any auto margin */
+  margin: 0;
   text-align: left;
 }
 
@@ -1339,14 +1338,15 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   padding-right: 0;
 }
 
-/* Calculator Hero Text Alignment */
+/* Stronger Calculator Hero Alignment */
+.hero:not(.legal-hero) .hero-text,
 .hero-text-calculator {
   max-width: 680px;
-  margin: 0;
-  text-align: left;
+  margin: 26px 0 0 0;
+  text-align: left !important;
 }
 
-/* Make calculator heroes behave like legal ones */
+/* Force left alignment on calculator heroes */
 .hero:not(.legal-hero) .container {
   text-align: left;
 }
