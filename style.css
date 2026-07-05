@@ -1039,33 +1039,6 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   justify-content: center;
 }
 
-.article-card:hover {
-  transform: translateY(-4px);
-}
-
-.article-card-dark {
-  background: #050608;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.article-card-dark:hover {
-  background: #0A50FE;
-  border-color: #0A50FE;
-  box-shadow: 0 18px 40px rgba(5, 6, 8, 0.16);
-}
-
-.article-card-light {
-  background: #ffffff;
-  color: #050608;
-  border: 1px solid #d1d5db;
-}
-
-.article-card-light:hover {
-  border-color: #0A50FE;
-  box-shadow: 0 18px 40px rgba(5, 6, 8, 0.08);
-}
-
 .article-card-top {
   display: flex;
   flex-wrap: wrap;
@@ -1082,18 +1055,6 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   font-weight: 700;
 }
 
-.article-card-dark .article-date {
-  background: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.article-card-light .article-date {
-  background: rgba(10, 80, 254, 0.08);
-  color: #0A50FE;
-  border: 1px solid rgba(10, 80, 254, 0.18);
-}
-
 .article-card h3 {
   margin: 0 0 1rem;
   font-size: clamp(1.8rem, 3vw, 2.4rem);
@@ -1106,31 +1067,11 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   line-height: 1.6;
 }
 
-.article-card-dark p {
-  color: #d1d5db;
-}
-
-.article-card-light p {
-  color: #334155;
-}
-
 .article-link {
   font-weight: 800;
 }
 
-.article-card-dark .article-link {
-  color: #ffffff;
-}
-
-.article-card-light .article-link {
-  color: #0A50FE;
-}
-
-.article-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 32px;
-}
+/* ==================== ARTICLE GRID ==================== */
 
 /* Alternating colors */
 .article-grid .article-card:nth-child(odd) {
@@ -1143,6 +1084,13 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   background: #ffffff;
   color: #050608;
   border: 1px solid #d1d5db;
+}
+
+/* Published date on light cards */
+.article-grid .article-card:nth-child(even) .article-date {
+  background: rgba(10, 80, 254, 0.08);
+  color: #0A50FE;
+  border: 1px solid rgba(10, 80, 254, 0.18);
 }
 
 /* Hover states */
@@ -1177,37 +1125,6 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   font-weight: 800;
   color: inherit;
   margin-top: auto;
-}
-
-.blog-actions {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-/* Desktop: 2 columns, latest first (top-left) */
-@media (min-width: 900px) {
-  .article-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Mobile: single column, latest on top */
-@media (max-width: 899px) {
-  .article-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .article-card {
-    padding: 1.5rem;
-    border-radius: 20px;
-    min-height: 280px;
-  }
-
-  .article-card h3 {
-    font-size: 1.45rem;
-  }
 }
 
 .article-hero {
@@ -1342,29 +1259,6 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 
 .blog-grid {
   margin-top: 16px;
-}
-
-.article-card {
-  display: block;
-  border-radius: 20px;
-  padding: 32px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.article-card-dark {
-  background: #0a0a0a;
-  color: #fff;
-}
-
-.article-card-light {
-  background: #f5f7ff;
-  border: 1px solid var(--border);
-  color: var(--text);
-}
-
-.article-card:hover {
-  transform: translateY(-4px);
 }
 
 /* Legal & Static Page Alignment Fixes */
