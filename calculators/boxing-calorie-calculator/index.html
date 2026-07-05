@@ -12,7 +12,7 @@
 
   <link rel="canonical" href="https://sakconvert.com/calculators/boxing-calorie-calculator/" />
 
-  <link rel="stylesheet" href="/style.css?v=127">
+  <link rel="stylesheet" href="/style.css?v=128">
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 
 </head>
@@ -64,49 +64,47 @@
 
     <!-- CALCULATOR -->
     <section class="calculator-section">
-      <div class="container calculator-layout">
+      <div class="container">
+        <div class="calculator-layout">
 
-        <!-- LEFT -->
-        <div class="calculator-card">
-          <h2>Calculate Calories Burned</h2>
+          <!-- LEFT -->
+          <div class="calculator-card">
+            <h2>Calculate Calories Burned</h2>
 
-          <div class="form-group">
-            <label for="weight">Weight</label>
-            <input type="number" id="weight" placeholder="Weight in kg (e.g. 75)" min="1" step="0.1" />
+            <div class="form-group">
+              <label for="weight">Weight</label>
+              <input type="number" id="weight" placeholder="Weight in kg (e.g. 75)" min="1" step="0.1" />
+            </div>
+
+            <div class="form-group">
+              <label for="duration">Duration</label>
+              <input type="number" id="duration" placeholder="Duration in minutes (e.g. 45)" min="1" step="1" />
+            </div>
+
+            <div class="form-group">
+              <label for="intensity">Intensity</label>
+              <select id="intensity">
+                <option value="5.5">Light (shadowboxing)</option>
+                <option value="7.8">Moderate (bag work)</option>
+                <option value="10.5">High (sparring)</option>
+              </select>
+            </div>
+
+            <button class="calculate-btn" id="boxingBtn">Calculate</button>
+
+            <div class="results-box" id="boxingResultsBox"></div>
           </div>
 
-          <div class="form-group">
-            <label for="duration">Duration</label>
-            <input type="number" id="duration" placeholder="Duration in minutes (e.g. 45)" min="1" step="1" />
+          <!-- RIGHT -->
+          <div class="info-card">
+            <h2>Formula</h2>
+            <div class="formula-box">
+              Calories = (MET × weight × 3.5 ÷ 200) × duration
+            </div>
+            <p>Higher intensity boxing significantly increases calorie burn.</p>
           </div>
 
-          <div class="form-group">
-            <label for="intensity">Intensity</label>
-            <select id="intensity">
-              <option value="5.5">Light (shadowboxing)</option>
-              <option value="7.8">Moderate (bag work)</option>
-              <option value="10.5">High (sparring)</option>
-            </select>
-          </div>
-
-          <button class="calculate-btn" id="boxingBtn">Calculate</button>
-
-          <div class="results-box" id="boxingResultsBox"></div>
         </div>
-
-        <!-- RIGHT -->
-        <div class="info-card">
-          <h2>Formula</h2>
-
-          <div class="formula-box">
-            Calories = (MET × weight × 3.5 ÷ 200) × duration
-          </div>
-
-          <p>
-            Higher intensity boxing significantly increases calorie burn.
-          </p>
-        </div>
-
       </div>
     </section>
 
@@ -255,7 +253,7 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=127"></script>
+  <script src="/script.js?v=128"></script>
 
 </body>
 
