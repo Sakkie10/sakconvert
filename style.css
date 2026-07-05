@@ -1351,27 +1351,21 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   text-align: left;
 }
 
-/* Mobile Calculator Fixes */
+/* Mobile Calculator Card Fix */
 @media (max-width: 900px) {
-  .calculator-layout {
-    grid-template-columns: 1fr !important;
-    gap: 24px;
-  }
-
   .calculator-card,
   .info-card {
-    padding: 28px 24px;   /* balanced padding on mobile */
+    padding: 32px 28px !important;
   }
-
-  .calculator-section .container {
-    padding-left: 20px;
-    padding-right: 20px;
+  
+  .calculator-layout {
+    gap: 32px !important;
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 480px) {
   .calculator-card,
   .info-card {
-    padding: 24px 20px;
+    padding: 28px 24px !important;
   }
 }
