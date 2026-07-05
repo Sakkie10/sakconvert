@@ -12,7 +12,7 @@
 
   <link rel="canonical" href="https://sakconvert.com/calculators/one-rep-max-calculator/" />
 
-  <link rel="stylesheet" href="/style.css?v=133">
+  <link rel="stylesheet" href="/style.css?v=134">
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 
 </head>
@@ -62,140 +62,139 @@
       </div>
     </section>
 
-    <!-- CALCULATOR -->
+    <!-- CALCULATOR TOOL -->
     <section class="calculator-section">
-      <div class="container calculator-layout">
+      <div class="container">
+        <div class="calculator-layout">
 
-        <!-- LEFT -->
-        <div class="calculator-card">
+          <div class="calculator-card">
+            <h2>Calculate One-Rep Max</h2>
 
-          <h2>Calculate One-Rep Max</h2>
+            <div class="form-group">
+              <label for="oneRMWeight">Weight lifted (kg)</label>
+              <input type="number" id="oneRMWeight" placeholder="Weight in kg (e.g. 100)" min="0" step="0.1" />
+            </div>
 
-          <div class="form-group">
-            <label for="oneRMWeight">Weight lifted (kg)</label>
-            <input type="number" id="oneRMWeight" placeholder="Weight in kg (e.g. 100)" min="0" step="0.1" />
+            <div class="form-group">
+              <label for="oneRMReps">Repetitions completed</label>
+              <input type="number" id="oneRMReps" placeholder="Reps completed (e.g. 5)" min="1" step="1" />
+            </div>
+
+            <button class="calculate-btn" id="oneRMBtn" type="button">Calculate 1RM</button>
+
+            <div class="results-box" id="oneRMResultsBox">
+              <p>Enter weight and reps to estimate your one-rep max.</p>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="oneRMReps">Repetitions completed</label>
-            <input type="number" id="oneRMReps" placeholder="Reps completed (e.g. 5)" min="1" step="1" />
-          </div>
-
-          <button class="calculate-btn" id="oneRMBtn" type="button">
-            Calculate 1RM
-          </button>
-
-          <div class="results-box" id="oneRMResultsBox">
-            <p>Enter weight and reps to estimate your one-rep max.</p>
+          <div class="info-card">
+            <h2>Formula</h2>
+            <div class="formula-box">
+              1RM = Weight × (1 + Reps ÷ 30)
+            </div>
+            <p>
+              This calculator uses the Epley formula, commonly used in strength training and powerlifting.
+            </p>
           </div>
 
         </div>
-
-        <!-- RIGHT -->
-        <div class="info-card">
-
-          <h2>Formula</h2>
-
-          <div class="formula-box">
-            1RM = Weight × (1 + Reps ÷ 30)
-          </div>
-
-          <p>
-            This calculator uses the Epley formula, commonly used in strength training and powerlifting.
-          </p>
-
-        </div>
-
       </div>
     </section>
 
     <!-- CONTENT -->
     <section class="content-section">
-      <div class="container content-narrow">
+      <div class="container">
+        <div class="content-narrow">
 
-        <h2>What is One-Rep Max?</h2>
+          <h2>What is One-Rep Max?</h2>
 
-        <p>
-          Your one-rep max (1RM) is the maximum amount of weight you can lift for a single repetition of an exercise.
-        </p>
+          <p>
+            Your one-rep max (1RM) is the maximum amount of weight you can lift for a single repetition of an exercise.
+          </p>
 
-        <h3>Why athletes use 1RM</h3>
+          <h3>Why athletes use 1RM</h3>
 
-        <p>
-          Strength athletes and coaches use 1RM estimates to measure progress, structure training blocks, and determine
-          percentages for workouts.
-        </p>
+          <p>
+            Strength athletes and coaches use 1RM estimates to measure progress, structure training blocks, and
+            determine
+            percentages for workouts.
+          </p>
 
-        <h3>Training insight</h3>
+          <h3>Training insight</h3>
 
-        <p>
-          Most people test strength too often. Quietly, consistent submaximal training usually builds strength faster
-          over time.
-        </p>
+          <p>
+            Most people test strength too often. Quietly, consistent submaximal training usually builds strength faster
+            over time.
+          </p>
 
-        <p>
-          For many lifters, sets of 3–6 repetitions provide a useful balance between strength development and one-rep
-          max
-          prediction accuracy. This rep range allows you to train with heavy loads while still accumulating enough
-          volume to
-          build strength over time.
-        </p>
+          <p>
+            For many lifters, sets of 3–6 repetitions provide a useful balance between strength development and one-rep
+            max
+            prediction accuracy. This rep range allows you to train with heavy loads while still accumulating enough
+            volume to
+            build strength over time.
+          </p>
 
-        <!-- INTERNAL LINKS -->
-        <p>
-          You may also find our
-          <a href="/calculators/tdee-calculator/">TDEE Calculator</a>
-          or
-          <a href="/calculators/boxing-calorie-calculator/">Boxing Calorie Calculator</a>
-          useful.
-        </p>
+          <!-- INTERNAL LINKS -->
+          <p>
+            You may also find our
+            <a href="/calculators/tdee-calculator/">TDEE Calculator</a>
+            or
+            <a href="/calculators/boxing-calorie-calculator/">Boxing Calorie Calculator</a>
+            useful.
+          </p>
 
+        </div>
       </div>
     </section>
 
     <!-- FAQ -->
     <section class="faq-section">
-      <div class="container content-narrow">
+      <div class="container">
+        <div class="content-narrow">
 
-        <h2>Frequently Asked Questions</h2>
+          <h2>Frequently Asked Questions</h2>
 
-        <h3>How accurate is a 1RM calculator?</h3>
-        <p>
-          A one-rep max calculator provides an estimate of your maximum strength based on the weight lifted and the
-          number of repetitions completed. It is generally most accurate when using lower rep ranges, but actual results
-          can vary between individuals.
-        </p>
+          <h3>How accurate is a 1RM calculator?</h3>
+          <p>
+            A one-rep max calculator provides an estimate of your maximum strength based on the weight lifted and the
+            number of repetitions completed. It is generally most accurate when using lower rep ranges, but actual
+            results
+            can vary between individuals.
+          </p>
 
-        <h3>What rep range works best for estimating a 1RM?</h3>
-        <p>
-          Most one-rep max formulas are most reliable when based on sets of 1 to 10 repetitions. Accuracy tends to
-          decrease as repetition counts become higher because fatigue has a greater impact on performance.
-        </p>
+          <h3>What rep range works best for estimating a 1RM?</h3>
+          <p>
+            Most one-rep max formulas are most reliable when based on sets of 1 to 10 repetitions. Accuracy tends to
+            decrease as repetition counts become higher because fatigue has a greater impact on performance.
+          </p>
 
-        <h3>Should beginners test true one-rep max lifts?</h3>
-        <p>
-          Most beginners benefit more from estimated one-rep max calculations than attempting true maximum lifts. Using
-          a calculator can reduce injury risk while still providing useful strength data for training.
-        </p>
+          <h3>Should beginners test true one-rep max lifts?</h3>
+          <p>
+            Most beginners benefit more from estimated one-rep max calculations than attempting true maximum lifts.
+            Using
+            a calculator can reduce injury risk while still providing useful strength data for training.
+          </p>
 
-        <h3>Why is knowing your one-rep max useful?</h3>
-        <p>
-          A one-rep max estimate can help you select appropriate training weights, track strength progress, and build
-          structured strength programs. Many training plans use percentages of a one-rep max to prescribe workloads.
-        </p>
+          <h3>Why is knowing your one-rep max useful?</h3>
+          <p>
+            A one-rep max estimate can help you select appropriate training weights, track strength progress, and build
+            structured strength programs. Many training plans use percentages of a one-rep max to prescribe workloads.
+          </p>
 
-        <h3>Can I use a 1RM calculator for any exercise?</h3>
-        <p>
-          Yes. One-rep max calculators can be used for exercises such as the bench press, squat, deadlift, overhead
-          press, and many other resistance training movements.
-        </p>
+          <h3>Can I use a 1RM calculator for any exercise?</h3>
+          <p>
+            Yes. One-rep max calculators can be used for exercises such as the bench press, squat, deadlift, overhead
+            press, and many other resistance training movements.
+          </p>
 
-        <h3>What is a good one-rep max?</h3>
-        <p>
-          There is no universal "good" one-rep max because strength levels vary by age, body weight, training
-          experience, and exercise selection. The most useful comparison is your own progress over time.
-        </p>
+          <h3>What is a good one-rep max?</h3>
+          <p>
+            There is no universal "good" one-rep max because strength levels vary by age, body weight, training
+            experience, and exercise selection. The most useful comparison is your own progress over time.
+          </p>
 
+        </div>
       </div>
     </section>
 
@@ -255,7 +254,7 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=133"></script>
+  <script src="/script.js?v=134"></script>
 
 </body>
 

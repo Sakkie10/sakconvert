@@ -12,7 +12,7 @@
 
   <link rel="canonical" href="https://sakconvert.com/calculators/percentage-calculator/" />
 
-  <link rel="stylesheet" href="/style.css?v=133">
+  <link rel="stylesheet" href="/style.css?v=134">
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 
 </head>
@@ -59,124 +59,137 @@
       </div>
     </section>
 
+    <!-- CALCULATOR TOOL -->
     <section class="calculator-section">
-      <div class="container calculator-layout">
+      <div class="container">
+        <div class="calculator-layout">
 
-        <div class="calculator-card">
-          <h2>Calculate Percentage</h2>
+          <div class="calculator-card">
+            <h2>Calculate Percentage</h2>
 
-          <div class="form-group">
-            <label for="percentageMode">Calculation type</label>
-            <select id="percentageMode">
-              <option value="percentOf">What is X% of Y?</option>
-              <option value="percentChange">Percentage increase or decrease</option>
-              <option value="percentDifference">Difference between two values</option>
-            </select>
+            <div class="form-group">
+              <label for="percentageMode">Calculation type</label>
+              <select id="percentageMode">
+                <option value="percentOf">What is X% of Y?</option>
+                <option value="percentChange">Percentage increase or decrease</option>
+                <option value="percentDifference">Difference between two values</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="percentageValue">Value 1</label>
+              <input type="number" id="percentageValue" placeholder="e.g. 20 or starting value" step="0.01" />
+            </div>
+
+            <div class="form-group">
+              <label for="percentageBase">Value 2</label>
+              <input type="number" id="percentageBase" placeholder="e.g. 500 or final value" step="0.01" />
+            </div>
+
+            <button class="calculate-btn" id="calculatePercentage" type="button">Calculate</button>
+
+            <div class="results-box" id="percentageResultsBox">
+              <p>Enter values and select a calculation type to see results.</p>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="percentageValue">Value 1</label>
-            <input type="number" id="percentageValue" placeholder="e.g. 20 or starting value" step="0.01" />
+          <div class="info-card">
+            <h2>Formula</h2>
+            <p>Basic percentage calculation:</p>
+
+            <div class="formula-box">
+              Result = Base × (Percentage ÷ 100)
+            </div>
+
+            <p>
+              Percentage change compares an original value to a new value to measure increase or decrease.
+            </p>
           </div>
 
-          <div class="form-group">
-            <label for="percentageBase">Value 2</label>
-            <input type="number" id="percentageBase" placeholder="e.g. 500 or final value" step="0.01" />
-          </div>
-
-          <button class="calculate-btn" id="calculatePercentage" type="button">Calculate</button>
-
-          <div class="results-box" id="percentageResultsBox">
-            <p>Enter values and select a calculation type to see results.</p>
-          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="info-card">
-          <h2>Formula</h2>
-          <p>Basic percentage calculation:</p>
+    <!-- CONTENT -->
+    <section class="content-section">
+      <div class="container">
+        <div class="content-narrow">
 
-          <div class="formula-box">
-            Result = Base × (Percentage ÷ 100)
-          </div>
-
+          <h2>Understanding Percentages</h2>
           <p>
-            Percentage change compares an original value to a new value to measure increase or decrease.
+            Percentages are used across business, finance, and everyday decisions to compare values and measure change.
+            Whether you're calculating discounts, profit margins, or growth rates, percentages provide a simple way to
+            interpret data.
           </p>
+
+          <h3>Common use cases</h3>
+          <ul>
+            <li>Calculating discounts and sale prices</li>
+            <li>Measuring business growth</li>
+            <li>Understanding profit margins</li>
+            <li>Tracking performance changes</li>
+          </ul>
+
+          <h3>How to calculate a percentage</h3>
+          <p>
+            Divide the percentage value by 100 and multiply it by the base number. For example, 20% of 500 equals 100.
+          </p>
+
         </div>
-
       </div>
     </section>
 
-    <section class="content-section">
-      <div class="container content-narrow">
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="content-narrow">
 
-        <h2>Understanding Percentages</h2>
-        <p>
-          Percentages are used across business, finance, and everyday decisions to compare values and measure change.
-          Whether you're calculating discounts, profit margins, or growth rates, percentages provide a simple way to
-          interpret data.
-        </p>
+          <h2>Frequently Asked Questions</h2>
 
-        <h3>Common use cases</h3>
-        <ul>
-          <li>Calculating discounts and sale prices</li>
-          <li>Measuring business growth</li>
-          <li>Understanding profit margins</li>
-          <li>Tracking performance changes</li>
-        </ul>
+          <h3>What is 20% of 500?</h3>
+          <p>
+            20% of 500 is 100. To calculate this, multiply 500 by 20 and divide by 100. Percentage calculations work the
+            same way regardless of whether the value represents money, distance, weight, or any other measurement.
+          </p>
 
-        <h3>How to calculate a percentage</h3>
-        <p>
-          Divide the percentage value by 100 and multiply it by the base number. For example, 20% of 500 equals 100.
-        </p>
+          <h3>How do I calculate percentage increase?</h3>
+          <p>
+            Subtract the original value from the new value, divide the result by the original value, and multiply by
+            100.
+            The answer shows the percentage increase between the two values.
+          </p>
 
+          <h3>How do I calculate percentage decrease?</h3>
+          <p>
+            Subtract the new value from the original value, divide by the original value, and multiply by 100. This
+            gives
+            the percentage decrease from the starting value.
+          </p>
+
+          <h3>What is percentage difference?</h3>
+          <p>
+            Percentage difference measures how different two values are relative to their average. It is commonly used
+            when comparing two figures that have equal importance.
+          </p>
+
+          <h3>What is the difference between percentage change and percentage difference?</h3>
+          <p>
+            Percentage change compares a new value to an original value and shows the increase or decrease. Percentage
+            difference compares two values relative to their average and does not assume one value is the starting
+            point.
+          </p>
+
+          <h3>When should I use a percentage calculator?</h3>
+          <p>
+            Percentage calculators are useful for discounts, markups, profit margins, exam scores, financial analysis,
+            population changes, statistics, and many everyday calculations involving proportions and growth.
+          </p>
+
+        </div>
       </div>
     </section>
 
-    <section class="content-section">
-      <div class="container content-narrow">
-
-        <h2>Frequently Asked Questions</h2>
-
-        <h3>What is 20% of 500?</h3>
-        <p>
-          20% of 500 is 100. To calculate this, multiply 500 by 20 and divide by 100. Percentage calculations work the
-          same way regardless of whether the value represents money, distance, weight, or any other measurement.
-        </p>
-
-        <h3>How do I calculate percentage increase?</h3>
-        <p>
-          Subtract the original value from the new value, divide the result by the original value, and multiply by 100.
-          The answer shows the percentage increase between the two values.
-        </p>
-
-        <h3>How do I calculate percentage decrease?</h3>
-        <p>
-          Subtract the new value from the original value, divide by the original value, and multiply by 100. This gives
-          the percentage decrease from the starting value.
-        </p>
-
-        <h3>What is percentage difference?</h3>
-        <p>
-          Percentage difference measures how different two values are relative to their average. It is commonly used
-          when comparing two figures that have equal importance.
-        </p>
-
-        <h3>What is the difference between percentage change and percentage difference?</h3>
-        <p>
-          Percentage change compares a new value to an original value and shows the increase or decrease. Percentage
-          difference compares two values relative to their average and does not assume one value is the starting point.
-        </p>
-
-        <h3>When should I use a percentage calculator?</h3>
-        <p>
-          Percentage calculators are useful for discounts, markups, profit margins, exam scores, financial analysis,
-          population changes, statistics, and many everyday calculations involving proportions and growth.
-        </p>
-
-      </div>
-    </section>
-
+    <!-- RELATED TOOLS -->
     <section class="related-tools">
       <div class="container">
 
@@ -242,7 +255,7 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=133"></script>
+  <script src="/script.js?v=134"></script>
 
 </body>
 

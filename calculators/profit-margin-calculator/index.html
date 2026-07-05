@@ -12,7 +12,7 @@
 
   <link rel="canonical" href="https://sakconvert.com/calculators/profit-margin-calculator/" />
 
-  <link rel="stylesheet" href="/style.css?v=133">
+  <link rel="stylesheet" href="/style.css?v=134">
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 
 </head>
@@ -60,130 +60,144 @@
       </div>
     </section>
 
+    <!-- CALCULATOR TOOL -->
     <section class="calculator-section">
-      <div class="container calculator-layout">
+      <div class="container">
+        <div class="calculator-layout">
 
-        <div class="calculator-card">
-          <h2>Calculate Profit Margin</h2>
+          <div class="calculator-card">
+            <h2>Calculate Profit Margin</h2>
 
-          <div class="form-group">
-            <label for="costPrice">Cost price</label>
-            <input type="number" id="costPrice" placeholder="Cost price (e.g. 50)" min="0" step="0.01" />
+            <div class="form-group">
+              <label for="costPrice">Cost price</label>
+              <input type="number" id="costPrice" placeholder="Cost price (e.g. 50)" min="0" step="0.01" />
+            </div>
+
+            <div class="form-group">
+              <label for="sellingPrice">Selling price</label>
+              <input type="number" id="sellingPrice" placeholder="Selling price (e.g. 80)" min="0" step="0.01" />
+            </div>
+
+            <button class="calculate-btn" id="calculateProfitMargin" type="button">Calculate</button>
+
+            <div class="results-box" id="resultsBox">
+              <p>Enter cost and selling price to calculate profit and margin.</p>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="sellingPrice">Selling price</label>
-            <input type="number" id="sellingPrice" placeholder="Selling price (e.g. 80)" min="0" step="0.01" />
+          <div class="info-card">
+            <h2>Profit Margin Formula</h2>
+            <p>
+              Profit margin measures how much of each sale is retained as profit after costs have been deducted.
+            </p>
+
+            <div class="formula-box">
+              Profit Margin = (Profit ÷ Selling Price) × 100
+            </div>
+
+            <p>Profit = Selling Price − Cost Price</p>
           </div>
 
-          <button class="calculate-btn" id="calculateProfitMargin" type="button">Calculate</button>
-
-          <div class="results-box" id="resultsBox">
-            <p>Enter cost and selling price to calculate profit and margin.</p>
-          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="info-card">
-          <h2>Profit Margin Formula</h2>
+    <!-- CONTENT -->
+    <section class="content-section">
+      <div class="container">
+        <div class="content-narrow">
+
+          <h2>Understanding Profit Margin</h2>
           <p>
-            Profit margin measures how much of each sale is retained as profit after costs have been deducted.
+            Profit margin is one of the most important metrics in business. It tells you how much of each sale you
+            actually keep after covering costs.
           </p>
 
-          <div class="formula-box">
-            Profit Margin = (Profit ÷ Selling Price) × 100
-          </div>
+          <h3>Why profit margin matters</h3>
+          <ul>
+            <li>Helps you price products correctly</li>
+            <li>Shows business efficiency</li>
+            <li>Highlights profitability issues early</li>
+            <li>Allows comparison across products or services</li>
+          </ul>
 
-          <p>Profit = Selling Price − Cost Price</p>
+          <h3>Margin vs Markup</h3>
+          <p>
+            Profit margin is based on selling price, while markup is based on cost. This means a 50% markup does not
+            equal
+            a 50% margin.
+          </p>
+
+          <h3>Profit margin insight</h3>
+          <p>
+            Many businesses focus on increasing revenue, but improving profit margin can often have a greater impact on
+            long-term profitability. Small improvements in pricing, cost control, or operational efficiency can
+            significantly increase profit over time.
+          </p>
+
         </div>
-
       </div>
     </section>
 
-    <section class="content-section">
-      <div class="container content-narrow">
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="content-narrow">
 
-        <h2>Understanding Profit Margin</h2>
-        <p>
-          Profit margin is one of the most important metrics in business. It tells you how much of each sale you
-          actually keep after covering costs.
-        </p>
+          <h2>Frequently Asked Questions</h2>
 
-        <h3>Why profit margin matters</h3>
-        <ul>
-          <li>Helps you price products correctly</li>
-          <li>Shows business efficiency</li>
-          <li>Highlights profitability issues early</li>
-          <li>Allows comparison across products or services</li>
-        </ul>
+          <h3>What is a good profit margin?</h3>
+          <p>
+            A good profit margin depends on the industry and business model. Retail businesses often operate on lower
+            margins, while service-based and digital businesses can achieve significantly higher margins. Comparing your
+            margin to industry averages can provide useful context.
+          </p>
 
-        <h3>Margin vs Markup</h3>
-        <p>
-          Profit margin is based on selling price, while markup is based on cost. This means a 50% markup does not equal
-          a 50% margin.
-        </p>
+          <h3>Can profit margin be negative?</h3>
+          <p>
+            Yes. A negative profit margin occurs when your costs are greater than your revenue, resulting in a loss.
+            Negative margins can be a warning sign that pricing, expenses, or business operations need attention.
+          </p>
 
-        <h3>Profit margin insight</h3>
-        <p>
-          Many businesses focus on increasing revenue, but improving profit margin can often have a greater impact on
-          long-term profitability. Small improvements in pricing, cost control, or operational efficiency can
-          significantly increase profit over time.
-        </p>
+          <h3>Why is profit margin important?</h3>
+          <p>
+            Profit margin measures how much profit is generated from each unit of revenue. It helps business owners
+            evaluate pricing strategies, control costs, and assess overall financial health.
+          </p>
 
+          <h3>What is the difference between profit margin and markup?</h3>
+          <p>
+            Profit margin is based on the selling price, while markup is based on the cost price. Although the two
+            metrics
+            are related, they produce different percentages and should not be used interchangeably.
+          </p>
+
+          <h3>How can I improve my profit margin?</h3>
+          <p>
+            Businesses can improve profit margins by increasing prices, reducing costs, improving operational
+            efficiency,
+            negotiating better supplier terms, or focusing on higher-margin products and services.
+          </p>
+
+          <h3>Can I use this calculator for products and services?</h3>
+          <p>
+            Yes. This calculator can be used for physical products, professional services, consulting, digital products,
+            subscriptions, and most other business pricing scenarios.
+          </p>
+
+          <h3>Can a business have high revenue but low profit margin?</h3>
+          <p>
+            Yes. A business can generate significant revenue while keeping only a small percentage as profit if costs
+            are
+            high. This is why profit margin is often considered more useful than revenue alone when assessing business
+            performance.
+          </p>
+
+        </div>
       </div>
     </section>
 
-    <section class="content-section">
-      <div class="container content-narrow">
-
-        <h2>Frequently Asked Questions</h2>
-
-        <h3>What is a good profit margin?</h3>
-        <p>
-          A good profit margin depends on the industry and business model. Retail businesses often operate on lower
-          margins, while service-based and digital businesses can achieve significantly higher margins. Comparing your
-          margin to industry averages can provide useful context.
-        </p>
-
-        <h3>Can profit margin be negative?</h3>
-        <p>
-          Yes. A negative profit margin occurs when your costs are greater than your revenue, resulting in a loss.
-          Negative margins can be a warning sign that pricing, expenses, or business operations need attention.
-        </p>
-
-        <h3>Why is profit margin important?</h3>
-        <p>
-          Profit margin measures how much profit is generated from each unit of revenue. It helps business owners
-          evaluate pricing strategies, control costs, and assess overall financial health.
-        </p>
-
-        <h3>What is the difference between profit margin and markup?</h3>
-        <p>
-          Profit margin is based on the selling price, while markup is based on the cost price. Although the two metrics
-          are related, they produce different percentages and should not be used interchangeably.
-        </p>
-
-        <h3>How can I improve my profit margin?</h3>
-        <p>
-          Businesses can improve profit margins by increasing prices, reducing costs, improving operational efficiency,
-          negotiating better supplier terms, or focusing on higher-margin products and services.
-        </p>
-
-        <h3>Can I use this calculator for products and services?</h3>
-        <p>
-          Yes. This calculator can be used for physical products, professional services, consulting, digital products,
-          subscriptions, and most other business pricing scenarios.
-        </p>
-
-        <h3>Can a business have high revenue but low profit margin?</h3>
-        <p>
-          Yes. A business can generate significant revenue while keeping only a small percentage as profit if costs are
-          high. This is why profit margin is often considered more useful than revenue alone when assessing business
-          performance.
-        </p>
-
-      </div>
-    </section>
-
+    <!-- RELATED TOOLS -->
     <section class="related-tools">
       <div class="container">
         <h2>Related Business & Finance Calculators</h2>
@@ -247,7 +261,7 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=133"></script>
+  <script src="/script.js?v=134"></script>
 
 </body>
 
