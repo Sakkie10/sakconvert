@@ -1128,8 +1128,55 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 
 .article-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 32px;
+}
+
+/* Alternating colors */
+.article-grid .article-card:nth-child(odd) {
+  background: #050608;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.article-grid .article-card:nth-child(even) {
+  background: #ffffff;
+  color: #050608;
+  border: 1px solid #d1d5db;
+}
+
+/* Hover states */
+.article-grid .article-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(5, 6, 8, 0.12);
+}
+
+.article-grid .article-card:nth-child(odd):hover {
+  background: #0A50FE;
+  border-color: #0A50FE;
+}
+
+.article-grid .article-card:nth-child(even):hover {
+  border-color: #0A50FE;
+}
+
+/* Typography polish */
+.article-card h3 {
+  font-size: 1.42rem;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.article-card p {
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+
+.article-card .article-link {
+  font-weight: 800;
+  color: inherit;
+  margin-top: auto;
 }
 
 .blog-actions {
@@ -1137,7 +1184,15 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   text-align: center;
 }
 
-@media (max-width: 900px) {
+/* Desktop: 2 columns, latest first (top-left) */
+@media (min-width: 900px) {
+  .article-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: single column, latest on top */
+@media (max-width: 899px) {
   .article-grid {
     grid-template-columns: 1fr;
   }
