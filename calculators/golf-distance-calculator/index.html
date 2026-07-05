@@ -12,7 +12,7 @@
 
   <link rel="canonical" href="https://sakconvert.com/calculators/golf-distance-calculator/" />
 
-  <link rel="stylesheet" href="/style.css?v=132">
+  <link rel="stylesheet" href="/style.css?v=133">
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 
 </head>
@@ -59,124 +59,136 @@
       </div>
     </section>
 
+    <!-- CALCULATOR TOOL -->
     <section class="calculator-section">
-      <div class="container calculator-layout">
+      <div class="container">
+        <div class="calculator-layout">
 
-        <div class="calculator-card">
-          <h2>Calculate Distance from Swing Speed</h2>
+          <div class="calculator-card">
+            <h2>Calculate Distance from Swing Speed</h2>
 
-          <div class="form-group">
-            <label for="golfSpeed">Swing speed (mph)</label>
-            <input type="number" id="golfSpeed" placeholder="Swing speed in mph (e.g. 95)" min="0" step="0.1" />
+            <div class="form-group">
+              <label for="golfSpeed">Swing speed (mph)</label>
+              <input type="number" id="golfSpeed" placeholder="Swing speed in mph (e.g. 95)" min="0" step="0.1" />
+            </div>
+
+            <div class="form-group">
+              <label for="golfClub">Club type</label>
+              <select id="golfClub">
+                <option value="driver">Driver</option>
+                <option value="iron">Iron</option>
+                <option value="wedge">Wedge</option>
+              </select>
+            </div>
+
+            <button class="calculate-btn" id="golfDistanceBtn" type="button">Calculate</button>
+
+            <div class="results-box" id="golfDistanceResultsBox">
+              <p>Enter your swing speed and choose a club type to estimate distance.</p>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="golfClub">Club type</label>
-            <select id="golfClub">
-              <option value="driver">Driver</option>
-              <option value="iron">Iron</option>
-              <option value="wedge">Wedge</option>
-            </select>
+          <div class="info-card">
+            <h2>Formula</h2>
+            <div class="formula-box">
+              Distance = Swing Speed × Club Factor
+            </div>
+            <p>
+              This is an estimate. Strike quality, launch angle, spin, shaft, ball type, and weather can all affect real
+              distance.
+            </p>
           </div>
 
-          <button class="calculate-btn" id="golfDistanceBtn" type="button">Calculate</button>
-
-          <div class="results-box" id="golfDistanceResultsBox">
-            <p>Enter your swing speed and choose a club type to estimate distance.</p>
-          </div>
         </div>
-
-        <div class="info-card">
-          <h2>Formula</h2>
-          <div class="formula-box">
-            Distance = Swing Speed × Club Factor
-          </div>
-          <p>
-            This is an estimate. Strike quality, launch angle, spin, shaft, ball type, and weather can all affect real
-            distance.
-          </p>
-        </div>
-
       </div>
     </section>
 
+    <!-- CONTENT -->
     <section class="content-section">
-      <div class="container content-narrow">
+      <div class="container">
+        <div class="content-narrow">
 
-        <h2>How golf distance is estimated</h2>
-        <p>
-          Golf distance is strongly influenced by swing speed, but it is not the only factor. A clean strike with
-          efficient launch conditions can travel farther than a faster but poorly struck shot.
-        </p>
+          <h2>How golf distance is estimated</h2>
+          <p>
+            Golf distance is strongly influenced by swing speed, but it is not the only factor. A clean strike with
+            efficient launch conditions can travel farther than a faster but poorly struck shot.
+          </p>
 
-        <h3>Why swing speed matters</h3>
-        <p>
-          Higher swing speed generally creates more ball speed, which can increase distance. However, distance also
-          depends on how efficiently energy is transferred from the club to the ball.
-        </p>
-        <p>
-          Many golfers use swing speed as a benchmark for potential distance. While every player
-          is different, faster swing speeds generally create more ball speed, leading to longer
-          carries with the driver, irons, and wedges.
-        </p>
+          <h3>Why swing speed matters</h3>
+          <p>
+            Higher swing speed generally creates more ball speed, which can increase distance. However, distance also
+            depends on how efficiently energy is transferred from the club to the ball.
+          </p>
+          <p>
+            Many golfers use swing speed as a benchmark for potential distance. While every player
+            is different, faster swing speeds generally create more ball speed, leading to longer
+            carries with the driver, irons, and wedges.
+          </p>
 
-        <h3>Training insight</h3>
-        <p>
-          Most golfers chase more speed first. Quietly, the better starting point is often strike quality. Better
-          contact can add distance without swinging harder.
-        </p>
+          <h3>Training insight</h3>
+          <p>
+            Most golfers chase more speed first. Quietly, the better starting point is often strike quality. Better
+            contact can add distance without swinging harder.
+          </p>
 
+        </div>
       </div>
     </section>
 
+    <!-- FAQ -->
     <section class="faq-section">
-      <div class="container content-narrow">
+      <div class="container">
+        <div class="content-narrow">
 
-        <h2>Frequently Asked Questions</h2>
+          <h2>Frequently Asked Questions</h2>
 
-        <h3>How accurate is this swing speed distance calculator?</h3>
-        <p>
-          This calculator provides a general estimate based on swing speed and club type. Actual distances vary
-          depending on strike quality, launch angle, spin rate, weather conditions, altitude, course conditions, and
-          equipment.
-        </p>
+          <h3>How accurate is this swing speed distance calculator?</h3>
+          <p>
+            This calculator provides a general estimate based on swing speed and club type. Actual distances vary
+            depending on strike quality, launch angle, spin rate, weather conditions, altitude, course conditions, and
+            equipment.
+          </p>
 
-        <h3>Does swing speed always mean more distance?</h3>
-        <p>
-          Not always. Higher swing speed can increase potential distance, but poor contact, excessive spin, or
-          inefficient launch conditions can reduce overall performance. Ball speed and strike quality are often just as
-          important as swing speed.
-        </p>
+          <h3>Does swing speed always mean more distance?</h3>
+          <p>
+            Not always. Higher swing speed can increase potential distance, but poor contact, excessive spin, or
+            inefficient launch conditions can reduce overall performance. Ball speed and strike quality are often just
+            as
+            important as swing speed.
+          </p>
 
-        <h3>What is a good driver swing speed?</h3>
-        <p>
-          Many amateur golfers swing a driver between 80 and 100 mph. Recreational golfers often fall within this range,
-          while lower-handicap players and competitive golfers may swing significantly faster.
-        </p>
+          <h3>What is a good driver swing speed?</h3>
+          <p>
+            Many amateur golfers swing a driver between 80 and 100 mph. Recreational golfers often fall within this
+            range,
+            while lower-handicap players and competitive golfers may swing significantly faster.
+          </p>
 
-        <h3>How much distance can I gain from increasing swing speed?</h3>
-        <p>
-          As a general guideline, every additional 1 mph of driver swing speed can add approximately 2 to 3 yards of
-          distance. Results vary depending on strike quality, launch conditions, and equipment.
-        </p>
+          <h3>How much distance can I gain from increasing swing speed?</h3>
+          <p>
+            As a general guideline, every additional 1 mph of driver swing speed can add approximately 2 to 3 yards of
+            distance. Results vary depending on strike quality, launch conditions, and equipment.
+          </p>
 
-        <h3>What is the difference between swing speed and ball speed?</h3>
-        <p>
-          Swing speed measures how fast the clubhead is moving at impact, while ball speed measures how fast the golf
-          ball leaves the clubface. Ball speed is often a better indicator of potential distance because it reflects
-          both swing speed and strike quality.
-        </p>
+          <h3>What is the difference between swing speed and ball speed?</h3>
+          <p>
+            Swing speed measures how fast the clubhead is moving at impact, while ball speed measures how fast the golf
+            ball leaves the clubface. Ball speed is often a better indicator of potential distance because it reflects
+            both swing speed and strike quality.
+          </p>
 
-        <h3>Can this calculator help me choose the right golf club?</h3>
-        <p>
-          The calculator is designed to estimate distance based on swing speed and club type. While it can provide
-          useful guidance, club fitting, launch monitor data, and professional coaching offer more accurate
-          recommendations for equipment selection.
-        </p>
+          <h3>Can this calculator help me choose the right golf club?</h3>
+          <p>
+            The calculator is designed to estimate distance based on swing speed and club type. While it can provide
+            useful guidance, club fitting, launch monitor data, and professional coaching offer more accurate
+            recommendations for equipment selection.
+          </p>
 
+        </div>
       </div>
     </section>
 
+    <!-- RELATED TOOLS -->
     <section class="related-tools">
       <div class="container">
         <h2>Related Golf Calculators</h2>
@@ -220,7 +232,7 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=132"></script>
+  <script src="/script.js?v=133"></script>
 
 </body>
 

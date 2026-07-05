@@ -11,7 +11,7 @@
 
   <link rel="canonical" href="https://sakconvert.com/calculators/discount-calculator/" />
 
-  <link rel="stylesheet" href="/style.css?v=132">
+  <link rel="stylesheet" href="/style.css?v=133">
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 
 </head>
@@ -59,118 +59,128 @@
       </div>
     </section>
 
+    <!-- CALCULATOR TOOL -->
     <section class="calculator-section">
-      <div class="container calculator-layout">
+      <div class="container">
+        <div class="calculator-layout">
 
-        <div class="calculator-card">
-          <h2>Calculate Discount</h2>
+          <div class="calculator-card">
+            <h2>Calculate Discount</h2>
 
-          <div class="form-group">
-            <label for="originalPrice">Original price</label>
-            <input type="number" id="originalPrice" placeholder="Original price (e.g. 100)" min="0" step="0.01" />
+            <div class="form-group">
+              <label for="originalPrice">Original price</label>
+              <input type="number" id="originalPrice" placeholder="Original price (e.g. 100)" min="0" step="0.01" />
+            </div>
+
+            <div class="form-group">
+              <label for="discountPercent">Discount percentage</label>
+              <input type="number" id="discountPercent" placeholder="Discount percentage (e.g. 20)" min="0"
+                step="0.01" />
+            </div>
+
+            <button class="calculate-btn" id="calculateDiscount" type="button">Calculate</button>
+
+            <div class="results-box" id="discountResultsBox">
+              <p>Enter an original price and discount percentage to see the final sale price.</p>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="discountPercent">Discount percentage</label>
-            <input type="number" id="discountPercent" placeholder="Discount percentage (e.g. 20)" min="0" step="0.01" />
+          <div class="info-card">
+            <h2>Formula</h2>
+            <p>Discount amount:</p>
+            <div class="formula-box">
+              Discount Amount = Original Price × (Discount ÷ 100)
+            </div>
+
+            <p>Final sale price:</p>
+            <div class="formula-box">
+              Final Price = Original Price − Discount Amount
+            </div>
+
+            <p>
+              This shows how much money is taken off the original price and what you pay after the discount.
+            </p>
           </div>
 
-          <button class="calculate-btn" id="calculateDiscount" type="button">Calculate</button>
-
-          <div class="results-box" id="discountResultsBox">
-            <p>Enter an original price and discount percentage to see the final sale price.</p>
-          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="info-card">
-          <h2>Formula</h2>
-          <p>Discount amount:</p>
+    <!-- CONTENT -->
+    <section class="content-section">
+      <div class="container">
+        <div class="content-narrow">
 
-          <div class="formula-box">
-            Discount Amount = Original Price × (Discount ÷ 100)
-          </div>
-
-          <p>Final sale price:</p>
-
-          <div class="formula-box">
-            Final Price = Original Price − Discount Amount
-          </div>
-
+          <h2>Understanding Discounts</h2>
           <p>
-            This shows how much money is taken off the original price and what you pay after the discount.
+            Discounts are used to reduce the original price of a product or service by a set percentage. This is common
+            in retail sales, online shopping, promotions, clearance offers, and business pricing.
           </p>
+
+          <h3>Common use cases</h3>
+          <ul>
+            <li>Calculating sale prices</li>
+            <li>Checking percentage-off offers</li>
+            <li>Comparing discounts while shopping</li>
+            <li>Working out retail markdowns</li>
+            <li>Planning ecommerce promotions</li>
+          </ul>
+
+          <h3>How to calculate a discount</h3>
+          <p>
+            Multiply the original price by the discount percentage divided by 100. Then subtract the discount amount
+            from the original price to get the final sale price.
+          </p>
+
         </div>
-
       </div>
     </section>
 
-    <section class="content-section">
-      <div class="container content-narrow">
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="content-narrow">
 
-        <h2>Understanding Discounts</h2>
-        <p>
-          Discounts are used to reduce the original price of a product or service by a set percentage.
-          This is common in retail sales, online shopping, promotions, clearance offers, and business pricing.
-        </p>
+          <h2>Frequently Asked Questions</h2>
 
-        <h3>Common use cases</h3>
-        <ul>
-          <li>Calculating sale prices</li>
-          <li>Checking percentage-off offers</li>
-          <li>Comparing discounts while shopping</li>
-          <li>Working out retail markdowns</li>
-          <li>Planning ecommerce promotions</li>
-        </ul>
+          <h3>How do I calculate a discount?</h3>
+          <p>
+            Multiply the original price by the discount percentage to find the discount amount. Then subtract the
+            discount
+            amount from the original price to calculate the final sale price.
+          </p>
 
-        <h3>How to calculate a discount</h3>
-        <p>
-          Multiply the original price by the discount percentage divided by 100.
-          Then subtract the discount amount from the original price to get the final sale price.
-        </p>
+          <h3>What is 20% off 100?</h3>
+          <p>
+            A 20% discount on 100 equals 20, leaving a final price of 80. The same calculation works regardless of
+            whether
+            the amount represents pounds, dollars, euros, or another currency.
+          </p>
 
-      </div>
-    </section>
+          <h3>What is a sale price?</h3>
+          <p>
+            A sale price is the final amount paid after a discount has been applied to the original price.
+          </p>
 
-    <section class="content-section">
-      <div class="container content-narrow">
+          <h3>How much can I save with a discount?</h3>
+          <p>
+            The amount saved depends on both the original price and the discount percentage. Larger discounts or
+            higher-priced items generally result in greater savings.
+          </p>
 
-        <h2>Frequently Asked Questions</h2>
+          <h3>Can I use this calculator for VAT?</h3>
+          <p>
+            No. This calculator is designed for percentage discounts only. To add or remove VAT, use the VAT Calculator.
+          </p>
 
-        <h3>How do I calculate a discount?</h3>
-        <p>
-          Multiply the original price by the discount percentage to find the discount amount. Then subtract the discount
-          amount from the original price to calculate the final sale price.
-        </p>
+          <h3>What is the difference between a discount and a markdown?</h3>
+          <p>
+            A discount is a reduction applied to a product's current price. A markdown is a permanent reduction in the
+            listed selling price. Both lower the final amount paid, but they are often used in different retail
+            situations.
+          </p>
 
-        <h3>What is 20% off 100?</h3>
-        <p>
-          A 20% discount on 100 equals 20, leaving a final price of 80. The same calculation works regardless of whether
-          the amount represents pounds, dollars, euros, or another currency.
-        </p>
-
-        <h3>What is a sale price?</h3>
-        <p>
-          A sale price is the final amount paid after a discount has been applied to the original price.
-        </p>
-
-        <h3>How much can I save with a discount?</h3>
-        <p>
-          The amount saved depends on both the original price and the discount percentage. Larger discounts or
-          higher-priced items generally result in greater savings.
-        </p>
-
-        <h3>Can I use this calculator for VAT?</h3>
-        <p>
-          No. This calculator is designed for percentage discounts only. To add or remove VAT, use the VAT Calculator.
-        </p>
-
-        <h3>What is the difference between a discount and a markdown?</h3>
-        <p>
-          A discount is a reduction applied to a product's current price. A markdown is a permanent reduction in the
-          listed selling price. Both lower the final amount paid, but they are often used in different retail
-          situations.
-        </p>
-
+        </div>
       </div>
     </section>
 
@@ -239,7 +249,7 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=132"></script>
+  <script src="/script.js?v=133"></script>
 
 </body>
 
