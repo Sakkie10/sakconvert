@@ -1369,3 +1369,26 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
     padding: 28px 24px !important;
   }
 }
+
+/* Stronger left alignment for insights and FAQ */
+.insights-section .container,
+.faq-section .container {
+  text-align: left;
+}
+
+.insights-section .content-narrow,
+.faq-section .content-narrow {
+  margin-left: 0;
+  text-align: left;
+}
+
+.insights-section h2,
+.faq-section h2,
+.insights-section h3,
+.faq-section h3,
+.insights-section p,
+.faq-section p,
+.insights-section li,
+.faq-section li {
+  text-align: left;
+}
