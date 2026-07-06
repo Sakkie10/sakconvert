@@ -1112,6 +1112,13 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   border: 1px solid rgba(10, 80, 254, 0.18);
 }
 
+/* Published date on dark cards */
+.article-grid .article-card:nth-child(odd) .article-date {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 /* Hover states */
 .article-grid .article-card:hover {
   transform: translateY(-6px);
@@ -1127,25 +1134,7 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   border-color: #0A50FE;
 }
 
-/* Typography polish */
-.article-card h3 {
-  font-size: 1.42rem;
-  line-height: 1.15;
-  margin-bottom: 12px;
-}
-
-.article-card p {
-  color: var(--muted);
-  line-height: 1.55;
-  margin-bottom: 20px;
-}
-
-.article-card .article-link {
-  font-weight: 800;
-  color: inherit;
-  margin-top: auto;
-}
-
+/* Base card styling */
 .article-card {
   max-width: 100%;
   min-height: 320px;
@@ -1174,6 +1163,25 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   padding: 0.45rem 0.8rem;
   font-size: 0.85rem;
   font-weight: 700;
+}
+
+/* Typography polish */
+.article-card h3 {
+  font-size: 1.42rem;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.article-card p {
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+
+.article-card .article-link {
+  font-weight: 800;
+  color: inherit;
+  margin-top: auto;
 }
 
 /* Alternating colors */
