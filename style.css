@@ -1534,8 +1534,20 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   padding-right: 0;
 }
 
-/* Only reduce spacing on articles index page */
+/* Articles index page spacing - Desktop & Mobile */
+.hero.blog-hero {
+  padding: 72px 0 40px;
+  /* desktop hero padding */
+}
+
 .hero.blog-hero+.tools-section {
-  padding-top: 20px !important;
-  /* adjust this number as needed */
+  padding-top: 20px;
+  /* mobile-friendly gap */
+}
+
+@media (min-width: 900px) {
+  .hero.blog-hero+.tools-section {
+    padding-top: 40px;
+    /* larger gap on desktop if needed */
+  }
 }
