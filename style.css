@@ -1366,11 +1366,6 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   /* reduced top and bottom padding */
 }
 
-.tools-section {
-  padding-top: 0 !important;
-  padding-bottom: 80px;
-}
-
 .blog-actions {
   margin-top: 3.5rem;
   /* or 4rem for more breathing room */
@@ -1537,4 +1532,10 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   margin-left: 0;
   padding-left: 0;
   padding-right: 0;
+}
+
+/* Only reduce spacing on articles index page */
+.hero.blog-hero+.tools-section {
+  padding-top: 20px !important;
+  /* adjust this number as needed */
 }
