@@ -1078,15 +1078,13 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   gap: 32px;
 }
 
-/* Desktop: 2 columns, latest first (top-left) */
-@media (min-width: 900px) {
-  .article-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
 }
 
-/* Mobile: single column, latest on top */
-@media (max-width: 899px) {
+@media (max-width: 900px) {
   .article-grid {
     grid-template-columns: 1fr;
   }
@@ -1149,6 +1147,33 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   justify-content: flex-start;
 }
 
+.article-card:hover {
+  transform: translateY(-4px);
+}
+
+.article-card-dark {
+  background: #050608;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.article-card-dark:hover {
+  background: #0A50FE;
+  border-color: #0A50FE;
+  box-shadow: 0 18px 40px rgba(5, 6, 8, 0.16);
+}
+
+.article-card-light {
+  background: #ffffff;
+  color: #050608;
+  border: 1px solid #d1d5db;
+}
+
+.article-card-light:hover {
+  border-color: #0A50FE;
+  box-shadow: 0 18px 40px rgba(5, 6, 8, 0.08);
+}
+
 .article-card-top {
   display: flex;
   flex-wrap: wrap;
@@ -1165,11 +1190,22 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   font-weight: 700;
 }
 
-/* Typography polish */
+.article-card-dark .article-date {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.article-card-light .article-date {
+  background: rgba(10, 80, 254, 0.08);
+  color: #0A50FE;
+  border: 1px solid rgba(10, 80, 254, 0.18);
+}
+
 .article-card h3 {
+  margin: 0 0 1rem;
   font-size: 1.42rem;
   line-height: 1.15;
-  margin-bottom: 12px;
 }
 
 .article-card p {
