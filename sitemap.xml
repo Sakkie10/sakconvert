@@ -1,134 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- Homepage -->
-
   <url>
     <loc>https://sakconvert.com/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
   </url>
 
-  <!-- Business Calculators -->
+  <!-- Articles Index -->
+  <url>
+    <loc>https://sakconvert.com/articles/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Calculators -->
+  <url>
+    <loc>https://sakconvert.com/calculators/bmi-calculator/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
 
   <url>
     <loc>https://sakconvert.com/calculators/profit-margin-calculator/</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://sakconvert.com/calculators/roi-calculator/</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://sakconvert.com/calculators/vat-calculator/</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://sakconvert.com/calculators/percentage-calculator/</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://sakconvert.com/calculators/discount-calculator/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
 
   <url>
     <loc>https://sakconvert.com/calculators/markup-calculator/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://sakconvert.com/calculators/discount-calculator/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://sakconvert.com/calculators/roi-calculator/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://sakconvert.com/calculators/vat-calculator/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://sakconvert.com/calculators/percentage-calculator/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://sakconvert.com/calculators/compound-interest-calculator/</loc>
-    <lastmod>2026-06-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <!-- Fitness Calculators -->
-
-  <url>
-    <loc>https://sakconvert.com/calculators/boxing-calorie-calculator/</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://sakconvert.com/calculators/one-rep-max-calculator/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
     <loc>https://sakconvert.com/calculators/tdee-calculator/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://sakconvert.com/calculators/bmi-calculator/</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://sakconvert.com/calculators/one-rep-max-calculator/</loc>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.80</priority>
   </url>
 
-  <!-- Golf Calculators -->
+  <url>
+    <loc>https://sakconvert.com/calculators/boxing-calorie-calculator/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
 
   <url>
     <loc>https://sakconvert.com/calculators/golf-distance-calculator/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.75</priority>
   </url>
 
-  <!-- Trust & Legal Pages -->
+  <!-- Articles -->
+  <url>
+    <loc>https://sakconvert.com/articles/profit-margin-vs-markup/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 
   <url>
-    <loc>https://sakconvert.com/contact/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://sakconvert.com/articles/profit-margin-vs-gross-margin/</loc>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Legal Pages -->
+  <url>
+    <loc>https://sakconvert.com/contact/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.50</priority>
   </url>
 
   <url>
     <loc>https://sakconvert.com/privacy-policy/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.30</priority>
+    <priority>0.40</priority>
   </url>
 
   <url>
     <loc>https://sakconvert.com/terms-and-conditions/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.30</priority>
+    <priority>0.40</priority>
   </url>
 
   <url>
     <loc>https://sakconvert.com/cookie-policy/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.30</priority>
+    <priority>0.40</priority>
   </url>
 
 </urlset>
