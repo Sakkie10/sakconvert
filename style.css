@@ -1361,6 +1361,12 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   letter-spacing: -0.03em;
 }
 
+.blog-actions {
+  margin-top: 3.5rem;
+  /* or 4rem for more breathing room */
+  text-align: center;
+}
+
 .blog-section {
   padding: 40px 0 60px;
 }
