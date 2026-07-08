@@ -32,6 +32,7 @@ function initCalculator(type) {
 
     case "vat":
       initVatCalculator();
+      initPercentVatCalculator();   // New
       break;
 
     case "percentage":
@@ -198,13 +199,13 @@ function calculateROI() {
 }
 
 // ===============================
-// VAT
+// VAT ON AMOUNT (Existing)
 // ===============================
 
 function calculateVAT() {
   const amount = parseFloat(document.getElementById("vatAmount").value);
   const rate = parseFloat(document.getElementById("vatRate").value);
-  const activeMode = document.querySelector(".mode-btn.active");
+  const activeMode = document.querySelector(".mode-btn[data-vat-mode].active");
   const mode = activeMode ? activeMode.dataset.vatMode : "add";
   const box = document.getElementById("vatResultsBox");
 
@@ -218,9 +219,7 @@ function calculateVAT() {
 
   const r = rate / 100;
 
-  let net;
-  let vat;
-  let gross;
+  let net, vat, gross;
 
   if (mode === "add") {
     net = amount;
@@ -245,7 +244,7 @@ function initVatCalculator() {
   const vatBtn = document.getElementById("vatBtn");
   const amountInput = document.getElementById("vatAmount");
   const rateInput = document.getElementById("vatRate");
-  const modeButtons = document.querySelectorAll(".mode-btn");
+  const modeButtons = document.querySelectorAll(".mode-btn[data-vat-mode]");
 
   if (!vatBtn || !amountInput || !rateInput) return;
 
@@ -258,6 +257,81 @@ function initVatCalculator() {
       modeButtons.forEach((btn) => btn.classList.remove("active"));
       button.classList.add("active");
       calculateVAT();
+    });
+  });
+}
+
+// ===============================
+// VAT ON PERCENTAGE (NEW)
+// ===============================
+
+function calculateVatOnPercentage() {
+  const basePercent = parseFloat(document.getElementById("percentBase").value);
+  const vatRate = parseFloat(document.getElementById("percentVatRate").value);
+  const activeMode = document.querySelector(".mode-btn[data-percent-mode].active");
+  const mode = activeMode ? activeMode.dataset.percentMode : "add";
+  const box = document.getElementById("percentVatResultsBox");
+
+  if (isNaN(basePercent) || isNaN(vatRate)) {
+    return showError(box, "Enter base percentage and VAT rate.");
+  }
+
+  if (basePercent < 0 || vatRate < 0) {
+    return showError(box, "Values must be positive.");
+  }
+
+  const r = vatRate / 100;
+  let resultPercent;
+  let vatAdded;
+
+  if (mode === "add") {
+    resultPercent = basePercent * (1 + r);
+    vatAdded = resultPercent - basePercent;
+  } else {
+    resultPercent = basePercent / (1 + r);
+    vatAdded = basePercent - resultPercent;
+  }
+
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item">
+        <span>Base Percentage</span>
+        <strong>${basePercent.toFixed(2)}%</strong>
+      </div>
+      <div class="result-item">
+        <span>VAT Amount</span>
+        <strong>${vatAdded.toFixed(3)}%</strong>
+      </div>
+      <div class="result-item">
+        <span>${mode === "add" ? "VAT Inclusive %" : "VAT Exclusive %"}</span>
+        <strong>${resultPercent.toFixed(3)}%</strong>
+      </div>
+    </div>
+    <p class="result-note">
+      ${mode === "add" 
+        ? `Adding ${vatRate}% VAT to ${basePercent}% gives <strong>${resultPercent.toFixed(3)}%</strong>` 
+        : `Removing ${vatRate}% VAT from ${basePercent}% gives <strong>${resultPercent.toFixed(3)}%</strong>`}
+    </p>
+  `);
+}
+
+function initPercentVatCalculator() {
+  const percentBtn = document.getElementById("percentVatBtn");
+  const percentBase = document.getElementById("percentBase");
+  const percentRate = document.getElementById("percentVatRate");
+  const modeButtons = document.querySelectorAll(".mode-btn[data-percent-mode]");
+
+  if (!percentBtn || !percentBase || !percentRate) return;
+
+  percentBtn.addEventListener("click", calculateVatOnPercentage);
+  percentBase.addEventListener("input", calculateVatOnPercentage);
+  percentRate.addEventListener("input", calculateVatOnPercentage);
+
+  modeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      modeButtons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+      calculateVatOnPercentage();
     });
   });
 }
@@ -487,7 +561,6 @@ function calculateMarkup() {
         <span>Profit Margin</span>
         <strong>${formatPercent(marginPercent)}</strong>
       </div>     
-      
     </div> 
   `);
 }
