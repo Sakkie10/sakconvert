@@ -262,22 +262,20 @@ function initVatCalculator() {
 }
 
 // ===============================
-// VAT ON PERCENTAGE (NEW) - FIXED
+// VAT ON PERCENTAGE (NEW) - SIMPLIFIED
 // ===============================
 
 function calculateVatOnPercentage() {
-  const basePercent = parseFloat(document.getElementById("percentBase").value);
-  const vatRate = parseFloat(document.getElementById("percentVatRate").value);
-  const activeModeBtn = document.querySelector('#percentAddBtn.active, #percentRemoveBtn.active');
-  const mode = activeModeBtn ? activeModeBtn.dataset.percentMode : "add";
+  const basePercent = parseFloat(document.getElementById("percentBase")?.value) || 0;
+  const vatRate = parseFloat(document.getElementById("percentVatRate")?.value) || 0;
   const box = document.getElementById("percentVatResultsBox");
 
-  if (isNaN(basePercent) || isNaN(vatRate)) {
-    return showError(box, "Enter base percentage and VAT rate.");
-  }
+  // Determine mode
+  const addBtn = document.getElementById("percentAddBtn");
+  const mode = addBtn && addBtn.classList.contains("active") ? "add" : "remove";
 
-  if (basePercent < 0 || vatRate < 0) {
-    return showError(box, "Values must be positive.");
+  if (basePercent <= 0 && vatRate < 0) {
+    return showError(box, "Enter base percentage and VAT rate.");
   }
 
   const r = vatRate / 100;
@@ -296,12 +294,12 @@ function calculateVatOnPercentage() {
     <div class="result-grid">
       <div class="result-item"><span>Base Percentage</span><strong>${basePercent.toFixed(2)}%</strong></div>
       <div class="result-item"><span>VAT Amount</span><strong>${vatAdded.toFixed(3)}%</strong></div>
-      <div class="result-item"><span>${mode === "add" ? "VAT Inclusive %" : "VAT Exclusive %"}</span><strong>${resultPercent.toFixed(3)}%</strong></div>
+      <div class="result-item"><span>Final Percentage</span><strong>${resultPercent.toFixed(3)}%</strong></div>
     </div>
     <p class="result-note">
-      ${mode === "add"
-      ? `Adding ${vatRate}% VAT to ${basePercent}% = <strong>${resultPercent.toFixed(3)}%</strong>`
-      : `Removing ${vatRate}% VAT from ${basePercent}% = <strong>${resultPercent.toFixed(3)}%</strong>`}
+      ${mode === "add" ?
+      `Adding ${vatRate}% VAT to ${basePercent}% = <strong>${resultPercent.toFixed(3)}%</strong>` :
+      `Removing ${vatRate}% VAT from ${basePercent}% = <strong>${resultPercent.toFixed(3)}%</strong>`}
     </p>
   `);
 }
@@ -313,23 +311,21 @@ function initPercentVatCalculator() {
   const addBtn = document.getElementById("percentAddBtn");
   const removeBtn = document.getElementById("percentRemoveBtn");
 
-  if (!percentBtn || !percentBase || !percentRate) {
-    console.warn("VAT on Percentage elements not found");
+  if (!percentBtn) {
+    console.error("VAT Percentage button not found!");
     return;
   }
 
-  // Button click
+  // Main listeners
   percentBtn.addEventListener("click", calculateVatOnPercentage);
+  if (percentBase) percentBase.addEventListener("input", calculateVatOnPercentage);
+  if (percentRate) percentRate.addEventListener("input", calculateVatOnPercentage);
 
-  // Live updates
-  percentBase.addEventListener("input", calculateVatOnPercentage);
-  percentRate.addEventListener("input", calculateVatOnPercentage);
-
-  // Mode toggle
+  // Mode buttons
   if (addBtn) {
     addBtn.addEventListener("click", () => {
       addBtn.classList.add("active");
-      removeBtn.classList.remove("active");
+      if (removeBtn) removeBtn.classList.remove("active");
       calculateVatOnPercentage();
     });
   }
@@ -337,13 +333,16 @@ function initPercentVatCalculator() {
   if (removeBtn) {
     removeBtn.addEventListener("click", () => {
       removeBtn.classList.add("active");
-      addBtn.classList.remove("active");
+      if (addBtn) addBtn.classList.remove("active");
       calculateVatOnPercentage();
     });
   }
 
   // Initial calculation
-  setTimeout(calculateVatOnPercentage, 300);
+  setTimeout(() => {
+    if (addBtn) addBtn.classList.add("active");
+    calculateVatOnPercentage();
+  }, 600);
 }
 
 // ===============================
