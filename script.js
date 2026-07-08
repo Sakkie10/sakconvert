@@ -262,14 +262,14 @@ function initVatCalculator() {
 }
 
 // ===============================
-// VAT ON PERCENTAGE (NEW)
+// VAT ON PERCENTAGE (NEW) - FIXED
 // ===============================
 
 function calculateVatOnPercentage() {
   const basePercent = parseFloat(document.getElementById("percentBase").value);
   const vatRate = parseFloat(document.getElementById("percentVatRate").value);
-  const activeMode = document.querySelector(".mode-btn[data-percent-mode].active");
-  const mode = activeMode ? activeMode.dataset.percentMode : "add";
+  const activeModeBtn = document.querySelector('#percentAddBtn.active, #percentRemoveBtn.active');
+  const mode = activeModeBtn ? activeModeBtn.dataset.percentMode : "add";
   const box = document.getElementById("percentVatResultsBox");
 
   if (isNaN(basePercent) || isNaN(vatRate)) {
@@ -281,8 +281,8 @@ function calculateVatOnPercentage() {
   }
 
   const r = vatRate / 100;
-  let resultPercent;
-  let vatAdded;
+  let resultPercent = 0;
+  let vatAdded = 0;
 
   if (mode === "add") {
     resultPercent = basePercent * (1 + r);
@@ -294,23 +294,14 @@ function calculateVatOnPercentage() {
 
   renderResult(box, `
     <div class="result-grid">
-      <div class="result-item">
-        <span>Base Percentage</span>
-        <strong>${basePercent.toFixed(2)}%</strong>
-      </div>
-      <div class="result-item">
-        <span>VAT Amount</span>
-        <strong>${vatAdded.toFixed(3)}%</strong>
-      </div>
-      <div class="result-item">
-        <span>${mode === "add" ? "VAT Inclusive %" : "VAT Exclusive %"}</span>
-        <strong>${resultPercent.toFixed(3)}%</strong>
-      </div>
+      <div class="result-item"><span>Base Percentage</span><strong>${basePercent.toFixed(2)}%</strong></div>
+      <div class="result-item"><span>VAT Amount</span><strong>${vatAdded.toFixed(3)}%</strong></div>
+      <div class="result-item"><span>${mode === "add" ? "VAT Inclusive %" : "VAT Exclusive %"}</span><strong>${resultPercent.toFixed(3)}%</strong></div>
     </div>
     <p class="result-note">
-      ${mode === "add" 
-        ? `Adding ${vatRate}% VAT to ${basePercent}% gives <strong>${resultPercent.toFixed(3)}%</strong>` 
-        : `Removing ${vatRate}% VAT from ${basePercent}% gives <strong>${resultPercent.toFixed(3)}%</strong>`}
+      ${mode === "add"
+      ? `Adding ${vatRate}% VAT to ${basePercent}% = <strong>${resultPercent.toFixed(3)}%</strong>`
+      : `Removing ${vatRate}% VAT from ${basePercent}% = <strong>${resultPercent.toFixed(3)}%</strong>`}
     </p>
   `);
 }
@@ -319,21 +310,40 @@ function initPercentVatCalculator() {
   const percentBtn = document.getElementById("percentVatBtn");
   const percentBase = document.getElementById("percentBase");
   const percentRate = document.getElementById("percentVatRate");
-  const modeButtons = document.querySelectorAll(".mode-btn[data-percent-mode]");
+  const addBtn = document.getElementById("percentAddBtn");
+  const removeBtn = document.getElementById("percentRemoveBtn");
 
-  if (!percentBtn || !percentBase || !percentRate) return;
+  if (!percentBtn || !percentBase || !percentRate) {
+    console.warn("VAT on Percentage elements not found");
+    return;
+  }
 
+  // Button click
   percentBtn.addEventListener("click", calculateVatOnPercentage);
+
+  // Live updates
   percentBase.addEventListener("input", calculateVatOnPercentage);
   percentRate.addEventListener("input", calculateVatOnPercentage);
 
-  modeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      modeButtons.forEach((btn) => btn.classList.remove("active"));
-      button.classList.add("active");
+  // Mode toggle
+  if (addBtn) {
+    addBtn.addEventListener("click", () => {
+      addBtn.classList.add("active");
+      removeBtn.classList.remove("active");
       calculateVatOnPercentage();
     });
-  });
+  }
+
+  if (removeBtn) {
+    removeBtn.addEventListener("click", () => {
+      removeBtn.classList.add("active");
+      addBtn.classList.remove("active");
+      calculateVatOnPercentage();
+    });
+  }
+
+  // Initial calculation
+  setTimeout(calculateVatOnPercentage, 300);
 }
 
 // ===============================
