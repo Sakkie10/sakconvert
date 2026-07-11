@@ -425,13 +425,13 @@ a {
   max-width: 700px;
 }
 
-/* CALCULATOR PAGES */
+/* ====================== CALCULATOR PAGES ====================== */
 
 .calculator-section {
   padding: 20px 0 80px;
 }
 
-/* Default layout for most calculators */
+/* Default layout for most calculators (desktop) */
 .calculator-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
@@ -439,7 +439,7 @@ a {
   align-items: start;
 }
 
-/* Special layout for VAT calculator only */
+/* VAT-only special layout */
 body[data-calculator="vat"] .calculator-layout {
   display: block;
 }
@@ -447,16 +447,21 @@ body[data-calculator="vat"] .calculator-layout {
 .calculator-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;      /* Adjust as needed */
-  align-items: start;
+  gap: 28px;
+  align-items: start;      
   margin-bottom: 32px;
 }
 
-/* Mobile for VAT */
+/* Mobile fixes */
 @media (max-width: 900px) {
+
+  .calculator-layout,
   body[data-calculator="vat"] .calculator-row {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+
+  body[data-calculator="vat"] .calculator-row {
     margin-bottom: 28px;
   }
 }
@@ -477,6 +482,7 @@ body[data-calculator="vat"] .calculator-layout {
   letter-spacing: -0.04em;
   margin-bottom: 24px;
 }
+
 
 .form-group {
   margin-bottom: 18px;
@@ -1568,20 +1574,12 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   /* mobile-friendly gap */
 }
 
-.calculator-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 32px;
-}
-
 @media (max-width: 900px) {
   .calculator-row {
     grid-template-columns: 1fr;
     gap: 28px;
     margin-bottom: 28px;
   }
-
 }
 
 @media (min-width: 900px) {
