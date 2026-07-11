@@ -431,31 +431,30 @@ a {
   padding: 20px 0 80px;
 }
 
+/* Default layout for most calculators */
 .calculator-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* Special layout for VAT calculator only */
+body[data-calculator="vat"] .calculator-layout {
   display: block;
-  /* Changed to block for better control with .calculator-row */
 }
 
 .calculator-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;            /* ← Increase or decrease this */
+  gap: 28px;      /* Adjust as needed */
   align-items: start;
   margin-bottom: 32px;
 }
 
-.calculator-card,
-.info-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 32px;
-  box-shadow: var(--shadow);
-}
-
-/* Mobile */
+/* Mobile for VAT */
 @media (max-width: 900px) {
-  .calculator-row {
+  body[data-calculator="vat"] .calculator-row {
     grid-template-columns: 1fr;
     gap: 28px;
     margin-bottom: 28px;
