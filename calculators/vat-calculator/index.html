@@ -12,7 +12,7 @@
 
   <link rel="canonical" href="https://sakconvert.com/calculators/vat-calculator/" />
 
-  <link rel="stylesheet" href="/style.css?v=157">
+  <link rel="stylesheet" href="/style.css?v=158">
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 
 </head>
@@ -64,36 +64,52 @@
       <div class="container">
         <div class="calculator-layout">
 
-          <!-- VAT on Amount (Existing) -->
-          <div class="calculator-card">
-            <h2>VAT on Amount</h2>
+          <!-- Row 1: VAT on Amount + Info Card -->
+          <div class="calculator-row">
+            <!-- VAT on Amount -->
+            <div class="calculator-card">
+              <h2>VAT on Amount</h2>
 
-            <div class="form-group">
-              <label for="vatAmount">Amount</label>
-              <input type="number" id="vatAmount" placeholder="Amount (e.g. 100)" min="0" step="0.01" />
-            </div>
+              <div class="form-group">
+                <label for="vatAmount">Amount</label>
+                <input type="number" id="vatAmount" placeholder="Amount (e.g. 100)" min="0" step="0.01" />
+              </div>
 
-            <div class="form-group">
-              <label for="vatRate">VAT rate (%)</label>
-              <input type="number" id="vatRate" value="20" placeholder="VAT rate % (e.g. 20)" min="0" step="0.01" />
-            </div>
+              <div class="form-group">
+                <label for="vatRate">VAT rate (%)</label>
+                <input type="number" id="vatRate" value="20" placeholder="VAT rate % (e.g. 20)" min="0" step="0.01" />
+              </div>
 
-            <div class="form-group">
-              <label>Calculation type</label>
-              <div class="vat-mode-toggle" role="group" aria-label="VAT calculation type">
-                <button class="mode-btn active" id="vatAddBtn" type="button" data-vat-mode="add">Add VAT</button>
-                <button class="mode-btn" id="vatRemoveBtn" type="button" data-vat-mode="remove">Remove VAT</button>
+              <div class="form-group">
+                <label>Calculation type</label>
+                <div class="vat-mode-toggle" role="group">
+                  <button class="mode-btn active" id="vatAddBtn" type="button" data-vat-mode="add">Add VAT</button>
+                  <button class="mode-btn" id="vatRemoveBtn" type="button" data-vat-mode="remove">Remove VAT</button>
+                </div>
+              </div>
+
+              <button class="calculate-btn" id="vatBtn" type="button">Calculate VAT</button>
+
+              <div class="results-box" id="vatResultsBox">
+                <p>Enter an amount and VAT rate to calculate.</p>
               </div>
             </div>
 
-            <button class="calculate-btn" id="vatBtn" type="button">Calculate VAT</button>
-
-            <div class="results-box" id="vatResultsBox">
-              <p>Enter an amount and VAT rate to calculate.</p>
+            <!-- VAT Formula (moved to right) -->
+            <div class="info-card">
+              <h2>VAT Formula</h2>
+              <div class="formula-box">
+                VAT = Net Amount × VAT Rate ÷ 100
+              </div>
+              <p>
+                When adding VAT, the starting amount/percentage is treated as exclusive.
+                When removing VAT, it is treated as inclusive.
+              </p>
+              <p><strong>New:</strong> You can now also calculate VAT directly on a percentage rate.</p>
             </div>
           </div>
 
-          <!-- NEW: VAT on Percentage -->
+          <!-- VAT on Percentage (full width below) -->
           <div class="calculator-card">
             <h2>VAT on Percentage</h2>
             <p class="calculator-subtitle">Add or remove VAT from a percentage rate (e.g. 3% + 20% VAT = 3.6%)</p>
@@ -111,7 +127,7 @@
 
             <div class="form-group">
               <label>Calculation type</label>
-              <div class="vat-mode-toggle" role="group" aria-label="Percentage VAT mode">
+              <div class="vat-mode-toggle" role="group">
                 <button class="mode-btn active" id="percentAddBtn" type="button" data-percent-mode="add">Add
                   VAT</button>
                 <button class="mode-btn" id="percentRemoveBtn" type="button" data-percent-mode="remove">Remove
@@ -124,22 +140,6 @@
             <div class="results-box" id="percentVatResultsBox">
               <p>Enter base percentage and VAT rate to calculate.</p>
             </div>
-          </div>
-
-          <!-- Info Card (Restored) -->
-          <div class="info-card">
-            <h2>VAT Formula</h2>
-
-            <div class="formula-box">
-              VAT = Net Amount × VAT Rate ÷ 100
-            </div>
-
-            <p>
-              When adding VAT, the starting amount/percentage is treated as exclusive.
-              When removing VAT, it is treated as inclusive.
-            </p>
-
-            <p><strong>New:</strong> You can now also calculate VAT directly on a percentage rate.</p>
           </div>
 
         </div>
@@ -294,7 +294,7 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=157"></script>
+  <script src="/script.js?v=158"></script>
 
 </body>
 

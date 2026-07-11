@@ -1545,6 +1545,39 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   /* mobile-friendly gap */
 }
 
+/* ====================== VAT CALCULATOR LAYOUT ====================== */
+
+.calculator-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 32px;
+}
+
+.calculator-layout {
+  display: block; /* Changed from grid to block for better control */
+}
+
+/* Make info card full height on desktop */
+.info-card {
+  height: 100%;
+}
+
+/* Mobile stacking */
+@media (max-width: 900px) {
+  .calculator-row {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 28px;
+  }
+  
+  .calculator-card,
+  .info-card {
+    margin-bottom: 0;
+  }
+}
+
 @media (min-width: 900px) {
   .hero.blog-hero+.tools-section {
     padding-top: 40px;
