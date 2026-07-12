@@ -1174,7 +1174,14 @@ async function convertCurrency() {
 
   try {
     const response = await fetch(`https://api.frankfurter.app/latest?from=${from}&to=${to}`);
+
+    if (!response.ok) throw new Error("API error");
+
     const data = await response.json();
+
+    if (!data.rates || !data.rates[to]) {
+      throw new Error("Rate not available");
+    }
 
     const rate = data.rates[to];
     const converted = (amount * rate).toFixed(2);
@@ -1186,7 +1193,8 @@ async function convertCurrency() {
       </div>
     `);
   } catch (error) {
-    showError(box, "Could not fetch exchange rates. Please try again later.");
+    console.error("Currency API error:", error);
+    showError(box, "Could not fetch exchange rates. Please try again in a moment.");
   }
 }
 

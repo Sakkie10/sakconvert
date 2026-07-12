@@ -4,15 +4,15 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Length Converter | Convert Meters, Feet, Miles & More | SakConvert</title>
+	<title>Unit Converter | Convert Length, Weight, Temperature & More | SakConvert</title>
 	<meta name="description"
-		content="Free Length Converter. Convert between meters, feet, inches, miles, kilometers, and more." />
-	<link rel="canonical" href="https://sakconvert.com/calculators/length-converter/" />
-	<link rel="stylesheet" href="/style.css?v=163">
+		content="Free Unit Converter. Convert between length, weight, temperature, volume, and more common units instantly." />
+	<link rel="canonical" href="https://sakconvert.com/calculators/unit-converter/" />
+	<link rel="stylesheet" href="/style.css?v=164">
 	<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 </head>
 
-<body data-calculator="length-converter">
+<body data-calculator="unit-converter">
 
 	<header class="site-header">
 		<div class="container header-inner">
@@ -32,14 +32,14 @@
 
 	<main>
 		<section class="breadcrumb">
-			<div class="container"><a href="/">Home</a> → <span>Length Converter</span></div>
+			<div class="container"><a href="/">Home</a> → <span>Unit Converter</span></div>
 		</section>
 
 		<section class="hero">
 			<div class="container">
 				<a href="/#converters" class="eyebrow eyebrow-link">Converters</a>
-				<h1>Length Converter</h1>
-				<p class="hero-text">Convert between meters, feet, inches, miles, kilometers, and more.</p>
+				<h1>Unit Converter</h1>
+				<p class="hero-text">Convert between length, weight, temperature, volume, and more common units instantly.</p>
 			</div>
 		</section>
 
@@ -47,41 +47,20 @@
 			<div class="container">
 				<div class="calculator-layout">
 					<div class="calculator-card">
-						<h2>Convert Length</h2>
-						<div class="form-group"><label for="lengthValue">Value</label><input type="number" id="lengthValue"
-								value="100"></div>
-						<div class="form-group"><label for="fromLength">From</label>
-							<select id="fromLength">
-								<option value="m">Meters (m)</option>
-								<option value="km">Kilometers (km)</option>
-								<option value="cm">Centimeters (cm)</option>
-								<option value="mm">Millimeters (mm)</option>
-								<option value="ft">Feet (ft)</option>
-								<option value="in">Inches (in)</option>
-								<option value="mi">Miles (mi)</option>
-							</select>
-						</div>
-						<div class="form-group"><label for="toLength">To</label>
-							<select id="toLength">
-								<option value="ft">Feet (ft)</option>
-								<option value="m">Meters (m)</option>
-								<option value="km">Kilometers (km)</option>
-								<option value="cm">Centimeters (cm)</option>
-								<option value="mm">Millimeters (mm)</option>
-								<option value="in">Inches (in)</option>
-								<option value="mi">Miles (mi)</option>
-							</select>
-						</div>
-						<button class="calculate-btn" id="lengthBtn">Convert</button>
-						<div class="results-box" id="lengthResultsBox">
-							<p>Enter value and select units.</p>
+						<h2>Convert Units</h2>
+						<div class="form-group"><label for="value">Value</label><input type="number" id="value" value="100"></div>
+						<div class="form-group"><label for="fromUnit">From</label><select id="fromUnit"></select></div>
+						<div class="form-group"><label for="toUnit">To</label><select id="toUnit"></select></div>
+						<button class="calculate-btn" id="unitBtn">Convert</button>
+						<div class="results-box" id="unitResultsBox">
+							<p>Select units and enter value.</p>
 						</div>
 					</div>
 
 					<div class="info-card">
-						<h2>Common Conversions</h2>
-						<p>1 meter = 3.28084 feet<br>
-							1 mile = 1.60934 kilometers</p>
+						<h2>Supported Conversions</h2>
+						<p>Length • Weight • Temperature • Volume • Area</p>
+						<p>More categories coming soon.</p>
 					</div>
 				</div>
 			</div>
@@ -90,8 +69,8 @@
 		<section class="content-section">
 			<div class="container">
 				<div class="content-narrow">
-					<h2>Length Converter</h2>
-					<p>Quickly convert between common length and distance units.</p>
+					<h2>Unit Converter</h2>
+					<p>Quickly convert between common measurement units for everyday use.</p>
 
 					<h3>How to Use</h3>
 					<p>Enter a value, select the unit you’re converting from, and choose the target unit.</p>
@@ -105,14 +84,14 @@
 				<div class="content-narrow">
 					<h2>Frequently Asked Questions</h2>
 
-					<h3>Which units are supported?</h3>
-					<p>Meters, kilometers, centimeters, millimeters, feet, inches, and miles.</p>
+					<h3>Are the conversions accurate?</h3>
+					<p>Yes. We use standard international conversion factors for high accuracy.</p>
 
-					<h3>Are the conversions exact?</h3>
-					<p>Yes. We use standard international conversion factors.</p>
+					<h3>Can I convert temperature?</h3>
+					<p>Yes. Celsius, Fahrenheit, and Kelvin are supported.</p>
 
-					<h3>Can I convert large distances?</h3>
-					<p>Yes. The converter works for both small and large values.</p>
+					<h3>Will you add more units?</h3>
+					<p>Yes. Speed, energy, pressure, and more categories are planned soon.</p>
 				</div>
 			</div>
 		</section>
@@ -120,18 +99,18 @@
 		<!-- RELATED TOOLS -->
 		<section class="related-tools">
 			<div class="container">
-				<h2>Related Converters</h2>
+				<h2>Related Converters & Calculators</h2>
 				<div class="tool-grid">
 
-					<a href="/calculators/unit-converter/" class="tool-card">
-						<div class="tool-icon">🔄</div>
-						<h3>Unit Converter</h3>
+					<a href="/calculators/length-converter/" class="tool-card">
+						<div class="tool-icon">📏</div>
+						<h3>Length Converter</h3>
 						<ul class="tool-features">
-							<li>Weight</li>
-							<li>Temperature</li>
-							<li>Volume</li>
+							<li>Meters</li>
+							<li>Feet & Inches</li>
+							<li>Miles</li>
 						</ul>
-						<p>Convert multiple unit types.</p>
+						<p>Convert length and distance units.</p>
 					</a>
 
 					<a href="/calculators/currency-converter/" class="tool-card">
@@ -169,7 +148,7 @@
 		</div>
 	</footer>
 
-	<script src="/script.js?v=163"></script>
+	<script src="/script.js?v=164"></script>
 
 </body>
 
