@@ -1318,8 +1318,18 @@ function calculateUnitConversion() {
     result = value * conv;
   }
 
-  // Smart decimal places (removes trailing zeros)
-  const formattedResult = parseFloat(result.toFixed(6)).toString();
+  // Smart formatting: more precision for small numbers
+  let formattedResult;
+  if (Math.abs(result) < 0.001) {
+    formattedResult = result.toPrecision(6);   // for light year etc.
+  } else if (Math.abs(result) < 1) {
+    formattedResult = result.toFixed(4);
+  } else {
+    formattedResult = result.toFixed(2);
+  }
+
+  // Remove unnecessary trailing zeros
+  formattedResult = parseFloat(formattedResult).toString();
 
   toField.value = formattedResult;
 
