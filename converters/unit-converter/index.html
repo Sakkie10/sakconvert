@@ -6,9 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Unit Converter | Convert Length, Weight, Temperature & More | SakConvert</title>
 	<meta name="description"
-		content="Free Unit Converter. Convert between length, weight, temperature, volume, and more common units instantly." />
+		content="Free Unit Converter with smart dropdowns. Convert between length, weight, temperature, volume and more." />
 	<link rel="canonical" href="https://sakconvert.com/calculators/unit-converter/" />
-	<link rel="stylesheet" href="/style.css?v=164">
+	<link rel="stylesheet" href="/style.css?v=165">
 	<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 </head>
 
@@ -39,41 +39,45 @@
 			<div class="container">
 				<a href="/#converters" class="eyebrow eyebrow-link">Converters</a>
 				<h1>Unit Converter</h1>
-				<p class="hero-text">Convert between length, weight, temperature, volume, and more common units instantly.</p>
+				<p class="hero-text">Convert between length, weight, temperature, volume and more with smart dropdowns.
+				</p>
 			</div>
 		</section>
 
 		<section class="calculator-section">
 			<div class="container">
-				<div class="calculator-layout">
-					<div class="calculator-card">
-						<h2>Convert Units</h2>
-						<div class="form-group"><label for="value">Value</label><input type="number" id="value" value="100"></div>
-						<div class="form-group"><label for="fromUnit">From</label><select id="fromUnit"></select></div>
-						<div class="form-group"><label for="toUnit">To</label><select id="toUnit"></select></div>
-						<button class="calculate-btn" id="unitBtn">Convert</button>
-						<div class="results-box" id="unitResultsBox">
-							<p>Select units and enter value.</p>
+				<div class="calculator-card" style="max-width: 800px; margin: 0 auto;">
+					<h2>Unit Converter</h2>
+
+					<!-- Category Tabs -->
+					<div class="unit-tabs">
+						<button class="tab-btn active" data-category="length">Length</button>
+						<button class="tab-btn" data-category="weight">Weight</button>
+						<button class="tab-btn" data-category="temperature">Temperature</button>
+						<button class="tab-btn" data-category="volume">Volume</button>
+					</div>
+
+					<div class="conversion-row">
+						<div class="from-side">
+							<label>From</label>
+							<input type="number" id="fromValue" value="1"
+								style="width: 100%; padding: 12px; font-size: 1.1rem;">
+							<select id="fromUnit" style="width: 100%; margin-top: 8px; padding: 12px;"></select>
+						</div>
+
+						<div class="swap-btn" id="swapUnits"
+							style="cursor:pointer; font-size: 1.5rem; padding: 0 10px;">↔</div>
+
+						<div class="to-side">
+							<label>To</label>
+							<input type="number" id="toValue" readonly
+								style="width: 100%; padding: 12px; font-size: 1.1rem; background:#f8f9fa;">
+							<select id="toUnit" style="width: 100%; margin-top: 8px; padding: 12px;"></select>
 						</div>
 					</div>
 
-					<div class="info-card">
-						<h2>Supported Conversions</h2>
-						<p>Length • Weight • Temperature • Volume • Area</p>
-						<p>More categories coming soon.</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="content-section">
-			<div class="container">
-				<div class="content-narrow">
-					<h2>Unit Converter</h2>
-					<p>Quickly convert between common measurement units for everyday use.</p>
-
-					<h3>How to Use</h3>
-					<p>Enter a value, select the unit you’re converting from, and choose the target unit.</p>
+					<button class="calculate-btn" id="unitConvertBtn" style="margin-top: 16px;">Convert</button>
+					<div class="results-box" id="unitResultsBox" style="margin-top: 16px;"></div>
 				</div>
 			</div>
 		</section>
@@ -102,7 +106,7 @@
 				<h2>Related Converters & Calculators</h2>
 				<div class="tool-grid">
 
-					<a href="/calculators/length-converter/" class="tool-card">
+					<a href="/converters/length-converter/" class="tool-card">
 						<div class="tool-icon">📏</div>
 						<h3>Length Converter</h3>
 						<ul class="tool-features">
@@ -113,7 +117,7 @@
 						<p>Convert length and distance units.</p>
 					</a>
 
-					<a href="/calculators/currency-converter/" class="tool-card">
+					<a href="/converters/currency-converter/" class="tool-card">
 						<div class="tool-icon">💱</div>
 						<h3>Currency Converter</h3>
 						<ul class="tool-features">
@@ -148,7 +152,7 @@
 		</div>
 	</footer>
 
-	<script src="/script.js?v=164"></script>
+	<script src="/script.js?v=165"></script>
 
 </body>
 

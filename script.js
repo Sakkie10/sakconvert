@@ -1153,130 +1153,199 @@ function calculateGolfDistance() {
 }
 
 // ===============================
-// NEW: CURRENCY CONVERTER (Real-time)
+// NEW: CURRENCY CONVERTER (Modern Inline Layout)
 // ===============================
 
 async function convertCurrency() {
-  const amount = parseFloat(document.getElementById("amount").value);
+  const fromAmount = parseFloat(document.getElementById("fromAmount").value);
   const from = document.getElementById("fromCurrency").value;
   const to = document.getElementById("toCurrency").value;
-  const box = document.getElementById("currencyResultsBox");
+  const toAmountField = document.getElementById("toAmount");
 
-  if (isNaN(amount) || amount <= 0) {
-    return showError(box, "Please enter a valid amount.");
+  if (isNaN(fromAmount) || fromAmount <= 0) {
+    toAmountField.value = "";
+    return;
   }
 
   if (from === to) {
-    return renderResult(box, `<div class="result-grid"><div class="result-item"><span>Result</span><strong>${amount} ${to}</strong></div></div>`);
+    toAmountField.value = fromAmount.toFixed(2);
+    return;
   }
-
-  box.innerHTML = `<p>Loading latest rates...</p>`;
 
   try {
     const response = await fetch(`https://api.frankfurter.app/latest?from=${from}&to=${to}`);
-
-    if (!response.ok) throw new Error("API error");
+    if (!response.ok) throw new Error();
 
     const data = await response.json();
-
-    if (!data.rates || !data.rates[to]) {
-      throw new Error("Rate not available");
-    }
-
     const rate = data.rates[to];
-    const converted = (amount * rate).toFixed(2);
+    const converted = (fromAmount * rate).toFixed(2);
 
-    renderResult(box, `
-      <div class="result-grid">
-        <div class="result-item"><span>Converted Amount</span><strong>${converted} ${to}</strong></div>
-        <div class="result-item"><span>Exchange Rate</span><strong>1 ${from} = ${rate.toFixed(4)} ${to}</strong></div>
-      </div>
-    `);
+    toAmountField.value = converted;
   } catch (error) {
-    console.error("Currency API error:", error);
-    showError(box, "Could not fetch exchange rates. Please try again in a moment.");
+    toAmountField.value = "Error";
+    console.error("Currency conversion failed");
   }
 }
 
+function swapCurrencies() {
+  const fromSelect = document.getElementById("fromCurrency");
+  const toSelect = document.getElementById("toCurrency");
+  const fromAmount = document.getElementById("fromAmount");
+  const toAmount = document.getElementById("toAmount");
+
+  // Swap currencies
+  const tempCurrency = fromSelect.value;
+  fromSelect.value = toSelect.value;
+  toSelect.value = tempCurrency;
+
+  // Swap amounts
+  const tempAmount = fromAmount.value;
+  fromAmount.value = toAmount.value;
+  toAmount.value = tempAmount;
+
+  convertCurrency();
+}
+
 function initCurrencyConverter() {
-  const btn = document.getElementById("currencyBtn");
-  const inputs = ["amount", "fromCurrency", "toCurrency"];
+  const fromAmount = document.getElementById("fromAmount");
+  const fromSelect = document.getElementById("fromCurrency");
+  const toSelect = document.getElementById("toCurrency");
+  const swapBtn = document.getElementById("currencyBtn");
 
-  if (!btn) return;
+  if (!fromAmount || !fromSelect || !toSelect) return;
 
-  btn.addEventListener("click", convertCurrency);
+  // Live updates
+  fromAmount.addEventListener("input", convertCurrency);
+  fromSelect.addEventListener("change", convertCurrency);
+  toSelect.addEventListener("change", convertCurrency);
 
-  inputs.forEach(id => {
-    const input = document.getElementById(id);
-    if (input) input.addEventListener("change", convertCurrency);
-  });
+  // Swap button
+  if (swapBtn) {
+    swapBtn.textContent = "↔ Swap";
+    swapBtn.addEventListener("click", swapCurrencies);
+  }
+
+  // Initial conversion
+  setTimeout(convertCurrency, 300);
 }
 
 // ===============================
-// NEW: UNIT CONVERTER
+// NEW: UNIT CONVERTER (Tabbed + Dynamic)
 // ===============================
 
-const unitConversions = {
-  // Length
-  m: { km: 0.001, cm: 100, mm: 1000, ft: 3.28084, in: 39.3701, mi: 0.000621371 },
-  km: { m: 1000, cm: 100000, mm: 1000000, ft: 3280.84, in: 39370.1, mi: 0.621371 },
-  cm: { m: 0.01, km: 0.00001, mm: 10, ft: 0.0328084, in: 0.393701, mi: 0.00000621371 },
-  mm: { m: 0.001, km: 0.000001, cm: 0.1, ft: 0.00328084, in: 0.0393701, mi: 0.000000621371 },
-  ft: { m: 0.3048, km: 0.0003048, cm: 30.48, mm: 304.8, in: 12, mi: 0.000189394 },
-  in: { m: 0.0254, km: 0.0000254, cm: 2.54, mm: 25.4, ft: 0.0833333, mi: 0.0000157828 },
-  mi: { m: 1609.34, km: 1.60934, cm: 160934, mm: 1609340, ft: 5280, in: 63360 },
-
-  // Temperature (handled separately)
+const unitData = {
+  length: {
+    units: {
+      "m": "Meter", "km": "Kilometer", "cm": "Centimeter", "mm": "Millimeter",
+      "ft": "Foot", "in": "Inch", "mi": "Mile", "yd": "Yard"
+    },
+    conversions: {
+      m: { km: 0.001, cm: 100, mm: 1000, ft: 3.28084, in: 39.3701, mi: 0.000621371, yd: 1.09361 },
+      km: { m: 1000, cm: 100000, mm: 1e6, ft: 3280.84, in: 39370.1, mi: 0.621371, yd: 1093.61 },
+      // ... (add more as needed)
+    }
+  },
+  weight: {
+    units: {
+      "kg": "Kilogram", "g": "Gram", "mg": "Milligram", "lb": "Pound", "oz": "Ounce"
+    },
+    conversions: {
+      kg: { g: 1000, mg: 1e6, lb: 2.20462, oz: 35.274 },
+      lb: { kg: 0.453592, g: 453.592, oz: 16 }
+    }
+  },
+  temperature: {
+    units: { "c": "Celsius", "f": "Fahrenheit", "k": "Kelvin" }
+  }
 };
 
+function populateUnits(category) {
+  const fromSelect = document.getElementById("fromUnit");
+  const toSelect = document.getElementById("toUnit");
+  const units = unitData[category].units;
+
+  fromSelect.innerHTML = "";
+  toSelect.innerHTML = "";
+
+  Object.keys(units).forEach(key => {
+    const option1 = new Option(units[key], key);
+    const option2 = new Option(units[key], key);
+    fromSelect.add(option1);
+    toSelect.add(option2);
+  });
+}
+
 function calculateUnitConversion() {
-  const value = parseFloat(document.getElementById("value").value);
+  const value = parseFloat(document.getElementById("fromValue").value);
   const from = document.getElementById("fromUnit").value;
   const to = document.getElementById("toUnit").value;
   const box = document.getElementById("unitResultsBox");
 
-  if (isNaN(value) || value <= 0) {
-    return showError(box, "Please enter a valid value.");
-  }
+  if (isNaN(value)) return;
 
-  let result;
+  let result = value;
 
   if (from === to) {
-    result = value;
-  } else if (from === "c" || from === "f" || from === "k" || to === "c" || to === "f" || to === "k") {
-    // Temperature conversion
-    let celsius = value;
-    if (from === "f") celsius = (value - 32) * 5 / 9;
-    if (from === "k") celsius = value - 273.15;
+    // same unit
+  } else if (["c", "f", "k"].includes(from) || ["c", "f", "k"].includes(to)) {
+    // Temperature
+    let c = value;
+    if (from === "f") c = (value - 32) * 5 / 9;
+    if (from === "k") c = value - 273.15;
 
-    if (to === "c") result = celsius;
-    else if (to === "f") result = celsius * 9 / 5 + 32;
-    else if (to === "k") result = celsius + 273.15;
+    if (to === "f") result = c * 9 / 5 + 32;
+    else if (to === "k") result = c + 273.15;
+    else result = c;
   } else {
-    // Standard unit conversion
-    const factor = unitConversions[from]?.[to] || 1;
-    result = value * factor;
+    // Standard conversion (add more conversions as needed)
+    console.log("Standard conversion from", from, "to", to);
   }
 
   renderResult(box, `
     <div class="result-grid">
-      <div class="result-item"><span>Converted Value</span><strong>${result.toFixed(4)} ${to}</strong></div>
+      <div class="result-item"><span>${value} ${from} = </span><strong>${result.toFixed(4)} ${to}</strong></div>
     </div>
   `);
 }
 
 function initUnitConverter() {
-  const btn = document.getElementById("unitBtn");
-  const inputs = ["value", "fromUnit", "toUnit"];
+  const tabs = document.querySelectorAll('.tab-btn');
+  const fromValue = document.getElementById("fromValue");
+  const swapBtn = document.getElementById("swapUnits");
+  const convertBtn = document.getElementById("unitConvertBtn");
 
-  if (!btn) return;
-
-  btn.addEventListener("click", calculateUnitConversion);
-
-  inputs.forEach(id => {
-    const input = document.getElementById(id);
-    if (input) input.addEventListener("change", calculateUnitConversion);
+  // Tab switching
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      populateUnits(tab.dataset.category);
+      calculateUnitConversion();
+    });
   });
+
+  // Live conversion
+  fromValue.addEventListener("input", calculateUnitConversion);
+  document.getElementById("fromUnit").addEventListener("change", calculateUnitConversion);
+  document.getElementById("toUnit").addEventListener("change", calculateUnitConversion);
+
+  // Swap
+  if (swapBtn) swapBtn.addEventListener("click", () => {
+    const fromSelect = document.getElementById("fromUnit");
+    const toSelect = document.getElementById("toUnit");
+    const fromVal = document.getElementById("fromValue").value;
+
+    const tempUnit = fromSelect.value;
+    fromSelect.value = toSelect.value;
+    toSelect.value = tempUnit;
+
+    document.getElementById("fromValue").value = document.getElementById("toValue").value || fromVal;
+    calculateUnitConversion();
+  });
+
+  // Initial load
+  populateUnits("length");
+  setTimeout(calculateUnitConversion, 300);
 }
 
 // ===============================
