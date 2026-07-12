@@ -448,7 +448,7 @@ body[data-calculator="vat"] .calculator-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 28px;
-  align-items: start;      
+  align-items: start;
   margin-bottom: 32px;
 }
 
@@ -1587,4 +1587,90 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
     padding-top: 40px;
     /* larger gap on desktop if needed */
   }
+}
+
+/* Unit Converter Improvements */
+.unit-tabs button.tab-btn {
+  padding: 10px 20px;
+  border-radius: 9999px;
+  border: none;
+  background: #f1f3f5;
+  color: #050608;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.unit-tabs button.tab-btn.active,
+.unit-tabs button.tab-btn:hover {
+  background: var(--blue);
+  color: white;
+}
+
+.input-box {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.conversion-row {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+/* Add these at the end of your style.css */
+
+.unit-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.unit-tabs button.tab-btn {
+  padding: 10px 22px;
+  border-radius: 9999px;
+  border: none;
+  background: #f1f3f5;
+  color: #050608;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.unit-tabs button.tab-btn.active,
+.unit-tabs button.tab-btn:hover {
+  background: var(--blue);
+  color: white;
+}
+
+/* Rounded input boxes */
+.input-box {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.conversion-row {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+
+/* Make sure labels are bold and consistent */
+.conversion-row label {
+  display: block;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--text);
 }
