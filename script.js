@@ -1230,27 +1230,29 @@ function initCurrencyConverter() {
 }
 
 // ===============================
-// NEW: UNIT CONVERTER (Tabbed + Dynamic)
+// UNIT CONVERTER (Improved Tabbed Version)
 // ===============================
 
-const unitData = {
+const unitDatabase = {
   length: {
     units: {
       "m": "Meter", "km": "Kilometer", "cm": "Centimeter", "mm": "Millimeter",
       "ft": "Foot", "in": "Inch", "mi": "Mile", "yd": "Yard"
     },
-    conversions: {
+    conv: {
       m: { km: 0.001, cm: 100, mm: 1000, ft: 3.28084, in: 39.3701, mi: 0.000621371, yd: 1.09361 },
-      km: { m: 1000, cm: 100000, mm: 1e6, ft: 3280.84, in: 39370.1, mi: 0.621371, yd: 1093.61 },
-      // ... (add more as needed)
+      km: { m: 1000, cm: 100000, mm: 1000000, ft: 3280.84, in: 39370.1, mi: 0.621371, yd: 1093.61 },
+      cm: { m: 0.01, km: 0.00001, mm: 10, ft: 0.0328084, in: 0.393701, mi: 0.00000621371, yd: 0.0109361 },
+      ft: { m: 0.3048, km: 0.0003048, cm: 30.48, mm: 304.8, in: 12, mi: 0.000189394, yd: 0.333333 },
+      in: { m: 0.0254, km: 0.0000254, cm: 2.54, mm: 25.4, ft: 0.083333, mi: 0.0000157828, yd: 0.0277778 }
     }
   },
   weight: {
     units: {
       "kg": "Kilogram", "g": "Gram", "mg": "Milligram", "lb": "Pound", "oz": "Ounce"
     },
-    conversions: {
-      kg: { g: 1000, mg: 1e6, lb: 2.20462, oz: 35.274 },
+    conv: {
+      kg: { g: 1000, mg: 1000000, lb: 2.20462, oz: 35.274 },
       lb: { kg: 0.453592, g: 453.592, oz: 16 }
     }
   },
@@ -1262,16 +1264,14 @@ const unitData = {
 function populateUnits(category) {
   const fromSelect = document.getElementById("fromUnit");
   const toSelect = document.getElementById("toUnit");
-  const units = unitData[category].units;
+  const units = unitDatabase[category].units;
 
   fromSelect.innerHTML = "";
   toSelect.innerHTML = "";
 
   Object.keys(units).forEach(key => {
-    const option1 = new Option(units[key], key);
-    const option2 = new Option(units[key], key);
-    fromSelect.add(option1);
-    toSelect.add(option2);
+    fromSelect.add(new Option(units[key], key));
+    toSelect.add(new Option(units[key], key));
   });
 }
 
@@ -1281,7 +1281,10 @@ function calculateUnitConversion() {
   const to = document.getElementById("toUnit").value;
   const box = document.getElementById("unitResultsBox");
 
-  if (isNaN(value)) return;
+  if (isNaN(value) || value <= 0) {
+    box.innerHTML = "<p>Please enter a valid value.</p>";
+    return;
+  }
 
   let result = value;
 
@@ -1297,13 +1300,18 @@ function calculateUnitConversion() {
     else if (to === "k") result = c + 273.15;
     else result = c;
   } else {
-    // Standard conversion (add more conversions as needed)
-    console.log("Standard conversion from", from, "to", to);
+    // Length or Weight
+    const category = document.querySelector(".tab-btn.active").dataset.category;
+    const conv = unitDatabase[category].conv[from]?.[to] || 1;
+    result = value * conv;
   }
 
   renderResult(box, `
     <div class="result-grid">
-      <div class="result-item"><span>${value} ${from} = </span><strong>${result.toFixed(4)} ${to}</strong></div>
+      <div class="result-item">
+        <span>${value} ${from} = </span>
+        <strong>${result.toFixed(4)} ${to}</strong>
+      </div>
     </div>
   `);
 }
@@ -1324,24 +1332,25 @@ function initUnitConverter() {
     });
   });
 
-  // Live conversion
+  // Live updates
   fromValue.addEventListener("input", calculateUnitConversion);
   document.getElementById("fromUnit").addEventListener("change", calculateUnitConversion);
   document.getElementById("toUnit").addEventListener("change", calculateUnitConversion);
 
-  // Swap
-  if (swapBtn) swapBtn.addEventListener("click", () => {
-    const fromSelect = document.getElementById("fromUnit");
-    const toSelect = document.getElementById("toUnit");
-    const fromVal = document.getElementById("fromValue").value;
+  // Swap button
+  if (swapBtn) {
+    swapBtn.addEventListener("click", () => {
+      const fromSelect = document.getElementById("fromUnit");
+      const toSelect = document.getElementById("toUnit");
+      const tempUnit = fromSelect.value;
+      fromSelect.value = toSelect.value;
+      toSelect.value = tempUnit;
+      calculateUnitConversion();
+    });
+  }
 
-    const tempUnit = fromSelect.value;
-    fromSelect.value = toSelect.value;
-    toSelect.value = tempUnit;
-
-    document.getElementById("fromValue").value = document.getElementById("toValue").value || fromVal;
-    calculateUnitConversion();
-  });
+  // Convert button
+  if (convertBtn) convertBtn.addEventListener("click", calculateUnitConversion);
 
   // Initial load
   populateUnits("length");
