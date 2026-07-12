@@ -51,6 +51,22 @@ function initCalculator(type) {
       bindCalculator("compoundInterestBtn", calculateCompoundInterest);
       break;
 
+    case "loan-emi":
+      initLoanEmiCalculator();
+      break;
+
+    case "mortgage-affordability":
+      initMortgageAffordabilityCalculator();
+      break;
+
+    case "savings-goal":
+      initSavingsGoalCalculator();
+      break;
+
+    case "tip":
+      initTipCalculator();
+      break;
+
     // HEALTH & FITNESS
     case "boxing-calories":
       bindCalculator("boxingBtn", calculateBoxingCalories);
@@ -596,6 +612,221 @@ function initMarkupCalculator() {
     }
 
     calculateMarkup();
+  });
+}
+
+// ===============================
+// NEW: LOAN EMI CALCULATOR
+// ===============================
+
+function calculateLoanEmi() {
+  const principal = parseFloat(document.getElementById("loanAmount").value);
+  const annualRate = parseFloat(document.getElementById("interestRate").value);
+  const years = parseFloat(document.getElementById("loanTerm").value);
+  const box = document.getElementById("loanEmiResultsBox");
+
+  if (isNaN(principal) || isNaN(annualRate) || isNaN(years) || principal <= 0 || annualRate < 0 || years <= 0) {
+    return showError(box, "Please enter valid positive values.");
+  }
+
+  const monthlyRate = annualRate / 12 / 100;
+  const months = years * 12;
+
+  let emi, totalPayment, totalInterest;
+
+  if (monthlyRate === 0) {
+    emi = principal / months;
+    totalPayment = principal;
+    totalInterest = 0;
+  } else {
+    emi = principal * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
+    totalPayment = emi * months;
+    totalInterest = totalPayment - principal;
+  }
+
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item"><span>Monthly EMI</span><strong>${formatMoney(emi)}</strong></div>
+      <div class="result-item"><span>Total Interest</span><strong>${formatMoney(totalInterest)}</strong></div>
+      <div class="result-item"><span>Total Payment</span><strong>${formatMoney(totalPayment)}</strong></div>
+    </div>
+  `);
+}
+
+function initLoanEmiCalculator() {
+  console.log(`Initializing loan-emi calculator`);
+  const btn = document.getElementById("loanEmiBtn");
+  const inputs = ["loanAmount", "interestRate", "loanTerm"];
+
+  if (!btn) return;
+
+  btn.addEventListener("click", calculateLoanEmi);
+
+  inputs.forEach(id => {
+    const input = document.getElementById(id);
+    if (input) input.addEventListener("input", calculateLoanEmi);
+  });
+}
+
+// ===============================
+// NEW: MORTGAGE AFFORDABILITY
+// ===============================
+
+function calculateMortgageAffordability() {
+  const grossIncome = parseFloat(document.getElementById("grossIncome").value);
+  const monthlyDebts = parseFloat(document.getElementById("monthlyDebts").value) || 0;
+  const downPaymentPercent = parseFloat(document.getElementById("downPaymentPercent").value);
+  const annualRate = parseFloat(document.getElementById("interestRate").value);
+  const years = parseFloat(document.getElementById("loanTerm").value);
+  const box = document.getElementById("mortgageAffordResultsBox");
+
+  if (isNaN(grossIncome) || grossIncome <= 0 || isNaN(downPaymentPercent) || downPaymentPercent < 0 || isNaN(annualRate) || annualRate < 0 || isNaN(years) || years <= 0) {
+    return showError(box, "Please enter valid positive values for income, rate, and term.");
+  }
+
+  const maxHousingPayment = grossIncome * 0.28;
+  const maxTotalDebt = grossIncome * 0.36;
+  const availableForMortgage = Math.max(0, maxTotalDebt - monthlyDebts);
+
+  if (availableForMortgage <= 0) {
+    return showError(box, "Your other debts are too high relative to your income.");
+  }
+
+  const monthlyRate = annualRate / 12 / 100;
+  const months = years * 12;
+
+  let maxLoanAmount = 0;
+
+  if (monthlyRate === 0) {
+    maxLoanAmount = availableForMortgage * months;
+  } else {
+    maxLoanAmount = availableForMortgage * (Math.pow(1 + monthlyRate, months) - 1) / (monthlyRate * Math.pow(1 + monthlyRate, months));
+  }
+
+  const maxHomePrice = maxLoanAmount / (1 - downPaymentPercent / 100);
+
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item"><span>Max Affordable Home Price</span><strong>${formatMoney(maxHomePrice)}</strong></div>
+      <div class="result-item"><span>Max Loan Amount</span><strong>${formatMoney(maxLoanAmount)}</strong></div>
+      <div class="result-item"><span>Max Monthly Mortgage Payment</span><strong>${formatMoney(availableForMortgage)}</strong></div>
+    </div>
+  `);
+}
+
+function initMortgageAffordabilityCalculator() {
+  console.log(`Initializing mortgage-affordability calculator`);
+  const btn = document.getElementById("mortgageAffordBtn");
+  const inputs = ["grossIncome", "monthlyDebts", "downPaymentPercent", "interestRate", "loanTerm"];
+
+  if (!btn) return;
+
+  btn.addEventListener("click", calculateMortgageAffordability);
+
+  inputs.forEach(id => {
+    const input = document.getElementById(id);
+    if (input) input.addEventListener("input", calculateMortgageAffordability);
+  });
+}
+
+// ===============================
+// NEW: SAVINGS GOAL CALCULATOR
+// ===============================
+
+function calculateSavingsGoal() {
+  const target = parseFloat(document.getElementById("targetAmount").value);
+  const current = parseFloat(document.getElementById("currentSavings").value) || 0;
+  const years = parseFloat(document.getElementById("years").value);
+  const annualRate = parseFloat(document.getElementById("interestRate").value);
+  const box = document.getElementById("savingsGoalResultsBox");
+
+  if (isNaN(target) || target <= 0 || isNaN(years) || years <= 0 || isNaN(annualRate) || annualRate < 0) {
+    return showError(box, "Please enter valid positive values.");
+  }
+
+  const monthlyRate = annualRate / 12 / 100;
+  const months = years * 12;
+  const remaining = target - current;
+
+  if (remaining <= 0) {
+    renderResult(box, `<div class="result-grid"><div class="result-item"><span>You already have enough!</span><strong>🎉</strong></div></div>`);
+    return;
+  }
+
+  let monthlyDeposit = 0;
+
+  if (monthlyRate === 0) {
+    monthlyDeposit = remaining / months;
+  } else {
+    monthlyDeposit = remaining * monthlyRate / (Math.pow(1 + monthlyRate, months) - 1);
+  }
+
+  const totalContributions = monthlyDeposit * months;
+  const interestEarned = target - current - totalContributions;
+
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item"><span>Monthly Deposit Needed</span><strong>${formatMoney(monthlyDeposit)}</strong></div>
+      <div class="result-item"><span>Total Contributions</span><strong>${formatMoney(totalContributions)}</strong></div>
+      <div class="result-item"><span>Interest Earned</span><strong>${formatMoney(interestEarned)}</strong></div>
+    </div>
+  `);
+}
+
+function initSavingsGoalCalculator() {
+  console.log(`Initializing savings-goal calculator`);
+  const btn = document.getElementById("savingsGoalBtn");
+  const inputs = ["targetAmount", "currentSavings", "years", "interestRate"];
+
+  if (!btn) return;
+
+  btn.addEventListener("click", calculateSavingsGoal);
+
+  inputs.forEach(id => {
+    const input = document.getElementById(id);
+    if (input) input.addEventListener("input", calculateSavingsGoal);
+  });
+}
+
+// ===============================
+// NEW: TIP CALCULATOR
+// ===============================
+
+function calculateTip() {
+  const bill = parseFloat(document.getElementById("billAmount").value);
+  const tipPercent = parseFloat(document.getElementById("tipPercent").value);
+  const numPeople = parseFloat(document.getElementById("numPeople").value) || 1;
+  const box = document.getElementById("tipResultsBox");
+
+  if (isNaN(bill) || bill <= 0 || isNaN(tipPercent) || tipPercent < 0) {
+    return showError(box, "Please enter valid positive values.");
+  }
+
+  const tipAmount = bill * (tipPercent / 100);
+  const totalBill = bill + tipAmount;
+  const perPerson = totalBill / numPeople;
+
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item"><span>Tip Amount</span><strong>${formatMoney(tipAmount)}</strong></div>
+      <div class="result-item"><span>Total Bill (with tip)</span><strong>${formatMoney(totalBill)}</strong></div>
+      <div class="result-item"><span>Per Person (${numPeople} people)</span><strong>${formatMoney(perPerson)}</strong></div>
+    </div>
+  `);
+}
+
+function initTipCalculator() {
+  console.log(`Initializing tip calculator`);
+  const btn = document.getElementById("tipBtn");
+  const inputs = ["billAmount", "tipPercent", "numPeople"];
+
+  if (!btn) return;
+
+  btn.addEventListener("click", calculateTip);
+
+  inputs.forEach(id => {
+    const input = document.getElementById(id);
+    if (input) input.addEventListener("input", calculateTip);
   });
 }
 

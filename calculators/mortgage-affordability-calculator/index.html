@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Mortgage Affordability Calculator | How Much House Can I Afford? | SakConvert</title>
+	<meta name="description"
+		content="Free Mortgage Affordability Calculator. Find out how much house you can afford based on income, debts, down payment, interest rate and loan term." />
+	<link rel="canonical" href="https://sakconvert.com/calculators/mortgage-affordability-calculator/" />
+	<link rel="stylesheet" href="/style.css?v=162">
+	<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+</head>
+
+<body data-calculator="mortgage-affordability">
+
+	<header class="site-header">
+		<div class="container header-inner">
+			<a href="/" class="logo"><img src="/images/logo.svg" alt="SakConvert"></a>
+			<button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+			<nav class="nav" id="siteNav">
+				<a href="/#calculators">Calculators</a>
+				<a href="/#converters">Converters</a>
+				<a href="/#seo">SEO</a>
+				<a href="/articles/">Articles</a>
+				<a href="/#about">About</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="breadcrumb">
+			<div class="container"><a href="/">Home</a> → <span>Mortgage Affordability Calculator</span></div>
+		</section>
+
+		<section class="hero">
+			<div class="container">
+				<a href="/#business-finance" class="eyebrow eyebrow-link">Business & Finance</a>
+				<h1>Mortgage Affordability Calculator</h1>
+				<p class="hero-text">Find out exactly how much house you can afford based on your income, debts, down payment,
+					interest rate, and loan term.</p>
+			</div>
+		</section>
+
+		<section class="calculator-section">
+			<div class="container">
+				<div class="calculator-layout">
+					<div class="calculator-card">
+						<h2>Calculate How Much You Can Afford</h2>
+						<div class="form-group"><label for="grossIncome">Gross Monthly Income</label><input type="number"
+								id="grossIncome" placeholder="e.g. 8000"></div>
+						<div class="form-group"><label for="monthlyDebts">Other Monthly Debt Payments</label><input type="number"
+								id="monthlyDebts" placeholder="e.g. 500"></div>
+						<div class="form-group"><label for="downPaymentPercent">Down Payment (%)</label><input type="number"
+								id="downPaymentPercent" value="20"></div>
+						<div class="form-group"><label for="interestRate">Expected Mortgage Rate (%)</label><input type="number"
+								id="interestRate" value="6.5"></div>
+						<div class="form-group"><label for="loanTerm">Loan Term (Years)</label><input type="number" id="loanTerm"
+								value="30"></div>
+						<button class="calculate-btn" id="mortgageAffordBtn">Calculate Affordability</button>
+						<div class="results-box" id="mortgageAffordResultsBox">
+							<p>Enter your details above to see how much house you can afford.</p>
+						</div>
+					</div>
+
+					<div class="info-card">
+						<h2>How We Calculate It</h2>
+						<div class="formula-box">
+							Max Housing Payment = Gross Monthly Income × 28%<br>
+							Max Total Debt Payment = Gross Monthly Income × 36%
+						</div>
+						<p>We use standard lender guidelines (28/36 rule).</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="content-section">
+			<div class="container">
+				<div class="content-narrow">
+					<h2>What is Mortgage Affordability?</h2>
+					<p>Mortgage affordability calculators help you determine the maximum home price you can realistically afford
+						based on your income, existing debts, down payment, interest rates, and loan term.</p>
+
+					<h3>How to Use This Calculator</h3>
+					<p>Enter your gross monthly income, current monthly debt payments, planned down payment percentage, expected
+						interest rate, and desired loan term. The calculator shows your maximum affordable home price, maximum loan
+						amount, and recommended monthly payment.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="faq-section">
+			<div class="container">
+				<div class="content-narrow">
+					<h2>Frequently Asked Questions</h2>
+
+					<h3>What is the 28/36 rule?</h3>
+					<p>The 28/36 rule is a common guideline used by lenders. It suggests that no more than 28% of your gross
+						monthly income should go toward housing costs, and no more than 36% should go toward total debt payments.
+					</p>
+
+					<h3>Does this include property taxes and insurance?</h3>
+					<p>This calculator focuses on the principal and interest portion of the mortgage. In reality, you should also
+						budget for property taxes, homeowners insurance, and possibly PMI if your down payment is less than 20%.</p>
+
+					<h3>Can I afford more if I have a larger down payment?</h3>
+					<p>Yes. A larger down payment reduces the loan amount needed, which can increase the total home price you can
+						afford while keeping monthly payments the same.</p>
+
+					<h3>Should I use the maximum amount the calculator shows?</h3>
+					<p>Not necessarily. It's often wise to borrow less than the maximum to have more financial flexibility and a
+						lower monthly payment.</p>
+
+					<h3>How does credit score affect this?</h3>
+					<p>A higher credit score can help you qualify for a lower interest rate, which increases the home price you
+						can afford.</p>
+
+					<h3>What other costs should I consider?</h3>
+					<p>Remember to budget for property taxes, insurance, maintenance, and closing costs beyond the mortgage
+						payment.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS (Rich Card Format) -->
+		<section class="related-tools">
+			<div class="container">
+				<h2>Related Business & Finance Calculators</h2>
+				<div class="tool-grid">
+
+					<a href="/calculators/loan-emi-calculator/" class="tool-card">
+						<div class="tool-icon">💳</div>
+						<h3>Loan EMI Calculator</h3>
+						<ul class="tool-features">
+							<li>Monthly EMI</li>
+							<li>Total Interest</li>
+							<li>Total Payment</li>
+						</ul>
+						<p>Calculate exact monthly payments for any loan.</p>
+					</a>
+
+					<a href="/calculators/savings-goal-calculator/" class="tool-card">
+						<div class="tool-icon">🎯</div>
+						<h3>Savings Goal Calculator</h3>
+						<ul class="tool-features">
+							<li>Monthly Deposit</li>
+							<li>Interest Earned</li>
+							<li>Time to Goal</li>
+						</ul>
+						<p>Plan how to reach your financial targets.</p>
+					</a>
+
+					<a href="/calculators/compound-interest-calculator/" class="tool-card">
+						<div class="tool-icon">📈</div>
+						<h3>Compound Interest Calculator</h3>
+						<ul class="tool-features">
+							<li>Future Value</li>
+							<li>Interest Earned</li>
+							<li>Growth Over Time</li>
+						</ul>
+						<p>See how your money grows with compounding.</p>
+					</a>
+
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container footer-inner">
+			<p>© 2026 <a href="/">SakConvert</a>. All rights reserved.</p>
+			<div class="footer-links">
+				<a href="/#about">About</a><a href="/contact/">Contact</a><a href="/privacy-policy/">Privacy Policy</a>
+				<a href="/terms-and-conditions/">Terms & Conditions</a><a href="/cookie-policy/">Cookie Policy</a>
+			</div>
+		</div>
+	</footer>
+
+	<script src="/script.js?v=162"></script>
+
+</body>
+
+</html>

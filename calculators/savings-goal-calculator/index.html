@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Savings Goal Calculator | How Much to Save Monthly | SakConvert</title>
+	<meta name="description"
+		content="Free Savings Goal Calculator. Calculate how much you need to save each month to reach your financial goal, including interest." />
+	<link rel="canonical" href="https://sakconvert.com/calculators/savings-goal-calculator/" />
+	<link rel="stylesheet" href="/style.css?v=162">
+	<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+</head>
+
+<body data-calculator="savings-goal">
+
+	<header class="site-header">
+		<div class="container header-inner">
+			<a href="/" class="logo"><img src="/images/logo.svg" alt="SakConvert"></a>
+			<button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+			<nav class="nav" id="siteNav">
+				<a href="/#calculators">Calculators</a>
+				<a href="/#converters">Converters</a>
+				<a href="/#seo">SEO</a>
+				<a href="/articles/">Articles</a>
+				<a href="/#about">About</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="breadcrumb">
+			<div class="container"><a href="/">Home</a> → <span>Savings Goal Calculator</span></div>
+		</section>
+
+		<section class="hero">
+			<div class="container">
+				<a href="/#business-finance" class="eyebrow eyebrow-link">Business & Finance</a>
+				<h1>Savings Goal Calculator</h1>
+				<p class="hero-text">Find out exactly how much you need to save each month to reach your savings goal, including
+					compound interest.</p>
+			</div>
+		</section>
+
+		<section class="calculator-section">
+			<div class="container">
+				<div class="calculator-layout">
+					<div class="calculator-card">
+						<h2>Calculate Monthly Savings Needed</h2>
+						<div class="form-group"><label for="targetAmount">Target Savings Amount</label><input type="number"
+								id="targetAmount" placeholder="e.g. 50000"></div>
+						<div class="form-group"><label for="currentSavings">Current Savings (optional)</label><input type="number"
+								id="currentSavings" value="0"></div>
+						<div class="form-group"><label for="years">Timeframe (Years)</label><input type="number" id="years"
+								value="5"></div>
+						<div class="form-group"><label for="interestRate">Expected Annual Return (%)</label><input type="number"
+								id="interestRate" value="5"></div>
+						<button class="calculate-btn" id="savingsGoalBtn">Calculate Monthly Savings</button>
+						<div class="results-box" id="savingsGoalResultsBox">
+							<p>Enter your goal details to see how much to save monthly.</p>
+						</div>
+					</div>
+
+					<div class="info-card">
+						<h2>Savings Formula</h2>
+						<div class="formula-box">Monthly Deposit = (Target − Current) × r / ((1 + r)<sup>n</sup> − 1)</div>
+						<p>Where r = monthly interest rate and n = total months.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="content-section">
+			<div class="container">
+				<div class="content-narrow">
+					<h2>What is a Savings Goal Calculator?</h2>
+					<p>It calculates the fixed monthly amount you need to save to reach a target, taking advantage of compound
+						interest.</p>
+
+					<h3>How to Use This Calculator</h3>
+					<p>Enter your target amount, current savings (if any), the number of years you have, and the expected annual
+						return. The calculator shows the exact monthly deposit needed.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="faq-section">
+			<div class="container">
+				<div class="content-narrow">
+					<h2>Frequently Asked Questions</h2>
+
+					<h3>What if I already have some savings?</h3>
+					<p>The calculator automatically reduces the monthly amount needed because your current savings will also grow
+						with interest.</p>
+
+					<h3>What interest rate should I use?</h3>
+					<p>Use a realistic rate: 3–5% for savings accounts, 7–10% for long-term investments. Be conservative for
+						shorter timeframes.</p>
+
+					<h3>Can I reach my goal faster?</h3>
+					<p>Yes — by increasing your monthly contribution, extending the timeline, or earning a higher return.</p>
+
+					<h3>Does this include taxes or inflation?</h3>
+					<p>No. This is a simplified calculator. For more accuracy, consider adjusting your target amount upward to
+						account for inflation.</p>
+
+					<h3>What if I miss a month of saving?</h3>
+					<p>You can catch up by increasing future contributions or extending your timeline slightly.</p>
+
+					<h3>Is this good for retirement planning?</h3>
+					<p>Yes, it works well for both short-term and long-term goals like retirement, a house deposit, or a vacation
+						fund.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS (Rich Card Format) -->
+		<section class="related-tools">
+			<div class="container">
+				<h2>Related Business & Finance Calculators</h2>
+				<div class="tool-grid">
+
+					<a href="/calculators/compound-interest-calculator/" class="tool-card">
+						<div class="tool-icon">📈</div>
+						<h3>Compound Interest Calculator</h3>
+						<ul class="tool-features">
+							<li>Future Value</li>
+							<li>Interest Earned</li>
+							<li>Growth Over Time</li>
+						</ul>
+						<p>See how your money grows with compounding.</p>
+					</a>
+
+					<a href="/calculators/loan-emi-calculator/" class="tool-card">
+						<div class="tool-icon">💳</div>
+						<h3>Loan EMI Calculator</h3>
+						<ul class="tool-features">
+							<li>Monthly EMI</li>
+							<li>Total Interest</li>
+							<li>Total Payment</li>
+						</ul>
+						<p>Plan your loan repayments accurately.</p>
+					</a>
+
+					<a href="/calculators/mortgage-affordability-calculator/" class="tool-card">
+						<div class="tool-icon">🏠</div>
+						<h3>Mortgage Affordability Calculator</h3>
+						<ul class="tool-features">
+							<li>Max Home Price</li>
+							<li>Monthly Payment</li>
+							<li>Down Payment</li>
+						</ul>
+						<p>Find out how much house you can afford.</p>
+					</a>
+
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container footer-inner">
+			<p>© 2026 <a href="/">SakConvert</a>. All rights reserved.</p>
+			<div class="footer-links">
+				<a href="/#about">About</a><a href="/contact/">Contact</a><a href="/privacy-policy/">Privacy Policy</a>
+				<a href="/terms-and-conditions/">Terms & Conditions</a><a href="/cookie-policy/">Cookie Policy</a>
+			</div>
+		</div>
+	</footer>
+
+	<script src="/script.js?v=162"></script>
+
+</body>
+
+</html>

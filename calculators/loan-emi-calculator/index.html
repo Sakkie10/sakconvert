@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Loan EMI Calculator | Calculate Monthly EMI Instantly | SakConvert</title>
+	<meta name="description"
+		content="Free Loan EMI Calculator. Calculate your monthly EMI for personal, home, or car loans with total interest and payment breakdown." />
+	<link rel="canonical" href="https://sakconvert.com/calculators/loan-emi-calculator/" />
+	<link rel="stylesheet" href="/style.css?v=162">
+	<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+</head>
+
+<body data-calculator="loan-emi">
+
+	<header class="site-header">
+		<div class="container header-inner">
+			<a href="/" class="logo"><img src="/images/logo.svg" alt="SakConvert"></a>
+			<button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+			<nav class="nav" id="siteNav">
+				<a href="/#calculators">Calculators</a>
+				<a href="/#converters">Converters</a>
+				<a href="/#seo">SEO</a>
+				<a href="/articles/">Articles</a>
+				<a href="/#about">About</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="breadcrumb">
+			<div class="container"><a href="/">Home</a> → <span>Loan EMI Calculator</span></div>
+		</section>
+
+		<section class="hero">
+			<div class="container">
+				<a href="/#business-finance" class="eyebrow eyebrow-link">Business & Finance</a>
+				<h1>Loan EMI Calculator</h1>
+				<p class="hero-text">Calculate your monthly EMI, total interest, and total payment for any loan instantly.</p>
+			</div>
+		</section>
+
+		<section class="calculator-section">
+			<div class="container">
+				<div class="calculator-layout">
+					<div class="calculator-card">
+						<h2>Calculate EMI</h2>
+						<div class="form-group"><label for="loanAmount">Loan Amount</label><input type="number" id="loanAmount"
+								placeholder="e.g. 500000"></div>
+						<div class="form-group"><label for="interestRate">Annual Interest Rate (%)</label><input type="number"
+								id="interestRate" value="8.5"></div>
+						<div class="form-group"><label for="loanTerm">Loan Term (Years)</label><input type="number" id="loanTerm"
+								value="20"></div>
+						<button class="calculate-btn" id="loanEmiBtn">Calculate EMI</button>
+						<div class="results-box" id="loanEmiResultsBox">
+							<p>Enter loan details to calculate your EMI.</p>
+						</div>
+					</div>
+
+					<div class="info-card">
+						<h2>EMI Formula</h2>
+						<div class="formula-box">EMI = P × r × (1 + r)<sup>n</sup> / ((1 + r)<sup>n</sup> − 1)</div>
+						<p>P = Principal • r = Monthly rate • n = Total months</p>
+						<p>
+							P = Principal (Loan Amount)<br>
+							r = Monthly interest rate (Annual % ÷ 12 ÷ 100)<br>
+							n = Total number of months (Years × 12)
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="content-section">
+			<div class="container">
+				<div class="content-narrow">
+					<h2>What is EMI?</h2>
+					<p>EMI (Equated Monthly Installment) is the fixed monthly payment you make to repay a loan. It includes both
+						principal and interest.</p>
+
+					<h3>How to Use This Calculator</h3>
+					<p>Enter the loan amount, annual interest rate, and loan tenure in years. The calculator instantly shows your
+						monthly EMI, total interest payable, and total amount you will pay over the loan period.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="faq-section">
+			<div class="container">
+				<div class="content-narrow">
+					<h2>Frequently Asked Questions</h2>
+
+					<h3>What does EMI include?</h3>
+					<p>EMI includes both the principal repayment and the interest charged by the lender.</p>
+
+					<h3>Can I change the loan term to see different EMIs?</h3>
+					<p>Yes. A longer term lowers your monthly EMI but increases the total interest paid over time.</p>
+
+					<h3>Does this calculator include taxes or processing fees?</h3>
+					<p>No. This calculator only shows principal + interest. Always check with your lender for additional charges.
+					</p>
+
+					<h3>How accurate is this EMI calculator?</h3>
+					<p>It uses the standard reducing balance method and is very accurate for planning. Actual EMI may vary
+						slightly depending on your bank’s rounding rules.</p>
+
+					<h3>What if I make extra payments?</h3>
+					<p>Extra payments will reduce your loan tenure or total interest. This calculator assumes fixed monthly
+						payments with no prepayments.</p>
+
+					<h3>Is this calculator suitable for home loans, car loans, and personal loans?</h3>
+					<p>Yes. The EMI formula works the same for most reducing-balance loans.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS (Rich Card Format) -->
+		<section class="related-tools">
+			<div class="container">
+				<h2>Related Business & Finance Calculators</h2>
+				<div class="tool-grid">
+
+					<a href="/calculators/mortgage-affordability-calculator/" class="tool-card">
+						<div class="tool-icon">🏠</div>
+						<h3>Mortgage Affordability Calculator</h3>
+						<ul class="tool-features">
+							<li>Max Home Price</li>
+							<li>Monthly Payment</li>
+							<li>Down Payment</li>
+						</ul>
+						<p>Find out how much house you can afford.</p>
+					</a>
+
+					<a href="/calculators/savings-goal-calculator/" class="tool-card">
+						<div class="tool-icon">🎯</div>
+						<h3>Savings Goal Calculator</h3>
+						<ul class="tool-features">
+							<li>Monthly Deposit</li>
+							<li>Interest Earned</li>
+							<li>Time to Goal</li>
+						</ul>
+						<p>Plan how to reach your financial targets.</p>
+					</a>
+
+					<a href="/calculators/compound-interest-calculator/" class="tool-card">
+						<div class="tool-icon">📈</div>
+						<h3>Compound Interest Calculator</h3>
+						<ul class="tool-features">
+							<li>Future Value</li>
+							<li>Interest Earned</li>
+							<li>Growth Over Time</li>
+						</ul>
+						<p>See how your money grows with compounding.</p>
+					</a>
+
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container footer-inner">
+			<p>© 2026 <a href="/">SakConvert</a>. All rights reserved.</p>
+			<div class="footer-links">
+				<a href="/#about">About</a><a href="/contact/">Contact</a><a href="/privacy-policy/">Privacy Policy</a>
+				<a href="/terms-and-conditions/">Terms & Conditions</a><a href="/cookie-policy/">Cookie Policy</a>
+			</div>
+		</div>
+	</footer>
+
+	<script src="/script.js?v=162"></script>
+
+</body>
+
+</html>
