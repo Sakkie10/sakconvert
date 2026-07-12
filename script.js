@@ -1230,29 +1230,41 @@ function initCurrencyConverter() {
 }
 
 // ===============================
-// UNIT CONVERTER (Fixed)
+// UNIT CONVERTER (Accurate + Expanded)
 // ===============================
 
 const unitDatabase = {
   length: {
     units: {
       "m": "Meter", "km": "Kilometer", "cm": "Centimeter", "mm": "Millimeter",
-      "ft": "Foot", "in": "Inch", "mi": "Mile", "yd": "Yard"
+      "μm": "Micrometer", "nm": "Nanometer", "mi": "Mile", "yd": "Yard",
+      "ft": "Foot", "in": "Inch", "ly": "Light Year"
     },
     conv: {
-      m: { km: 0.001, cm: 100, mm: 1000, ft: 3.28084, in: 39.3701, mi: 0.000621371, yd: 1.09361 },
-      km: { m: 1000, cm: 100000, mm: 1000000, ft: 3280.84, in: 39370.1, mi: 0.621371, yd: 1093.61 },
-      cm: { m: 0.01, km: 0.00001, mm: 10, ft: 0.0328084, in: 0.393701, mi: 0.00000621371, yd: 0.0109361 },
-      ft: { m: 0.3048, km: 0.0003048, cm: 30.48, mm: 304.8, in: 12, mi: 0.000189394, yd: 0.333333 },
-      in: { m: 0.0254, km: 0.0000254, cm: 2.54, mm: 25.4, ft: 0.083333, mi: 0.0000157828, yd: 0.0277778 },
-      mi: { m: 1609.34, km: 1.60934, cm: 160934, mm: 1609340, ft: 5280, in: 63360, yd: 1760 },
-      yd: { m: 0.9144, km: 0.0009144, cm: 91.44, mm: 914.4, ft: 3, in: 36, mi: 0.000568182 }
+      m: {
+        km: 0.001, cm: 100, mm: 1000, "μm": 1000000, nm: 1e9,
+        mi: 0.000621371, yd: 1.0936133, ft: 3.2808399, in: 39.3700787,
+        ly: 1.057000834e-16
+      },
+      km: { m: 1000, cm: 100000, mm: 1e6, "μm": 1e9, nm: 1e12, mi: 0.621371, yd: 1093.6133 },
+      cm: { m: 0.01, km: 0.00001, mm: 10, "μm": 10000, nm: 1e7 },
+      mm: { m: 0.001, km: 0.000001, cm: 0.1, "μm": 1000, nm: 1e6 },
+      "μm": { m: 1e-6, mm: 0.001, nm: 1000 },
+      nm: { m: 1e-9, "μm": 0.001 },
+      mi: { m: 1609.344, km: 1.609344, yd: 1760, ft: 5280, in: 63360 },
+      yd: { m: 0.9144, ft: 3, in: 36 },
+      ft: { m: 0.3048, yd: 0.333333, in: 12 },
+      in: { m: 0.0254, ft: 0.083333, yd: 0.0277778 },
+      ly: { m: 9.46073e15 }
     }
   },
   weight: {
-    units: { "kg": "Kilogram", "g": "Gram", "lb": "Pound", "oz": "Ounce" },
+    units: {
+      "kg": "Kilogram", "g": "Gram", "mg": "Milligram",
+      "lb": "Pound", "oz": "Ounce"
+    },
     conv: {
-      kg: { g: 1000, lb: 2.20462, oz: 35.274 },
+      kg: { g: 1000, mg: 1000000, lb: 2.20462, oz: 35.274 },
       lb: { kg: 0.453592, g: 453.592, oz: 16 }
     }
   },
@@ -1306,15 +1318,16 @@ function calculateUnitConversion() {
     result = value * conv;
   }
 
-  // Update "To" field live
-  toField.value = result.toFixed(4);
+  // Smart decimal places (removes trailing zeros)
+  const formattedResult = parseFloat(result.toFixed(6)).toString();
 
-  // Result box
+  toField.value = formattedResult;
+
   renderResult(box, `
     <div class="result-grid">
       <div class="result-item">
         <span>${value} ${from} = </span>
-        <strong>${result.toFixed(4)} ${to}</strong>
+        <strong>${formattedResult} ${to}</strong>
       </div>
     </div>
   `);
@@ -1325,6 +1338,7 @@ function initUnitConverter() {
   const fromValue = document.getElementById("fromValue");
   const swapBtn = document.getElementById("swapUnits");
 
+  // Tab switching
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       tabs.forEach(t => t.classList.remove("active"));
@@ -1339,7 +1353,7 @@ function initUnitConverter() {
   document.getElementById("fromUnit").addEventListener("change", calculateUnitConversion);
   document.getElementById("toUnit").addEventListener("change", calculateUnitConversion);
 
-  // Swap
+  // Swap button
   if (swapBtn) {
     swapBtn.addEventListener("click", () => {
       const fromS = document.getElementById("fromUnit");
