@@ -84,10 +84,32 @@ function initCalculator(type) {
       bindCalculator("calculateBMI", calculateBMI);
       break;
 
+    case "body-fat-percentage":
+      initBodyFatCalculator();
+      break;
+
+    case "ideal-weight":
+      initIdealWeightCalculator();
+      break;
+
     // SPECIALIST
     case "golf-distance":
       bindCalculator("golfDistanceBtn", calculateGolfDistance);
       break;
+
+    // CONVERTERS
+    case "currency":
+      initCurrencyConverter();
+      break;
+
+    case "unit-converter":
+      initUnitConverter();
+      break;
+
+    case "length-converter":
+      initLengthConverter();
+      break;
+
   }
 }
 
@@ -1002,6 +1024,96 @@ function calculateBMI() {
 }
 
 // ===============================
+// NEW: BODY FAT PERCENTAGE CALCULATOR
+// ===============================
+
+function calculateBodyFat() {
+  const gender = document.getElementById("gender").value;
+  const waist = parseFloat(document.getElementById("waist").value);
+  const neck = parseFloat(document.getElementById("neck").value);
+  const height = parseFloat(document.getElementById("height").value);
+  const box = document.getElementById("bodyFatResultsBox");
+
+  if (isNaN(waist) || isNaN(neck) || isNaN(height) || waist <= 0 || neck <= 0 || height <= 0) {
+    return showError(box, "Please enter valid measurements.");
+  }
+
+  let bodyFat;
+
+  if (gender === "male") {
+    bodyFat = 86.010 * Math.log10(waist - neck) - 70.041 * Math.log10(height) + 36.76;
+  } else {
+    bodyFat = 163.205 * Math.log10(waist + neck - height) - 97.684 * Math.log10(height) - 78.387;
+  }
+
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item"><span>Body Fat Percentage</span><strong>${bodyFat.toFixed(1)}%</strong></div>
+    </div>
+  `);
+}
+
+function initBodyFatCalculator() {
+  const btn = document.getElementById("bodyFatBtn");
+  const inputs = ["waist", "neck", "height"];
+
+  if (!btn) return;
+
+  btn.addEventListener("click", calculateBodyFat);
+
+  inputs.forEach(id => {
+    const input = document.getElementById(id);
+    if (input) input.addEventListener("input", calculateBodyFat);
+  });
+}
+
+// ===============================
+// NEW: IDEAL WEIGHT CALCULATOR
+// ===============================
+
+function calculateIdealWeight() {
+  const gender = document.getElementById("gender").value;
+  const heightCm = parseFloat(document.getElementById("height").value);
+  const box = document.getElementById("idealWeightResultsBox");
+
+  if (isNaN(heightCm) || heightCm <= 0) {
+    return showError(box, "Please enter a valid height.");
+  }
+
+  const heightIn = heightCm / 2.54;
+
+  let devine, robinson, miller;
+
+  if (gender === "male") {
+    devine = 50 + 2.3 * (heightIn - 60);
+    robinson = 52 + 1.9 * (heightIn - 60);
+    miller = 56.2 + 1.41 * (heightIn - 60);
+  } else {
+    devine = 45.5 + 2.3 * (heightIn - 60);
+    robinson = 49 + 1.7 * (heightIn - 60);
+    miller = 53.1 + 1.36 * (heightIn - 60);
+  }
+
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item"><span>Devine Formula</span><strong>${devine.toFixed(1)} kg</strong></div>
+      <div class="result-item"><span>Robinson Formula</span><strong>${robinson.toFixed(1)} kg</strong></div>
+      <div class="result-item"><span>Miller Formula</span><strong>${miller.toFixed(1)} kg</strong></div>
+    </div>
+  `);
+}
+
+function initIdealWeightCalculator() {
+  const btn = document.getElementById("idealWeightBtn");
+  const input = document.getElementById("height");
+
+  if (!btn) return;
+
+  btn.addEventListener("click", calculateIdealWeight);
+  if (input) input.addEventListener("input", calculateIdealWeight);
+}
+
+// ===============================
 // GOLF DISTANCE
 // ===============================
 
@@ -1038,6 +1150,176 @@ function calculateGolfDistance() {
       </div>
     </div>
   `);
+}
+
+// ===============================
+// NEW: CURRENCY CONVERTER (Real-time)
+// ===============================
+
+async function convertCurrency() {
+  const amount = parseFloat(document.getElementById("amount").value);
+  const from = document.getElementById("fromCurrency").value;
+  const to = document.getElementById("toCurrency").value;
+  const box = document.getElementById("currencyResultsBox");
+
+  if (isNaN(amount) || amount <= 0) {
+    return showError(box, "Please enter a valid amount.");
+  }
+
+  if (from === to) {
+    return renderResult(box, `<div class="result-grid"><div class="result-item"><span>Result</span><strong>${amount} ${to}</strong></div></div>`);
+  }
+
+  box.innerHTML = `<p>Loading latest rates...</p>`;
+
+  try {
+    const response = await fetch(`https://api.frankfurter.app/latest?from=${from}&to=${to}`);
+    const data = await response.json();
+
+    const rate = data.rates[to];
+    const converted = (amount * rate).toFixed(2);
+
+    renderResult(box, `
+      <div class="result-grid">
+        <div class="result-item"><span>Converted Amount</span><strong>${converted} ${to}</strong></div>
+        <div class="result-item"><span>Exchange Rate</span><strong>1 ${from} = ${rate.toFixed(4)} ${to}</strong></div>
+      </div>
+    `);
+  } catch (error) {
+    showError(box, "Could not fetch exchange rates. Please try again later.");
+  }
+}
+
+function initCurrencyConverter() {
+  const btn = document.getElementById("currencyBtn");
+  const inputs = ["amount", "fromCurrency", "toCurrency"];
+
+  if (!btn) return;
+
+  btn.addEventListener("click", convertCurrency);
+
+  inputs.forEach(id => {
+    const input = document.getElementById(id);
+    if (input) input.addEventListener("change", convertCurrency);
+  });
+}
+
+// ===============================
+// NEW: UNIT CONVERTER
+// ===============================
+
+const unitConversions = {
+  // Length
+  m: { km: 0.001, cm: 100, mm: 1000, ft: 3.28084, in: 39.3701, mi: 0.000621371 },
+  km: { m: 1000, cm: 100000, mm: 1000000, ft: 3280.84, in: 39370.1, mi: 0.621371 },
+  cm: { m: 0.01, km: 0.00001, mm: 10, ft: 0.0328084, in: 0.393701, mi: 0.00000621371 },
+  mm: { m: 0.001, km: 0.000001, cm: 0.1, ft: 0.00328084, in: 0.0393701, mi: 0.000000621371 },
+  ft: { m: 0.3048, km: 0.0003048, cm: 30.48, mm: 304.8, in: 12, mi: 0.000189394 },
+  in: { m: 0.0254, km: 0.0000254, cm: 2.54, mm: 25.4, ft: 0.0833333, mi: 0.0000157828 },
+  mi: { m: 1609.34, km: 1.60934, cm: 160934, mm: 1609340, ft: 5280, in: 63360 },
+
+  // Temperature (handled separately)
+};
+
+function calculateUnitConversion() {
+  const value = parseFloat(document.getElementById("value").value);
+  const from = document.getElementById("fromUnit").value;
+  const to = document.getElementById("toUnit").value;
+  const box = document.getElementById("unitResultsBox");
+
+  if (isNaN(value) || value <= 0) {
+    return showError(box, "Please enter a valid value.");
+  }
+
+  let result;
+
+  if (from === to) {
+    result = value;
+  } else if (from === "c" || from === "f" || from === "k" || to === "c" || to === "f" || to === "k") {
+    // Temperature conversion
+    let celsius = value;
+    if (from === "f") celsius = (value - 32) * 5 / 9;
+    if (from === "k") celsius = value - 273.15;
+
+    if (to === "c") result = celsius;
+    else if (to === "f") result = celsius * 9 / 5 + 32;
+    else if (to === "k") result = celsius + 273.15;
+  } else {
+    // Standard unit conversion
+    const factor = unitConversions[from]?.[to] || 1;
+    result = value * factor;
+  }
+
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item"><span>Converted Value</span><strong>${result.toFixed(4)} ${to}</strong></div>
+    </div>
+  `);
+}
+
+function initUnitConverter() {
+  const btn = document.getElementById("unitBtn");
+  const inputs = ["value", "fromUnit", "toUnit"];
+
+  if (!btn) return;
+
+  btn.addEventListener("click", calculateUnitConversion);
+
+  inputs.forEach(id => {
+    const input = document.getElementById(id);
+    if (input) input.addEventListener("change", calculateUnitConversion);
+  });
+}
+
+// ===============================
+// NEW: LENGTH CONVERTER
+// ===============================
+
+function calculateLengthConversion() {
+  const value = parseFloat(document.getElementById("lengthValue").value);
+  const from = document.getElementById("fromLength").value;
+  const to = document.getElementById("toLength").value;
+  const box = document.getElementById("lengthResultsBox");
+
+  if (isNaN(value) || value <= 0) {
+    return showError(box, "Please enter a valid value.");
+  }
+
+  const lengthConversions = {
+    m: { km: 0.001, cm: 100, mm: 1000, ft: 3.28084, in: 39.3701, mi: 0.000621371 },
+    km: { m: 1000, cm: 100000, mm: 1000000, ft: 3280.84, in: 39370.1, mi: 0.621371 },
+    cm: { m: 0.01, km: 0.00001, mm: 10, ft: 0.0328084, in: 0.393701, mi: 0.00000621371 },
+    mm: { m: 0.001, km: 0.000001, cm: 0.1, ft: 0.00328084, in: 0.0393701, mi: 0.000000621371 },
+    ft: { m: 0.3048, km: 0.0003048, cm: 30.48, mm: 304.8, in: 12, mi: 0.000189394 },
+    in: { m: 0.0254, km: 0.0000254, cm: 2.54, mm: 25.4, ft: 0.0833333, mi: 0.0000157828 },
+    mi: { m: 1609.34, km: 1.60934, cm: 160934, mm: 1609340, ft: 5280, in: 63360 }
+  };
+
+  let result = value;
+  if (from !== to) {
+    const factor = lengthConversions[from]?.[to] || 1;
+    result = value * factor;
+  }
+
+  renderResult(box, `
+    <div class="result-grid">
+      <div class="result-item"><span>Converted Length</span><strong>${result.toFixed(4)} ${to}</strong></div>
+    </div>
+  `);
+}
+
+function initLengthConverter() {
+  const btn = document.getElementById("lengthBtn");
+  const inputs = ["lengthValue", "fromLength", "toLength"];
+
+  if (!btn) return;
+
+  btn.addEventListener("click", calculateLengthConversion);
+
+  inputs.forEach(id => {
+    const input = document.getElementById(id);
+    if (input) input.addEventListener("change", calculateLengthConversion);
+  });
 }
 
 // ===============================

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Body Fat Percentage Calculator | Estimate Body Fat | SakConvert</title>
+	<meta name="description"
+		content="Free Body Fat Percentage Calculator. Estimate your body fat percentage using the US Navy method based on simple body measurements." />
+	<link rel="canonical" href="https://sakconvert.com/calculators/body-fat-percentage-calculator/" />
+	<link rel="stylesheet" href="/style.css?v=163">
+	<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+</head>
+
+<body data-calculator="body-fat-percentage">
+
+	<header class="site-header">
+		<div class="container header-inner">
+			<a href="/" class="logo"><img src="/images/logo.svg" alt="SakConvert"></a>
+			<button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+			<nav class="nav" id="siteNav">
+				<a href="/#calculators">Calculators</a>
+				<a href="/#converters">Converters</a>
+				<a href="/#seo">SEO</a>
+				<a href="/articles/">Articles</a>
+				<a href="/#about">About</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="breadcrumb">
+			<div class="container"><a href="/">Home</a> → <span>Body Fat Percentage Calculator</span></div>
+		</section>
+
+		<section class="hero">
+			<div class="container">
+				<a href="/#health-fitness" class="eyebrow eyebrow-link">Health & Fitness</a>
+				<h1>Body Fat Percentage Calculator</h1>
+				<p class="hero-text">Estimate your body fat percentage using the US Navy method with simple body measurements.
+				</p>
+			</div>
+		</section>
+
+		<section class="calculator-section">
+			<div class="container">
+				<div class="calculator-layout">
+					<div class="calculator-card">
+						<h2>Calculate Body Fat %</h2>
+						<div class="form-group"><label for="gender">Gender</label>
+							<select id="gender">
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+							</select>
+						</div>
+						<div class="form-group"><label for="waist">Waist Circumference (cm)</label><input type="number" id="waist"
+								placeholder="e.g. 85"></div>
+						<div class="form-group"><label for="neck">Neck Circumference (cm)</label><input type="number" id="neck"
+								placeholder="e.g. 38"></div>
+						<div class="form-group"><label for="height">Height (cm)</label><input type="number" id="height"
+								placeholder="e.g. 175"></div>
+						<button class="calculate-btn" id="bodyFatBtn">Calculate Body Fat %</button>
+						<div class="results-box" id="bodyFatResultsBox">
+							<p>Enter your measurements above.</p>
+						</div>
+					</div>
+
+					<div class="info-card">
+						<h2>US Navy Method</h2>
+						<div class="formula-box">Body Fat % = 86.010 × log₁₀(waist - neck) - 70.041 × log₁₀(height) + 36.76 (men)
+						</div>
+						<p>Simple and reliable estimate using circumference measurements.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="content-section">
+			<div class="container">
+				<div class="content-narrow">
+					<h2>What is Body Fat Percentage?</h2>
+					<p>Body fat percentage is the amount of fat in your body compared to your total body weight. It’s a better
+						health indicator than weight or BMI alone.</p>
+
+					<h3>How to Use This Calculator</h3>
+					<p>Select your gender, then enter your waist, neck, and height measurements in centimeters. The calculator
+						uses the US Navy method for a quick and reliable estimate.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="faq-section">
+			<div class="container">
+				<div class="content-narrow">
+					<h2>Frequently Asked Questions</h2>
+
+					<h3>How accurate is this calculator?</h3>
+					<p>It uses the US Navy method, which is a well-established and reasonably accurate field method. For clinical
+						accuracy, a DEXA scan is best.</p>
+
+					<h3>Do I need to measure in cm or inches?</h3>
+					<p>This calculator uses centimeters. Convert inches to cm by multiplying by 2.54 if needed.</p>
+
+					<h3>What is a healthy body fat percentage?</h3>
+					<p>Healthy ranges vary by age and gender. Generally: Men 10-20%, Women 18-28% is considered healthy.</p>
+
+					<h3>Should I measure in the morning or evening?</h3>
+					<p>Measure consistently at the same time of day (preferably morning) for the most accurate tracking.</p>
+
+					<h3>Can women use this calculator?</h3>
+					<p>Yes. The formula adjusts automatically based on the gender you select.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
+		<section class="related-tools">
+			<div class="container">
+				<h2>Related Health & Fitness Calculators</h2>
+				<div class="tool-grid">
+
+					<a href="/calculators/bmi-calculator/" class="tool-card">
+						<div class="tool-icon">⚖️</div>
+						<h3>BMI Calculator</h3>
+						<ul class="tool-features">
+							<li>BMI Score</li>
+							<li>Category</li>
+							<li>Healthy Range</li>
+						</ul>
+						<p>Calculate BMI and healthy weight range.</p>
+					</a>
+
+					<a href="/calculators/tdee-calculator/" class="tool-card">
+						<div class="tool-icon">🔥</div>
+						<h3>TDEE Calculator</h3>
+						<ul class="tool-features">
+							<li>Daily Calories</li>
+							<li>Maintenance</li>
+							<li>Activity Levels</li>
+						</ul>
+						<p>Estimate your daily calorie needs.</p>
+					</a>
+
+					<a href="/calculators/ideal-weight-calculator/" class="tool-card">
+						<div class="tool-icon">🎯</div>
+						<h3>Ideal Weight Calculator</h3>
+						<ul class="tool-features">
+							<li>Ideal Weight Range</li>
+							<li>Multiple Formulas</li>
+						</ul>
+						<p>Find your ideal weight range.</p>
+					</a>
+
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container footer-inner">
+			<p>© 2026 <a href="/">SakConvert</a>. All rights reserved.</p>
+			<div class="footer-links">
+				<a href="/#about">About</a><a href="/contact/">Contact</a><a href="/privacy-policy/">Privacy Policy</a>
+				<a href="/terms-and-conditions/">Terms & Conditions</a><a href="/cookie-policy/">Cookie Policy</a>
+			</div>
+		</div>
+	</footer>
+
+	<script src="/script.js?v=163"></script>
+
+</body>
+
+</html>

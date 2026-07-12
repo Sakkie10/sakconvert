@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Currency Converter | Real-Time Exchange Rates | SakConvert</title>
+	<meta name="description"
+		content="Free Currency Converter with real-time exchange rates. Convert between major world currencies instantly." />
+	<link rel="canonical" href="https://sakconvert.com/calculators/currency-converter/" />
+	<link rel="stylesheet" href="/style.css?v=163">
+	<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+</head>
+
+<body data-calculator="currency">
+
+	<header class="site-header">
+		<div class="container header-inner">
+			<a href="/" class="logo"><img src="/images/logo.svg" alt="SakConvert"></a>
+			<button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+			<nav class="nav" id="siteNav">
+				<a href="/#calculators">Calculators</a>
+				<a href="/#converters">Converters</a>
+				<a href="/#seo">SEO</a>
+				<a href="/articles/">Articles</a>
+				<a href="/#about">About</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="breadcrumb">
+			<div class="container"><a href="/">Home</a> → <span>Currency Converter</span></div>
+		</section>
+
+		<section class="hero">
+			<div class="container">
+				<a href="/#converters" class="eyebrow eyebrow-link">Converters</a>
+				<h1>Currency Converter</h1>
+				<p class="hero-text">Convert between major currencies with real-time exchange rates.</p>
+			</div>
+		</section>
+
+		<section class="calculator-section">
+			<div class="container">
+				<div class="calculator-layout">
+					<div class="calculator-card">
+						<h2>Convert Currency</h2>
+						<div class="form-group"><label for="amount">Amount</label><input type="number" id="amount" value="100">
+						</div>
+						<div class="form-group"><label for="fromCurrency">From</label>
+							<select id="fromCurrency">
+								<option value="USD">USD - US Dollar</option>
+								<option value="EUR">EUR - Euro</option>
+								<option value="GBP">GBP - British Pound</option>
+								<option value="JPY">JPY - Japanese Yen</option>
+								<option value="INR">INR - Indian Rupee</option>
+							</select>
+						</div>
+						<div class="form-group"><label for="toCurrency">To</label>
+							<select id="toCurrency">
+								<option value="EUR">EUR - Euro</option>
+								<option value="USD">USD - US Dollar</option>
+								<option value="GBP">GBP - British Pound</option>
+								<option value="JPY">JPY - Japanese Yen</option>
+								<option value="INR">INR - Indian Rupee</option>
+							</select>
+						</div>
+						<button class="calculate-btn" id="currencyBtn">Convert</button>
+						<div class="results-box" id="currencyResultsBox">
+							<p>Enter amount and select currencies.</p>
+						</div>
+					</div>
+
+					<div class="info-card">
+						<h2>Real-Time Rates</h2>
+						<p>Powered by Frankfurter.app (European Central Bank data)</p>
+						<p>Rates are updated regularly throughout the day.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="content-section">
+			<div class="container">
+				<div class="content-narrow">
+					<h2>Currency Converter</h2>
+					<p>Quickly convert between popular world currencies using live exchange rates.</p>
+
+					<h3>How to Use</h3>
+					<p>Enter the amount, choose the currency you’re converting from, and select the target currency.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="faq-section">
+			<div class="container">
+				<div class="content-narrow">
+					<h2>Frequently Asked Questions</h2>
+
+					<h3>Are the exchange rates real-time?</h3>
+					<p>Yes. Rates are fetched from reliable sources and updated multiple times per day.</p>
+
+					<h3>Does this include conversion fees?</h3>
+					<p>No. This shows the mid-market rate. Banks and exchange services usually add fees.</p>
+
+					<h3>Can I convert between any currencies?</h3>
+					<p>Currently supports major currencies. More will be added soon.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
+		<section class="related-tools">
+			<div class="container">
+				<h2>Related Converters & Calculators</h2>
+				<div class="tool-grid">
+
+					<a href="/calculators/percentage-calculator/" class="tool-card">
+						<div class="tool-icon">％</div>
+						<h3>Percentage Calculator</h3>
+						<ul class="tool-features">
+							<li>Percent Of</li>
+							<li>Percentage Change</li>
+						</ul>
+						<p>Solve everyday percentage calculations.</p>
+					</a>
+
+					<a href="/calculators/discount-calculator/" class="tool-card">
+						<div class="tool-icon">🏷️</div>
+						<h3>Discount Calculator</h3>
+						<ul class="tool-features">
+							<li>Sale Price</li>
+							<li>Savings</li>
+						</ul>
+						<p>Calculate sale prices and savings.</p>
+					</a>
+
+					<a href="/calculators/loan-emi-calculator/" class="tool-card">
+						<div class="tool-icon">💳</div>
+						<h3>Loan EMI Calculator</h3>
+						<ul class="tool-features">
+							<li>Monthly EMI</li>
+							<li>Total Interest</li>
+						</ul>
+						<p>Calculate loan payments accurately.</p>
+					</a>
+
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container footer-inner">
+			<p>© 2026 <a href="/">SakConvert</a>. All rights reserved.</p>
+			<div class="footer-links">
+				<a href="/#about">About</a><a href="/contact/">Contact</a><a href="/privacy-policy/">Privacy Policy</a>
+				<a href="/terms-and-conditions/">Terms & Conditions</a><a href="/cookie-policy/">Cookie Policy</a>
+			</div>
+		</div>
+	</footer>
+
+	<script src="/script.js?v=163"></script>
+
+</body>
+
+</html>
