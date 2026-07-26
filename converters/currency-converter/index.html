@@ -7,7 +7,7 @@
 	<title>Currency Converter | Real-Time Exchange Rates | SakConvert</title>
 	<meta name="description" content="Free Currency Converter with real-time exchange rates." />
 	<link rel="canonical" href="https://sakconvert.com/converters/currency-converter/" />
-	<link rel="stylesheet" href="/style.css?v=180">
+	<link rel="stylesheet" href="/style.css?v=181">
 	<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 </head>
 
@@ -21,7 +21,7 @@
 			</button>
 			<nav class="nav" id="siteNav">
 				<a href="/calculators/">Calculators</a>
-				<a href="/converters">Converters</a>
+				<a href="/converters/">Converters</a>
 				<a href="/#seo">SEO</a>
 				<a href="/articles/">Articles</a>
 				<a href="/#about">About</a>
@@ -31,12 +31,16 @@
 
 	<main>
 		<section class="breadcrumb">
-			<div class="container"><a href="/">Home</a> → <span>Currency Converter</span></div>
+			<div class="container">
+				<a href="/">Home</a> →
+				<a href="/converters/">Converters</a> →
+				<span>Currency Converter</span>
+			</div>
 		</section>
 
 		<section class="hero">
 			<div class="container">
-				<a href="/#converters" class="eyebrow eyebrow-link">Converters</a>
+				<a href="/converters/" class="eyebrow eyebrow-link">Converters</a>
 				<h1>Currency Converter</h1>
 				<p class="hero-text">Convert between major currencies with real-time exchange rates.</p>
 			</div>
@@ -47,6 +51,7 @@
 			<div class="container">
 				<div class="calculator-layout">
 
+					<!-- Main Converter Card -->
 					<div class="calculator-card currency-card">
 						<h2>Convert Currency</h2>
 
@@ -85,9 +90,9 @@
 									<input type="number" id="toAmount" readonly>
 									<select id="toCurrency">
 										<optgroup label="Popular">
-											<option value="USD" selected>🇺🇸 USD - US Dollar</option>
+											<option value="USD">🇺🇸 USD - US Dollar</option>
 											<option value="EUR">🇪🇺 EUR - Euro</option>
-											<option value="GBP">🇬🇧 GBP - British Pound</option>
+											<option value="GBP" selected>🇬🇧 GBP - British Pound</option>
 											<option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
 											<option value="AUD">🇦🇺 AUD - Australian Dollar</option>
 										</optgroup>
@@ -105,15 +110,17 @@
 
 						<div class="currency-result" id="currencyResultsBox">
 							<div class="rate-main" id="rateText">Enter an amount to convert</div>
-							<div class="rate-sub">Mid-market rate • Powered by exchangerate</div>
+							<div class="rate-sub" id="rateSub">Mid-market rate • Free currency data</div>
 						</div>
 					</div>
 
+					<!-- Info Card (sibling, not nested) -->
 					<div class="info-card">
 						<h2>Real-Time Rates</h2>
-						<p>Powered by exchangerate.</p>
+						<p>Free currency data from multiple reliable sources.</p>
 						<p>Rates are updated regularly throughout the day.</p>
-						<p class="note">This shows the mid-market rate for informational purposes only. Banks and money transfer
+						<p class="note">This shows the mid-market rate for informational purposes only. Banks and money
+							transfer
 							services usually add fees.</p>
 					</div>
 
@@ -184,13 +191,16 @@
 		<div class="container footer-inner">
 			<p>© 2026 <a href="/">SakConvert</a>. All rights reserved.</p>
 			<div class="footer-links">
-				<a href="/#about">About</a><a href="/contact/">Contact</a><a href="/privacy-policy/">Privacy Policy</a>
-				<a href="/terms-and-conditions/">Terms & Conditions</a><a href="/cookie-policy/">Cookie Policy</a>
+				<a href="/#about">About</a>
+				<a href="/contact/">Contact</a>
+				<a href="/privacy-policy/">Privacy Policy</a>
+				<a href="/terms-and-conditions/">Terms & Conditions</a>
+				<a href="/cookie-policy/">Cookie Policy</a>
 			</div>
 		</div>
 	</footer>
 
-	<script src="/script.js?v=180"></script>
+	<script src="/script.js?v=181"></script>
 
 </body>
 

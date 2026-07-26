@@ -1800,3 +1800,23 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
     width: 90px;
   }
 }
+
+.rate-status {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+.rate-status.cached {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.rate-status.fallback {
+  background: #e0e7ff;
+  color: #3730a3;
+}

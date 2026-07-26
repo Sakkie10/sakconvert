@@ -1153,15 +1153,97 @@ function calculateGolfDistance() {
 }
 
 // ===============================
-// CURRENCY CONVERTER
+// CURRENCY CONVERTER (Reliable + Failsafe)
 // ===============================
 
+let currencyListCache = null;
+let rateCache = {};
+
+// 1. Load & validate currency list
+async function loadCurrencyList() {
+  if (currencyListCache) return currencyListCache;
+
+  const primary = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json";
+  const fallback = "https://latest.currency-api.pages.dev/v1/currencies.json";
+
+  try {
+    const res = await fetch(primary);
+    if (!res.ok) throw new Error("Primary list failed");
+    currencyListCache = await res.json();
+  } catch {
+    const res2 = await fetch(fallback);
+    if (!res2.ok) throw new Error("Fallback list failed");
+    currencyListCache = await res2.json();
+  }
+
+  return currencyListCache;
+}
+
+async function isValidCurrency(code) {
+  const list = await loadCurrencyList();
+  return Boolean(list[code.toLowerCase()]);
+}
+
+// 2. Redundant rate fetcher
+async function fetchCurrencyData(from) {
+  from = from.toLowerCase();
+  const primary = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${from}.json`;
+  const fallback = `https://latest.currency-api.pages.dev/v1/currencies/${from}.json`;
+
+  try {
+    const res = await fetch(primary);
+    if (!res.ok) throw new Error("Primary failed");
+    return { source: "primary", data: await res.json() };
+  } catch {
+    const res2 = await fetch(fallback);
+    if (!res2.ok) throw new Error("Fallback failed");
+    return { source: "fallback", data: await res2.json() };
+  }
+}
+
+// 3. Get rates with caching
+async function getRates(from) {
+  from = from.toLowerCase();
+
+  if (!(await isValidCurrency(from))) {
+    throw new Error(`Invalid currency code: ${from}`);
+  }
+
+  try {
+    const { source, data } = await fetchCurrencyData(from);
+    rateCache[from] = { timestamp: Date.now(), data };
+    return { source, cached: false, data };
+  } catch {
+    if (rateCache[from]) {
+      return {
+        source: "cache",
+        cached: true,
+        data: rateCache[from].data
+      };
+    }
+    throw new Error("Currency API unavailable and no cached data");
+  }
+}
+
+// 4. Structural validation
+function validateCurrencyStructure(data, base) {
+  return (
+    data &&
+    typeof data[base] === "object" &&
+    Object.keys(data[base]).length > 0
+  );
+}
+
+// 5. Main conversion function
 async function convertCurrency() {
   const amountInput = document.getElementById("fromAmount");
   const fromSelect = document.getElementById("fromCurrency");
   const toSelect = document.getElementById("toCurrency");
   const toAmountInput = document.getElementById("toAmount");
   const rateText = document.getElementById("rateText");
+  const rateSub = document.getElementById("rateSub");
+
+  if (!amountInput || !fromSelect || !toSelect || !toAmountInput || !rateText) return;
 
   const amount = parseFloat(amountInput.value);
   const from = fromSelect.value;
@@ -1170,12 +1252,14 @@ async function convertCurrency() {
   if (isNaN(amount) || amount < 0) {
     rateText.textContent = "Enter a valid amount";
     toAmountInput.value = "";
+    if (rateSub) rateSub.textContent = "Mid-market rate • Free currency data";
     return;
   }
 
   if (from === to) {
     toAmountInput.value = amount.toFixed(2);
     rateText.textContent = `1 ${from} = 1.00 ${to}`;
+    if (rateSub) rateSub.textContent = "Mid-market rate • Free currency data";
     return;
   }
 
@@ -1183,30 +1267,47 @@ async function convertCurrency() {
     rateText.textContent = "Fetching rate...";
     toAmountInput.value = "";
 
-    // More reliable free API with good CORS support
-    const url = `https://api.exchangerate.host/latest?base=${from}&symbols=${to}`;
-    const response = await fetch(url);
+    const { data, source, cached } = await getRates(from);
+    const base = from.toLowerCase();
 
-    if (!response.ok) {
-      throw new Error(`HTTP error ${response.status}`);
+    if (!validateCurrencyStructure(data, base)) {
+      throw new Error("Invalid currency data structure");
     }
 
-    const data = await response.json();
-
-    if (!data.success || !data.rates || !data.rates[to]) {
-      throw new Error("Rate not found");
+    const rate = data[base][to.toLowerCase()];
+    if (rate === undefined) {
+      throw new Error(`No rate available for ${from} → ${to}`);
     }
 
-    const rate = data.rates[to];
     const converted = amount * rate;
-
     toAmountInput.value = converted.toFixed(2);
-    rateText.textContent = `1 ${from} = ${rate.toFixed(4)} ${to}`;
+
+    // Build status text + badge
+    let statusText = `1 ${from} = ${rate.toFixed(4)} ${to}`;
+    let statusBadge = "";
+
+    if (cached) {
+      statusBadge = ` <span class="rate-status cached">Cached</span>`;
+    } else if (source === "fallback") {
+      statusBadge = ` <span class="rate-status fallback">Fallback</span>`;
+    }
+
+    rateText.innerHTML = statusText + statusBadge;
+
+    // Update sub text
+    if (rateSub) {
+      if (cached) {
+        rateSub.textContent = "Using last known rates (API temporarily unavailable)";
+      } else {
+        rateSub.textContent = "Mid-market rate • Free currency data";
+      }
+    }
 
   } catch (error) {
     console.error("Currency conversion error:", error);
     rateText.textContent = "Unable to fetch rate. Please try again.";
     toAmountInput.value = "";
+    if (rateSub) rateSub.textContent = "Mid-market rate • Free currency data";
   }
 }
 
@@ -1218,12 +1319,10 @@ function swapCurrencies() {
 
   if (!fromSelect || !toSelect) return;
 
-  // Swap currencies
   const tempCurrency = fromSelect.value;
   fromSelect.value = toSelect.value;
   toSelect.value = tempCurrency;
 
-  // Swap amounts
   const tempAmount = fromAmount.value;
   fromAmount.value = toAmount.value || "";
   toAmount.value = tempAmount;
@@ -1246,6 +1345,9 @@ function initCurrencyConverter() {
   fromCurrency.addEventListener("change", convertCurrency);
   toCurrency.addEventListener("change", convertCurrency);
   swapBtn.addEventListener("click", swapCurrencies);
+
+  // Pre-load currency list in background
+  loadCurrencyList().catch(err => console.warn("Currency list preload failed:", err));
 
   // Initial conversion
   convertCurrency();

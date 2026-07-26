@@ -4,11 +4,14 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 	<title>Length Converter | Convert Meters, Feet, Miles & More | SakConvert</title>
 	<meta name="description"
-		content="Free Length Converter. Convert between meters, feet, inches, miles, kilometers, and more." />
-	<link rel="canonical" href="https://sakconvert.com/calculators/length-converter/" />
-	<link rel="stylesheet" href="/style.css?v=180">
+		content="Free Length Converter. Convert between meters, feet, inches, miles, kilometers, centimeters and more. Accurate conversions based on international standards." />
+
+	<link rel="canonical" href="https://sakconvert.com/converters/length/" />
+
+	<link rel="stylesheet" href="/style.css?v=181">
 	<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 </head>
 
@@ -16,13 +19,19 @@
 
 	<header class="site-header">
 		<div class="container header-inner">
-			<a href="/" class="logo"><img src="/images/logo.svg" alt="SakConvert"></a>
+			<a href="/" class="logo">
+				<img src="/images/logo.svg" alt="SakConvert">
+			</a>
+
 			<button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
-				<span></span><span></span><span></span>
+				<span></span>
+				<span></span>
+				<span></span>
 			</button>
+
 			<nav class="nav" id="siteNav">
 				<a href="/calculators/">Calculators</a>
-				<a href="/converters">Converters</a>
+				<a href="/converters/">Converters</a>
 				<a href="/#seo">SEO</a>
 				<a href="/articles/">Articles</a>
 				<a href="/#about">About</a>
@@ -31,26 +40,40 @@
 	</header>
 
 	<main>
+
+		<!-- Breadcrumb -->
 		<section class="breadcrumb">
-			<div class="container"><a href="/">Home</a> → <span>Length Converter</span></div>
+			<div class="container">
+				<a href="/">Home</a> →
+				<a href="/converters/">Converters</a> →
+				<span>Length Converter</span>
+			</div>
 		</section>
 
+		<!-- Hero -->
 		<section class="hero">
 			<div class="container">
-				<a href="/#converters" class="eyebrow eyebrow-link">Converters</a>
+				<a href="/converters/" class="eyebrow eyebrow-link">Converters</a>
 				<h1>Length Converter</h1>
 				<p class="hero-text">Convert between meters, feet, inches, miles, kilometers, and more.</p>
 			</div>
 		</section>
 
+		<!-- Calculator -->
 		<section class="calculator-section">
 			<div class="container">
 				<div class="calculator-layout">
+
 					<div class="calculator-card">
 						<h2>Convert Length</h2>
-						<div class="form-group"><label for="lengthValue">Value</label><input type="number" id="lengthValue"
-								value="100"></div>
-						<div class="form-group"><label for="fromLength">From</label>
+
+						<div class="form-group">
+							<label for="lengthValue">Value</label>
+							<input type="number" id="lengthValue" value="100">
+						</div>
+
+						<div class="form-group">
+							<label for="fromLength">From</label>
 							<select id="fromLength">
 								<option value="m">Meters (m)</option>
 								<option value="km">Kilometers (km)</option>
@@ -61,7 +84,9 @@
 								<option value="mi">Miles (mi)</option>
 							</select>
 						</div>
-						<div class="form-group"><label for="toLength">To</label>
+
+						<div class="form-group">
+							<label for="toLength">To</label>
 							<select id="toLength">
 								<option value="ft">Feet (ft)</option>
 								<option value="m">Meters (m)</option>
@@ -72,29 +97,42 @@
 								<option value="mi">Miles (mi)</option>
 							</select>
 						</div>
+
 						<button class="calculate-btn" id="lengthBtn">Convert</button>
+
 						<div class="results-box" id="lengthResultsBox">
-							<p>Enter value and select units.</p>
+							<p>Enter a value and select units.</p>
 						</div>
 					</div>
 
 					<div class="info-card">
 						<h2>Common Conversions</h2>
-						<p>1 meter = 3.28084 feet<br>
-							1 mile = 1.60934 kilometers</p>
+						<p>
+							1 meter = 3.28084 feet<br>
+							1 foot = 0.3048 meters<br>
+							1 mile = 1.60934 kilometers<br>
+							1 inch = 2.54 centimeters
+						</p>
+						<p class="note" style="margin-top: 16px;">
+							Based on SI and NIST conversion factors.
+						</p>
 					</div>
+
 				</div>
 			</div>
 		</section>
 
+		<!-- Content -->
 		<section class="content-section">
 			<div class="container">
 				<div class="content-narrow">
 					<h2>Length Converter</h2>
-					<p>Quickly convert between common length and distance units.</p>
+					<p>Quickly convert between common length and distance units using accurate international standards.
+					</p>
 
 					<h3>How to Use</h3>
-					<p>Enter a value, select the unit you’re converting from, and choose the target unit.</p>
+					<p>Enter a value, select the unit you’re converting from, and choose the target unit. The result
+						updates instantly.</p>
 				</div>
 			</div>
 		</section>
@@ -109,7 +147,7 @@
 					<p>Meters, kilometers, centimeters, millimeters, feet, inches, and miles.</p>
 
 					<h3>Are the conversions exact?</h3>
-					<p>Yes. We use standard international conversion factors.</p>
+					<p>Yes. We use standard international conversion factors from SI and NIST.</p>
 
 					<h3>Can I convert large distances?</h3>
 					<p>Yes. The converter works for both small and large values.</p>
@@ -117,22 +155,11 @@
 			</div>
 		</section>
 
-		<!-- RELATED TOOLS -->
+		<!-- Related Tools -->
 		<section class="related-tools">
 			<div class="container">
 				<h2>Related Converters</h2>
 				<div class="tool-grid">
-
-					<a href="/converters/unit-converter/" class="tool-card">
-						<div class="tool-icon">🔄</div>
-						<h3>Unit Converter</h3>
-						<ul class="tool-features">
-							<li>Weight</li>
-							<li>Temperature</li>
-							<li>Volume</li>
-						</ul>
-						<p>Convert multiple unit types.</p>
-					</a>
 
 					<a href="/converters/currency-converter/" class="tool-card">
 						<div class="tool-icon">💱</div>
@@ -142,6 +169,16 @@
 							<li>Major Currencies</li>
 						</ul>
 						<p>Convert currencies instantly.</p>
+					</a>
+
+					<a href="/converters/weight-mass/" class="tool-card">
+						<div class="tool-icon">⚖️</div>
+						<h3>Weight & Mass</h3>
+						<ul class="tool-features">
+							<li>kg ↔ lbs</li>
+							<li>Ounces • Grams</li>
+						</ul>
+						<p>Convert weight and mass units.</p>
 					</a>
 
 					<a href="/calculators/percentage-calculator/" class="tool-card">
@@ -157,19 +194,23 @@
 				</div>
 			</div>
 		</section>
+
 	</main>
 
 	<footer class="site-footer">
 		<div class="container footer-inner">
 			<p>© 2026 <a href="/">SakConvert</a>. All rights reserved.</p>
 			<div class="footer-links">
-				<a href="/#about">About</a><a href="/contact/">Contact</a><a href="/privacy-policy/">Privacy Policy</a>
-				<a href="/terms-and-conditions/">Terms & Conditions</a><a href="/cookie-policy/">Cookie Policy</a>
+				<a href="/#about">About</a>
+				<a href="/contact/">Contact</a>
+				<a href="/privacy-policy/">Privacy Policy</a>
+				<a href="/terms-and-conditions/">Terms & Conditions</a>
+				<a href="/cookie-policy/">Cookie Policy</a>
 			</div>
 		</div>
 	</footer>
 
-	<script src="/script.js?v=180"></script>
+	<script src="/script.js?v=181"></script>
 
 </body>
 
