@@ -1335,14 +1335,16 @@ function swapCurrencies() {
 
   if (!fromSelect || !toSelect) return;
 
+  // Swap the currencies only
   const tempCurrency = fromSelect.value;
   fromSelect.value = toSelect.value;
   toSelect.value = tempCurrency;
 
-  const tempAmount = fromAmount.value;
-  fromAmount.value = toAmount.value || "";
-  toAmount.value = tempAmount;
+  // Reset From amount to 1 (XE style)
+  fromAmount.value = "1";
+  toAmount.value = "";
 
+  // Recalculate
   convertCurrency();
 }
 
