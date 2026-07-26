@@ -1246,8 +1246,8 @@ async function convertCurrency() {
   if (!amountInput || !fromSelect || !toSelect || !toAmountInput || !rateText) return;
 
   const amount = parseFloat(amountInput.value);
-  const from = fromSelect.value;
-  const to = toSelect.value;
+  const from = fromSelect.value.toUpperCase();
+  const to = toSelect.value.toUpperCase();
 
   if (isNaN(amount) || amount < 0) {
     rateText.textContent = "Enter a valid amount";
@@ -1267,40 +1267,56 @@ async function convertCurrency() {
     rateText.textContent = "Fetching rate...";
     toAmountInput.value = "";
 
-    const { data, source, cached } = await getRates(from);
-    const base = from.toLowerCase();
+    const fromLower = from.toLowerCase();
+    const toLower = to.toLowerCase();
 
-    if (!validateCurrencyStructure(data, base)) {
-      throw new Error("Invalid currency data structure");
+    // Primary + Fallback
+    let data = null;
+    let source = "primary";
+
+    try {
+      const primaryUrl = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${fromLower}.json`;
+      const res = await fetch(primaryUrl);
+      if (!res.ok) throw new Error("Primary failed");
+      data = await res.json();
+    } catch (err) {
+      console.warn("Primary failed, trying fallback...", err);
+      source = "fallback";
+      const fallbackUrl = `https://latest.currency-api.pages.dev/v1/currencies/${fromLower}.json`;
+      const res2 = await fetch(fallbackUrl);
+      if (!res2.ok) throw new Error("Fallback also failed");
+      data = await res2.json();
     }
 
-    const rate = data[base][to.toLowerCase()];
-    if (rate === undefined) {
-      throw new Error(`No rate available for ${from} → ${to}`);
+    console.log("API Response:", data); // ← This will help us debug
+
+    // The rate lives under data[fromLower][toLower]
+    const rates = data[fromLower];
+
+    if (!rates || typeof rates !== "object") {
+      throw new Error("Invalid rates object in response");
+    }
+
+    const rate = rates[toLower];
+
+    if (rate === undefined || rate === null) {
+      throw new Error(`No rate found for ${from} → ${to}`);
     }
 
     const converted = amount * rate;
     toAmountInput.value = converted.toFixed(2);
 
-    // Build status text + badge
-    let statusText = `1 ${from} = ${rate.toFixed(4)} ${to}`;
+    let statusText = `1 ${from} = ${Number(rate).toFixed(4)} ${to}`;
     let statusBadge = "";
 
-    if (cached) {
-      statusBadge = ` <span class="rate-status cached">Cached</span>`;
-    } else if (source === "fallback") {
+    if (source === "fallback") {
       statusBadge = ` <span class="rate-status fallback">Fallback</span>`;
     }
 
     rateText.innerHTML = statusText + statusBadge;
 
-    // Update sub text
     if (rateSub) {
-      if (cached) {
-        rateSub.textContent = "Using last known rates (API temporarily unavailable)";
-      } else {
-        rateSub.textContent = "Mid-market rate • Free currency data";
-      }
+      rateSub.textContent = "Mid-market rate • Free currency data";
     }
 
   } catch (error) {
