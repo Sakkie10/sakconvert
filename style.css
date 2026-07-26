@@ -1675,7 +1675,7 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   color: var(--text);
 }
 
-/* Currency Converter - XE style */
+/* ===== Currency Converter - Fixed Layout ===== */
 .currency-card {
   max-width: 720px;
 }
@@ -1683,60 +1683,72 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
 .currency-row {
   display: flex;
   align-items: flex-end;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
 }
 
 .currency-box {
   flex: 1;
-  min-width: 240px;
+  min-width: 0;
+  /* important */
+}
+
+.currency-box label {
+  display: block;
+  font-weight: 800;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
 }
 
 .currency-input-group {
   display: flex;
   gap: 8px;
+  width: 100%;
 }
 
 .currency-input-group input {
-  width: 110px;
+  width: 100px;
   flex-shrink: 0;
+  padding: 14px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: #fff;
 }
 
 .currency-input-group select {
   flex: 1;
-}
-
-/*  test polished inputs */
-.currency-input-group input,
-.currency-input-group select {
-  padding: 14px 16px;
+  min-width: 0;
+  padding: 14px 12px;
   border: 1px solid #d1d5db;
-  border-radius: 14px;
-  font-size: 1rem;
-  outline: none;
-  background: #ffffff;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  background: #fff;
 }
 
 .currency-input-group input:focus,
 .currency-input-group select:focus {
   border-color: var(--blue);
-  box-shadow: 0 0 0 4px rgba(10, 80, 254, 0.10);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(10, 80, 254, 0.12);
 }
 
-/* test polished inputs ends here  */
-
+/* Circular Swap Button */
 .swap-btn {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
   border-radius: 50%;
   background: #0A50FE;
   color: white;
   border: none;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 2px;
-  transition: background 0.2s ease, transform 0.15s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .swap-btn:hover {
@@ -1744,22 +1756,23 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   transform: rotate(180deg);
 }
 
+/* Result box */
 .currency-result {
-  margin-top: 24px;
-  padding: 16px 20px;
+  margin-top: 20px;
+  padding: 16px 18px;
   background: #f8fafc;
-  border-radius: 12px;
+  border-radius: 14px;
   border: 1px solid #e2e8f0;
 }
 
 .rate-main {
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
   color: #0f172a;
 }
 
 .rate-sub {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: #64748b;
   margin-top: 4px;
 }
@@ -1770,14 +1783,20 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   color: #64748b;
 }
 
-@media (max-width: 640px) {
+/* Mobile */
+@media (max-width: 700px) {
   .currency-row {
     flex-direction: column;
     align-items: stretch;
+    gap: 16px;
   }
 
   .swap-btn {
     align-self: center;
-    margin: 8px 0;
+    margin: 4px 0;
+  }
+
+  .currency-input-group input {
+    width: 90px;
   }
 }
