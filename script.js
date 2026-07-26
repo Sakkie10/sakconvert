@@ -1157,11 +1157,15 @@ function calculateGolfDistance() {
 // ===============================
 
 async function convertCurrency() {
-  const amount = parseFloat(document.getElementById("fromAmount").value);
-  const from = document.getElementById("fromCurrency").value;
-  const to = document.getElementById("toCurrency").value;
+  const amountInput = document.getElementById("fromAmount");
+  const fromSelect = document.getElementById("fromCurrency");
+  const toSelect = document.getElementById("toCurrency");
   const toAmountInput = document.getElementById("toAmount");
   const rateText = document.getElementById("rateText");
+
+  const amount = parseFloat(amountInput.value);
+  const from = fromSelect.value;
+  const to = toSelect.value;
 
   if (isNaN(amount) || amount < 0) {
     rateText.textContent = "Enter a valid amount";
@@ -1177,55 +1181,33 @@ async function convertCurrency() {
 
   try {
     rateText.textContent = "Fetching rate...";
-    const response = await fetch(
-      `https://api.frankfurter.app/latest?amount=${amount}&from=${from}&to=${to}`
-    );
-    if (!response.ok) throw new Error("Rate fetch failed");
+    toAmountInput.value = "";
+
+    // More reliable free API with good CORS support
+    const url = `https://api.exchangerate.host/latest?base=${from}&symbols=${to}`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}`);
+    }
 
     const data = await response.json();
-    const converted = data.rates[to];
-    const rate = converted / amount;
+
+    if (!data.success || !data.rates || !data.rates[to]) {
+      throw new Error("Rate not found");
+    }
+
+    const rate = data.rates[to];
+    const converted = amount * rate;
 
     toAmountInput.value = converted.toFixed(2);
     rateText.textContent = `1 ${from} = ${rate.toFixed(4)} ${to}`;
+
   } catch (error) {
-    console.error(error);
+    console.error("Currency conversion error:", error);
     rateText.textContent = "Unable to fetch rate. Please try again.";
     toAmountInput.value = "";
   }
-}
-
-function swapCurrencies() {
-  const fromSelect = document.getElementById("fromCurrency");
-  const toSelect = document.getElementById("toCurrency");
-  const fromAmount = document.getElementById("fromAmount");
-  const toAmount = document.getElementById("toAmount");
-
-  const tempCurrency = fromSelect.value;
-  fromSelect.value = toSelect.value;
-  toSelect.value = tempCurrency;
-
-  const tempAmount = fromAmount.value;
-  fromAmount.value = toAmount.value || "";
-  toAmount.value = tempAmount;
-
-  convertCurrency();
-}
-
-function initCurrencyConverter() {
-  const fromAmount = document.getElementById("fromAmount");
-  const fromCurrency = document.getElementById("fromCurrency");
-  const toCurrency = document.getElementById("toCurrency");
-  const swapBtn = document.getElementById("currencyBtn");
-
-  if (!fromAmount || !swapBtn) return;
-
-  fromAmount.addEventListener("input", convertCurrency);
-  fromCurrency.addEventListener("change", convertCurrency);
-  toCurrency.addEventListener("change", convertCurrency);
-  swapBtn.addEventListener("click", swapCurrencies);
-
-  convertCurrency();
 }
 
 // ===============================
