@@ -1210,6 +1210,47 @@ async function convertCurrency() {
   }
 }
 
+function swapCurrencies() {
+  const fromSelect = document.getElementById("fromCurrency");
+  const toSelect = document.getElementById("toCurrency");
+  const fromAmount = document.getElementById("fromAmount");
+  const toAmount = document.getElementById("toAmount");
+
+  if (!fromSelect || !toSelect) return;
+
+  // Swap currencies
+  const tempCurrency = fromSelect.value;
+  fromSelect.value = toSelect.value;
+  toSelect.value = tempCurrency;
+
+  // Swap amounts
+  const tempAmount = fromAmount.value;
+  fromAmount.value = toAmount.value || "";
+  toAmount.value = tempAmount;
+
+  convertCurrency();
+}
+
+function initCurrencyConverter() {
+  const fromAmount = document.getElementById("fromAmount");
+  const fromCurrency = document.getElementById("fromCurrency");
+  const toCurrency = document.getElementById("toCurrency");
+  const swapBtn = document.getElementById("currencyBtn");
+
+  if (!fromAmount || !swapBtn) {
+    console.warn("Currency converter elements not found");
+    return;
+  }
+
+  fromAmount.addEventListener("input", convertCurrency);
+  fromCurrency.addEventListener("change", convertCurrency);
+  toCurrency.addEventListener("change", convertCurrency);
+  swapBtn.addEventListener("click", swapCurrencies);
+
+  // Initial conversion
+  convertCurrency();
+}
+
 // ===============================
 // UNIT CONVERTER (Accurate + Expanded)
 // ===============================
