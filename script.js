@@ -1153,37 +1153,45 @@ function calculateGolfDistance() {
 }
 
 // ===============================
-// NEW: CURRENCY CONVERTER (Modern Inline Layout)
+// CURRENCY CONVERTER
 // ===============================
 
 async function convertCurrency() {
-  const fromAmount = parseFloat(document.getElementById("fromAmount").value);
+  const amount = parseFloat(document.getElementById("fromAmount").value);
   const from = document.getElementById("fromCurrency").value;
   const to = document.getElementById("toCurrency").value;
-  const toAmountField = document.getElementById("toAmount");
+  const toAmountInput = document.getElementById("toAmount");
+  const rateText = document.getElementById("rateText");
 
-  if (isNaN(fromAmount) || fromAmount <= 0) {
-    toAmountField.value = "";
+  if (isNaN(amount) || amount < 0) {
+    rateText.textContent = "Enter a valid amount";
+    toAmountInput.value = "";
     return;
   }
 
   if (from === to) {
-    toAmountField.value = fromAmount.toFixed(2);
+    toAmountInput.value = amount.toFixed(2);
+    rateText.textContent = `1 ${from} = 1.00 ${to}`;
     return;
   }
 
   try {
-    const response = await fetch(`https://api.frankfurter.app/latest?from=${from}&to=${to}`);
-    if (!response.ok) throw new Error();
+    rateText.textContent = "Fetching rate...";
+    const response = await fetch(
+      `https://api.frankfurter.app/latest?amount=${amount}&from=${from}&to=${to}`
+    );
+    if (!response.ok) throw new Error("Rate fetch failed");
 
     const data = await response.json();
-    const rate = data.rates[to];
-    const converted = (fromAmount * rate).toFixed(2);
+    const converted = data.rates[to];
+    const rate = converted / amount;
 
-    toAmountField.value = converted;
+    toAmountInput.value = converted.toFixed(2);
+    rateText.textContent = `1 ${from} = ${rate.toFixed(4)} ${to}`;
   } catch (error) {
-    toAmountField.value = "Error";
-    console.error("Currency conversion failed");
+    console.error(error);
+    rateText.textContent = "Unable to fetch rate. Please try again.";
+    toAmountInput.value = "";
   }
 }
 
@@ -1193,14 +1201,12 @@ function swapCurrencies() {
   const fromAmount = document.getElementById("fromAmount");
   const toAmount = document.getElementById("toAmount");
 
-  // Swap currencies
   const tempCurrency = fromSelect.value;
   fromSelect.value = toSelect.value;
   toSelect.value = tempCurrency;
 
-  // Swap amounts
   const tempAmount = fromAmount.value;
-  fromAmount.value = toAmount.value;
+  fromAmount.value = toAmount.value || "";
   toAmount.value = tempAmount;
 
   convertCurrency();
@@ -1208,25 +1214,18 @@ function swapCurrencies() {
 
 function initCurrencyConverter() {
   const fromAmount = document.getElementById("fromAmount");
-  const fromSelect = document.getElementById("fromCurrency");
-  const toSelect = document.getElementById("toCurrency");
+  const fromCurrency = document.getElementById("fromCurrency");
+  const toCurrency = document.getElementById("toCurrency");
   const swapBtn = document.getElementById("currencyBtn");
 
-  if (!fromAmount || !fromSelect || !toSelect) return;
+  if (!fromAmount || !swapBtn) return;
 
-  // Live updates
   fromAmount.addEventListener("input", convertCurrency);
-  fromSelect.addEventListener("change", convertCurrency);
-  toSelect.addEventListener("change", convertCurrency);
+  fromCurrency.addEventListener("change", convertCurrency);
+  toCurrency.addEventListener("change", convertCurrency);
+  swapBtn.addEventListener("click", swapCurrencies);
 
-  // Swap button
-  if (swapBtn) {
-    swapBtn.textContent = "↔ Swap";
-    swapBtn.addEventListener("click", swapCurrencies);
-  }
-
-  // Initial conversion
-  setTimeout(convertCurrency, 300);
+  convertCurrency();
 }
 
 // ===============================

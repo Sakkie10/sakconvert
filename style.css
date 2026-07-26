@@ -1674,3 +1674,110 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   margin-bottom: 8px;
   color: var(--text);
 }
+
+/* Currency Converter - XE style */
+.currency-card {
+  max-width: 720px;
+}
+
+.currency-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.currency-box {
+  flex: 1;
+  min-width: 240px;
+}
+
+.currency-input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.currency-input-group input {
+  width: 110px;
+  flex-shrink: 0;
+}
+
+.currency-input-group select {
+  flex: 1;
+}
+
+/*  test polished inputs */
+.currency-input-group input,
+.currency-input-group select {
+  padding: 14px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 14px;
+  font-size: 1rem;
+  outline: none;
+  background: #ffffff;
+}
+
+.currency-input-group input:focus,
+.currency-input-group select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 4px rgba(10, 80, 254, 0.10);
+}
+
+/* test polished inputs ends here  */
+
+.swap-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #0A50FE;
+  color: white;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-bottom: 2px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.swap-btn:hover {
+  background: #0840d1;
+  transform: rotate(180deg);
+}
+
+.currency-result {
+  margin-top: 24px;
+  padding: 16px 20px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.rate-main {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.rate-sub {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.info-card .note {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+@media (max-width: 640px) {
+  .currency-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .swap-btn {
+    align-self: center;
+    margin: 8px 0;
+  }
+}

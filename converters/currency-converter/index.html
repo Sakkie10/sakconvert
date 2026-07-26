@@ -7,7 +7,7 @@
 	<title>Currency Converter | Real-Time Exchange Rates | SakConvert</title>
 	<meta name="description" content="Free Currency Converter with real-time exchange rates." />
 	<link rel="canonical" href="https://sakconvert.com/converters/currency-converter/" />
-	<link rel="stylesheet" href="/style.css?v=175">
+	<link rel="stylesheet" href="/style.css?v=176">
 	<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 </head>
 
@@ -42,72 +42,81 @@
 			</div>
 		</section>
 
+		<!-- Calculator Section -->
 		<section class="calculator-section">
 			<div class="container">
 				<div class="calculator-layout">
-					<div class="calculator-card">
+
+					<div class="calculator-card currency-card">
 						<h2>Convert Currency</h2>
 
-						<!-- From -->
-						<div class="form-group">
-							<label>From</label>
-							<div class="currency-input">
-								<input type="number" id="fromAmount" value="100" style="width: 120px;">
-								<select id="fromCurrency" class="currency-select">
-									<!-- Popular -->
-									<optgroup label="Popular">
-										<option value="USD">🇺🇸 USD - US Dollar</option>
-										<option value="EUR">🇪🇺 EUR - Euro</option>
-										<option value="GBP">🇬🇧 GBP - British Pound</option>
-										<option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
-										<option value="AUD">🇦🇺 AUD - Australian Dollar</option>
-									</optgroup>
-									<optgroup label="All Currencies">
-										<option value="JPY">🇯🇵 JPY - Japanese Yen</option>
-										<option value="INR">🇮🇳 INR - Indian Rupee</option>
-										<option value="BRL">🇧🇷 BRL - Brazilian Real</option>
-										<option value="MXN">🇲🇽 MXN - Mexican Peso</option>
-										<option value="CHF">🇨🇭 CHF - Swiss Franc</option>
-									</optgroup>
-								</select>
+						<div class="currency-row">
+							<!-- FROM -->
+							<div class="currency-box">
+								<label>From</label>
+								<div class="currency-input-group">
+									<input type="number" id="fromAmount" value="100">
+									<select id="fromCurrency">
+										<optgroup label="Popular">
+											<option value="USD">🇺🇸 USD - US Dollar</option>
+											<option value="EUR">🇪🇺 EUR - Euro</option>
+											<option value="GBP">🇬🇧 GBP - British Pound</option>
+											<option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
+											<option value="AUD">🇦🇺 AUD - Australian Dollar</option>
+										</optgroup>
+										<optgroup label="All Currencies">
+											<option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+											<option value="INR">🇮🇳 INR - Indian Rupee</option>
+											<option value="BRL">🇧🇷 BRL - Brazilian Real</option>
+											<option value="MXN">🇲🇽 MXN - Mexican Peso</option>
+											<option value="CHF">🇨🇭 CHF - Swiss Franc</option>
+										</optgroup>
+									</select>
+								</div>
+							</div>
+
+							<!-- SWAP -->
+							<button type="button" id="currencyBtn" class="swap-btn" title="Swap currencies">⇄</button>
+
+							<!-- TO -->
+							<div class="currency-box">
+								<label>To</label>
+								<div class="currency-input-group">
+									<input type="number" id="toAmount" readonly>
+									<select id="toCurrency">
+										<optgroup label="Popular">
+											<option value="USD" selected>🇺🇸 USD - US Dollar</option>
+											<option value="EUR">🇪🇺 EUR - Euro</option>
+											<option value="GBP">🇬🇧 GBP - British Pound</option>
+											<option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
+											<option value="AUD">🇦🇺 AUD - Australian Dollar</option>
+										</optgroup>
+										<optgroup label="All Currencies">
+											<option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+											<option value="INR">🇮🇳 INR - Indian Rupee</option>
+											<option value="BRL">🇧🇷 BRL - Brazilian Real</option>
+											<option value="MXN">🇲🇽 MXN - Mexican Peso</option>
+											<option value="CHF">🇨🇭 CHF - Swiss Franc</option>
+										</optgroup>
+									</select>
+								</div>
 							</div>
 						</div>
 
-						<!-- To -->
-						<div class="form-group">
-							<label>To</label>
-							<div class="currency-input">
-								<input type="number" id="toAmount" readonly style="width: 120px; background:#f8f9fa;">
-								<select id="toCurrency" class="currency-select">
-									<!-- Same options as above -->
-									<optgroup label="Popular">
-										<option value="USD">🇺🇸 USD - US Dollar</option>
-										<option value="EUR">🇪🇺 EUR - Euro</option>
-										<option value="GBP">🇬🇧 GBP - British Pound</option>
-										<option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
-										<option value="AUD">🇦🇺 AUD - Australian Dollar</option>
-									</optgroup>
-									<optgroup label="All Currencies">
-										<option value="JPY">🇯🇵 JPY - Japanese Yen</option>
-										<option value="INR">🇮🇳 INR - Indian Rupee</option>
-										<option value="BRL">🇧🇷 BRL - Brazilian Real</option>
-										<option value="MXN">🇲🇽 MXN - Mexican Peso</option>
-										<option value="CHF">🇨🇭 CHF - Swiss Franc</option>
-									</optgroup>
-								</select>
-							</div>
+						<div class="currency-result" id="currencyResultsBox">
+							<div class="rate-main" id="rateText">Enter an amount to convert</div>
+							<div class="rate-sub">Mid-market rate • Powered by Frankfurter.app</div>
 						</div>
-
-						<button class="calculate-btn" id="currencyBtn" style="margin-top: 16px;">Swap
-							Currencies</button>
-						<div class="results-box" id="currencyResultsBox" style="display:none;"></div>
 					</div>
 
 					<div class="info-card">
 						<h2>Real-Time Rates</h2>
-						<p>Powered by Frankfurter.app (European Central Bank data)</p>
+						<p>Powered by Frankfurter.app (European Central Bank data).</p>
 						<p>Rates are updated regularly throughout the day.</p>
+						<p class="note">This shows the mid-market rate for informational purposes only. Banks and money transfer
+							services usually add fees.</p>
 					</div>
+
 				</div>
 			</div>
 		</section>
@@ -181,7 +190,7 @@
 		</div>
 	</footer>
 
-	<script src="/script.js?v=175"></script>
+	<script src="/script.js?v=176"></script>
 
 </body>
 
