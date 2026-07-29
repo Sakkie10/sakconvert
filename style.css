@@ -2357,3 +2357,49 @@ body[data-calculator="currency"] .currency-input-group {
     flex-shrink: 0;
   }
 }
+
+/* XE-style: symbol flush against the number */
+.amount-wrap {
+  gap: 0 !important;
+  padding: 0 12px 0 10px !important;
+  justify-content: flex-start;
+}
+
+.currency-symbol {
+  margin: 0 !important;
+  padding: 0 !important;
+  letter-spacing: 0;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.amount-wrap input {
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-left: 2px !important; /* tiny breathing room only */
+  text-align: left;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Mobile: keep large numbers readable */
+@media (max-width: 700px) {
+  body[data-calculator="currency"] .currency-input-group {
+    grid-template-columns: 1.7fr 0.8fr; /* more room for amount */
+  }
+
+  body[data-calculator="currency"] .amount-wrap {
+    gap: 0 !important;
+    padding: 0 8px 0 8px !important;
+  }
+
+  body[data-calculator="currency"] .amount-wrap input {
+    font-size: 1rem; /* slightly smaller so 100,000,000.00 fits */
+    font-weight: 400;
+    padding-left: 2px !important;
+  }
+
+  body[data-calculator="currency"] .currency-symbol {
+    font-size: 1rem;
+  }
+}
