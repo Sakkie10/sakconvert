@@ -1844,3 +1844,163 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   font-size: 0.95rem;
   margin-top: 0;
 }
+
+/* Prevent horizontal scroll on mobile */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Fix header on mobile */
+@media (max-width: 768px) {
+  .header-inner {
+    height: 64px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .logo img {
+    height: 32px;
+  }
+
+  .menu-toggle {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Currency converter mobile fixes */
+@media (max-width: 700px) {
+  .currency-card {
+    padding: 20px 16px;
+  }
+
+  .currency-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .currency-input-group {
+    width: 100%;
+  }
+
+  .currency-input-group input {
+    width: 90px;
+    flex-shrink: 0;
+  }
+
+  .currency-input-group select {
+    flex: 1;
+    min-width: 0;
+    /* important - stops overflow */
+    font-size: 0.9rem;
+  }
+
+  .swap-btn {
+    align-self: center;
+    margin: 4px 0;
+  }
+}
+
+/* ==================== CUSTOM CURRENCY SELECT (REAL FLAGS) ==================== */
+
+.custom-select {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.custom-select-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text);
+}
+
+.custom-select-trigger:hover,
+.custom-select.open .custom-select-trigger {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(10, 80, 254, 0.12);
+}
+
+.flag-img {
+  width: 22px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.custom-select-options {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  max-height: 280px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(5, 6, 8, 0.12);
+  z-index: 50;
+}
+
+.custom-select.open .custom-select-options {
+  display: block;
+}
+
+.custom-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.custom-option:hover {
+  background: #f8fafc;
+}
+
+.custom-option.selected {
+  background: rgba(10, 80, 254, 0.08);
+  font-weight: 700;
+}
+
+.custom-option-group {
+  padding: 10px 14px 6px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Mobile tweaks for custom select */
+@media (max-width: 700px) {
+  .custom-select-trigger {
+    font-size: 0.9rem;
+    padding: 12px 10px;
+  }
+
+  .flag-img {
+    width: 20px;
+    height: 14px;
+  }
+}

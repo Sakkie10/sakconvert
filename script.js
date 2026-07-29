@@ -1153,101 +1153,24 @@ function calculateGolfDistance() {
 }
 
 // ===============================
-// CURRENCY CONVERTER (Reliable + Failsafe)
+// CURRENCY CONVERTER (Custom Flags)
 // ===============================
 
-let currencyListCache = null;
 let rateCache = {};
 
-// 1. Load & validate currency list
-async function loadCurrencyList() {
-  if (currencyListCache) return currencyListCache;
-
-  const primary = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json";
-  const fallback = "https://latest.currency-api.pages.dev/v1/currencies.json";
-
-  try {
-    const res = await fetch(primary);
-    if (!res.ok) throw new Error("Primary list failed");
-    currencyListCache = await res.json();
-  } catch {
-    const res2 = await fetch(fallback);
-    if (!res2.ok) throw new Error("Fallback list failed");
-    currencyListCache = await res2.json();
-  }
-
-  return currencyListCache;
-}
-
-async function isValidCurrency(code) {
-  const list = await loadCurrencyList();
-  return Boolean(list[code.toLowerCase()]);
-}
-
-// 2. Redundant rate fetcher
-async function fetchCurrencyData(from) {
-  from = from.toLowerCase();
-  const primary = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${from}.json`;
-  const fallback = `https://latest.currency-api.pages.dev/v1/currencies/${from}.json`;
-
-  try {
-    const res = await fetch(primary);
-    if (!res.ok) throw new Error("Primary failed");
-    return { source: "primary", data: await res.json() };
-  } catch {
-    const res2 = await fetch(fallback);
-    if (!res2.ok) throw new Error("Fallback failed");
-    return { source: "fallback", data: await res2.json() };
-  }
-}
-
-// 3. Get rates with caching
-async function getRates(from) {
-  from = from.toLowerCase();
-
-  if (!(await isValidCurrency(from))) {
-    throw new Error(`Invalid currency code: ${from}`);
-  }
-
-  try {
-    const { source, data } = await fetchCurrencyData(from);
-    rateCache[from] = { timestamp: Date.now(), data };
-    return { source, cached: false, data };
-  } catch {
-    if (rateCache[from]) {
-      return {
-        source: "cache",
-        cached: true,
-        data: rateCache[from].data
-      };
-    }
-    throw new Error("Currency API unavailable and no cached data");
-  }
-}
-
-// 4. Structural validation
-function validateCurrencyStructure(data, base) {
-  return (
-    data &&
-    typeof data[base] === "object" &&
-    Object.keys(data[base]).length > 0
-  );
-}
-
-// 5. Main conversion function
 async function convertCurrency() {
   const amountInput = document.getElementById("fromAmount");
-  const fromSelect = document.getElementById("fromCurrency");
-  const toSelect = document.getElementById("toCurrency");
+  const fromHidden = document.getElementById("fromCurrency");
+  const toHidden = document.getElementById("toCurrency");
   const toAmountInput = document.getElementById("toAmount");
   const rateText = document.getElementById("rateText");
   const rateSub = document.getElementById("rateSub");
 
-  if (!amountInput || !fromSelect || !toSelect || !toAmountInput || !rateText) return;
+  if (!amountInput || !fromHidden || !toHidden || !toAmountInput || !rateText) return;
 
   const amount = parseFloat(amountInput.value);
-  const from = fromSelect.value.toUpperCase();
-  const to = toSelect.value.toUpperCase();
+  const from = fromHidden.value.toUpperCase();
+  const to = toHidden.value.toUpperCase();
 
   if (isNaN(amount) || amount < 0) {
     rateText.textContent = "Enter a valid amount";
@@ -1270,7 +1193,6 @@ async function convertCurrency() {
     const fromLower = from.toLowerCase();
     const toLower = to.toLowerCase();
 
-    // Primary + Fallback
     let data = null;
     let source = "primary";
 
@@ -1288,20 +1210,18 @@ async function convertCurrency() {
       data = await res2.json();
     }
 
-    console.log("API Response:", data); // ← This will help us debug
-
-    // The rate lives under data[fromLower][toLower]
     const rates = data[fromLower];
-
     if (!rates || typeof rates !== "object") {
       throw new Error("Invalid rates object in response");
     }
 
     const rate = rates[toLower];
-
     if (rate === undefined || rate === null) {
       throw new Error(`No rate found for ${from} → ${to}`);
     }
+
+    // Cache successful result
+    rateCache[fromLower] = data;
 
     const converted = amount * rate;
     toAmountInput.value = converted.toFixed(2);
@@ -1314,44 +1234,111 @@ async function convertCurrency() {
     }
 
     rateText.innerHTML = statusText + statusBadge;
-
-    if (rateSub) {
-      rateSub.textContent = "Mid-market rate • Free currency data";
-    }
+    if (rateSub) rateSub.textContent = "Mid-market rate • Free currency data";
 
   } catch (error) {
     console.error("Currency conversion error:", error);
+
+    // Try cache
+    const cached = rateCache[from.toLowerCase()];
+    if (cached && cached[from.toLowerCase()] && cached[from.toLowerCase()][to.toLowerCase()] !== undefined) {
+      const rate = cached[from.toLowerCase()][to.toLowerCase()];
+      const converted = amount * rate;
+      toAmountInput.value = converted.toFixed(2);
+      rateText.innerHTML = `1 ${from} = ${Number(rate).toFixed(4)} ${to} <span class="rate-status cached">Cached</span>`;
+      if (rateSub) rateSub.textContent = "Using last known rates (API temporarily unavailable)";
+      return;
+    }
+
     rateText.textContent = "Unable to fetch rate. Please try again.";
     toAmountInput.value = "";
     if (rateSub) rateSub.textContent = "Mid-market rate • Free currency data";
   }
 }
 
+function initCustomSelect(selectId, hiddenId) {
+  const root = document.getElementById(selectId);
+  const hidden = document.getElementById(hiddenId);
+  if (!root || !hidden) return;
+
+  const trigger = root.querySelector(".custom-select-trigger");
+  const optionsBox = root.querySelector(".custom-select-options");
+
+  // Open / close
+  trigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    document.querySelectorAll(".custom-select.open").forEach((el) => {
+      if (el !== root) el.classList.remove("open");
+    });
+    root.classList.toggle("open");
+  });
+
+  // Select option
+  optionsBox.addEventListener("click", (e) => {
+    const option = e.target.closest(".custom-option");
+    if (!option) return;
+
+    const code = option.dataset.value;
+    const flag = option.dataset.flag;
+    const text = option.querySelector("span").textContent;
+
+    hidden.value = code;
+    trigger.dataset.value = code;
+    trigger.innerHTML = `
+      <img src="https://flagcdn.com/w40/${flag}.png" alt="" class="flag-img">
+      <span>${text}</span>
+    `;
+
+    optionsBox.querySelectorAll(".custom-option").forEach((o) => o.classList.remove("selected"));
+    option.classList.add("selected");
+    root.classList.remove("open");
+
+    convertCurrency();
+  });
+}
+
 function swapCurrencies() {
-  const fromSelect = document.getElementById("fromCurrency");
-  const toSelect = document.getElementById("toCurrency");
+  const fromHidden = document.getElementById("fromCurrency");
+  const toHidden = document.getElementById("toCurrency");
+  const fromTrigger = document.querySelector("#fromCurrencySelect .custom-select-trigger");
+  const toTrigger = document.querySelector("#toCurrencySelect .custom-select-trigger");
   const fromAmount = document.getElementById("fromAmount");
   const toAmount = document.getElementById("toAmount");
 
-  if (!fromSelect || !toSelect) return;
+  if (!fromHidden || !toHidden || !fromTrigger || !toTrigger) return;
 
-  // Swap the currencies only
-  const tempCurrency = fromSelect.value;
-  fromSelect.value = toSelect.value;
-  toSelect.value = tempCurrency;
+  // Swap currency codes
+  const tempCode = fromHidden.value;
+  fromHidden.value = toHidden.value;
+  toHidden.value = tempCode;
 
-  // Reset From amount to 1 (XE style)
+  // Swap trigger UI
+  const tempHTML = fromTrigger.innerHTML;
+  const tempValue = fromTrigger.dataset.value;
+
+  fromTrigger.innerHTML = toTrigger.innerHTML;
+  fromTrigger.dataset.value = toTrigger.dataset.value;
+
+  toTrigger.innerHTML = tempHTML;
+  toTrigger.dataset.value = tempValue;
+
+  // Update selected states in lists
+  document.querySelectorAll("#fromCurrencySelect .custom-option").forEach((o) => {
+    o.classList.toggle("selected", o.dataset.value === fromHidden.value);
+  });
+  document.querySelectorAll("#toCurrencySelect .custom-option").forEach((o) => {
+    o.classList.toggle("selected", o.dataset.value === toHidden.value);
+  });
+
+  // XE style: reset From to 1
   fromAmount.value = "1";
   toAmount.value = "";
 
-  // Recalculate
   convertCurrency();
 }
 
 function initCurrencyConverter() {
   const fromAmount = document.getElementById("fromAmount");
-  const fromCurrency = document.getElementById("fromCurrency");
-  const toCurrency = document.getElementById("toCurrency");
   const swapBtn = document.getElementById("currencyBtn");
 
   if (!fromAmount || !swapBtn) {
@@ -1359,13 +1346,17 @@ function initCurrencyConverter() {
     return;
   }
 
-  fromAmount.addEventListener("input", convertCurrency);
-  fromCurrency.addEventListener("change", convertCurrency);
-  toCurrency.addEventListener("change", convertCurrency);
-  swapBtn.addEventListener("click", swapCurrencies);
+  // Init both custom dropdowns
+  initCustomSelect("fromCurrencySelect", "fromCurrency");
+  initCustomSelect("toCurrencySelect", "toCurrency");
 
-  // Pre-load currency list in background
-  loadCurrencyList().catch(err => console.warn("Currency list preload failed:", err));
+  // Close dropdowns when clicking outside
+  document.addEventListener("click", () => {
+    document.querySelectorAll(".custom-select.open").forEach((el) => el.classList.remove("open"));
+  });
+
+  fromAmount.addEventListener("input", convertCurrency);
+  swapBtn.addEventListener("click", swapCurrencies);
 
   // Initial conversion
   convertCurrency();

@@ -3,11 +3,11 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Currency | Real-Time Exchange Rates | SakConvert</title>
   <meta name="description" content="Free Currency Converter with real-time exchange rates." />
   <link rel="canonical" href="https://sakconvert.com/converters/currency/" />
-  <link rel="stylesheet" href="/style.css?v=186">
+  <link rel="stylesheet" href="/style.css?v=187">
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 </head>
 
@@ -53,55 +53,128 @@
 
           <!-- Main Converter Card -->
           <div class="calculator-card currency-card">
+            <h2>Convert Currency</h2>
+
             <div class="currency-row">
+
               <!-- FROM -->
               <div class="currency-box">
                 <label>From</label>
                 <div class="currency-input-group">
                   <input type="number" id="fromAmount" value="100">
-                  <select id="fromCurrency">
-                    <optgroup label="Popular">
-                      <option value="USD">🇺🇸 USD - US Dollar</option>
-                      <option value="EUR">🇪🇺 EUR - Euro</option>
-                      <option value="GBP">🇬🇧 GBP - British Pound</option>
-                      <option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
-                      <option value="AUD">🇦🇺 AUD - Australian Dollar</option>
-                      <option value="JPY">🇯🇵 JPY - Japanese Yen</option>
-                      <option value="CHF">🇨🇭 CHF - Swiss Franc</option>
-                      <option value="CNY">🇨🇳 CNY - Chinese Yuan</option>
-                    </optgroup>
-                    <optgroup label="Americas">
-                      <option value="MXN">🇲🇽 MXN - Mexican Peso</option>
-                      <option value="BRL">🇧🇷 BRL - Brazilian Real</option>
-                      <option value="ARS">🇦🇷 ARS - Argentine Peso</option>
-                    </optgroup>
-                    <optgroup label="Europe">
-                      <option value="SEK">🇸🇪 SEK - Swedish Krona</option>
-                      <option value="NOK">🇳🇴 NOK - Norwegian Krone</option>
-                      <option value="DKK">🇩🇰 DKK - Danish Krone</option>
-                      <option value="PLN">🇵🇱 PLN - Polish Zloty</option>
-                      <option value="CZK">🇨🇿 CZK - Czech Koruna</option>
-                      <option value="HUF">🇭🇺 HUF - Hungarian Forint</option>
-                    </optgroup>
-                    <optgroup label="Asia & Oceania">
-                      <option value="INR">🇮🇳 INR - Indian Rupee</option>
-                      <option value="KRW">🇰🇷 KRW - South Korean Won</option>
-                      <option value="SGD">🇸🇬 SGD - Singapore Dollar</option>
-                      <option value="HKD">🇭🇰 HKD - Hong Kong Dollar</option>
-                      <option value="NZD">🇳🇿 NZD - New Zealand Dollar</option>
-                      <option value="THB">🇹🇭 THB - Thai Baht</option>
-                      <option value="MYR">🇲🇾 MYR - Malaysian Ringgit</option>
-                      <option value="IDR">🇮🇩 IDR - Indonesian Rupiah</option>
-                      <option value="PHP">🇵🇭 PHP - Philippine Peso</option>
-                    </optgroup>
-                    <optgroup label="Middle East & Africa">
-                      <option value="AED">🇦🇪 AED - UAE Dirham</option>
-                      <option value="SAR">🇸🇦 SAR - Saudi Riyal</option>
-                      <option value="ZAR">🇿🇦 ZAR - South African Rand</option>
-                      <option value="TRY">🇹🇷 TRY - Turkish Lira</option>
-                      <option value="ILS">🇮🇱 ILS - Israeli Shekel</option>
-                    </optgroup>
-                  </select>
+
+                  <div class="custom-select" id="fromCurrencySelect">
+                    <button type="button" class="custom-select-trigger" data-value="USD">
+                      <img src="https://flagcdn.com/w40/us.png" alt="" class="flag-img">
+                      <span>USD - US Dollar</span>
+                    </button>
+                    <div class="custom-select-options">
+
+                      <div class="custom-option-group">Popular</div>
+                      <div class="custom-option selected" data-value="USD" data-flag="us"><img
+                          src="https://flagcdn.com/w40/us.png" class="flag-img" alt=""><span>USD - US Dollar</span>
+                      </div>
+                      <div class="custom-option" data-value="EUR" data-flag="eu"><img
+                          src="https://flagcdn.com/w40/eu.png" class="flag-img" alt=""><span>EUR - Euro</span></div>
+                      <div class="custom-option" data-value="GBP" data-flag="gb"><img
+                          src="https://flagcdn.com/w40/gb.png" class="flag-img" alt=""><span>GBP - British Pound</span>
+                      </div>
+                      <div class="custom-option" data-value="CAD" data-flag="ca"><img
+                          src="https://flagcdn.com/w40/ca.png" class="flag-img" alt=""><span>CAD - Canadian
+                          Dollar</span></div>
+                      <div class="custom-option" data-value="AUD" data-flag="au"><img
+                          src="https://flagcdn.com/w40/au.png" class="flag-img" alt=""><span>AUD - Australian
+                          Dollar</span></div>
+                      <div class="custom-option" data-value="JPY" data-flag="jp"><img
+                          src="https://flagcdn.com/w40/jp.png" class="flag-img" alt=""><span>JPY - Japanese Yen</span>
+                      </div>
+                      <div class="custom-option" data-value="CHF" data-flag="ch"><img
+                          src="https://flagcdn.com/w40/ch.png" class="flag-img" alt=""><span>CHF - Swiss Franc</span>
+                      </div>
+                      <div class="custom-option" data-value="CNY" data-flag="cn"><img
+                          src="https://flagcdn.com/w40/cn.png" class="flag-img" alt=""><span>CNY - Chinese Yuan</span>
+                      </div>
+
+                      <div class="custom-option-group">Americas</div>
+                      <div class="custom-option" data-value="MXN" data-flag="mx"><img
+                          src="https://flagcdn.com/w40/mx.png" class="flag-img" alt=""><span>MXN - Mexican Peso</span>
+                      </div>
+                      <div class="custom-option" data-value="BRL" data-flag="br"><img
+                          src="https://flagcdn.com/w40/br.png" class="flag-img" alt=""><span>BRL - Brazilian Real</span>
+                      </div>
+                      <div class="custom-option" data-value="ARS" data-flag="ar"><img
+                          src="https://flagcdn.com/w40/ar.png" class="flag-img" alt=""><span>ARS - Argentine Peso</span>
+                      </div>
+
+                      <div class="custom-option-group">Europe</div>
+                      <div class="custom-option" data-value="SEK" data-flag="se"><img
+                          src="https://flagcdn.com/w40/se.png" class="flag-img" alt=""><span>SEK - Swedish Krona</span>
+                      </div>
+                      <div class="custom-option" data-value="NOK" data-flag="no"><img
+                          src="https://flagcdn.com/w40/no.png" class="flag-img" alt=""><span>NOK - Norwegian
+                          Krone</span></div>
+                      <div class="custom-option" data-value="DKK" data-flag="dk"><img
+                          src="https://flagcdn.com/w40/dk.png" class="flag-img" alt=""><span>DKK - Danish Krone</span>
+                      </div>
+                      <div class="custom-option" data-value="PLN" data-flag="pl"><img
+                          src="https://flagcdn.com/w40/pl.png" class="flag-img" alt=""><span>PLN - Polish Zloty</span>
+                      </div>
+                      <div class="custom-option" data-value="CZK" data-flag="cz"><img
+                          src="https://flagcdn.com/w40/cz.png" class="flag-img" alt=""><span>CZK - Czech Koruna</span>
+                      </div>
+                      <div class="custom-option" data-value="HUF" data-flag="hu"><img
+                          src="https://flagcdn.com/w40/hu.png" class="flag-img" alt=""><span>HUF - Hungarian
+                          Forint</span></div>
+
+                      <div class="custom-option-group">Asia & Oceania</div>
+                      <div class="custom-option" data-value="INR" data-flag="in"><img
+                          src="https://flagcdn.com/w40/in.png" class="flag-img" alt=""><span>INR - Indian Rupee</span>
+                      </div>
+                      <div class="custom-option" data-value="KRW" data-flag="kr"><img
+                          src="https://flagcdn.com/w40/kr.png" class="flag-img" alt=""><span>KRW - South Korean
+                          Won</span></div>
+                      <div class="custom-option" data-value="SGD" data-flag="sg"><img
+                          src="https://flagcdn.com/w40/sg.png" class="flag-img" alt=""><span>SGD - Singapore
+                          Dollar</span></div>
+                      <div class="custom-option" data-value="HKD" data-flag="hk"><img
+                          src="https://flagcdn.com/w40/hk.png" class="flag-img" alt=""><span>HKD - Hong Kong
+                          Dollar</span></div>
+                      <div class="custom-option" data-value="NZD" data-flag="nz"><img
+                          src="https://flagcdn.com/w40/nz.png" class="flag-img" alt=""><span>NZD - New Zealand
+                          Dollar</span></div>
+                      <div class="custom-option" data-value="THB" data-flag="th"><img
+                          src="https://flagcdn.com/w40/th.png" class="flag-img" alt=""><span>THB - Thai Baht</span>
+                      </div>
+                      <div class="custom-option" data-value="MYR" data-flag="my"><img
+                          src="https://flagcdn.com/w40/my.png" class="flag-img" alt=""><span>MYR - Malaysian
+                          Ringgit</span></div>
+                      <div class="custom-option" data-value="IDR" data-flag="id"><img
+                          src="https://flagcdn.com/w40/id.png" class="flag-img" alt=""><span>IDR - Indonesian
+                          Rupiah</span></div>
+                      <div class="custom-option" data-value="PHP" data-flag="ph"><img
+                          src="https://flagcdn.com/w40/ph.png" class="flag-img" alt=""><span>PHP - Philippine
+                          Peso</span></div>
+
+                      <div class="custom-option-group">Middle East & Africa</div>
+                      <div class="custom-option" data-value="AED" data-flag="ae"><img
+                          src="https://flagcdn.com/w40/ae.png" class="flag-img" alt=""><span>AED - UAE Dirham</span>
+                      </div>
+                      <div class="custom-option" data-value="SAR" data-flag="sa"><img
+                          src="https://flagcdn.com/w40/sa.png" class="flag-img" alt=""><span>SAR - Saudi Riyal</span>
+                      </div>
+                      <div class="custom-option" data-value="ZAR" data-flag="za"><img
+                          src="https://flagcdn.com/w40/za.png" class="flag-img" alt=""><span>ZAR - South African
+                          Rand</span></div>
+                      <div class="custom-option" data-value="TRY" data-flag="tr"><img
+                          src="https://flagcdn.com/w40/tr.png" class="flag-img" alt=""><span>TRY - Turkish Lira</span>
+                      </div>
+                      <div class="custom-option" data-value="ILS" data-flag="il"><img
+                          src="https://flagcdn.com/w40/il.png" class="flag-img" alt=""><span>ILS - Israeli Shekel</span>
+                      </div>
+
+                    </div>
+                  </div>
+                  <input type="hidden" id="fromCurrency" value="USD">
                 </div>
               </div>
 
@@ -113,51 +186,122 @@
                 <label>To</label>
                 <div class="currency-input-group">
                   <input type="number" id="toAmount" readonly>
-                  <select id="toCurrency">
-                    <optgroup label="Popular">
-                      <option value="USD">🇺🇸 USD - US Dollar</option>
-                      <option value="EUR">🇪🇺 EUR - Euro</option>
-                      <option value="GBP" selected>🇬🇧 GBP - British Pound</option>
-                      <option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
-                      <option value="AUD">🇦🇺 AUD - Australian Dollar</option>
-                      <option value="JPY">🇯🇵 JPY - Japanese Yen</option>
-                      <option value="CHF">🇨🇭 CHF - Swiss Franc</option>
-                      <option value="CNY">🇨🇳 CNY - Chinese Yuan</option>
-                    </optgroup>
-                    <optgroup label="Americas">
-                      <option value="MXN">🇲🇽 MXN - Mexican Peso</option>
-                      <option value="BRL">🇧🇷 BRL - Brazilian Real</option>
-                      <option value="ARS">🇦🇷 ARS - Argentine Peso</option>
-                    </optgroup>
-                    <optgroup label="Europe">
-                      <option value="SEK">🇸🇪 SEK - Swedish Krona</option>
-                      <option value="NOK">🇳🇴 NOK - Norwegian Krone</option>
-                      <option value="DKK">🇩🇰 DKK - Danish Krone</option>
-                      <option value="PLN">🇵🇱 PLN - Polish Zloty</option>
-                      <option value="CZK">🇨🇿 CZK - Czech Koruna</option>
-                      <option value="HUF">🇭🇺 HUF - Hungarian Forint</option>
-                    </optgroup>
-                    <optgroup label="Asia & Oceania">
-                      <option value="INR">🇮🇳 INR - Indian Rupee</option>
-                      <option value="KRW">🇰🇷 KRW - South Korean Won</option>
-                      <option value="SGD">🇸🇬 SGD - Singapore Dollar</option>
-                      <option value="HKD">🇭🇰 HKD - Hong Kong Dollar</option>
-                      <option value="NZD">🇳🇿 NZD - New Zealand Dollar</option>
-                      <option value="THB">🇹🇭 THB - Thai Baht</option>
-                      <option value="MYR">🇲🇾 MYR - Malaysian Ringgit</option>
-                      <option value="IDR">🇮🇩 IDR - Indonesian Rupiah</option>
-                      <option value="PHP">🇵🇭 PHP - Philippine Peso</option>
-                    </optgroup>
-                    <optgroup label="Middle East & Africa">
-                      <option value="AED">🇦🇪 AED - UAE Dirham</option>
-                      <option value="SAR">🇸🇦 SAR - Saudi Riyal</option>
-                      <option value="ZAR">🇿🇦 ZAR - South African Rand</option>
-                      <option value="TRY">🇹🇷 TRY - Turkish Lira</option>
-                      <option value="ILS">🇮🇱 ILS - Israeli Shekel</option>
-                    </optgroup>
-                  </select>
+
+                  <div class="custom-select" id="toCurrencySelect">
+                    <button type="button" class="custom-select-trigger" data-value="GBP">
+                      <img src="https://flagcdn.com/w40/gb.png" alt="" class="flag-img">
+                      <span>GBP - British Pound</span>
+                    </button>
+                    <div class="custom-select-options">
+
+                      <div class="custom-option-group">Popular</div>
+                      <div class="custom-option" data-value="USD" data-flag="us"><img
+                          src="https://flagcdn.com/w40/us.png" class="flag-img" alt=""><span>USD - US Dollar</span>
+                      </div>
+                      <div class="custom-option" data-value="EUR" data-flag="eu"><img
+                          src="https://flagcdn.com/w40/eu.png" class="flag-img" alt=""><span>EUR - Euro</span></div>
+                      <div class="custom-option selected" data-value="GBP" data-flag="gb"><img
+                          src="https://flagcdn.com/w40/gb.png" class="flag-img" alt=""><span>GBP - British Pound</span>
+                      </div>
+                      <div class="custom-option" data-value="CAD" data-flag="ca"><img
+                          src="https://flagcdn.com/w40/ca.png" class="flag-img" alt=""><span>CAD - Canadian
+                          Dollar</span></div>
+                      <div class="custom-option" data-value="AUD" data-flag="au"><img
+                          src="https://flagcdn.com/w40/au.png" class="flag-img" alt=""><span>AUD - Australian
+                          Dollar</span></div>
+                      <div class="custom-option" data-value="JPY" data-flag="jp"><img
+                          src="https://flagcdn.com/w40/jp.png" class="flag-img" alt=""><span>JPY - Japanese Yen</span>
+                      </div>
+                      <div class="custom-option" data-value="CHF" data-flag="ch"><img
+                          src="https://flagcdn.com/w40/ch.png" class="flag-img" alt=""><span>CHF - Swiss Franc</span>
+                      </div>
+                      <div class="custom-option" data-value="CNY" data-flag="cn"><img
+                          src="https://flagcdn.com/w40/cn.png" class="flag-img" alt=""><span>CNY - Chinese Yuan</span>
+                      </div>
+
+                      <div class="custom-option-group">Americas</div>
+                      <div class="custom-option" data-value="MXN" data-flag="mx"><img
+                          src="https://flagcdn.com/w40/mx.png" class="flag-img" alt=""><span>MXN - Mexican Peso</span>
+                      </div>
+                      <div class="custom-option" data-value="BRL" data-flag="br"><img
+                          src="https://flagcdn.com/w40/br.png" class="flag-img" alt=""><span>BRL - Brazilian Real</span>
+                      </div>
+                      <div class="custom-option" data-value="ARS" data-flag="ar"><img
+                          src="https://flagcdn.com/w40/ar.png" class="flag-img" alt=""><span>ARS - Argentine Peso</span>
+                      </div>
+
+                      <div class="custom-option-group">Europe</div>
+                      <div class="custom-option" data-value="SEK" data-flag="se"><img
+                          src="https://flagcdn.com/w40/se.png" class="flag-img" alt=""><span>SEK - Swedish Krona</span>
+                      </div>
+                      <div class="custom-option" data-value="NOK" data-flag="no"><img
+                          src="https://flagcdn.com/w40/no.png" class="flag-img" alt=""><span>NOK - Norwegian
+                          Krone</span></div>
+                      <div class="custom-option" data-value="DKK" data-flag="dk"><img
+                          src="https://flagcdn.com/w40/dk.png" class="flag-img" alt=""><span>DKK - Danish Krone</span>
+                      </div>
+                      <div class="custom-option" data-value="PLN" data-flag="pl"><img
+                          src="https://flagcdn.com/w40/pl.png" class="flag-img" alt=""><span>PLN - Polish Zloty</span>
+                      </div>
+                      <div class="custom-option" data-value="CZK" data-flag="cz"><img
+                          src="https://flagcdn.com/w40/cz.png" class="flag-img" alt=""><span>CZK - Czech Koruna</span>
+                      </div>
+                      <div class="custom-option" data-value="HUF" data-flag="hu"><img
+                          src="https://flagcdn.com/w40/hu.png" class="flag-img" alt=""><span>HUF - Hungarian
+                          Forint</span></div>
+
+                      <div class="custom-option-group">Asia & Oceania</div>
+                      <div class="custom-option" data-value="INR" data-flag="in"><img
+                          src="https://flagcdn.com/w40/in.png" class="flag-img" alt=""><span>INR - Indian Rupee</span>
+                      </div>
+                      <div class="custom-option" data-value="KRW" data-flag="kr"><img
+                          src="https://flagcdn.com/w40/kr.png" class="flag-img" alt=""><span>KRW - South Korean
+                          Won</span></div>
+                      <div class="custom-option" data-value="SGD" data-flag="sg"><img
+                          src="https://flagcdn.com/w40/sg.png" class="flag-img" alt=""><span>SGD - Singapore
+                          Dollar</span></div>
+                      <div class="custom-option" data-value="HKD" data-flag="hk"><img
+                          src="https://flagcdn.com/w40/hk.png" class="flag-img" alt=""><span>HKD - Hong Kong
+                          Dollar</span></div>
+                      <div class="custom-option" data-value="NZD" data-flag="nz"><img
+                          src="https://flagcdn.com/w40/nz.png" class="flag-img" alt=""><span>NZD - New Zealand
+                          Dollar</span></div>
+                      <div class="custom-option" data-value="THB" data-flag="th"><img
+                          src="https://flagcdn.com/w40/th.png" class="flag-img" alt=""><span>THB - Thai Baht</span>
+                      </div>
+                      <div class="custom-option" data-value="MYR" data-flag="my"><img
+                          src="https://flagcdn.com/w40/my.png" class="flag-img" alt=""><span>MYR - Malaysian
+                          Ringgit</span></div>
+                      <div class="custom-option" data-value="IDR" data-flag="id"><img
+                          src="https://flagcdn.com/w40/id.png" class="flag-img" alt=""><span>IDR - Indonesian
+                          Rupiah</span></div>
+                      <div class="custom-option" data-value="PHP" data-flag="ph"><img
+                          src="https://flagcdn.com/w40/ph.png" class="flag-img" alt=""><span>PHP - Philippine
+                          Peso</span></div>
+
+                      <div class="custom-option-group">Middle East & Africa</div>
+                      <div class="custom-option" data-value="AED" data-flag="ae"><img
+                          src="https://flagcdn.com/w40/ae.png" class="flag-img" alt=""><span>AED - UAE Dirham</span>
+                      </div>
+                      <div class="custom-option" data-value="SAR" data-flag="sa"><img
+                          src="https://flagcdn.com/w40/sa.png" class="flag-img" alt=""><span>SAR - Saudi Riyal</span>
+                      </div>
+                      <div class="custom-option" data-value="ZAR" data-flag="za"><img
+                          src="https://flagcdn.com/w40/za.png" class="flag-img" alt=""><span>ZAR - South African
+                          Rand</span></div>
+                      <div class="custom-option" data-value="TRY" data-flag="tr"><img
+                          src="https://flagcdn.com/w40/tr.png" class="flag-img" alt=""><span>TRY - Turkish Lira</span>
+                      </div>
+                      <div class="custom-option" data-value="ILS" data-flag="il"><img
+                          src="https://flagcdn.com/w40/il.png" class="flag-img" alt=""><span>ILS - Israeli Shekel</span>
+                      </div>
+
+                    </div>
+                  </div>
+                  <input type="hidden" id="toCurrency" value="GBP">
                 </div>
               </div>
+
             </div>
 
             <div class="currency-result" id="currencyResultsBox">
@@ -166,13 +310,12 @@
             </div>
           </div>
 
-          <!-- Info Card (sibling, not nested) -->
+          <!-- Info Card -->
           <div class="info-card">
             <h2>Real-Time Rates</h2>
             <p>Free currency data from multiple reliable sources.</p>
             <p>Rates are updated regularly throughout the day.</p>
-            <p class="note">This shows the mid-market rate for informational purposes only. Banks and money
-              transfer
+            <p class="note">This shows the mid-market rate for informational purposes only. Banks and money transfer
               services usually add fees.</p>
           </div>
 
@@ -252,7 +395,7 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=186"></script>
+  <script src="/script.js?v=187"></script>
 
 </body>
 
