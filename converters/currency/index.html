@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Currency | Real-Time Exchange Rates | SakConvert</title>
+  <meta name="description" content="Free Currency Converter with real-time exchange rates." />
+  <link rel="canonical" href="https://sakconvert.com/converters/currency/" />
+  <link rel="stylesheet" href="/style.css?v=185">
+  <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+</head>
+
+<body data-calculator="currency">
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo"><img src="/images/logo.svg" alt="SakConvert"></a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="siteNav">
+        <a href="/calculators/">Calculators</a>
+        <a href="/converters/">Converters</a>
+        <a href="/#seo">SEO</a>
+        <a href="/articles/">Articles</a>
+        <a href="/#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="breadcrumb">
+      <div class="container">
+        <a href="/">Home</a> →
+        <a href="/converters/">Converters</a> →
+        <span>Currency</span>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="container">
+        <a href="/converters/" class="eyebrow eyebrow-link">Converters</a>
+        <h1>Currency</h1>
+        <p class="hero-text">Convert between major currencies with real-time exchange rates.</p>
+      </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+      <div class="container">
+        <div class="calculator-layout">
+
+          <!-- Main Converter Card -->
+          <div class="calculator-card currency-card">
+            <div class="currency-row">
+              <!-- FROM -->
+              <div class="currency-box">
+                <label>From</label>
+                <div class="currency-input-group">
+                  <input type="number" id="fromAmount" value="100">
+                  <select id="fromCurrency">
+                    <optgroup label="Popular">
+                      <option value="USD">🇺🇸 USD - US Dollar</option>
+                      <option value="EUR">🇪🇺 EUR - Euro</option>
+                      <option value="GBP">🇬🇧 GBP - British Pound</option>
+                      <option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
+                      <option value="AUD">🇦🇺 AUD - Australian Dollar</option>
+                      <option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+                      <option value="CHF">🇨🇭 CHF - Swiss Franc</option>
+                      <option value="CNY">🇨🇳 CNY - Chinese Yuan</option>
+                    </optgroup>
+                    <optgroup label="Americas">
+                      <option value="MXN">🇲🇽 MXN - Mexican Peso</option>
+                      <option value="BRL">🇧🇷 BRL - Brazilian Real</option>
+                      <option value="ARS">🇦🇷 ARS - Argentine Peso</option>
+                    </optgroup>
+                    <optgroup label="Europe">
+                      <option value="SEK">🇸🇪 SEK - Swedish Krona</option>
+                      <option value="NOK">🇳🇴 NOK - Norwegian Krone</option>
+                      <option value="DKK">🇩🇰 DKK - Danish Krone</option>
+                      <option value="PLN">🇵🇱 PLN - Polish Zloty</option>
+                      <option value="CZK">🇨🇿 CZK - Czech Koruna</option>
+                      <option value="HUF">🇭🇺 HUF - Hungarian Forint</option>
+                    </optgroup>
+                    <optgroup label="Asia & Oceania">
+                      <option value="INR">🇮🇳 INR - Indian Rupee</option>
+                      <option value="KRW">🇰🇷 KRW - South Korean Won</option>
+                      <option value="SGD">🇸🇬 SGD - Singapore Dollar</option>
+                      <option value="HKD">🇭🇰 HKD - Hong Kong Dollar</option>
+                      <option value="NZD">🇳🇿 NZD - New Zealand Dollar</option>
+                      <option value="THB">🇹🇭 THB - Thai Baht</option>
+                      <option value="MYR">🇲🇾 MYR - Malaysian Ringgit</option>
+                      <option value="IDR">🇮🇩 IDR - Indonesian Rupiah</option>
+                      <option value="PHP">🇵🇭 PHP - Philippine Peso</option>
+                    </optgroup>
+                    <optgroup label="Middle East & Africa">
+                      <option value="AED">🇦🇪 AED - UAE Dirham</option>
+                      <option value="SAR">🇸🇦 SAR - Saudi Riyal</option>
+                      <option value="ZAR">🇿🇦 ZAR - South African Rand</option>
+                      <option value="TRY">🇹🇷 TRY - Turkish Lira</option>
+                      <option value="ILS">🇮🇱 ILS - Israeli Shekel</option>
+                    </optgroup>
+                  </select>
+                </div>
+              </div>
+
+              <!-- SWAP -->
+              <button type="button" id="currencyBtn" class="swap-btn" title="Swap currencies">⇄</button>
+
+              <!-- TO -->
+              <div class="currency-box">
+                <label>To</label>
+                <div class="currency-input-group">
+                  <input type="number" id="toAmount" readonly>
+                  <select id="toCurrency">
+                    <optgroup label="Popular">
+                      <option value="USD">🇺🇸 USD - US Dollar</option>
+                      <option value="EUR">🇪🇺 EUR - Euro</option>
+                      <option value="GBP" selected>🇬🇧 GBP - British Pound</option>
+                      <option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
+                      <option value="AUD">🇦🇺 AUD - Australian Dollar</option>
+                      <option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+                      <option value="CHF">🇨🇭 CHF - Swiss Franc</option>
+                      <option value="CNY">🇨🇳 CNY - Chinese Yuan</option>
+                    </optgroup>
+                    <optgroup label="Americas">
+                      <option value="MXN">🇲🇽 MXN - Mexican Peso</option>
+                      <option value="BRL">🇧🇷 BRL - Brazilian Real</option>
+                      <option value="ARS">🇦🇷 ARS - Argentine Peso</option>
+                    </optgroup>
+                    <optgroup label="Europe">
+                      <option value="SEK">🇸🇪 SEK - Swedish Krona</option>
+                      <option value="NOK">🇳🇴 NOK - Norwegian Krone</option>
+                      <option value="DKK">🇩🇰 DKK - Danish Krone</option>
+                      <option value="PLN">🇵🇱 PLN - Polish Zloty</option>
+                      <option value="CZK">🇨🇿 CZK - Czech Koruna</option>
+                      <option value="HUF">🇭🇺 HUF - Hungarian Forint</option>
+                    </optgroup>
+                    <optgroup label="Asia & Oceania">
+                      <option value="INR">🇮🇳 INR - Indian Rupee</option>
+                      <option value="KRW">🇰🇷 KRW - South Korean Won</option>
+                      <option value="SGD">🇸🇬 SGD - Singapore Dollar</option>
+                      <option value="HKD">🇭🇰 HKD - Hong Kong Dollar</option>
+                      <option value="NZD">🇳🇿 NZD - New Zealand Dollar</option>
+                      <option value="THB">🇹🇭 THB - Thai Baht</option>
+                      <option value="MYR">🇲🇾 MYR - Malaysian Ringgit</option>
+                      <option value="IDR">🇮🇩 IDR - Indonesian Rupiah</option>
+                      <option value="PHP">🇵🇭 PHP - Philippine Peso</option>
+                    </optgroup>
+                    <optgroup label="Middle East & Africa">
+                      <option value="AED">🇦🇪 AED - UAE Dirham</option>
+                      <option value="SAR">🇸🇦 SAR - Saudi Riyal</option>
+                      <option value="ZAR">🇿🇦 ZAR - South African Rand</option>
+                      <option value="TRY">🇹🇷 TRY - Turkish Lira</option>
+                      <option value="ILS">🇮🇱 ILS - Israeli Shekel</option>
+                    </optgroup>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="currency-result" id="currencyResultsBox">
+              <div class="rate-main" id="rateText">Enter an amount to convert</div>
+              <div class="rate-sub" id="rateSub">Mid-market rate • Free currency data</div>
+            </div>
+          </div>
+
+          <!-- Info Card (sibling, not nested) -->
+          <div class="info-card">
+            <h2>Real-Time Rates</h2>
+            <p>Free currency data from multiple reliable sources.</p>
+            <p>Rates are updated regularly throughout the day.</p>
+            <p class="note">This shows the mid-market rate for informational purposes only. Banks and money
+              transfer
+              services usually add fees.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="content-narrow">
+          <h2>Frequently Asked Questions</h2>
+
+          <h3>Are the exchange rates real-time?</h3>
+          <p>Yes. Rates are fetched from reliable sources and updated multiple times per day.</p>
+
+          <h3>Does this include conversion fees?</h3>
+          <p>No. This shows the mid-market rate. Banks and exchange services usually add fees.</p>
+
+          <h3>Can I convert between any currencies?</h3>
+          <p>Currently supports major currencies. More will be added soon.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED TOOLS -->
+    <section class="related-tools">
+      <div class="container">
+        <h2>Related Converters & Calculators</h2>
+        <div class="tool-grid">
+
+          <a href="/calculators/percentage-calculator/" class="tool-card">
+            <div class="tool-icon">％</div>
+            <h3>Percentage Calculator</h3>
+            <ul class="tool-features">
+              <li>Percent Of</li>
+              <li>Percentage Change</li>
+            </ul>
+            <p>Solve everyday percentage calculations.</p>
+          </a>
+
+          <a href="/calculators/discount-calculator/" class="tool-card">
+            <div class="tool-icon">🏷️</div>
+            <h3>Discount Calculator</h3>
+            <ul class="tool-features">
+              <li>Sale Price</li>
+              <li>Savings</li>
+            </ul>
+            <p>Calculate sale prices and savings.</p>
+          </a>
+
+          <a href="/calculators/loan-emi-calculator/" class="tool-card">
+            <div class="tool-icon">💳</div>
+            <h3>Loan EMI Calculator</h3>
+            <ul class="tool-features">
+              <li>Monthly EMI</li>
+              <li>Total Interest</li>
+            </ul>
+            <p>Calculate loan payments accurately.</p>
+          </a>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 <a href="/">SakConvert</a>. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="/#about">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms-and-conditions/">Terms & Conditions</a>
+        <a href="/cookie-policy/">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js?v=185"></script>
+
+</body>
+
+</html>
