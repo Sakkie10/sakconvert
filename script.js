@@ -1263,6 +1263,7 @@ function initCustomSelect(selectId, hiddenId) {
 
   const trigger = root.querySelector(".custom-select-trigger");
   const optionsBox = root.querySelector(".custom-select-options");
+  const searchInput = root.querySelector(".currency-search");
 
   // Open / close
   trigger.addEventListener("click", (e) => {
@@ -1271,7 +1272,21 @@ function initCustomSelect(selectId, hiddenId) {
       if (el !== root) el.classList.remove("open");
     });
     root.classList.toggle("open");
+
+    if (root.classList.contains("open") && searchInput) {
+      searchInput.value = "";
+      filterCurrencyOptions(root, "");
+      setTimeout(() => searchInput.focus(), 30);
+    }
   });
+
+  // Search filter
+  if (searchInput) {
+    searchInput.addEventListener("click", (e) => e.stopPropagation());
+    searchInput.addEventListener("input", () => {
+      filterCurrencyOptions(root, searchInput.value);
+    });
+  }
 
   // Select option
   optionsBox.addEventListener("click", (e) => {
@@ -1294,6 +1309,35 @@ function initCustomSelect(selectId, hiddenId) {
     root.classList.remove("open");
 
     convertCurrency();
+  });
+}
+
+function filterCurrencyOptions(root, query) {
+  const q = query.trim().toLowerCase();
+  const options = root.querySelectorAll(".custom-option");
+  const groups = root.querySelectorAll(".custom-option-group");
+
+  options.forEach((option) => {
+    const text = option.textContent.toLowerCase();
+    const code = (option.dataset.value || "").toLowerCase();
+    const match = !q || text.includes(q) || code.includes(q);
+    option.classList.toggle("hidden", !match);
+  });
+
+  // Hide group headers that have no visible options
+  groups.forEach((group) => {
+    let next = group.nextElementSibling;
+    let hasVisible = false;
+
+    while (next && !next.classList.contains("custom-option-group")) {
+      if (next.classList.contains("custom-option") && !next.classList.contains("hidden")) {
+        hasVisible = true;
+        break;
+      }
+      next = next.nextElementSibling;
+    }
+
+    group.classList.toggle("hidden", !hasVisible);
   });
 }
 

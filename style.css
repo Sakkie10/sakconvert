@@ -2004,3 +2004,31 @@ body {
     height: 14px;
   }
 }
+
+.currency-search-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff;
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.currency-search {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.currency-search:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(10, 80, 254, 0.12);
+}
+
+.custom-option.hidden,
+.custom-option-group.hidden {
+  display: none;
+}
