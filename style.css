@@ -1820,3 +1820,27 @@ body[data-calculator="golf-distance"] .related-tools .tool-grid {
   background: #e0e7ff;
   color: #3730a3;
 }
+
+/* Compact cards for Calculators & Converters hub pages */
+.tool-card-compact {
+  min-height: auto;
+  padding: 22px 24px;
+  gap: 12px;
+}
+
+.tool-card-compact .tool-icon {
+  width: 64px;
+  height: 64px;
+  font-size: 1.8rem;
+  border-radius: 16px;
+}
+
+.tool-card-compact h3 {
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+}
+
+.tool-card-compact p {
+  font-size: 0.95rem;
+  margin-top: 0;
+}
