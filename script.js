@@ -1180,7 +1180,10 @@ async function convertCurrency() {
   }
 
   if (from === to) {
-    toAmountInput.value = amount.toFixed(2);
+    toAmountInput.value = Number(amount).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
     rateText.textContent = `1 ${from} = 1.00 ${to}`;
     if (rateSub) rateSub.textContent = "Mid-market rate • Free currency data";
     return;
@@ -1224,7 +1227,10 @@ async function convertCurrency() {
     rateCache[fromLower] = data;
 
     const converted = amount * rate;
-    toAmountInput.value = converted.toFixed(2);
+    toAmountInput.value = Number(converted).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
 
     let statusText = `1 ${from} = ${Number(rate).toFixed(4)} ${to}`;
     let statusBadge = "";
@@ -1244,7 +1250,10 @@ async function convertCurrency() {
     if (cached && cached[from.toLowerCase()] && cached[from.toLowerCase()][to.toLowerCase()] !== undefined) {
       const rate = cached[from.toLowerCase()][to.toLowerCase()];
       const converted = amount * rate;
-      toAmountInput.value = converted.toFixed(2);
+      toAmountInput.value = Number(converted).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
       rateText.innerHTML = `1 ${from} = ${Number(rate).toFixed(4)} ${to} <span class="rate-status cached">Cached</span>`;
       if (rateSub) rateSub.textContent = "Using last known rates (API temporarily unavailable)";
       return;
