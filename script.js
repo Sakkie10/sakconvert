@@ -1265,6 +1265,27 @@ async function convertCurrency() {
   }
 }
 
+const currencySymbols = {
+  USD: "$", EUR: "€", GBP: "£", JPY: "¥", CNY: "¥",
+  CAD: "C$", AUD: "A$", CHF: "CHF", INR: "₹",
+  KRW: "₩", SGD: "S$", HKD: "HK$", NZD: "NZ$",
+  MXN: "MX$", BRL: "R$", ARS: "AR$", SEK: "kr",
+  NOK: "kr", DKK: "kr", PLN: "zł", CZK: "Kč",
+  HUF: "Ft", THB: "฿", MYR: "RM", IDR: "Rp",
+  PHP: "₱", AED: "د.إ", SAR: "﷼", ZAR: "R",
+  TRY: "₺", ILS: "₪"
+};
+
+function updateCurrencySymbols() {
+  const from = document.getElementById("fromCurrency")?.value || "USD";
+  const to = document.getElementById("toCurrency")?.value || "GBP";
+  const fromSymbol = document.getElementById("fromSymbol");
+  const toSymbol = document.getElementById("toSymbol");
+
+  if (fromSymbol) fromSymbol.textContent = currencySymbols[from] || from;
+  if (toSymbol) toSymbol.textContent = currencySymbols[to] || to;
+}
+
 function initCustomSelect(selectId, hiddenId) {
   const root = document.getElementById(selectId);
   const hidden = document.getElementById(hiddenId);
@@ -1317,6 +1338,7 @@ function initCustomSelect(selectId, hiddenId) {
     option.classList.add("selected");
     root.classList.remove("open");
 
+    updateCurrencySymbols();   // ← add this
     convertCurrency();
   });
 }
@@ -1387,6 +1409,7 @@ function swapCurrencies() {
   fromAmount.value = "1";
   toAmount.value = "";
 
+  updateCurrencySymbols();
   convertCurrency();
 }
 
@@ -1411,7 +1434,7 @@ function initCurrencyConverter() {
   fromAmount.addEventListener("input", convertCurrency);
   swapBtn.addEventListener("click", swapCurrencies);
 
-  // Initial conversion
+  updateCurrencySymbols();
   convertCurrency();
 }
 

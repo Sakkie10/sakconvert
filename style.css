@@ -2104,3 +2104,76 @@ body[data-calculator="currency"] .custom-select {
     margin: 2px 0;
   }
 }
+
+/* Balanced From / To boxes on desktop */
+body[data-calculator="currency"] .currency-input-group {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 10px;
+  width: 100%;
+  align-items: stretch;
+}
+
+body[data-calculator="currency"] .currency-input-group input,
+body[data-calculator="currency"] .custom-select-trigger {
+  height: 52px;
+  box-sizing: border-box;
+}
+
+body[data-calculator="currency"] .currency-input-group input {
+  width: 100%;
+  min-width: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 0 14px;
+}
+
+body[data-calculator="currency"] .custom-select-trigger {
+  width: 100%;
+  padding: 0 12px;
+}
+
+.amount-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+  height: 52px;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.amount-wrap:focus-within {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(10, 80, 254, 0.12);
+}
+
+.currency-symbol {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.amount-wrap input {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  background: transparent;
+}
+
+body[data-calculator="currency"] .currency-input-group {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 10px;
+  align-items: stretch;
+}

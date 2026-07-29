@@ -7,7 +7,7 @@
   <title>Currency | Real-Time Exchange Rates | SakConvert</title>
   <meta name="description" content="Free Currency Converter with real-time exchange rates." />
   <link rel="canonical" href="https://sakconvert.com/converters/currency/" />
-  <link rel="stylesheet" href="/style.css?v=189">
+  <link rel="stylesheet" href="/style.css?v=190">
   <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 </head>
 
@@ -59,7 +59,11 @@
               <div class="currency-box">
                 <label>From</label>
                 <div class="currency-input-group">
-                  <input type="number" id="fromAmount" value="100">
+
+                  <div class="amount-wrap">
+                    <span class="currency-symbol" id="fromSymbol">$</span>
+                    <input type="number" id="fromAmount" value="100">
+                  </div>
 
                   <div class="custom-select" id="fromCurrencySelect">
                     <button type="button" class="custom-select-trigger" data-value="USD">
@@ -188,7 +192,11 @@
               <div class="currency-box">
                 <label>To</label>
                 <div class="currency-input-group">
-                  <input type="number" id="toAmount" readonly>
+
+                  <div class="amount-wrap">
+                    <span class="currency-symbol" id="toSymbol">£</span>
+                    <input type="text" id="toAmount" readonly>
+                  </div>
 
                   <div class="custom-select" id="toCurrencySelect">
                     <button type="button" class="custom-select-trigger" data-value="GBP">
@@ -404,7 +412,7 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=189"></script>
+  <script src="/script.js?v=190"></script>
 
 </body>
 
