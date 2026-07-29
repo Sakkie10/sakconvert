@@ -2373,33 +2373,69 @@ body[data-calculator="currency"] .currency-input-group {
   flex-shrink: 0;
 }
 
-.amount-wrap input {
-  margin: 0 !important;
+/* XE-style: symbol flush against digits */
+.amount-wrap {
+  position: relative !important;
+  display: block !important;
+  height: 52px;
   padding: 0 !important;
-  padding-left: 2px !important; /* tiny breathing room only */
-  text-align: left;
-  font-weight: 400;
-  letter-spacing: 0;
+  overflow: visible;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  background: #fff;
 }
 
-/* Mobile: keep large numbers readable */
+.amount-wrap:focus-within {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(10, 80, 254, 0.12);
+}
+
+.currency-symbol {
+  position: absolute !important;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 !important;
+  padding: 0 !important;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.amount-wrap input {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 12px 0 28px !important;
+  /* left pad = room for symbol */
+  font-size: 1.05rem;
+  font-weight: 400;
+  text-align: left;
+  letter-spacing: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 @media (max-width: 700px) {
   body[data-calculator="currency"] .currency-input-group {
-    grid-template-columns: 1.7fr 0.8fr; /* more room for amount */
+    grid-template-columns: 1.7fr 0.8fr;
   }
 
-  body[data-calculator="currency"] .amount-wrap {
-    gap: 0 !important;
-    padding: 0 8px 0 8px !important;
-  }
-
-  body[data-calculator="currency"] .amount-wrap input {
-    font-size: 1rem; /* slightly smaller so 100,000,000.00 fits */
-    font-weight: 400;
-    padding-left: 2px !important;
-  }
-
-  body[data-calculator="currency"] .currency-symbol {
+  .currency-symbol {
+    left: 10px;
     font-size: 1rem;
+  }
+
+  .amount-wrap input {
+    padding: 0 10px 0 26px !important; /* keep room for the symbol */
+    font-size: 1rem;
+    font-weight: 400;
   }
 }
