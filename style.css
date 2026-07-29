@@ -2224,3 +2224,59 @@ body[data-calculator="currency"] .currency-input-group {
   font-weight: 400;
   color: #64748b;
 }
+
+.amount-wrap input {
+  font-weight: 400; /* was 700 */
+}
+
+body[data-calculator="currency"] .currency-input-group input {
+  font-weight: 400;
+}
+
+body[data-calculator="currency"] .amount-wrap input {
+  font-weight: 400;
+}
+
+/* Desktop: amount + wider currency, single-line ellipsis */
+body[data-calculator="currency"] .currency-input-group {
+  display: grid;
+  grid-template-columns: 0.9fr 1.6fr; /* currency wider */
+  gap: 10px;
+  width: 100%;
+  align-items: stretch;
+}
+
+body[data-calculator="currency"] .custom-select-trigger {
+  width: 100%;
+  height: 52px;
+  padding: 0 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body[data-calculator="currency"] .custom-select-trigger .currency-code,
+body[data-calculator="currency"] .custom-select-trigger .currency-name {
+  white-space: nowrap;
+}
+
+.custom-select-options {
+  min-width: 280px; /* ensures full names fit */
+  max-width: 360px;
+}
+
+.custom-option {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-option span {
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  body[data-calculator="currency"] .currency-input-group {
+    grid-template-columns: 1.6fr 0.9fr; /* amount wider on mobile */
+  }
+}

@@ -1157,33 +1157,54 @@ function calculateGolfDistance() {
 // ===============================
 
 let rateCache = {};
+let lastEdited = "from"; // track which field the user is typing in
+let isUpdating = false;  // prevent feedback loops
 
-async function convertCurrency() {
+function parseAmount(value) {
+  if (value === "" || value === null || value === undefined) return NaN;
+  return parseFloat(String(value).replace(/,/g, ""));
+}
+
+function formatAmount(num) {
+  if (isNaN(num)) return "";
+  return Number(num).toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+}
+
+async function convertCurrency(direction = lastEdited) {
   const amountInput = document.getElementById("fromAmount");
+  const toAmountInput = document.getElementById("toAmount");
   const fromHidden = document.getElementById("fromCurrency");
   const toHidden = document.getElementById("toCurrency");
-  const toAmountInput = document.getElementById("toAmount");
   const rateText = document.getElementById("rateText");
   const rateSub = document.getElementById("rateSub");
 
   if (!amountInput || !fromHidden || !toHidden || !toAmountInput || !rateText) return;
+  if (isUpdating) return;
 
-  const amount = parseFloat(amountInput.value);
   const from = fromHidden.value.toUpperCase();
   const to = toHidden.value.toUpperCase();
 
-  if (isNaN(amount) || amount < 0) {
+  // Which amount is the source?
+  const sourceValue = direction === "from"
+    ? parseAmount(amountInput.value)
+    : parseAmount(toAmountInput.value);
+
+  if (isNaN(sourceValue) || sourceValue < 0) {
+    if (direction === "from") toAmountInput.value = "";
+    else amountInput.value = "";
     rateText.textContent = "Enter a valid amount";
-    toAmountInput.value = "";
     if (rateSub) rateSub.textContent = "Mid-market rate • Free currency data";
     return;
   }
 
   if (from === to) {
-    toAmountInput.value = Number(amount).toLocaleString(undefined, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    });
+    isUpdating = true;
+    if (direction === "from") toAmountInput.value = formatAmount(sourceValue);
+    else amountInput.value = formatAmount(sourceValue);
+    isUpdating = false;
     rateText.textContent = `1 ${from} = 1.00 ${to}`;
     if (rateSub) rateSub.textContent = "Mid-market rate • Free currency data";
     return;
@@ -1191,7 +1212,6 @@ async function convertCurrency() {
 
   try {
     rateText.textContent = "Fetching rate...";
-    toAmountInput.value = "";
 
     const fromLower = from.toLowerCase();
     const toLower = to.toLowerCase();
@@ -1223,21 +1243,22 @@ async function convertCurrency() {
       throw new Error(`No rate found for ${from} → ${to}`);
     }
 
-    // Cache successful result
     rateCache[fromLower] = data;
 
-    const converted = amount * rate;
-    toAmountInput.value = Number(converted).toLocaleString(undefined, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    });
+    isUpdating = true;
+    if (direction === "from") {
+      // From → To
+      toAmountInput.value = formatAmount(sourceValue * rate);
+    } else {
+      // To → From (reverse)
+      amountInput.value = formatAmount(sourceValue / rate);
+    }
+    isUpdating = false;
 
     let statusText = `1 ${from} = ${Number(rate).toFixed(4)} ${to}`;
-    let statusBadge = "";
-
-    if (source === "fallback") {
-      statusBadge = ` <span class="rate-status fallback">Fallback</span>`;
-    }
+    let statusBadge = source === "fallback"
+      ? ` <span class="rate-status fallback">Fallback</span>`
+      : "";
 
     rateText.innerHTML = statusText + statusBadge;
     if (rateSub) rateSub.textContent = "Mid-market rate • Free currency data";
@@ -1245,24 +1266,84 @@ async function convertCurrency() {
   } catch (error) {
     console.error("Currency conversion error:", error);
 
-    // Try cache
     const cached = rateCache[from.toLowerCase()];
-    if (cached && cached[from.toLowerCase()] && cached[from.toLowerCase()][to.toLowerCase()] !== undefined) {
+    if (cached && cached[from.toLowerCase()]?.[to.toLowerCase()] !== undefined) {
       const rate = cached[from.toLowerCase()][to.toLowerCase()];
-      const converted = amount * rate;
-      toAmountInput.value = Number(converted).toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      });
+      isUpdating = true;
+      if (direction === "from") {
+        toAmountInput.value = formatAmount(sourceValue * rate);
+      } else {
+        amountInput.value = formatAmount(sourceValue / rate);
+      }
+      isUpdating = false;
       rateText.innerHTML = `1 ${from} = ${Number(rate).toFixed(4)} ${to} <span class="rate-status cached">Cached</span>`;
       if (rateSub) rateSub.textContent = "Using last known rates (API temporarily unavailable)";
       return;
     }
 
     rateText.textContent = "Unable to fetch rate. Please try again.";
-    toAmountInput.value = "";
+    if (direction === "from") toAmountInput.value = "";
+    else amountInput.value = "";
     if (rateSub) rateSub.textContent = "Mid-market rate • Free currency data";
   }
+}
+
+function initCurrencyConverter() {
+  const fromAmount = document.getElementById("fromAmount");
+  const toAmount = document.getElementById("toAmount");
+  const swapBtn = document.getElementById("currencyBtn");
+
+  if (!fromAmount || !swapBtn) {
+    console.warn("Currency converter elements not found");
+    return;
+  }
+
+  initCustomSelect("fromCurrencySelect", "fromCurrency");
+  initCustomSelect("toCurrencySelect", "toCurrency");
+
+  document.addEventListener("click", () => {
+    document.querySelectorAll(".custom-select.open").forEach((el) => el.classList.remove("open"));
+  });
+
+  // From drives To
+  fromAmount.addEventListener("input", () => {
+    lastEdited = "from";
+    convertCurrency("from");
+  });
+
+  // To drives From
+  if (toAmount) {
+    toAmount.addEventListener("input", () => {
+      lastEdited = "to";
+      convertCurrency("to");
+    });
+  }
+
+  // Format with commas when user leaves the field
+  fromAmount.addEventListener("blur", () => {
+    const n = parseAmount(fromAmount.value);
+    if (!isNaN(n)) {
+      isUpdating = true;
+      fromAmount.value = formatAmount(n);
+      isUpdating = false;
+    }
+  });
+
+  if (toAmount) {
+    toAmount.addEventListener("blur", () => {
+      const n = parseAmount(toAmount.value);
+      if (!isNaN(n)) {
+        isUpdating = true;
+        toAmount.value = formatAmount(n);
+        isUpdating = false;
+      }
+    });
+  }
+
+  swapBtn.addEventListener("click", swapCurrencies);
+
+  updateCurrencySymbols();
+  convertCurrency("from");
 }
 
 const currencySymbols = {
@@ -1295,7 +1376,6 @@ function initCustomSelect(selectId, hiddenId) {
   const optionsBox = root.querySelector(".custom-select-options");
   const searchInput = root.querySelector(".currency-search");
 
-  // Open / close
   trigger.addEventListener("click", (e) => {
     e.stopPropagation();
     document.querySelectorAll(".custom-select.open").forEach((el) => {
@@ -1310,7 +1390,6 @@ function initCustomSelect(selectId, hiddenId) {
     }
   });
 
-  // Search filter
   if (searchInput) {
     searchInput.addEventListener("click", (e) => e.stopPropagation());
     searchInput.addEventListener("input", () => {
@@ -1318,7 +1397,6 @@ function initCustomSelect(selectId, hiddenId) {
     });
   }
 
-  // Select option
   optionsBox.addEventListener("click", (e) => {
     const option = e.target.closest(".custom-option");
     if (!option) return;
@@ -1341,7 +1419,7 @@ function initCustomSelect(selectId, hiddenId) {
     root.classList.remove("open");
 
     updateCurrencySymbols();
-    convertCurrency();
+    convertCurrency(lastEdited);
   });
 }
 
@@ -1411,33 +1489,10 @@ function swapCurrencies() {
   fromAmount.value = "1";
   toAmount.value = "";
 
+  // at the end of swapCurrencies, keep:
   updateCurrencySymbols();
-  convertCurrency();
-}
-
-function initCurrencyConverter() {
-  const fromAmount = document.getElementById("fromAmount");
-  const swapBtn = document.getElementById("currencyBtn");
-
-  if (!fromAmount || !swapBtn) {
-    console.warn("Currency converter elements not found");
-    return;
-  }
-
-  // Init both custom dropdowns
-  initCustomSelect("fromCurrencySelect", "fromCurrency");
-  initCustomSelect("toCurrencySelect", "toCurrency");
-
-  // Close dropdowns when clicking outside
-  document.addEventListener("click", () => {
-    document.querySelectorAll(".custom-select.open").forEach((el) => el.classList.remove("open"));
-  });
-
-  fromAmount.addEventListener("input", convertCurrency);
-  swapBtn.addEventListener("click", swapCurrencies);
-
-  updateCurrencySymbols();
-  convertCurrency();
+  lastEdited = "from";
+  convertCurrency("from");
 }
 
 // ===============================
