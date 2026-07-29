@@ -2326,3 +2326,34 @@ body[data-calculator="currency"] .currency-input-group {
     font-weight: 400;
   }
 }
+
+/* Desktop only: room for full amounts + tight symbol spacing */
+@media (min-width: 701px) {
+  body[data-calculator="currency"] .currency-input-group {
+    grid-template-columns: 1.35fr 1.15fr;
+    /* amount wider than currency */
+  }
+
+  body[data-calculator="currency"] .amount-wrap {
+    gap: 2px;
+    padding: 0 12px;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+
+  body[data-calculator="currency"] .amount-wrap input {
+    text-align: left;
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: 0;
+    overflow: visible;
+    text-overflow: clip;
+    width: 100%;
+    min-width: 0;
+  }
+
+  body[data-calculator="currency"] .currency-symbol {
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+}
