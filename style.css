@@ -2177,3 +2177,50 @@ body[data-calculator="currency"] .currency-input-group {
   gap: 10px;
   align-items: stretch;
 }
+
+@media (max-width: 700px) {
+  body[data-calculator="currency"] .currency-input-group {
+    display: grid;
+    grid-template-columns: 1.6fr 0.9fr; /* amount wider, currency narrower */
+    gap: 8px;
+    width: 100%;
+  }
+
+  body[data-calculator="currency"] .amount-wrap {
+    height: 52px;
+    padding: 0 10px;
+  }
+
+  body[data-calculator="currency"] .amount-wrap input {
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  body[data-calculator="currency"] .custom-select-trigger {
+    height: 52px;
+    padding: 0 8px;
+    gap: 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  /* Hide the long name on mobile — keep only flag + code */
+  body[data-calculator="currency"] .custom-select-trigger .currency-name {
+    display: none;
+  }
+
+  body[data-calculator="currency"] .custom-select-trigger .currency-code {
+    display: inline;
+  }
+}
+
+/* Desktop: show full name */
+.custom-select-trigger .currency-code {
+  font-weight: 700;
+}
+
+.custom-select-trigger .currency-name {
+  display: inline;
+  font-weight: 400;
+  color: #64748b;
+}

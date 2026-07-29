@@ -1326,19 +1326,21 @@ function initCustomSelect(selectId, hiddenId) {
     const code = option.dataset.value;
     const flag = option.dataset.flag;
     const text = option.querySelector("span").textContent;
+    const nameOnly = text.includes(" - ") ? text.split(" - ").slice(1).join(" - ") : text;
 
     hidden.value = code;
     trigger.dataset.value = code;
     trigger.innerHTML = `
       <img src="https://flagcdn.com/w40/${flag}.png" alt="" class="flag-img">
-      <span>${text}</span>
+      <span class="currency-code">${code}</span>
+      <span class="currency-name"> - ${nameOnly}</span>
     `;
 
     optionsBox.querySelectorAll(".custom-option").forEach((o) => o.classList.remove("selected"));
     option.classList.add("selected");
     root.classList.remove("open");
 
-    updateCurrencySymbols();   // ← add this
+    updateCurrencySymbols();
     convertCurrency();
   });
 }
